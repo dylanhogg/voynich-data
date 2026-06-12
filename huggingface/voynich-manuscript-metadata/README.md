@@ -43,8 +43,8 @@ This dataset contains structured metadata about the Voynich Manuscript (Beinecke
 This dataset has three configurations:
 
 - `pages`: Page-level metadata (226 records)
-- `folios`: Folio-level metadata (116 records)
-- `quires`: Quire-level metadata (20 records)
+- `folios`: Folio-level metadata (102 records)
+- `quires`: Quire-level metadata (18 records)
 
 ### Pages Configuration
 
