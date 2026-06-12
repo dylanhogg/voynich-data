@@ -50,9 +50,6 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-# Add parent to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
 from parsers import IVTFFParser, Page
 from vcat import validate_eva_text
 from vcat.charset import validate_text_clean as validate_charset

@@ -1,5 +1,7 @@
 ---
-license: cc-by-4.0
+license: other
+license_name: research-use
+license_link: LICENSE
 task_categories:
   - other
 language:
@@ -13,6 +15,19 @@ tags:
 pretty_name: Voynich Manuscript Metadata
 size_categories:
   - n<1K
+configs:
+  - config_name: pages
+    data_files:
+      - split: train
+        path: pages.parquet
+  - config_name: folios
+    data_files:
+      - split: train
+        path: folios.parquet
+  - config_name: quires
+    data_files:
+      - split: train
+        path: quires.parquet
 ---
 
 # Voynich Manuscript Metadata
@@ -160,8 +175,8 @@ All metadata includes implicit attribution to the ZL transcription and voynich.n
 
 This dataset is part of the **Voynich Computational Analysis Toolkit (VCAT)**:
 
-- [voynich-eva-transcription](./voynich-eva-transcription): EVA transcription text
-- [voynich-transcription-mismatch](./voynich-transcription-mismatch): Cross-transcription comparison
+- [voynich-eva](https://huggingface.co/datasets/Ched-ai/voynich-eva): EVA transcription text
+- [voynich-transcription-mismatch](https://huggingface.co/datasets/Ched-ai/voynich-transcription-mismatch): Cross-transcription comparison
 
 Datasets can be joined on `page_id`, `folio_id`, or `quire_id`.
 
@@ -188,6 +203,12 @@ print(sections)
 foldouts = [p for p in pages['train'] if p['is_foldout_panel']]
 print(f"Foldout panels: {len(foldouts)}")
 ```
+
+## Licensing
+
+**Processing code and dataset structure:** MIT License
+
+**Underlying data:** Compiled from IVTFF transcription headers (Zandbergen-Landini), voynich.nu section classifications, Davis (2020) scribal hand identifications, and the Beinecke Library catalog. Released as a **research resource**: cite the original scholars, and verify rights independently for commercial applications. See [SOURCES_LICENSE.md](https://github.com/noah-chelednik/voynich-data/blob/main/docs/SOURCES_LICENSE.md) for full provenance details.
 
 ## Citation
 

@@ -20,9 +20,6 @@ from collections.abc import Iterator
 from dataclasses import dataclass, field
 from pathlib import Path
 
-# Add project root to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
 # Import authoritative modules - SAME as builder uses
 from vcat.charset import (
     contains_forbidden_markup,

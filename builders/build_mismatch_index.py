@@ -358,6 +358,22 @@ class MismatchIndexBuilder:
         logger.info(f"Exported {len(records)} records to {output_path}")
         return output_path
 
+    def export_parquet(
+        self, records: list[MismatchRecord], output_path: Path | None = None
+    ) -> Path:
+        """Export records to Parquet format."""
+        import pyarrow as pa
+        import pyarrow.parquet as pq
+
+        output_path = output_path or (self.output_dir / "mismatch_index.parquet")
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        table = pa.Table.from_pylist([record.to_dict() for record in records])
+        pq.write_table(table, output_path)
+
+        logger.info(f"Exported {len(records)} records to {output_path}")
+        return output_path
+
     def export_report(self, output_path: Path | None = None) -> Path:
         """Export build statistics report."""
         output_path = output_path or (self.output_dir / "mismatch_report.json")
@@ -436,6 +452,7 @@ def build_mismatch_index(
 
     # Export
     jsonl_path = builder.export_jsonl(records)
+    parquet_path = builder.export_parquet(records)
     report_path = builder.export_report()
     summary = builder.generate_summary_stats()
 
@@ -443,6 +460,7 @@ def build_mismatch_index(
         "success": True,
         "records_count": len(records),
         "output_jsonl": str(jsonl_path),
+        "output_parquet": str(parquet_path),
         "output_report": str(report_path),
         "summary": summary,
     }

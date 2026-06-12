@@ -2,10 +2,11 @@
 
 [![CI](https://github.com/noah-chelednik/voynich-data/actions/workflows/ci.yml/badge.svg)](https://github.com/noah-chelednik/voynich-data/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Datasets-Ched--ai-yellow)](https://huggingface.co/Ched-ai)
 
 **Rigorous infrastructure for studying an unknown structured artifact**
 
-> 🎉 **Horizon 1 Complete:** All foundational datasets are built and ready for publication!
+All foundational datasets are built, validated, and published on Hugging Face.
 
 ## Overview
 
@@ -58,15 +59,23 @@ This project processes five transcription sources:
 
 See `data_sources/sources.yaml` for complete source documentation.
 
-## Mismatch Index Statistics
+## Cross-Transcription Comparison (ZL vs IT)
 
-Cross-transcription comparison (ZL vs IT):
+How often do the two major EVA transcriptions agree, line by line?
+Less than you might expect:
 
-- **Total EVA agreement rate: 83.9%**
-- Exact matches: 901 (22.1%)
-- Normalized matches: 293 (7.2%)
-- High similarity (≥95%): 2,220 (54.6%)
-- Content mismatches: 655 (16.1%)
+| Category | Lines | Share |
+|----------|-------|-------|
+| Exact match | 901 | 22.1% |
+| Match after normalization | 293 | 7.2% |
+| High similarity (≥95%, but not identical) | 2,220 | 54.6% |
+| Substantive disagreement (<95% similarity) | 655 | 16.1% |
+
+Only **29.3%** of lines are fully identical, even after stripping uncertainty
+markup, and **16.1%** differ substantively. Any analysis built on a single
+transcription inherits this uncertainty — the mismatch dataset exists to make
+it quantifiable. (Similarity is `difflib.SequenceMatcher` ratio over normalized
+text, aligned by `page:line` locus; see `builders/build_mismatch_index.py`.)
 
 ## Local Build
 
@@ -126,15 +135,15 @@ This is part of the **Voynich Computational Analysis Toolkit (VCAT)**:
 
 ## Contributing
 
-Contributions welcome! Please:
-
-1. Check existing issues before opening a new one
-2. Run tests and linting before submitting PRs
-3. Document any methodology changes
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for setup,
+checks, and ground rules.
 
 ## License
 
-MIT License - See [LICENSE](LICENSE) for details.
+- **Code:** MIT License - See [LICENSE](LICENSE) for details.
+- **Datasets:** Published as research resources; the underlying scholarly
+  transcriptions carry no formal license. See
+  [docs/SOURCES_LICENSE.md](docs/SOURCES_LICENSE.md) for full provenance.
 
 ## Acknowledgments
 

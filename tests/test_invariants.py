@@ -8,14 +8,9 @@ Uses the SAME authoritative modules as the builder and verifier.
 """
 
 import json
-
-# Import authoritative modules
-import sys
 from pathlib import Path
 
 import pytest
-
-sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from vcat.charset import contains_forbidden_markup, contains_uncertainty_markers
 from vcat.text_processing import strip_ivtff_markup

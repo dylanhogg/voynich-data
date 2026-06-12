@@ -1,5 +1,7 @@
 ---
-license: cc-by-4.0
+license: other
+license_name: research-use
+license_link: LICENSE
 task_categories:
   - other
 language:
@@ -13,6 +15,11 @@ tags:
 pretty_name: Voynich Transcription Mismatch Index
 size_categories:
   - 1K<n<10K
+configs:
+  - config_name: default
+    data_files:
+      - split: train
+        path: mismatch_index.parquet
 ---
 
 # Voynich Transcription Mismatch Index
@@ -31,9 +38,14 @@ The primary comparison is between EVA-based transcriptions (ZL and IT), with add
 | Lines with both EVA sources | 4,069 |
 | EVA exact matches | 901 (22.1%) |
 | EVA normalized matches | 293 (7.2%) |
-| EVA high similarity (≥95%) | 2,220 (54.6%) |
-| EVA content mismatches | 655 (16.1%) |
-| **Total EVA agreement rate** | **83.9%** |
+| EVA high similarity (≥95%, but not identical) | 2,220 (54.6%) |
+| EVA substantive disagreements (<95%) | 655 (16.1%) |
+
+**The headline finding:** the two major EVA transcriptions are fully identical
+on only **29.3%** of lines (exact + normalized matches), and differ
+substantively on **16.1%**. The remaining 54.6% are close (≥95% similar) but
+not identical. Any analysis built on a single transcription inherits this
+uncertainty — this dataset exists to make it quantifiable.
 
 ## Transcription Sources
 
@@ -178,8 +190,8 @@ meta = load_dataset("Ched-ai/voynich-manuscript-metadata", "pages")
 
 This dataset is part of the **Voynich Computational Analysis Toolkit (VCAT)**:
 
-- [voynich-eva-transcription](./voynich-eva-transcription): Complete EVA transcription
-- [voynich-manuscript-metadata](./voynich-manuscript-metadata): Page, folio, quire metadata
+- [voynich-eva](https://huggingface.co/datasets/Ched-ai/voynich-eva): Complete EVA transcription
+- [voynich-manuscript-metadata](https://huggingface.co/datasets/Ched-ai/voynich-manuscript-metadata): Page, folio, quire metadata
 
 ## Quick Start
 
@@ -191,12 +203,20 @@ ds = load_dataset("Ched-ai/voynich-transcription-mismatch")
 # Summary statistics
 total = len(ds['train'])
 exact = len(ds['train'].filter(lambda x: x['status'] == 'exact_match'))
-high_sim = len(ds['train'].filter(lambda x: x['status'] == 'high_similarity'))
 normalized = len(ds['train'].filter(lambda x: x['status'] == 'normalized_match'))
+high_sim = len(ds['train'].filter(lambda x: x['status'] == 'high_similarity'))
+mismatch = len(ds['train'].filter(lambda x: x['status'] == 'content_mismatch'))
 
-agreement_rate = (exact + high_sim + normalized) / total * 100
-print(f"EVA agreement rate: {agreement_rate:.1f}%")
+print(f"Fully identical:          {(exact + normalized) / total:.1%}")
+print(f"Close but not identical:  {high_sim / total:.1%}")
+print(f"Substantive disagreement: {mismatch / total:.1%}")
 ```
+
+## Licensing
+
+**Processing code and dataset structure:** MIT License
+
+**Underlying transcription data:** The five source transcriptions (ZL, IT, CD, FG, GC) are scholarly works whose authors have not published explicit license statements. They are publicly distributed for research via [voynich.nu](https://voynich.nu). This dataset is released as a **research resource**: cite the original transcribers, and verify rights independently for commercial applications. See [SOURCES_LICENSE.md](https://github.com/noah-chelednik/voynich-data/blob/main/docs/SOURCES_LICENSE.md) for full provenance details.
 
 ## Citation
 

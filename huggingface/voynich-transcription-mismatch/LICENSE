@@ -1,0 +1,26 @@
+VCAT Dataset License (Research Use)
+
+Dataset structure, processing code, and documentation:
+  MIT License — Copyright (c) 2026 Noah Chelednik
+  https://github.com/noah-chelednik/voynich-data/blob/main/LICENSE
+
+Underlying transcription data:
+  This dataset is derived from scholarly transcriptions of the Voynich
+  Manuscript (Beinecke MS 408, Yale University) that are publicly
+  distributed for research, primarily the Zandbergen-Landini (ZL)
+  transcription from https://www.voynich.nu/. The transcription authors
+  have not published explicit license statements.
+
+  This dataset is therefore released as a RESEARCH RESOURCE:
+
+  1. Research and educational use is the intended purpose.
+  2. Cite the original transcribers in any published work
+     (see the Citation section of the dataset card).
+  3. For commercial applications, verify rights independently and
+     contact the transcription authors.
+
+  Full provenance for all transcription sources:
+  https://github.com/noah-chelednik/voynich-data/blob/main/docs/SOURCES_LICENSE.md
+
+The manuscript itself is in the public domain. Images of the manuscript
+are provided by the Beinecke Rare Book & Manuscript Library.

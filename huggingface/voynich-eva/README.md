@@ -18,6 +18,11 @@ tags:
 pretty_name: Voynich Manuscript EVA Transcription
 size_categories:
   - 1K<n<10K
+configs:
+  - config_name: default
+    data_files:
+      - split: train
+        path: eva_lines.parquet
 ---
 
 # Voynich Manuscript EVA Transcription
@@ -158,7 +163,7 @@ Repository: [voynich-data](https://github.com/noah-chelednik/voynich-data)
 - **Transcription uncertainty:** The Voynich script is ambiguous; some readings are uncertain (flagged with `has_uncertain` and `has_alternatives`)
 - **No semantic meaning:** This is a character-level transcription; the text remains undeciphered
 - **Section classification:** Section assignments are approximate and may differ from other sources
-- **Single transcription:** This dataset uses ZL only; other transcriptions may differ (see `voynich-transcription-disagreements`)
+- **Single transcription:** This dataset uses ZL only. The two major EVA transcriptions (ZL and Takahashi) are fully identical on only ~29% of lines and differ substantively on 16% — see [voynich-transcription-mismatch](https://huggingface.co/datasets/Ched-ai/voynich-transcription-mismatch) to quantify how this affects your analysis
 
 ### Schema Status
 
@@ -169,8 +174,8 @@ Repository: [voynich-data](https://github.com/noah-chelednik/voynich-data)
 This dataset is part of the **Voynich Computational Analysis Toolkit (VCAT)**:
 
 - `voynich-eva` (this dataset) - Line-level EVA transcription
-- `voynich-manuscript-metadata` - Page, folio, quire metadata
-- `voynich-transcription-disagreements` - Cross-transcription mismatch index
+- [voynich-manuscript-metadata](https://huggingface.co/datasets/Ched-ai/voynich-manuscript-metadata) - Page, folio, quire metadata
+- [voynich-transcription-mismatch](https://huggingface.co/datasets/Ched-ai/voynich-transcription-mismatch) - Cross-transcription comparison
 
 Datasets can be joined on `page_id`.
 
@@ -180,7 +185,7 @@ Datasets can be joined on `page_id`.
 from datasets import load_dataset
 
 # Load the dataset
-ds = load_dataset("Ched-ai/voynich-eva", "lines")
+ds = load_dataset("Ched-ai/voynich-eva")
 
 # View first record
 print(ds["train"][0])
@@ -198,7 +203,7 @@ texts = [row["text_clean"] for row in ds["train"]]
 
 ## Versioning
 
-- **Current version:** v0.2.2
+- **Current version:** v0.2.3
 - **Schema status:** Pre-1.0 (may change)
 - **Source version:** ZL3b (May 2025)
 
@@ -212,7 +217,7 @@ texts = [row["text_clean"] for row in ds["train"]]
 - **Verify rights independently** for commercial applications
 - **Contact the transcription authors** if in doubt about specific uses
 
-This dataset is released as a **research resource**. If you are aware of more specific licensing terms, please open an issue.
+This dataset is released as a **research resource**. If you are aware of more specific licensing terms, please open an issue. See [SOURCES_LICENSE.md](https://github.com/noah-chelednik/voynich-data/blob/main/docs/SOURCES_LICENSE.md) for full provenance details for all transcription sources.
 
 ## Citation
 
