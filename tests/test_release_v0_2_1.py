@@ -81,10 +81,12 @@ class TestReleaseV0_2_1:
         assert manifest_path.exists(), "release_manifest.json not found"
 
     def test_manifest_version(self):
-        """Manifest contains correct version."""
+        """Manifest version matches the package version (single source of truth)."""
+        from vcat import __version__
+
         manifest_path = OUTPUT_DIR / "release_manifest.json"
         manifest = json.loads(manifest_path.read_text())
-        assert manifest["dataset"]["version"] == "0.2.2"
+        assert manifest["dataset"]["version"] == __version__
 
 
 class TestReproducibility:

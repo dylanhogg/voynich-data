@@ -571,15 +571,17 @@ def generate_manifest(
         record_count: Number of records
         jsonl_hash: SHA256 hash of JSONL file
     """
+    from vcat import __version__
+
     manifest = {
-        "build": {"date": report.build_date, "tool_version": "0.2.1"},
+        "build": {"date": report.build_date, "tool_version": __version__},
         "contract": {
             "charset_covenant": "Locked for v0.2.x - see docs/charset_decisions.md",
             "flags_computed_from": "tag-stripped text before marker removal",
             "json_serialization": "sort_keys=True, separators=(',',':'), newline='\\n'",
             "ordering": "deterministic by (folio_number, side, panel, line_index)",
         },
-        "dataset": {"config": "lines", "name": "voynich-eva", "version": "0.2.1"},
+        "dataset": {"config": "lines", "name": "voynich-eva", "version": __version__},
         "files": [
             {"name": "eva_lines.jsonl", "reproducible": True, "sha256": jsonl_hash},
             {
@@ -789,8 +791,10 @@ def main() -> None:  # pragma: no cover
         print("Run 'python scripts/fetch_sources.py' first to download the source.")
         sys.exit(1)
 
+    from vcat import __version__
+
     print("=" * 60)
-    print("VCAT EVA Lines Dataset Builder v0.2.1")
+    print(f"VCAT EVA Lines Dataset Builder v{__version__}")
     print("=" * 60)
     print(f"\nSource: {source_path}")
     print(f"Output: {output_dir}")

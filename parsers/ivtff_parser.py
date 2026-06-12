@@ -35,11 +35,11 @@ from __future__ import annotations
 import re
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 from pathlib import Path
 
 
-class LocusType(str, Enum):
+class LocusType(StrEnum):
     """Types of text loci in the manuscript.
 
     Different types of text positioning in the Voynich manuscript.
@@ -57,7 +57,7 @@ class LocusType(str, Enum):
     RADIUS = "R"
 
 
-class LocusPosition(str, Enum):
+class LocusPosition(StrEnum):
     """Position indicators for loci.
 
     Indicates how a locus relates to surrounding text units.

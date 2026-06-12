@@ -1,7 +1,7 @@
 {
   "build": {
-    "date": "2026-01-18T09:30:28.764695Z",
-    "tool_version": "0.2.2"
+    "date": "2026-06-12T16:11:47.188309Z",
+    "tool_version": "0.2.3"
   },
   "contract": {
     "charset_covenant": "Locked for v0.2.x - see docs/charset_decisions.md",
@@ -12,7 +12,7 @@
   "dataset": {
     "config": "lines",
     "name": "voynich-eva",
-    "version": "0.2.2"
+    "version": "0.2.3"
   },
   "files": [
     {

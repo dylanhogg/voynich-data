@@ -29,13 +29,13 @@ from __future__ import annotations
 import re
 from collections import defaultdict
 from dataclasses import asdict, dataclass, field
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 from parsers.ivtff_parser import LocusType, Page
 
 
-class ManuscriptSection(str, Enum):
+class ManuscriptSection(StrEnum):
     """Manuscript sections based on content and illustration type.
 
     Section boundaries are approximate and based on scholarly consensus.
@@ -51,7 +51,7 @@ class ManuscriptSection(str, Enum):
     UNKNOWN = "unknown"
 
 
-class IllustrationType(str, Enum):
+class IllustrationType(StrEnum):
     """Illustration type codes from IVTFF $I variable.
 
     Attributes:

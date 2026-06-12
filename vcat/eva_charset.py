@@ -30,11 +30,11 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 from typing import NamedTuple
 
 
-class CharacterCategory(str, Enum):
+class CharacterCategory(StrEnum):
     """Categories of EVA characters.
 
     EVA characters are classified into categories based on their frequency
