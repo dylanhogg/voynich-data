@@ -1,10 +1,80 @@
 # Plan 001 — Initial Automated English Translation
 
-**Status**: Draft, awaiting approval
+**Status**: Phase 0 complete; Phases 1–5 not started
 **Author**: VCAT / agent-assisted
-**Date**: 2026-08-19
+**Date**: 2026-08-19 (Phase 0 implemented 2026-08-19)
 **Scope**: Extend voynich-data (VCAT) from dataset building into analysis, code
 breaking, and a best-efforts automated English translation.
+
+---
+
+## Phase status
+
+| Phase | State | Evidence |
+| --- | --- | --- |
+| 0 — Foundations | **Complete** | `translations/` package (config, determinism, io, tokenize, strata, corpora, nulls, phase0), 10 checksum-pinned reference corpora, 48 new tests (391 passed / 7 skipped total), `output/translation/phase0_manifest.json` byte-identical across runs |
+| 1 — Analysis round 1 | Not started | — |
+| 2 — Hypothesis space + search | Not started | — |
+| 3 — Analysis round 2 | Not started | — |
+| 4 — Translation pipeline | Not started | — |
+| 5 — Audit + honesty gate | Not started | — |
+
+**Run Phase 0:**
+
+```bash
+make corpora   # fetch + SHA256-verify reference corpora into data_sources/cache/corpora/
+make phase0    # verify inputs, summarise strata, write output/translation/phase0_manifest.json
+make test      # 391 passed, 7 skipped
+```
+
+### Phase 0 as built (deltas from the plan below)
+
+1. **No new runtime dependencies.** Everything in Phase 0 is stdlib plus the
+   existing `pyyaml`. numpy/scipy/torch are deferred to Phase 1, where they are
+   first actually needed.
+2. **`line_type` has only two values** in the built data — `paragraph` (3,957)
+   and `label` (115). There is no `circle`/`radius` value, contrary to §2.6 and
+   the assumption behind §3.6: circular and radial text is *not* distinguishable
+   at line level. Astronomical/cosmological pages (f68r1–3, f57v, f67r…) are typed
+   `paragraph`. Excluding circular text therefore needs a page-level or
+   illustration-type rule, which Phase 1 must define explicitly.
+3. **Tokenizer exit-gate lines changed accordingly.** f100r has no label lines;
+   labels concentrate on f66r (49) and f49v (26). The hand-checked test lines are
+   f1r:1 (prose), f1r:2 (comma), f1r:19 (high-ASCII), f2r:10 (ligature),
+   f68r1:1 (circular page), f66r:1 (label).
+4. **`text_clean` is not pure EVA letters.** It contains 80 high-ASCII tokens
+   (`@NNN;`) and 24 ligature connectors (`'`). `T1-glyph` treats `@NNN;` as one
+   opaque unit and drops `'`; both choices are recorded in `docs/decisions.md`
+   (Decision 8).
+5. **The comma policy is a no-op for IT.** The IT text in the mismatch index
+   contains no `,`, so `CB=break` and `CB=join` give identical IT numbers. The
+   reporting grid still has 8 cells but only 6 distinct word counts.
+6. **Baseline counts, measured** (`phase0_manifest.json`): ZL 4,072 lines,
+   33,728 words (`CB=break`), 170,988 `T0-char` units, 152,601 `T1-glyph` units;
+   IT 4,061 lines (11 lines empty or absent after cleaning), 33,176 words,
+   153,264 glyph units. Consensus subset 3,414 lines (83.9%), as predicted.
+   Held-out split: 41 of 206 pages, 698 lines.
+7. **Reference corpora: 9 text + 1 lexicon, all checksum-pinned** (§2.4 table
+   updated below). Four of them (Clementine Vulgate, Douay-Rheims, Elberfelder
+   1905, Finnish 1933/38) are the same text in four languages, which holds genre
+   constant across the language contrast — a stronger control than the plan
+   assumed. Not obtainable as checksummed public-domain plain text: Old Occitan,
+   Middle High German, a medieval Latin herbal proper (*Circa Instans*,
+   *Herbarium Apuleii*), Semitic text in Latin transliteration, Turkish, pinyin.
+   Clusius (1605) is the herbal-register proxy that was obtainable.
+8. **Corpora are fetched, not vendored** (Decision 9): `make corpora` verifies
+   SHA256 into a git-ignored cache. Corpus tests skip cleanly when the cache is
+   absent, so CI stays offline.
+9. **`T2-slot` / `T3-merge` raise `NotImplementedError`** until Phase 1.4 and
+   Phase 2 produce the inductions they depend on.
+10. **Open normalisation decision deferred to Phase 1**: whether Latin baselines
+    fold `u/v` and `i/j`. Current normalisation does not; this matters for Latin
+    letter-frequency comparisons.
+11. **Scaffold built to need.** `analysis/`, `decipher/` and `lexicon/` exist as
+    empty packages; `gloss.py`, `render.py`, `confidence.py`, `pipeline.py` and
+    `report.py` are Phase 3/4 work and were not stubbed. `make analyse1`,
+    `analyse2`, `decipher`, `translate`, `audit` will be added with the phases
+    that implement them; `make corpora` and `make phase0` exist now.
 
 ---
 
@@ -34,7 +104,7 @@ most important test in this document.
 | LLM in pipeline | **No.** Deterministic code only. | No network at run time; byte-reproducible outputs; weaker fluency, stronger auditability. |
 | New deps / corpora | **Allowed**, pinned with SHA256 in `sources.yaml`. | numpy/scipy/scikit-learn plus **torch (Apple Metal / MPS)**, plus public-domain reference corpora. |
 | Output posture | **Full coverage, flagged.** | Every line gets a best-guess English string; every artifact carries a confidence column and a speculative banner. A gated (UNKNOWN-masked) view is retained internally as a diagnostic. |
-| This session | **Plan only.** | No code written until this plan is approved. |
+| This session | **Plan only.** (Superseded 2026-08-19: Phase 0 implemented.) | No code written until this plan is approved. |
 | Publication | **None.** Nothing published to HuggingFace or elsewhere. | All artifacts stay local in `output/` and `reports/`; no dataset cards authored for the translation outputs. |
 | Plaintext language priority | **No preference expressed** ⇒ plan's default stands. | Latin (herbal register) front-loaded; Romance/Germanic/Semitic secondary. |
 | Annotation | **Fully automated.** No hand annotation. | Any data gap that cannot be closed by a checksummed source stays open, and the tests depending on it are downgraded or dropped (§5.1). |
@@ -156,6 +226,15 @@ New Makefile targets: `make corpora`, `make analyse1`, `make analyse2`,
 `make decipher`, `make translate`, `make audit`. Each is a thin wrapper over
 `uv run python -m translations.<entrypoint>`.
 
+**As built:** `config.py`, `determinism.py`, `io.py`, `tokenize.py`, `strata.py`,
+`corpora/` (`registry.py`, `normalise.py`), `nulls/` (`surrogates.py`,
+`markov.py`, `pseudo.py`, `encipher.py`) and `phase0.py` exist and are tested;
+`analysis/`, `decipher/`, `lexicon/` are empty packages; `gloss.py`, `render.py`,
+`confidence.py`, `pipeline.py`, `report.py` arrive with Phases 3–4. Targets
+`make corpora` and `make phase0` exist; the rest arrive with their phases.
+`scripts/fetch_corpora.py` (not `fetch_sources.py`) fetches reference corpora, so
+transcription and corpus provenance stay separable.
+
 ### 2.2 Determinism contract
 
 - Single global seed in `config.py`; every stochastic algorithm takes an
@@ -169,6 +248,12 @@ New Makefile targets: `make corpora`, `make analyse1`, `make analyse2`,
 - **Acceptance test**: `make translate` twice produces byte-identical outputs;
   a test asserts the SHA256 of each emitted artifact against a recorded value.
 
+**As built:** manifests are written by `translations.determinism.write_manifest`
+and contain the banner, config hash, seed, git commit, recorded package versions
+and input SHA256s — and no wall-clock field, which is what makes byte-identity
+achievable. The Phase 0 instance is `output/translation/phase0_manifest.json`
+(also carrying the tokenization grid, strata summary and corpus checksum status).
+
 ### 2.3 Tokenization contract (decide once, report everywhere)
 
 `AGENTS.md` warns results swing on tokenization. Define four variants and treat
@@ -180,6 +265,11 @@ the choice as a first-class experimental factor:
 | `T1-glyph` | EVA glyph | Compound-aware: `ch`, `sh`, `cth`, `ckh`, `cph`, `cfh` merged to single units. Reflects visual glyph reality. |
 | `T2-slot` | morph | `T1` plus induced prefix/root/suffix segmentation from Phase 1.4. |
 | `T3-merge` | cipher unit | `T1` plus the empirically-searched glyph-merge partition from Phase 2 H2 (e.g. `qo`, `ee`, `ain`). |
+
+`T2-slot` and `T3-merge` are declared in `translations.config.Tokenizer` and
+raise `NotImplementedError` until Phase 1.4 / Phase 2 produce them. In `T1-glyph`
+a high-ASCII token `@NNN;` is one opaque unit and the ligature connector `'` is
+dropped (Decision 8).
 
 Orthogonal binary factor: **comma policy** — `,` (uncertain word break) treated
 as a break (`CB=break`) or as within-word (`CB=join`). Both computed; the
@@ -201,6 +291,31 @@ public domain or permissive licence, plain text obtainable, plausible as a
 | Semitic | Hebrew and Arabic in Latin transliteration, plus vowel-stripped variants | Abjad hypothesis |
 | Contrast | Modern English, Finnish/Turkish (agglutinative), Chinese pinyin | Distributional contrast set |
 | English target | Modern English (for target-side LM) + Latin↔English and Latin↔modern-language lexicons (e.g. Whitaker's Words data, Wiktionary extracts) | Gloss generation |
+
+**As built** (`reference_corpora:` in `data_sources/sources.yaml`; word counts
+after normalisation, from `phase0_manifest.json`):
+
+| Id | Text | Lang | Group | Words |
+| --- | --- | --- | --- | --- |
+| `vulgate_clementine` | Clementine Vulgate | la | latin | 611,765 |
+| `caesar_bello_gallico` | Caesar, *De Bello Gallico* I–IV | la | latin | 20,545 |
+| `clusius_rariorum` | Clusius, *De Rariorum Animalium atque Stirpium Historia* (1605) | la | latin | 11,638 |
+| `dante_commedia` | Dante, *La Divina Commedia* | it | romance | 102,005 |
+| `chaucer_canterbury` | Chaucer, *The Canterbury Tales* | enm | germanic | 281,126 |
+| `german_bible_elberfelder` | Elberfelder Bibel 1905 | de | germanic | 722,778 |
+| `finnish_bible` | Pyhä Raamattu 1933/38 | fi | contrast | 622,413 |
+| `douay_rheims` | Douay-Rheims Bible | en | english | 891,382 |
+| `austen_pride_prejudice` | Austen, *Pride and Prejudice* | en | english | 128,559 |
+| `whitakers_words` | Whitaker's Words `DICTLINE.GEN` | la | lexicon | — (Phase 4) |
+
+The four Bible texts are verse-parallel, so cross-language comparisons hold
+genre constant. Voynich is ~33.7k words, so every one of these needs
+subsampling before comparison (`translations.corpora.subsample_words`, contiguous
+window). Not obtainable as checksummed public-domain plain text, and therefore
+**open gaps**: Old Occitan, Middle High German, a medieval Latin herbal proper,
+Semitic text in Latin transliteration, Turkish, pinyin. The Semitic/abjad
+hypothesis is consequently tested only via `encipher(..., "abjad")` on Latin
+until a transliterated corpus is found.
 
 Tasks:
 1. `docs/sources.md` + `data_sources/sources.yaml` entries with URL, licence,
@@ -232,13 +347,29 @@ The `grille` and `selfcite` generators are tuned in Phase 1 to match Voynich
 h2, word-length distribution and hapax rate as closely as possible. A
 well-matched pseudo-Voynich is the control that makes Phase 5 meaningful.
 
-### 2.6 Phase 0 exit gate
+**As built:** `markov_chars(words, order, rng)` / `markov_words(...)` (word
+boundaries are a symbol in the char model, so word lengths are generated rather
+than copied); `grille(table, n_words, rng)` with `induce_table()` deriving the
+syllable table from a corpus — the Phase 1 tuning hook; `selfcite(seed_words,
+n_words, rng, window, mutation_rate)`; `encipher(words, scheme, rng)` with
+schemes `substitution`, `abjad`, `verbose`, returning ciphertext plus the `Key`
+so recovery can be scored. All take an explicit `rng` from
+`translations.determinism.derived_rng(salt)`.
 
-- [ ] `translations/` importable, typed, `ruff`/`black`/`mypy` clean, tests pass.
-- [ ] All corpora fetched and checksum-verified; `make corpora` idempotent.
-- [ ] Determinism test green (two runs, identical hashes).
-- [ ] Tokenizer variants unit-tested against hand-checked lines from f1r, f68r
-      (circular), f100r (pharma labels).
+### 2.6 Phase 0 exit gate — **met 2026-08-19**
+
+- [x] `translations/` importable, typed, `ruff`/`black`/`mypy` clean, tests pass
+      (391 passed, 7 skipped).
+- [x] All corpora fetched and checksum-verified; `make corpora` idempotent
+      (re-runs verify the cache and download nothing).
+- [x] Determinism test green: `make phase0` twice gives a byte-identical
+      `output/translation/phase0_manifest.json`; `tests/translations/test_determinism.py`
+      asserts manifest stability and seeded-RNG reproducibility.
+- [x] Tokenizer variants unit-tested against hand-checked lines — f1r:1, f1r:2
+      (comma), f1r:19 (high-ASCII), f2r:10 (ligature), f68r1:1 (circular page),
+      f66r:1 (label). Note: f100r has **no** label lines and no `line_type`
+      distinguishes circular text, so the planned f68r/f100r pairing was
+      replaced by f68r1 + f66r.
 
 ---
 

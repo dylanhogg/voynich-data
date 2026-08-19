@@ -51,3 +51,22 @@ If you are an author of one of these transcriptions and would like the
 attribution changed, the terms clarified, or content removed, please
 [open an issue](https://github.com/noah-chelednik/voynich-data/issues) —
 it will be acted on promptly.
+
+---
+
+## Reference corpora (non-Voynich baselines)
+
+Plan 001 Phase 0 introduced checksum-pinned reference corpora used as
+statistical baselines and, later, as language models. They are listed under
+`reference_corpora:` in `data_sources/sources.yaml` with URL, licence and
+retrieval date.
+
+| Source | Rights status |
+|--------|---------------|
+| Project Gutenberg texts (Caesar, Clusius, Dante, Chaucer, Austen) | Public domain in the US; the Gutenberg boilerplate is stripped before use and never redistributed |
+| Bible texts via `scrollmapper/bible_databases` (Clementine Vulgate, Douay-Rheims, Elberfelder 1905, Finnish 1933/38) | Underlying translations are old enough to be public domain; the repository itself is MIT |
+| Whitaker's Words `DICTLINE.GEN` | Released by William Whitaker for any use ("freely available to anyone who wishes to use them, for whatever purpose") |
+
+**None of these corpora are redistributed by this project.** They are fetched
+to a git-ignored cache (`data_sources/cache/corpora/`) and verified by SHA256.
+Derived artifacts publish statistics computed from them, not their text.

@@ -75,3 +75,6 @@ Thumbs.db
 *.tmp
 *.temp
 *.log
+
+# Reference corpora (plan 001): fetched-not-vendored, verified by checksum
+data_sources/cache/corpora/

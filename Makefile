@@ -19,6 +19,14 @@ build:
 	uv run python -m builders.build_metadata
 	uv run python -m builders.build_mismatch_index
 
+corpora:
+	# Fetch and verify the reference corpora used as baselines (plan 001, Phase 0)
+	uv run python scripts/fetch_corpora.py
+
+phase0:
+	# Verify inputs, summarise strata + corpora, write output/translation/phase0_manifest.json
+	uv run python -m translations.phase0
+
 quick-analysis:
 	uv run python scripts/quick_analysis.py
 

@@ -1,0 +1,212 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "config_hash": "33c965e95f99b8f59493bdddb606d655f17eca416d5b37b330d26f17b6a0630c",
+  "corpora": {
+    "austen_pride_prejudice": {
+      "chars": 563941,
+      "checksum_ok": true,
+      "group": "english",
+      "kind": "text",
+      "language": "en",
+      "present": true,
+      "words": 128559
+    },
+    "caesar_bello_gallico": {
+      "chars": 123358,
+      "checksum_ok": true,
+      "group": "latin",
+      "kind": "text",
+      "language": "la",
+      "present": true,
+      "words": 20545
+    },
+    "chaucer_canterbury": {
+      "chars": 1154440,
+      "checksum_ok": true,
+      "group": "germanic",
+      "kind": "text",
+      "language": "enm",
+      "present": true,
+      "words": 281126
+    },
+    "clusius_rariorum": {
+      "chars": 65764,
+      "checksum_ok": true,
+      "group": "latin",
+      "kind": "text",
+      "language": "la",
+      "present": true,
+      "words": 11638
+    },
+    "dante_commedia": {
+      "chars": 404880,
+      "checksum_ok": true,
+      "group": "romance",
+      "kind": "text",
+      "language": "it",
+      "present": true,
+      "words": 102005
+    },
+    "douay_rheims": {
+      "chars": 3616686,
+      "checksum_ok": true,
+      "group": "english",
+      "kind": "text",
+      "language": "en",
+      "present": true,
+      "words": 891382
+    },
+    "finnish_bible": {
+      "chars": 3845588,
+      "checksum_ok": true,
+      "group": "contrast",
+      "kind": "text",
+      "language": "fi",
+      "present": true,
+      "words": 622413
+    },
+    "german_bible_elberfelder": {
+      "chars": 3432700,
+      "checksum_ok": true,
+      "group": "germanic",
+      "kind": "text",
+      "language": "de",
+      "present": true,
+      "words": 722778
+    },
+    "vulgate_clementine": {
+      "chars": 3289217,
+      "checksum_ok": true,
+      "group": "latin",
+      "kind": "text",
+      "language": "la",
+      "present": true,
+      "words": 611765
+    },
+    "whitakers_words": {
+      "checksum_ok": true,
+      "group": "lexicon",
+      "kind": "lexicon",
+      "language": "la",
+      "present": true
+    }
+  },
+  "defaults": {
+    "comma_policy": "CB=break",
+    "tokenizer": "T1-glyph",
+    "transcription": "zl"
+  },
+  "git_commit": "378524c85ac1ab1d4e02a8751d8a274e779db2db",
+  "inputs": {
+    "data_sources/sources.yaml": "2a99d1418a58db875f2a798c238a40678cd9b154ecbbabc96a236f0ab7e59bae",
+    "output/eva_lines.jsonl": "53e5db5ab1364eec553de3e20974a16b7af00916906f3758b5f3e2cfd0f4f7c7",
+    "output/metadata/pages.jsonl": "cf4f60f1e2b2ace3789924d04765a83a005850a1dda3d7bfde6312931562ccf3",
+    "output/mismatch_index.jsonl": "72316ceff4d6976744406e649bf7a053dd951a93f58e6e863cf23baa88b18679"
+  },
+  "packages": {
+    "pandas": "3.0.5",
+    "pyyaml": "6.0.3",
+    "vcat-data": "0.2.3"
+  },
+  "phase": 0,
+  "seed": 20260819,
+  "strata": {
+    "consensus_lines": 3414,
+    "currier_language": {
+      "A": 1562,
+      "B": 2437,
+      "None": 73
+    },
+    "hand": {
+      "1": 1488,
+      "2": 1156,
+      "3": 1180,
+      "4": 62,
+      "5": 141,
+      "@": 45
+    },
+    "holdout_lines": 698,
+    "holdout_pages": 41,
+    "line_type": {
+      "label": 115,
+      "paragraph": 3957
+    },
+    "mismatch_status": {
+      "content_mismatch": 655,
+      "exact_match": 901,
+      "high_similarity": 2220,
+      "it_missing": 3,
+      "normalized_match": 293
+    },
+    "pages": 206,
+    "quire_id": {
+      "qA": 219,
+      "qB": 148,
+      "qC": 214,
+      "qD": 170,
+      "qE": 209,
+      "qF": 199,
+      "qG": 254,
+      "qH": 195,
+      "qI": 37,
+      "qJ": 25,
+      "qM": 778,
+      "qN": 128,
+      "qO": 154,
+      "qQ": 128,
+      "qS": 134,
+      "qT": 1080
+    },
+    "section": {
+      "astronomical": 31,
+      "biological": 722,
+      "cosmological": 48,
+      "herbal": 1612,
+      "pharmaceutical": 223,
+      "stars": 1159,
+      "text_only": 277
+    }
+  },
+  "tokenization_grid": {
+    "T0-char|CB=break|it": {
+      "lines": 4061,
+      "units": 171569,
+      "words": 33176
+    },
+    "T0-char|CB=break|zl": {
+      "lines": 4072,
+      "units": 170988,
+      "words": 33728
+    },
+    "T0-char|CB=join|it": {
+      "lines": 4061,
+      "units": 171569,
+      "words": 33176
+    },
+    "T0-char|CB=join|zl": {
+      "lines": 4072,
+      "units": 170988,
+      "words": 31311
+    },
+    "T1-glyph|CB=break|it": {
+      "lines": 4061,
+      "units": 153264,
+      "words": 33176
+    },
+    "T1-glyph|CB=break|zl": {
+      "lines": 4072,
+      "units": 152601,
+      "words": 33728
+    },
+    "T1-glyph|CB=join|it": {
+      "lines": 4061,
+      "units": 153264,
+      "words": 33176
+    },
+    "T1-glyph|CB=join|zl": {
+      "lines": 4072,
+      "units": 152601,
+      "words": 31311
+    }
+  }
+}

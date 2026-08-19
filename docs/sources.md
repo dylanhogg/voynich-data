@@ -243,12 +243,56 @@ VCAT-produced datasets and code are released under MIT License:
 
 ---
 
+## Reference Corpora (non-Voynich baselines)
+
+Plan 001 Phase 0 adds a second class of source: non-Voynich text used for null
+models, matched-sample baselines and (later) language models. These are
+declared under `reference_corpora:` in `data_sources/sources.yaml`, fetched by
+`scripts/fetch_corpora.py` into `data_sources/cache/corpora/`, and verified by
+SHA256 before any loader touches them.
+
+They are **fetched, not vendored**: the cache directory is git-ignored and the
+checksum is the reproducibility contract. A checksum mismatch is fatal, not a
+warning — upstream drift must be noticed, then re-pinned deliberately.
+
+| ID | Text | Lang | Group | Role |
+|----|------|------|-------|------|
+| `vulgate_clementine` | Clementine Vulgate | la | latin | Primary plaintext hypothesis |
+| `clusius_rariorum` | Clusius, *De Rariorum Animalium atque Stirpium Historia* (1605) | la | latin | Herbal / natural-history register |
+| `caesar_bello_gallico` | Caesar, *De Bello Gallico* I–IV | la | latin | Classical Latin prose |
+| `dante_commedia` | Dante, *La Divina Commedia* | it | romance | Old Italian |
+| `chaucer_canterbury` | Chaucer, *The Canterbury Tales* | enm | germanic | Middle English |
+| `german_bible_elberfelder` | Elberfelder Bibel 1905 | de | germanic | Germanic, verse-parallel |
+| `finnish_bible` | Pyhä Raamattu 1933/38 | fi | contrast | Agglutinative contrast, verse-parallel |
+| `douay_rheims` | Douay-Rheims Bible | en | english | English rendering of the Vulgate, verse-parallel |
+| `austen_pride_prejudice` | Austen, *Pride and Prejudice* | en | english | Modern English prose |
+| `whitakers_words` | Whitaker's Words `DICTLINE.GEN` | la | lexicon | Latin→English gloss inventory (Phase 4) |
+
+Four of these (Vulgate, Douay-Rheims, Elberfelder, Finnish) are the same text
+in four languages, which holds genre constant when comparing distributions
+across languages.
+
+Corpora are read through `translations/corpora/`, which strips the delivery
+format (Project Gutenberg header/footer, `[chapter:verse]` references) and then
+normalises: casefold, fold diacritics and ligatures (`æ`→`ae`), keep letters and
+spaces only.
+
+### Known gaps
+
+No checksummed public-domain source was found for Old Occitan, Middle High
+German, a medieval Latin herbal proper (*Circa Instans*, *Herbarium Apuleii*),
+or Semitic text in Latin transliteration. Those hypotheses are therefore tested
+against the nearest available proxy, and the gap is stated wherever it matters.
+
+---
+
 ## Fetching Sources
 
 ### Automatic Fetch
 
 ```bash
-python data_sources/fetch_sources.py
+python scripts/fetch_sources.py    # transcriptions
+python scripts/fetch_corpora.py    # reference corpora (make corpora)
 ```
 
 ### Manual Download

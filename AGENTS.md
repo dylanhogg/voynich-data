@@ -15,14 +15,16 @@ falsifiable, reproducible, and stated with their uncertainty.
 make venv        # uv sync --all-extras --all-groups && uv pip install -e .
 make download    # scripts/fetch_sources.py -> data_sources/cache/
 make build       # builders: eva_lines, metadata, mismatch_index -> output/
-make test        # pytest (expect ~343 passed, 7 skipped)
+make corpora     # fetch_corpora.py -> data_sources/cache/corpora/ (reference baselines)
+make phase0      # verify inputs + write output/translation/phase0_manifest.json
+make test        # pytest (expect ~391 passed, 7 skipped)
 make notebook    # jupyter lab
 ```
 
 Before any PR (CI runs the same four):
 
 ```bash
-ruff check . && black --check . && mypy vcat parsers builders validators hf && pytest tests/
+ruff check . && black --check . && mypy vcat parsers builders validators hf translations && pytest tests/
 ```
 
 Python 3.11+. Prefer `uv run <cmd>` over activating the venv.
@@ -40,6 +42,8 @@ Python 3.11+. Prefer `uv run <cmd>` over activating the venv.
 | `data_sources/` | `sources.yaml` (URLs + checksums), `cache/` raw IVTFF, `verify_sources.py` |
 | `output/` | Built artifacts: `.jsonl` + `.parquet` + `SHA256SUMS` + manifests |
 | `hf/`, `huggingface/` | Export code / published dataset cards |
+| `translations/` | Analysis / decipherment / translation programme (plan 001). Tokenizer, strata, determinism, reference corpora, null models |
+| `plans/` | Multi-phase work plans; `001_...md` carries the phase status table |
 | `schemas/`, `docs/`, `notebooks/`, `scripts/`, `tests/` | as named |
 
 Read first for context: `docs/data_model.md`, `docs/eva_alphabet.md`,
@@ -128,6 +132,15 @@ Do this by default:
 Existing starting points: `scripts/quick_analysis.py` (frequencies, A/B
 vocabulary), `scripts/deep_analysis.py` (compression-based entropy bounds),
 `notebooks/02_sanity_statistics.ipynb`.
+
+**Use `translations/` for new analysis** rather than re-rolling primitives:
+`translations.tokenize` is the only tokenizer (T0-char / T1-glyph, comma policy
+explicit), `translations.strata` gives the per-line stratum table plus the
+consensus subset and the frozen held-out page split, `translations.nulls` gives
+surrogates and pseudo-Voynich generators, `translations.corpora` gives
+checksum-verified non-Voynich baselines with sample-size matching, and
+`translations.determinism` gives seeded RNGs and run manifests. Held-out pages
+(`StratumRow.is_holdout`) must not feed any key search.
 
 ---
 

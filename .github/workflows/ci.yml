@@ -33,7 +33,7 @@ jobs:
         run: |
           pip install -e ".[dev]"
       - name: Run mypy
-        run: mypy vcat parsers builders validators hf
+        run: mypy vcat parsers builders validators hf translations
 
   security:
     runs-on: ubuntu-latest

@@ -148,3 +148,140 @@ verification_protocol:
       description: "Verify file format matches documentation"
     - name: "structure_check"
       description: "Verify page and line boundaries can be identified"
+
+# =============================================================================
+# Reference corpora (plan 001, Phase 0 §2.4)
+# =============================================================================
+# Non-Voynich text used for null models, matched-sample baselines and (later)
+# channel/language models. Fetched by `scripts/fetch_corpora.py` into
+# data_sources/cache/corpora/ and verified by SHA256 before use. These files are
+# NOT vendored into git (see .gitignore); the checksum is the contract.
+#
+# `format` selects the extractor in translations/corpora/normalise.py:
+#   gutenberg -> strip Project Gutenberg header/footer
+#   verses    -> drop "### Book" headers, strip "[c:v] " verse references
+#   plain     -> use as-is
+# `kind: lexicon` entries are fetched and verified but have no text loader yet
+# (they are consumed in Phase 4).
+
+reference_corpora:
+  vulgate_clementine:
+    name: "Clementine Vulgate (Latin)"
+    group: latin
+    language: la
+    role: "Primary plaintext hypothesis; also the Latin side of a verse-parallel set"
+    url: "https://raw.githubusercontent.com/scrollmapper/bible_databases/e1b254cef86d0e65b1a5d1a94b8b112d0f296a2c/formats/txt/VulgClementine.txt"
+    filename: "vulgate_clementine.txt"
+    format: verses
+    sha256: "5df4f1fbdf7b16320a079d65cb5f23db9fe1063bcc70d89f491cfb595ff0dfe6"
+    licence: "Text public domain (Clementine Vulgate); repository MIT"
+    retrieved: "2026-08-19"
+
+  clusius_rariorum:
+    name: "Clusius, De Rariorum Animalium atque Stirpium Historia (1605)"
+    group: latin
+    language: la
+    role: "Herbal/natural-history register match; closest available to the manuscript's subject matter"
+    url: "https://www.gutenberg.org/cache/epub/27655/pg27655.txt"
+    filename: "clusius_rariorum.txt"
+    format: gutenberg
+    sha256: "d4c7591a3985fa0162b3f4a3f856d72a94e18862b5cdaa0a40d9db8942d7bcda"
+    licence: "Public domain (Project Gutenberg, US)"
+    retrieved: "2026-08-19"
+
+  caesar_bello_gallico:
+    name: "Caesar, De Bello Gallico I-IV"
+    group: latin
+    language: la
+    role: "Classical Latin prose baseline"
+    url: "https://www.gutenberg.org/cache/epub/218/pg218.txt"
+    filename: "caesar_bello_gallico.txt"
+    format: gutenberg
+    sha256: "84ac8411841a4d8f5f4a49b6a2cd1f466917c6a5af72916d5e0b2b1ecb2f659c"
+    licence: "Public domain (Project Gutenberg, US)"
+    retrieved: "2026-08-19"
+
+  dante_commedia:
+    name: "Dante, La Divina Commedia"
+    group: romance
+    language: it
+    role: "Old Italian; Romance plaintext hypothesis"
+    url: "https://www.gutenberg.org/cache/epub/1012/pg1012.txt"
+    filename: "dante_commedia.txt"
+    format: gutenberg
+    sha256: "568035b4af7bda4f69f8ed5dea160f59bcf5b9371c7f2a62a97f94b826c0c1c6"
+    licence: "Public domain (Project Gutenberg, US)"
+    retrieved: "2026-08-19"
+
+  chaucer_canterbury:
+    name: "Chaucer, The Canterbury Tales and Other Poems"
+    group: germanic
+    language: enm
+    role: "Middle English; Germanic plaintext hypothesis"
+    url: "https://www.gutenberg.org/cache/epub/2383/pg2383.txt"
+    filename: "chaucer_canterbury.txt"
+    format: gutenberg
+    sha256: "f09db338d8dce9aacab56b00a340cf14d0d34399cba991bc055e3385ef199709"
+    licence: "Public domain (Project Gutenberg, US)"
+    retrieved: "2026-08-19"
+
+  german_bible_elberfelder:
+    name: "Elberfelder Bibel 1905 (German)"
+    group: germanic
+    language: de
+    role: "Germanic member of the verse-parallel set (genre held constant)"
+    url: "https://raw.githubusercontent.com/scrollmapper/bible_databases/e1b254cef86d0e65b1a5d1a94b8b112d0f296a2c/formats/txt/GerElb1905.txt"
+    filename: "german_bible_elberfelder.txt"
+    format: verses
+    sha256: "63464b337346cef6db2b7f3bb17a85445bff0b7a3219397d96dad34433d47031"
+    licence: "Text public domain (1905); repository MIT"
+    retrieved: "2026-08-19"
+
+  finnish_bible:
+    name: "Pyhä Raamattu 1933/38 (Finnish)"
+    group: contrast
+    language: fi
+    role: "Agglutinative contrast at matched genre; expected high type/token ratio"
+    url: "https://raw.githubusercontent.com/scrollmapper/bible_databases/e1b254cef86d0e65b1a5d1a94b8b112d0f296a2c/formats/txt/FinPR.txt"
+    filename: "finnish_bible.txt"
+    format: verses
+    sha256: "ae67c1537c31a7f609d6cba1d6bfae0797fdd7272defa40d62487cf456532c55"
+    licence: "Text public domain (1933/38); repository MIT"
+    retrieved: "2026-08-19"
+
+  douay_rheims:
+    name: "Douay-Rheims Bible (English translation of the Vulgate)"
+    group: english
+    language: en
+    role: "Verse-aligned English rendering of the Latin corpus; target-side LM and gloss evidence"
+    url: "https://raw.githubusercontent.com/scrollmapper/bible_databases/e1b254cef86d0e65b1a5d1a94b8b112d0f296a2c/formats/txt/DRC.txt"
+    filename: "douay_rheims.txt"
+    format: verses
+    sha256: "eadc22756ad5da958b50023a388875c0cb80beb18c4c0cd1417cc480c6630268"
+    licence: "Text public domain; repository MIT"
+    retrieved: "2026-08-19"
+
+  austen_pride_prejudice:
+    name: "Austen, Pride and Prejudice"
+    group: english
+    language: en
+    role: "Modern English prose baseline and target-side LM"
+    url: "https://www.gutenberg.org/cache/epub/1342/pg1342.txt"
+    filename: "austen_pride_prejudice.txt"
+    format: gutenberg
+    sha256: "74f2665d6e6925fc2c17dec644bec9e87df478a0f1836822125e8acbb3777806"
+    licence: "Public domain (Project Gutenberg, US)"
+    retrieved: "2026-08-19"
+
+  whitakers_words:
+    name: "Whitaker's Words Latin dictionary (DICTLINE.GEN)"
+    group: lexicon
+    kind: lexicon
+    language: la
+    role: "Latin -> English gloss inventory (consumed in Phase 4)"
+    url: "https://raw.githubusercontent.com/mk270/whitakers-words/4863f70349e3109c02a732c559f3af30e327b873/DICTLINE.GEN"
+    filename: "whitakers_words_dictline.gen"
+    format: plain
+    sha256: "275e8494693da30a076d97dad0ac76aaf1da1bd39082c18a70b8d2a78dc819bc"
+    licence: "Freely usable for any purpose (William Whitaker, LICENCE.txt)"
+    retrieved: "2026-08-19"

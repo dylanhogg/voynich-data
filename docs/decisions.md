@@ -330,6 +330,125 @@ N/A — This preserves information rather than discarding it.
 
 ---
 
+## Decision 8: Tokenization Contract for Analysis (T0/T1 + comma policy)
+
+**Date**: 2026-08-19  
+**Status**: Active  
+**Context**: EVA is a transcription convention, not glyph ground truth. Compounds
+(`ch`, `sh`, `cth`, `ckh`, `cph`, `cfh`) are single visual units written as several
+ASCII characters, and `,` marks an *uncertain* word break. Published Voynich results
+swing on these choices, and comparing numbers across studies is impossible when the
+choice is implicit.
+
+### Options Considered
+
+1. **Pick one tokenization** (e.g. characters) and use it everywhere.
+2. **Make tokenization an explicit experimental factor** reported as a grid.
+
+### Decision
+
+Option 2. `translations/tokenize.py` is the only tokenizer for the analysis
+programme. It implements `T0-char` (characters as-is) and `T1-glyph`
+(compound-aware; `@NNN;` high-ASCII tokens are single opaque units; the ligature
+connector `'` is dropped as it marks how glyphs join rather than being a glyph).
+`T2-slot` and `T3-merge` are declared but raise `NotImplementedError` until the
+Phase 1 morphology induction and Phase 2 merge search produce them. Orthogonally,
+the comma policy (`CB=break` / `CB=join`) is explicit at every call site; `CB=break`
+is the default for headline numbers.
+
+### Rationale
+
+Every headline metric is then reported over `{T0,T1} × {break,join} × {ZL,IT}`,
+so a result that only exists under one tokenization is visible as such.
+
+### Consequences
+
+Analysis code never re-implements word splitting. Numbers in reports carry their
+grid cell. Dropping `'` loses 24 corpus-wide markers; that loss is recorded here
+rather than hidden in a regex.
+
+### Reversibility
+
+Easy — one module, fully unit-tested against hand-checked lines from f1r, f68r1
+and f66r.
+
+---
+
+## Decision 9: Reference Corpora Are Fetched, Not Vendored
+
+**Date**: 2026-08-19  
+**Status**: Active  
+**Context**: Phase 0 of plan 001 needs non-Voynich baselines (Latin, Romance,
+Germanic, agglutinative, English) plus a Latin→English lexicon. Together these are
+~26 MB and carry mixed provenance.
+
+### Options Considered
+
+1. **Vendor into git** alongside the transcriptions in `data_sources/cache/`.
+2. **Fetch and verify by checksum**, keeping the cache git-ignored.
+
+### Decision
+
+Option 2. Declarations live in `data_sources/sources.yaml` under
+`reference_corpora:` (URL, licence, SHA256, retrieval date, extractor format);
+`scripts/fetch_corpora.py` (`make corpora`) fetches and verifies; a mismatch is
+fatal. GitHub-hosted sources are pinned to a commit SHA rather than a branch.
+
+### Rationale
+
+Keeps the repository small, avoids redistributing third-party text, and makes
+upstream drift a loud failure instead of a silent change in results.
+
+### Consequences
+
+`make corpora` is required before baseline analysis; tests that need corpora skip
+cleanly when the cache is absent (so CI stays offline). Project Gutenberg
+occasionally regenerates its files, which will surface as a checksum failure and a
+deliberate re-pin.
+
+### Reversibility
+
+Easy.
+
+---
+
+## Decision 10: Frozen Held-Out Page Split
+
+**Date**: 2026-08-19  
+**Status**: Active  
+**Context**: Any search over thousands of candidate substitutions will find a
+beautiful false positive. Without held-out data, there is nothing left to falsify it.
+
+### Options Considered
+
+1. Line-level random split.
+2. Page-level seeded split, frozen in config.
+3. No split; rely on significance testing.
+
+### Decision
+
+Option 2. `translations/config.py` fixes the global seed (20260819) and the 20%
+fraction; `translations.strata.holdout_pages` derives the split deterministically
+from the sorted page list. 41 of 206 pages (698 lines) are held out. Held-out pages
+are illegal inputs to any key search and are only read at the Phase 4 validation gate.
+
+### Rationale
+
+Lines from the same page share hand, section, language and vocabulary, so a
+line-level split leaks. The split must be reproducible from the seed alone, never
+stored as a data file that could drift.
+
+### Consequences
+
+Search phases operate on ~80% of the corpus. Changing the seed or fraction
+invalidates every validation number produced so far and requires a new decision entry.
+
+### Reversibility
+
+Hard by design.
+
+---
+
 ## Template for Future Decisions
 
 Copy this template for new decisions:
@@ -369,10 +488,11 @@ Copy this template for new decisions:
 
 | Topic | Decisions |
 |-------|-----------|
-| Data Sources | 1, 2 |
+| Data Sources | 1, 2, 9 |
 | Schema Design | 5, 6 |
-| Text Processing | 3, 4 |
+| Text Processing | 3, 4, 8 |
 | Content Inclusion | 7 |
+| Analysis Methodology | 8, 10 |
 
 ---
 
