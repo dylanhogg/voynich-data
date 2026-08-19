@@ -19,5 +19,8 @@ build:
 	uv run python -m builders.build_metadata
 	uv run python -m builders.build_mismatch_index
 
+notebook:
+	uv run jupyter lab
+
 test:
 	uv run pytest -vv --capture=no --no-cov tests

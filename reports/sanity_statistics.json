@@ -1,0 +1,249 @@
+{
+  "corpus_statistics": {
+    "total_pages": 206,
+    "total_lines": 4072,
+    "total_characters": 170564,
+    "total_words": 33711,
+    "unique_words": 8331,
+    "hapax_legomena": 6139,
+    "type_token_ratio": 0.24659602178546058,
+    "avg_line_length_chars": 41.88703339882122,
+    "avg_word_length": 5.415196542742127
+  },
+  "section_statistics": {
+    "text_only": {
+      "pages": 6,
+      "lines": 277,
+      "chars": 11263,
+      "words": 2326
+    },
+    "herbal": {
+      "pages": 128,
+      "lines": 1612,
+      "chars": 54285,
+      "words": 10828
+    },
+    "cosmological": {
+      "pages": 6,
+      "lines": 48,
+      "chars": 1396,
+      "words": 296
+    },
+    "stars": {
+      "pages": 25,
+      "lines": 1159,
+      "chars": 60314,
+      "words": 11618
+    },
+    "astronomical": {
+      "pages": 6,
+      "lines": 31,
+      "chars": 1058,
+      "words": 198
+    },
+    "biological": {
+      "pages": 19,
+      "lines": 722,
+      "chars": 30870,
+      "words": 6141
+    },
+    "pharmaceutical": {
+      "pages": 16,
+      "lines": 223,
+      "chars": 11378,
+      "words": 2304
+    }
+  },
+  "currier_language": {
+    "A": {
+      "pages": 114,
+      "lines": 1562
+    },
+    "B": {
+      "pages": 81,
+      "lines": 2437
+    },
+    "unknown": {
+      "pages": 11,
+      "lines": 73
+    }
+  },
+  "line_types": {
+    "paragraph": 3957,
+    "label": 115
+  },
+  "top_20_words": [
+    {
+      "word": "daiin",
+      "count": 719
+    },
+    {
+      "word": "ol",
+      "count": 504
+    },
+    {
+      "word": "chedy",
+      "count": 466
+    },
+    {
+      "word": "aiin",
+      "count": 427
+    },
+    {
+      "word": "shedy",
+      "count": 402
+    },
+    {
+      "word": "chol",
+      "count": 355
+    },
+    {
+      "word": "or",
+      "count": 333
+    },
+    {
+      "word": "chey",
+      "count": 319
+    },
+    {
+      "word": "ar",
+      "count": 306
+    },
+    {
+      "word": "qokeedy",
+      "count": 295
+    },
+    {
+      "word": "qokeey",
+      "count": 292
+    },
+    {
+      "word": "qokain",
+      "count": 273
+    },
+    {
+      "word": "s",
+      "count": 269
+    },
+    {
+      "word": "qokedy",
+      "count": 263
+    },
+    {
+      "word": "qokaiin",
+      "count": 259
+    },
+    {
+      "word": "shey",
+      "count": 256
+    },
+    {
+      "word": "dar",
+      "count": 255
+    },
+    {
+      "word": "y",
+      "count": 246
+    },
+    {
+      "word": "al",
+      "count": 211
+    },
+    {
+      "word": "dal",
+      "count": 197
+    }
+  ],
+  "top_20_characters": [
+    {
+      "char": "o",
+      "count": 22172
+    },
+    {
+      "char": "e",
+      "count": 17948
+    },
+    {
+      "char": "h",
+      "count": 16526
+    },
+    {
+      "char": "y",
+      "count": 15894
+    },
+    {
+      "char": "a",
+      "count": 12796
+    },
+    {
+      "char": "c",
+      "count": 12218
+    },
+    {
+      "char": "d",
+      "count": 11702
+    },
+    {
+      "char": "i",
+      "count": 10895
+    },
+    {
+      "char": "k",
+      "count": 9980
+    },
+    {
+      "char": "l",
+      "count": 9400
+    },
+    {
+      "char": "r",
+      "count": 6568
+    },
+    {
+      "char": "s",
+      "count": 6503
+    },
+    {
+      "char": "t",
+      "count": 5938
+    },
+    {
+      "char": "n",
+      "count": 5742
+    },
+    {
+      "char": "q",
+      "count": 5296
+    },
+    {
+      "char": "<",
+      "count": 2193
+    },
+    {
+      "char": ">",
+      "count": 2193
+    },
+    {
+      "char": "p",
+      "count": 1497
+    },
+    {
+      "char": "m",
+      "count": 933
+    },
+    {
+      "char": "-",
+      "count": 746
+    }
+  ],
+  "data_quality": {
+    "empty_lines": 0,
+    "duplicate_line_ids": 0,
+    "uncertain_lines": 84,
+    "illegible_lines": 0,
+    "issues": [
+      "Lines with zero characters: 9"
+    ],
+    "all_checks_passed": false
+  }
+}
