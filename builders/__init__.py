@@ -55,54 +55,51 @@ Output formats:
 
 from __future__ import annotations
 
-# Re-export from parsers for convenience
-from parsers import (
-    FolioRecord,
-    PageRecord,
-    QuireRecord,
-)
+from importlib import import_module
+from typing import Any
 
-from .build_eva_lines import (
-    BuildReport,
-    LineRecord,
-    build_eva_lines,
-    run_smoke_test,
-)
-from .build_metadata import (
-    MetadataBuildReport,
-    MetadataBuildResult,
-    build_metadata_datasets,
-    export_metadata,
-)
-from .build_metadata import (
-    export_to_parquet as export_metadata_to_parquet,
-)
-from .build_mismatch_index import (
-    MismatchIndexBuilder,
-    MismatchRecord,
-    TranscriptionLine,
-    build_mismatch_index,
-)
-
-__all__ = [
+# Public name -> "module:attribute" it is re-exported from.
+#
+# Resolved on first access rather than at import time: eager re-exports would put
+# builders.build_metadata (and friends) in sys.modules whenever the package is
+# imported, so `python -m builders.build_metadata` would execute that file a
+# second time as __main__ and warn about it. Two copies of a module mean two
+# copies of its dataclasses, so isinstance() across them fails.
+_EXPORTS = {
     # EVA Lines Builder
-    "BuildReport",
-    "LineRecord",
-    "build_eva_lines",
-    "run_smoke_test",
+    "BuildReport": ".build_eva_lines:BuildReport",
+    "LineRecord": ".build_eva_lines:LineRecord",
+    "build_eva_lines": ".build_eva_lines:build_eva_lines",
+    "run_smoke_test": ".build_eva_lines:run_smoke_test",
     # Metadata Builder
-    "MetadataBuildReport",
-    "MetadataBuildResult",
-    "build_metadata_datasets",
-    "export_metadata",
-    "export_metadata_to_parquet",
+    "MetadataBuildReport": ".build_metadata:MetadataBuildReport",
+    "MetadataBuildResult": ".build_metadata:MetadataBuildResult",
+    "build_metadata_datasets": ".build_metadata:build_metadata_datasets",
+    "export_metadata": ".build_metadata:export_metadata",
+    "export_metadata_to_parquet": ".build_metadata:export_to_parquet",
     # Mismatch Index Builder
-    "MismatchIndexBuilder",
-    "MismatchRecord",
-    "TranscriptionLine",
-    "build_mismatch_index",
+    "MismatchIndexBuilder": ".build_mismatch_index:MismatchIndexBuilder",
+    "MismatchRecord": ".build_mismatch_index:MismatchRecord",
+    "TranscriptionLine": ".build_mismatch_index:TranscriptionLine",
+    "build_mismatch_index": ".build_mismatch_index:build_mismatch_index",
     # Metadata Records (from parsers)
-    "PageRecord",
-    "FolioRecord",
-    "QuireRecord",
-]
+    "PageRecord": "parsers:PageRecord",
+    "FolioRecord": "parsers:FolioRecord",
+    "QuireRecord": "parsers:QuireRecord",
+}
+
+__all__ = list(_EXPORTS)
+
+
+def __getattr__(name: str) -> Any:
+    """Import a re-exported name on first access (PEP 562)."""
+    if name not in _EXPORTS:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+    module_name, _, attr_name = _EXPORTS[name].partition(":")
+    value = getattr(import_module(module_name, __package__), attr_name)
+    globals()[name] = value  # subsequent lookups skip __getattr__
+    return value
+
+
+def __dir__() -> list[str]:
+    return sorted(__all__)

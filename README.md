@@ -21,11 +21,11 @@ This repository contains the data processing infrastructure for the Voynich Comp
 
 ### Available Datasets
 
-| Dataset | Records | Description |
-|---------|---------|-------------|
-| **voynich-eva** | 4,072 | Line-level EVA transcription from ZL source |
-| **voynich-manuscript-metadata** | 226 pages, 102 folios, 18 quires | Structured codicological metadata |
-| **voynich-transcription-mismatch** | 4,072 | Cross-transcription comparison (5 sources) |
+| Dataset                            | Records                          | Description                                 |
+| ---------------------------------- | -------------------------------- | ------------------------------------------- |
+| **voynich-eva**                    | 4,072                            | Line-level EVA transcription from ZL source |
+| **voynich-manuscript-metadata**    | 226 pages, 102 folios, 18 quires | Structured codicological metadata           |
+| **voynich-transcription-mismatch** | 4,072                            | Cross-transcription comparison (5 sources)  |
 
 ### Quick Load (from HuggingFace)
 
@@ -49,13 +49,13 @@ mismatch = load_dataset("Ched-ai/voynich-transcription-mismatch")
 
 This project processes five transcription sources:
 
-| Source | Alphabet | Lines | Description |
-|--------|----------|-------|-------------|
-| ZL (Zandbergen-Landini) | EVA | 4,072 | Primary reference, most complete |
-| IT (Takahashi) | EVA | 4,069 | Secondary EVA transcription |
-| CD (Currier/D'Imperio) | Currier | 2,154 | Historical Currier alphabet |
-| FG (Friedman Study Group) | FSG | 3,980 | NSA research group |
-| GC (Glen Claston) | v101 | 4,070 | High-granularity alphabet |
+| Source                    | Alphabet | Lines | Description                      |
+| ------------------------- | -------- | ----- | -------------------------------- |
+| ZL (Zandbergen-Landini)   | EVA      | 4,072 | Primary reference, most complete |
+| IT (Takahashi)            | EVA      | 4,069 | Secondary EVA transcription      |
+| CD (Currier/D'Imperio)    | Currier  | 2,154 | Historical Currier alphabet      |
+| FG (Friedman Study Group) | FSG      | 3,980 | NSA research group               |
+| GC (Glen Claston)         | v101     | 4,070 | High-granularity alphabet        |
 
 See `data_sources/sources.yaml` for complete source documentation.
 
@@ -64,12 +64,12 @@ See `data_sources/sources.yaml` for complete source documentation.
 How often do the two major EVA transcriptions agree, line by line?
 Less than you might expect:
 
-| Category | Lines | Share |
-|----------|-------|-------|
-| Exact match | 901 | 22.1% |
-| Match after normalization | 293 | 7.2% |
-| High similarity (≥95%, but not identical) | 2,220 | 54.6% |
-| Substantive disagreement (<95% similarity) | 655 | 16.1% |
+| Category                                   | Lines | Share |
+| ------------------------------------------ | ----- | ----- |
+| Exact match                                | 901   | 22.1% |
+| Match after normalization                  | 293   | 7.2%  |
+| High similarity (≥95%, but not identical)  | 2,220 | 54.6% |
+| Substantive disagreement (<95% similarity) | 655   | 16.1% |
 
 Only **29.3%** of lines are fully identical, even after stripping uncertainty
 markup, and **16.1%** differ substantively. Any analysis built on a single
@@ -148,6 +148,7 @@ checks, and ground rules.
 ## Acknowledgments
 
 This project builds on decades of transcription work by:
+
 - René Zandbergen (voynich.nu, ZL transcription)
 - Gabriel Landini (EVA alphabet, EVMT project)
 - Jorge Stolfi (interlinear file, UNICAMP archive)
@@ -172,4 +173,4 @@ If you use this data in your research, please cite:
 
 ---
 
-*This project does not claim to solve the Voynich Manuscript. It builds infrastructure for rigorous study.*
+_This project does not claim to solve the Voynich Manuscript. It builds infrastructure for rigorous study._

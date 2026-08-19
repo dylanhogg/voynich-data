@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
@@ -352,20 +353,26 @@ def _flatten_folio_dict(d: dict[str, Any]) -> dict[str, Any]:
     return result
 
 
-if __name__ == "__main__":
+def main() -> None:  # pragma: no cover
+    """Main entry point for the metadata builder script."""
     import argparse
 
     arg_parser = argparse.ArgumentParser(
         description="Build metadata datasets from IVTFF transcription files"
     )
     arg_parser.add_argument(
-        "source",
-        help="Path to IVTFF transcription file",
+        "--source",
+        type=Path,
+        default=Path("data_sources/cache/ZL3b-n.txt"),
+        help="Path to source IVTFF file",
     )
     arg_parser.add_argument(
         "-o",
+        "--output-dir",
         "--output",
-        default="output/metadata",
+        dest="output_dir",
+        type=Path,
+        default=Path("output/metadata"),
         help="Output directory (default: output/metadata)",
     )
     arg_parser.add_argument(
@@ -376,18 +383,30 @@ if __name__ == "__main__":
 
     args = arg_parser.parse_args()
 
-    print(f"Building metadata datasets from: {args.source}")
-    result = build_metadata_datasets(args.source, args.output)
+    # Ensure paths are relative to repo root
+    repo_root = Path(__file__).parent.parent
+    source_path = repo_root / args.source if not args.source.is_absolute() else args.source
+    output_dir = (
+        repo_root / args.output_dir if not args.output_dir.is_absolute() else args.output_dir
+    )
+
+    if not source_path.exists():
+        print(f"Error: Source file not found: {source_path}")
+        print("Run 'python scripts/fetch_sources.py' first to download the source.")
+        sys.exit(1)
+
+    print(f"Building metadata datasets from: {source_path}")
+    result = build_metadata_datasets(source_path, output_dir)
 
     print("\nBuild complete:")
     print(f"  Pages: {result.report.total_pages}")
     print(f"  Folios: {result.report.total_folios}")
     print(f"  Quires: {result.report.total_quires}")
     print(f"  Total lines: {result.report.total_lines}")
-    print(f"\nOutput written to: {args.output}")
+    print(f"\nOutput written to: {output_dir}")
 
     if args.parquet:
-        export_to_parquet(result, Path(args.output))
+        export_to_parquet(result, output_dir)
         print("Parquet files also exported")
 
     print("\nLanguage distribution:")
@@ -397,3 +416,7 @@ if __name__ == "__main__":
     print("\nSection distribution:")
     for section, count in sorted(result.report.pages_by_section.items()):
         print(f"  {section}: {count} pages")
+
+
+if __name__ == "__main__":  # pragma: no cover
+    main()

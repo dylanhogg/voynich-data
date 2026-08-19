@@ -1,5 +1,5 @@
 {
-  "build_date": "2026-06-12T16:11:47.188309Z",
+  "build_date": "2026-08-19T20:18:12.221823Z",
   "errors": [],
   "format_options": "2.0 M 5",
   "format_version": "Eva-",
@@ -47,7 +47,7 @@
   },
   "pages_with_lines": 206,
   "pages_without_lines": 20,
-  "source_file": "/mnt/ai_workspace/projects/vcat/voynich-data/data_sources/cache/ZL3b-n.txt",
+  "source_file": "/Users/dylan/_git/voynich-data/data_sources/cache/ZL3b-n.txt",
   "source_hash": "bf5b6d4ac1e3a51b1847a9c388318d609020441ccd56984c901c32b09beccafc",
   "source_verified": true,
   "text_clean_policy": "centralized_v0.2.1",

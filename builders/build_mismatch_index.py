@@ -466,6 +466,11 @@ def build_mismatch_index(
     }
 
 
-if __name__ == "__main__":
+def main() -> None:  # pragma: no cover
+    """Main entry point for the mismatch index builder script."""
     result = build_mismatch_index()
     print(json.dumps(result, indent=2))
+
+
+if __name__ == "__main__":  # pragma: no cover
+    main()
