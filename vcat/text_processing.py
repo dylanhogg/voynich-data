@@ -14,7 +14,7 @@ they diverge over time.
 import re
 
 
-def strip_ivtff_markup(text: str) -> str:
+def strip_ivtff_markup(text: str, alternative: int = 0) -> str:
     """
     Strip IVTFF markup from text, preserving uncertainty markers.
 
@@ -23,7 +23,7 @@ def strip_ivtff_markup(text: str) -> str:
 
     Removes:
     - Curly brace comments: {like this}
-    - Alternative brackets: [a:b] -> a (keeps first option)
+    - Alternative brackets: [a:b] -> a (keeps the chosen option)
     - All angle-bracket tags: <...>
 
     Preserves:
@@ -33,6 +33,11 @@ def strip_ivtff_markup(text: str) -> str:
 
     Args:
         text: Raw IVTFF transcription text
+        alternative: Which option of ``[a:b]`` to keep. 0 (default) keeps the
+            first, as every built dataset does; 1 keeps the second. Used by the
+            Phase 1 uncertainty-sensitivity analysis to measure how much the
+            first-option convention decides. Values beyond the available
+            options fall back to the last one.
 
     Returns:
         Text with markup stripped but uncertainty markers intact
@@ -42,9 +47,13 @@ def strip_ivtff_markup(text: str) -> str:
     # Remove curly brace comments
     result = re.sub(r"\{[^}]*\}", "", result)
 
-    # Handle alternatives [a:b] - keep first option
+    # Handle alternatives [a:b] - keep the requested option
     # Uses * not + to handle empty alternatives like [:ch] or [a:]
-    result = re.sub(r"\[([^:\]]*):([^\]]*)\]", lambda m: m.group(1), result)
+    result = re.sub(
+        r"\[([^:\]]*):([^\]]*)\]",
+        lambda m: m.group(min(alternative + 1, m.re.groups)),
+        result,
+    )
 
     # Remove all angle-bracket tags (catches <->, <$>, <%>, <~>, <!...>, etc.)
     result = re.sub(r"<[^>]*>", "", result)
@@ -55,7 +64,7 @@ def strip_ivtff_markup(text: str) -> str:
     return result
 
 
-def clean_text_for_analysis(text: str) -> str:
+def clean_text_for_analysis(text: str, alternative: int = 0) -> str:
     """
     Produce analysis-ready text (text_clean).
 
@@ -64,12 +73,14 @@ def clean_text_for_analysis(text: str) -> str:
 
     Args:
         text: Raw IVTFF transcription text
+        alternative: Which option of ``[a:b]`` to keep (see
+            :func:`strip_ivtff_markup`). The datasets are built with 0.
 
     Returns:
         Clean text suitable for analysis (no markup, no uncertainty markers)
     """
     # First strip markup
-    result = strip_ivtff_markup(text)
+    result = strip_ivtff_markup(text, alternative)
 
     # Then remove uncertainty markers (they're preserved in flags)
     result = re.sub(r"[?!*]", "", result)

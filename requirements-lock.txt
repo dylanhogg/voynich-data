@@ -11,6 +11,8 @@ PyYAML==6.0.3
 jsonschema==4.26.0
 datasets==4.5.0
 pandas==2.3.3
+numpy>=2.0
+scipy>=1.11
 
 # Required by datasets
 pyarrow>=14.0.0

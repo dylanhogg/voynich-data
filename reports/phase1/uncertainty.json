@@ -1,0 +1,118 @@
+{
+  "alternatives": {
+    "lines_changed_by_second_option": 582.0,
+    "lines_with_alternatives": 584.0,
+    "tokens_changed_by_second_option": 627.0
+  },
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "drift": {
+    "drop all flagged": {
+      "h2": -0.012658697224330358,
+      "hapax_rate": -0.017383866370974933,
+      "mean_word_length": 0.0035122419972961655,
+      "near_repeat_within_2": 0.012836365547724096,
+      "ttr": 0.018121514191773325
+    },
+    "drop has_alternatives": {
+      "h2": -0.008119202480764283,
+      "hapax_rate": -0.014750388937518333,
+      "mean_word_length": 0.0012214272383931728,
+      "near_repeat_within_2": 0.013967457865580834,
+      "ttr": 0.01796502175137031
+    },
+    "drop has_high_ascii": {
+      "h2": -0.004391563239819596,
+      "hapax_rate": -0.0052601552524115264,
+      "mean_word_length": 0.001128871601028589,
+      "near_repeat_within_2": -0.002252969426282482,
+      "ttr": -0.00580749706235652
+    },
+    "drop has_illegible": {
+      "h2": 0.0,
+      "hapax_rate": 0.0,
+      "mean_word_length": 0.0,
+      "near_repeat_within_2": 0.0,
+      "ttr": 0.0
+    },
+    "drop has_uncertain": {
+      "h2": -0.0007685124704060265,
+      "hapax_rate": -0.0011029443309519564,
+      "mean_word_length": 0.001612899727376965,
+      "near_repeat_within_2": 0.0007660467047875037,
+      "ttr": 0.006425465099432674
+    },
+    "second [a:b] option": {
+      "h2": 0.0005617631800700082,
+      "hapax_rate": -0.0016570770123012185,
+      "mean_word_length": -0.00017068942027207682,
+      "near_repeat_within_2": -0.00267063186175349,
+      "ttr": 0.00021700864438252998
+    }
+  },
+  "topic": "uncertainty",
+  "variants": {
+    "all lines": {
+      "h2": 2.2530059920022585,
+      "hapax_rate": 0.7001934235976789,
+      "lines": 4072.0,
+      "mean_word_length": 4.524460388994307,
+      "near_repeat_within_2": 0.14759688083731135,
+      "tokens": 33728.0,
+      "ttr": 0.21459914611005693
+    },
+    "drop all flagged": {
+      "h2": 2.2244858713049,
+      "hapax_rate": 0.6880213546880214,
+      "lines": 3367.0,
+      "mean_word_length": 4.540351388787636,
+      "near_repeat_within_2": 0.14949148835344295,
+      "tokens": 27434.0,
+      "ttr": 0.21848800758183276
+    },
+    "drop has_alternatives": {
+      "h2": 2.234713380162817,
+      "hapax_rate": 0.6898652982681206,
+      "lines": 3488.0,
+      "mean_word_length": 4.529986688152456,
+      "near_repeat_within_2": 0.14965843405149765,
+      "tokens": 28546.0,
+      "ttr": 0.2184544244377496
+    },
+    "drop has_high_ascii": {
+      "h2": 2.243111773708688,
+      "hapax_rate": 0.6965102974828375,
+      "lines": 3957.0,
+      "mean_word_length": 4.529567923837422,
+      "near_repeat_within_2": 0.14726434957737022,
+      "tokens": 32772.0,
+      "ttr": 0.21335286219943855
+    },
+    "drop has_illegible": {
+      "h2": 2.2530059920022585,
+      "hapax_rate": 0.7001934235976789,
+      "lines": 4072.0,
+      "mean_word_length": 4.524460388994307,
+      "near_repeat_within_2": 0.14759688083731135,
+      "tokens": 33728.0,
+      "ttr": 0.21459914611005693
+    },
+    "drop has_uncertain": {
+      "h2": 2.2512745288015052,
+      "hapax_rate": 0.699421149230552,
+      "lines": 3988.0,
+      "mean_word_length": 4.531757889922244,
+      "near_repeat_within_2": 0.14770994694151368,
+      "tokens": 32795.0,
+      "ttr": 0.21597804543375515
+    },
+    "second [a:b] option": {
+      "h2": 2.2542716478130425,
+      "hapax_rate": 0.6990331491712707,
+      "lines": 4072.0,
+      "mean_word_length": 4.523688111473466,
+      "near_repeat_within_2": 0.1472027039046518,
+      "tokens": 33730.0,
+      "ttr": 0.21464571597983992
+    }
+  }
+}

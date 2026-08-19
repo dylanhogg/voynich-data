@@ -1,0 +1,24 @@
+{
+  "mdl": {
+    "affixes": 10.0,
+    "bits_saved": 49050.606249816716,
+    "final_description_length": 576609.3395318026,
+    "initial_description_length": 625659.9457816193
+  },
+  "prefixes": [
+    "qo",
+    "cho",
+    "ol",
+    "o",
+    "y",
+    "l",
+    "q"
+  ],
+  "source_view": "voynich|base",
+  "suffixes": [
+    "ody",
+    "s",
+    "o"
+  ],
+  "tokenizer": "T1-glyph"
+}

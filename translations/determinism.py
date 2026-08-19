@@ -21,13 +21,15 @@ from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+
 from translations.config import CONFIG, PATHS, SPECULATIVE_BANNER
 from vcat.logging import get_logger
 
 logger = get_logger(__name__)
 
 # Distributions whose versions are recorded in every run manifest.
-RECORDED_PACKAGES: tuple[str, ...] = ("vcat-data", "pyyaml", "pandas")
+RECORDED_PACKAGES: tuple[str, ...] = ("vcat-data", "pyyaml", "pandas", "numpy", "scipy")
 
 
 def derived_rng(salt: str) -> random.Random:
@@ -38,6 +40,12 @@ def derived_rng(salt: str) -> random.Random:
     """
     digest = hashlib.sha256(f"{CONFIG.seed}:{salt}".encode()).digest()
     return random.Random(int.from_bytes(digest[:8], "big"))
+
+
+def derived_numpy_rng(salt: str) -> np.random.Generator:
+    """NumPy generator seeded the same deterministic way as :func:`derived_rng`."""
+    digest = hashlib.sha256(f"{CONFIG.seed}:{salt}".encode()).digest()
+    return np.random.default_rng(int.from_bytes(digest[:8], "big"))
 
 
 def sha256_bytes(data: bytes) -> str:

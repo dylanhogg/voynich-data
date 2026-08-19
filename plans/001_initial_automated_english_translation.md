@@ -1,8 +1,8 @@
 # Plan 001 — Initial Automated English Translation
 
-**Status**: Phase 0 complete; Phases 1–5 not started
+**Status**: Phases 0–1 complete (landmark gate green); Phases 2–5 not started
 **Author**: VCAT / agent-assisted
-**Date**: 2026-08-19 (Phase 0 implemented 2026-08-19)
+**Date**: 2026-08-19 (Phases 0 and 1 implemented 2026-08-19)
 **Scope**: Extend voynich-data (VCAT) from dataset building into analysis, code
 breaking, and a best-efforts automated English translation.
 
@@ -13,19 +13,23 @@ breaking, and a best-efforts automated English translation.
 | Phase | State | Evidence |
 | --- | --- | --- |
 | 0 — Foundations | **Complete** | `translations/` package (config, determinism, io, tokenize, strata, corpora, nulls, phase0), 10 checksum-pinned reference corpora, 48 new tests (391 passed / 7 skipped total), `output/translation/phase0_manifest.json` byte-identical across runs |
-| 1 — Analysis round 1 | Not started | — |
+| 1 — Analysis round 1 | **Complete** | `translations/analysis/` (12 modules), `reports/phase1/` (9 topic reports + `summary.md`), landmark gate **GREEN** (6/6), 64 new tests (455 passed / 7 skipped total), `make analyse1` ≈100 s and byte-stable across runs |
 | 2 — Hypothesis space + search | Not started | — |
 | 3 — Analysis round 2 | Not started | — |
 | 4 — Translation pipeline | Not started | — |
 | 5 — Audit + honesty gate | Not started | — |
 
-**Run Phase 0:**
+**Run Phases 0–1:**
 
 ```bash
 make corpora   # fetch + SHA256-verify reference corpora into data_sources/cache/corpora/
 make phase0    # verify inputs, summarise strata, write output/translation/phase0_manifest.json
-make test      # 391 passed, 7 skipped
+make analyse1  # Phase 1 suite -> reports/phase1/ (~100 s; non-zero exit if the gate is red)
+make test      # 455 passed, 7 skipped
 ```
+
+Start reading at `reports/phase1/summary.md`: findings table, landmark gate, and
+the "what we still cannot tell" list that feeds Phase 3.
 
 ### Phase 0 as built (deltas from the plan below)
 
@@ -70,11 +74,91 @@ make test      # 391 passed, 7 skipped
 10. **Open normalisation decision deferred to Phase 1**: whether Latin baselines
     fold `u/v` and `i/j`. Current normalisation does not; this matters for Latin
     letter-frequency comparisons.
-11. **Scaffold built to need.** `analysis/`, `decipher/` and `lexicon/` exist as
-    empty packages; `gloss.py`, `render.py`, `confidence.py`, `pipeline.py` and
-    `report.py` are Phase 3/4 work and were not stubbed. `make analyse1`,
-    `analyse2`, `decipher`, `translate`, `audit` will be added with the phases
-    that implement them; `make corpora` and `make phase0` exist now.
+11. **Scaffold built to need.** `decipher/` and `lexicon/` exist as empty
+    packages; `gloss.py`, `render.py`, `confidence.py` and `pipeline.py` are
+    Phase 4 work and were not stubbed. `make analyse2`, `decipher`, `translate`
+    and `audit` arrive with their phases; `make corpora`, `make phase0` and
+    `make analyse1` exist now.
+
+---
+
+### Phase 1 as built (deltas from the plan below)
+
+1. **Headline numbers.** h2 = **2.253 bits/glyph** [2.242, 2.262] on ZL / `T1-glyph`
+   / `CB=break` (2.126 on `T0-char`), against **3.08–3.37** for nine
+   sample-size-matched natural-language baselines — every CI disjoint. Hapax rate
+   0.700 (highest baseline: Clusius 0.670). Adjacent near-repeat rate (edit
+   distance ≤ 2) 0.148 versus 0.038 for Latin. Zipf α = 2.116, Heaps β = 0.707.
+   Word-length CV 0.393 and a binomial fit — natural language sits at 0.50–0.55
+   and prefers negative binomial.
+2. **Landmark gate: GREEN, 6/6** (`reports/phase1/landmarks.md`). Nothing in the
+   plan needed to be weakened to pass it.
+3. **NSB entropy was not implemented** (Decision 11). Miller–Madow plus Chao–Shen
+   agree to within the bootstrap CI at orders 1–3, which is where every claim
+   lives; orders 4–5 are reported but never used as evidence. Bootstrap = 200
+   line-resamples (50 for metrics that rebuild a view).
+4. **`T2-slot` now exists.** The MDL induction yields prefixes
+   `qo cho ol o y l q` and suffixes `ody s o`, saving 49,051 bits of description
+   length (1.51 bits/word, versus 0.15 for Latin and 0.00 for both
+   pseudo-Voynich generators). `translations.tokenize` gained an explicit
+   `segmenter` argument so `T2-slot` is usable without the tokenizer owning a
+   model; the inventory is written to `output/translation/phase1_slot_model.json`.
+5. **FSA induction needed k-tails, not minimisation.** Exact Moore minimisation of
+   a prefix tree just rebuilds the word list (0% held-out acceptance), so the
+   acceptor is induced by k-tails merging. Read as a trade-off, not a score: at
+   k=1 Voynich needs **103 states** for 92.6% held-out type acceptance while Latin
+   needs **7** for 99.9%; over-generation is 95.7% versus 98.8%. The state count,
+   not the acceptance rate, is what separates them.
+6. **Word order carries little information**: 0.093 bits/word gained over a
+   word-order-shuffled surrogate, versus 0.504 for Latin and 0.592 for English.
+   Excess MI at distance 1 is 0.156 bits versus Latin's 0.724, and it does not
+   decay — it is flat from d=2 to d=50, unlike Latin's decay curve.
+7. **`section` and `illustration_type` are redundant** in `eva_lines` (a 1:1
+   mapping), so §3.5's "do page topics align with illustrations" is the same
+   question as "do they align with sections". NMF over the page × word matrix
+   gives NMI 0.410 and purity 0.762 against both.
+8. **Layout effects are real but small in aggregate.** Line-initial/mid/final
+   first-glyph distributions differ with Cramér's V 0.307 (χ² p ≈ 0), while the
+   Latin control at arbitrary line breaks gives p = 0.589. The running-prose rule
+   (Decision 12) costs 170 lines (4.2%) and 587 tokens (1.7%) and moves h2 by
+   0.006 bits.
+9. **Currier B is not a transform of A** (Decision 14, falsified): the best of
+   ~600 single-glyph substitutions and 48 affix operations lifts A→B type
+   coverage from 0.243 to 0.266. Matched-size Jaccard 0.151, Δh2 0.270 bits. In a
+   per-line factor model, quire (partial R² 0.058) and section (0.045) explain
+   more of mean word length than language (0.026) or hand (0.016) — the A/B split
+   is not cleanly separable from where and by whom the page was written.
+10. **Transcription robustness is metric-specific** (Decision 13). Robust within
+    EVA (|Δ| below the metric's own CI): h2, hapax rate, near-repeat rate. Not
+    robust: TTR (1.5× CI) and mean word length (2.3× CI). CD/FG/GC are included
+    for context only, since their alphabets differ; GC shifts mean word length by
+    1.18 glyphs.
+11. **The uncertainty flags do not matter much.** Dropping any flag class, or all
+    of them (27,434 tokens remain), moves every headline metric by **< 1.9%**.
+    Re-reading with the *second* `[a:b]` option changes 627 tokens on 584 lines and
+    moves nothing by more than 0.3% — so the first-option convention is not
+    load-bearing (Decision 15, which added the `alternative` parameter to
+    `vcat/text_processing.py` rather than duplicating its regex).
+12. **The tuned pseudo-Voynich is a strong control on two axes and weak on a
+    third.** Tuned grille matches h2 to 0.02 bits and word length to 0.06 glyphs
+    but produces only **96 word types** (hapax 0.000): a Cardan-grille table
+    cannot reach the manuscript's hapax rate, which is a genuine limit of the Rugg
+    model rather than a tuning failure. Tuned selfcite (window 40, mutation 0.05)
+    matches word length but overshoots repetition badly (90.5% of tokens identical
+    to a word in the preceding 20). Both generators were revised during tuning:
+    the grille got multiple grilles per table, and selfcite's mutation operators
+    were rebalanced so word length does not drift.
+13. **Runtime and dependencies.** `make analyse1` takes ~100 s wall clock
+    (entropy 36 s, robustness 25 s, morphology 14 s, syntax 10 s) — far inside the
+    24 h ceiling, which is reserved for Phase 2/3 search. numpy and scipy were
+    added as dependencies; `mypy` needed a `numpy.*` `follow_imports = "skip"`
+    override because numpy 2.x stubs use 3.12+ syntax while the project targets
+    3.11. No torch yet.
+14. **Deliverable count.** §3.11 asked for 9 topic reports plus a summary; there
+    are 9 (`entropy`, `lexis`, `morphology`, `syntax`, `position`, `currier`,
+    `robustness`, `uncertainty`, `landmarks`) plus `summary.md`. §3.1's
+    stratification harness landed in Phase 0 as `translations/strata.py`, so no
+    separate `analysis/strata.py` exists.
 
 ---
 
@@ -266,10 +350,12 @@ the choice as a first-class experimental factor:
 | `T2-slot` | morph | `T1` plus induced prefix/root/suffix segmentation from Phase 1.4. |
 | `T3-merge` | cipher unit | `T1` plus the empirically-searched glyph-merge partition from Phase 2 H2 (e.g. `qo`, `ee`, `ain`). |
 
-`T2-slot` and `T3-merge` are declared in `translations.config.Tokenizer` and
-raise `NotImplementedError` until Phase 1.4 / Phase 2 produce them. In `T1-glyph`
-a high-ASCII token `@NNN;` is one opaque unit and the ligature connector `'` is
-dropped (Decision 8).
+In `T1-glyph` a high-ASCII token `@NNN;` is one opaque unit and the ligature
+connector `'` is dropped (Decision 8). `T2-slot` was implemented in Phase 1.4:
+`tokenize_word(word, T2_SLOT, segmenter)` takes an induced segmenter (the MDL
+inventory in `output/translation/phase1_slot_model.json`) and raises without one,
+so a slot tokenization always names the model behind it. `T3-merge` still raises
+`NotImplementedError` pending the Phase 2 merge search.
 
 Orthogonal binary factor: **comma policy** — `,` (uncertain word break) treated
 as a break (`CB=break`) or as within-word (`CB=join`). Both computed; the
@@ -347,7 +433,9 @@ The `grille` and `selfcite` generators are tuned in Phase 1 to match Voynich
 h2, word-length distribution and hapax rate as closely as possible. A
 well-matched pseudo-Voynich is the control that makes Phase 5 meaningful.
 
-**As built:** `markov_chars(words, order, rng)` / `markov_words(...)` (word
+**As built** (revised during Phase 1 tuning — see Phase 1 delta 12: the grille
+gained multiple grilles per table, and selfcite's mutation operators were
+rebalanced so word length does not drift): `markov_chars(words, order, rng)` / `markov_words(...)` (word
 boundaries are a symbol in the char model, so word lengths are generated rather
 than copied); `grille(table, n_words, rng)` with `induce_table()` deriving the
 syllable table from a corpus — the Phase 1 tuning hook; `selfcite(seed_words,
@@ -398,6 +486,12 @@ And the **held-out folio split**: a seeded 80/20 page-level split, recorded in
 `translations/config.py` and never changed. Held-out pages are illegal inputs to
 any key search in Phase 2/3 and are only touched at the Phase 4 validation gate.
 
+**As built:** this landed in Phase 0 as `translations/strata.py` (there is no
+`analysis/strata.py`). Consensus subset 3,414 lines as predicted; held-out split
+41 of 206 pages / 698 lines. `translations/analysis/context.py` builds the shared
+`Context` of views (grid, strata, 9 matched baselines, 8 nulls, 2 tuned
+pseudo-Voynich) that every topic module consumes.
+
 ### 3.2 Information-theoretic suite (`analysis/entropy.py`)
 
 - H0–H5 and conditional entropies h1–h5 per tokenization × stratum ×
@@ -412,6 +506,14 @@ any key search in Phase 2/3 and are only touched at the Phase 4 validation gate.
   language at matched sample size." Report effect size and whether it survives
   on IT and on the consensus subset.
 
+**As built** (`reports/phase1/entropy.md`): claim **upheld** — h2 = 2.253
+[2.242, 2.262] versus 3.077–3.365 across nine matched baselines, all CIs
+disjoint; it survives on IT (2.263) and on the consensus subset (2.219). NSB was
+not implemented (Decision 11); Chao–Shen is the second estimator. Note the
+order-1 Markov surrogate reproduces h2 exactly, as it must — h2 alone does not
+distinguish the manuscript from its own bigram statistics, so the claim is about
+comparison with *language*, not about depth of structure.
+
 ### 3.3 Distributional and lexical structure (`analysis/lexis.py`)
 
 - Zipf fit (with proper MLE fitting, not log-log regression) and the
@@ -421,6 +523,14 @@ any key search in Phase 2/3 and are only touched at the Phase 4 validation gate.
   quantify the "unusually symmetric" observation.
 - Type/token growth by page order (is vocabulary drifting through the codex?).
 - Vocabulary overlap matrices between sections, hands, quires, A/B.
+
+**As built** (`reports/phase1/lexis.md`): Zipf α = 2.116 by discrete power-law MLE
+(KS 0.054); Heaps β = 0.707. Word-length CV 0.393 with a binomial fit, against
+0.495–0.553 and negative-binomial fits for the baselines — the "unusually
+symmetric" observation is confirmed and quantified. Vocabulary drift through the
+codex is present but weak (Spearman ρ on new-type rate by page order, reported in
+the topic JSON). Section vocabularies overlap little at matched size (Jaccard
+matrix in the report).
 
 ### 3.4 Word-internal structure and slot grammar (`analysis/morphology.py`)
 
@@ -445,6 +555,17 @@ The strongest known regularity; must be quantified precisely.
   (c) a generative template with no lexical content? Report likelihoods under
   each, not a verdict.
 
+**As built** (`reports/phase1/morphology.md`): held-out bits per word — Voynich
+morphology 13.04, positional slot code 18.54, order-2 chain **12.10**; Latin
+morphology **10.36** versus chain 16.77. So on the manuscript the chain narrowly
+wins and morphology is close behind, while on natural language morphology wins
+decisively. That is the honest state of the question, reported without a verdict.
+Harris segmentation gives 1.40 morphs/word and an inventory of 4,365, topped by
+`qo`, `y`, `ol`, `che`, `she`, `qot` — the known affixes fall out unsupervised.
+The MDL inventory defines `T2-slot` (see delta 4 above). Gallows glyphs are
+word-initial-enriched in A (0.150 vs 0.101) and word-initial-*depleted* in B
+(0.084 vs 0.125) — an A/B difference not previously in the plan's list.
+
 ### 3.5 Syntax, order and long-range structure (`analysis/syntax.py`)
 
 - Mutual information between words at distance d = 1..50 (within and across
@@ -461,6 +582,16 @@ The strongest known regularity; must be quantified precisely.
   whether induced topics align with `section` / `illustration_type`. If page
   topics correlate with illustrations, that is evidence of semantic content.
 
+**As built** (`reports/phase1/syntax.md`): NMF (own multiplicative-update
+implementation, no scikit-learn) over 206 pages × 1,000 words gives NMI 0.410 and
+purity 0.762 against section — but `section` and `illustration_type` are the same
+labelling in this data, so this is one result, not two. Word order carries 0.093
+bits/word versus Latin's 0.504. Excess MI is 0.156 bits at d=1 and then flat to
+d=50, where Latin decays from 0.724 — the manuscript has local structure and
+almost no long-range structure. The tuned selfcite surrogate sits at a constant
+3.19 bits of excess MI at every distance, which is what pathological autocopying
+looks like and is nothing like the manuscript.
+
 ### 3.6 Positional and layout effects (`analysis/position.py`)
 
 - Line-initial vs mid vs line-final glyph and word distributions, per stratum,
@@ -471,6 +602,15 @@ The strongest known regularity; must be quantified precisely.
   default; report separately.
 - Quantify how much of the corpus must be excluded to have a clean "running
   prose" subset, and report all headline metrics on that subset too.
+
+**As built** (`reports/phase1/position.md`): there is no line-level marker for
+circular or radial text, so the running-prose rule is page-level (Decision 12):
+paragraph lines on pages whose illustration type is not A or C. Cost: 170 lines
+(4.2%), 587 tokens (1.7%); h2 moves 0.006 bits. First-glyph distributions differ
+strongly by line position (Cramér's V 0.307, p ≈ 0) while the Latin control gives
+p = 0.589. Line-initial words are longer (4.83 vs 4.49 mid-line). Labels are a
+different register: 124 tokens, mean length 2.37 versus 4.53 in prose, and only a
+minority of label types occur in paragraph text.
 
 ### 3.7 Currier A vs B (`analysis/currier.py`)
 
@@ -483,6 +623,15 @@ The strongest known regularity; must be quantified precisely.
 - Is A/B a scribal-hand effect, a section effect, or independent? Fit a model
   with hand, section, quire and language as factors; report partial effects.
 
+**As built** (`reports/phase1/currier.md`): at matched size (10,774 tokens each)
+Δh2 = 0.270 bits, Jaccard 0.151, and B has the longer words (4.64 vs 4.30) with
+the lower hapax rate. The transformation search is a **falsified hypothesis**
+(Decision 14): the best single transformation gains 2.3 points of A→B type
+coverage over a 24.3% baseline. The factor model gives quire (0.058) and section
+(0.045) larger partial R² than language (0.026) on mean word length, so the A/B
+label is not separable from where the page sits in the codex; compound
+transformations were not searched.
+
 ### 3.8 Transcription robustness (`analysis/robustness.py`)
 
 - Re-run §3.2–§3.7 headline metrics on IT, and on GC/FG where the alphabet maps
@@ -492,6 +641,14 @@ The strongest known regularity; must be quantified precisely.
   labelled **transcription-limited** and cannot support a decipherment claim.
 - Publish a ranked table: metrics robust enough to build on, metrics that are not.
 
+**As built** (`reports/phase1/robustness.md`): each non-ZL source is compared to
+ZL **on exactly the lines that source covers**, so coverage differences cannot
+masquerade as instability. Robust within EVA: h2 (Δ/CI 0.35), hapax rate (0.04),
+near-repeat rate (0.32). Transcription-limited: TTR (1.53) and mean word length
+(2.31). CD/FG/GC use other alphabets, so their deltas (GC shifts mean word length
+by 1.18) are context, not instability (Decision 13); only `T0-char`
+tokenization is meaningful for them.
+
 ### 3.9 Uncertainty-flag sensitivity (`analysis/uncertainty.py`)
 
 Re-run headline metrics with (a) all lines, (b) dropping `has_uncertain`,
@@ -500,27 +657,49 @@ Re-run headline metrics with (a) all lines, (b) dropping `has_uncertain`,
 the first option of `[a:b]` — quantify how many tokens that affects and whether
 choosing the second option changes conclusions.
 
-### 3.10 Landmark reproduction gate (blocking)
+**As built** (`reports/phase1/uncertainty.md`): maximum drift across all six
+variants is **1.8%** (TTR under "drop all flagged", which removes 6,294 tokens).
+`has_illegible` is a no-op at line level. The second `[a:b]` reading changes 627
+tokens on 584 lines and moves nothing by more than 0.3%. Implemented by adding an
+`alternative` parameter to `vcat/text_processing.py` (Decision 15) rather than
+duplicating its regex.
+
+### 3.10 Landmark reproduction gate (blocking) — **GREEN 2026-08-19**
 
 Phase 1 is not complete until the pipeline independently reproduces, from
 `output/`, all of:
 
-- [ ] Conditional entropy h2 well below natural language at matched sample size.
-- [ ] Rigid word-internal glyph ordering / slot structure (FSA acceptance high).
-- [ ] Zipf-like word frequency with an anomalous low-frequency tail.
-- [ ] High rate of near-repeat adjacent words vs all baselines.
-- [ ] Currier A/B divergence surviving sample-size control.
-- [ ] Line-position effects (initial/final differ from mid).
+- [x] Conditional entropy h2 well below natural language at matched sample size —
+      2.253 vs lowest baseline 3.077, CIs disjoint.
+- [x] Rigid word-internal glyph ordering / slot structure — within-word shuffling
+      raises h2 by 1.344 bits; the k=1 acceptor takes 92.6% of held-out word types.
+- [x] Zipf-like word frequency with an anomalous low-frequency tail — α = 2.116,
+      hapax 70.0% vs the highest baseline's 67.0%.
+- [x] High rate of near-repeat adjacent words vs all baselines — 14.8% within edit
+      distance 2 vs 8.2% (English) and 3.8% (Latin).
+- [x] Currier A/B divergence surviving sample-size control — Δh2 0.270 bits,
+      Jaccard 0.151 at 10,774 tokens each.
+- [x] Line-position effects — Cramér's V 0.307, p ≈ 0, Latin control p = 0.589.
 
-If any fails, the bug is ours. No Phase 2 work starts until this gate is green.
+`make analyse1` exits non-zero if any check fails, so the gate cannot be passed by
+forgetting to look at it.
 
-### 3.11 Phase 1 exit deliverables
+### 3.11 Phase 1 exit deliverables — **met 2026-08-19**
 
-- `reports/phase1/` — 9 topic reports + `summary.md` with a single findings
-  table: finding, effect size, CI, robust-across-transcriptions?, survives on
-  consensus subset?, distinguishes Voynich from pseudo-Voynich?
-- `docs/decisions.md` entries for every methodological choice made.
-- An explicit **"what we still cannot tell" list** → input to Phase 3.
+- [x] `reports/phase1/` — 9 topic reports + `summary.md` with a single findings
+      table: finding, effect size, CI, robust-across-transcriptions?, survives on
+      consensus subset?, distinguishes Voynich from pseudo-Voynich? (10 findings,
+      including one falsified hypothesis.)
+- [x] `docs/decisions.md` entries for every methodological choice made —
+      Decisions 11–15 (entropy protocol, running-prose rule, EVA-only stability
+      verdict, the falsified A→B transformation, the `alternative` parameter).
+- [x] An explicit **"what we still cannot tell" list** → seven open questions in
+      `reports/phase1/summary.md`, carried into Phase 3's gap analysis: the
+      language-versus-cipher ambiguity behind low h2, what A/B actually is,
+      whether the hapax tail is textual or transcriptional, morphology versus
+      positional generation, what labels refer to, meaningful repetition versus
+      autocopying, and the still-missing token-level alignment across
+      transcriptions.
 
 ---
 

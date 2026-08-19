@@ -34,6 +34,8 @@ dependencies = [
     "jsonschema>=4.0",
     "datasets>=2.14.0",
     "pandas>=2.0.0",
+    "numpy>=2.0",
+    "scipy>=1.11",
 ]
 
 [project.optional-dependencies]
@@ -96,6 +98,13 @@ warn_return_any = true
 warn_unused_ignores = true
 disallow_untyped_defs = true
 ignore_missing_imports = true
+
+# numpy 2.x ships stubs written with 3.12+ syntax; skip following them while the
+# project's declared target stays 3.11.
+[[tool.mypy.overrides]]
+module = "numpy.*"
+follow_imports = "skip"
+follow_imports_for_stubs = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

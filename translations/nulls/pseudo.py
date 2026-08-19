@@ -54,18 +54,26 @@ def induce_table(words: Words, size: int = 16) -> SyllableTable:
     return SyllableTable(most_common[0], most_common[1], most_common[2])
 
 
-def grille(table: SyllableTable, n_words: int, rng: random.Random) -> Words:
-    """Generate words by sliding a diagonal three-hole grille over ``table``.
+def grille(table: SyllableTable, n_words: int, rng: random.Random, n_grilles: int = 1) -> Words:
+    """Generate words by sliding ``n_grilles`` Cardan grilles over ``table``.
 
-    Each placement exposes one syllable per column; the holes step down the
-    table together, which is what makes the output *systematically* repetitive
-    rather than independently random — the property Rugg argued for.
+    A grille is one row offset per column; sliding it down the table reads out a
+    word per position. The vocabulary is therefore bounded by
+    ``n_grilles × rows`` — the output is *systematically* repetitive rather than
+    independently random, which is what Rugg argued for, and the reason a table
+    generator struggles to reach the manuscript's hapax rate.
     """
+    grilles = [
+        tuple(rng.randrange(len(column)) for column in table.columns) for _ in range(n_grilles)
+    ]
+    rows = max(len(column) for column in table.columns)
     output: Words = []
     for _ in range(n_words):
-        row = rng.randrange(max(len(column) for column in table.columns))
+        offsets = rng.choice(grilles)
+        row = rng.randrange(rows)
         parts = [
-            column[(row + offset) % len(column)] for offset, column in enumerate(table.columns)
+            column[(row + offset) % len(column)]
+            for offset, column in zip(offsets, table.columns, strict=True)
         ]
         output.append(glyphs("".join(parts)))
     return output
@@ -90,12 +98,15 @@ def selfcite(
         word = list(source)
         if rng.random() < mutation_rate and word:
             position = rng.randrange(len(word))
-            operation = rng.choice(("substitute", "insert", "delete"))
+            # Insert and delete are equally likely so word length does not drift.
+            operation = rng.choices(("substitute", "insert", "delete"), weights=(2, 1, 1), k=1)[0]
+            if operation == "delete" and len(word) == 1:
+                operation = "substitute"
             if operation == "substitute":
                 word[position] = rng.choice(inventory)
             elif operation == "insert":
                 word.insert(position, rng.choice(inventory))
-            elif len(word) > 1:
+            else:
                 del word[position]
         output.append(word)
     return output

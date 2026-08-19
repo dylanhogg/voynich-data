@@ -103,19 +103,25 @@ def load_mismatches(path: Path | None = None) -> dict[str, Mismatch]:
     }
 
 
-def transcription_text(line: Line, mismatch: Mismatch | None, source: Transcription) -> str | None:
+def transcription_text(
+    line: Line, mismatch: Mismatch | None, source: Transcription, alternative: int = 0
+) -> str | None:
     """Analysis-ready text of ``line`` in ``source``, or ``None`` if absent.
 
     ZL comes from ``eva_lines`` (already cleaned by the builder); other sources
     come from the mismatch index and are cleaned here with the *same* central
-    routine, never a local regex.
+    routine, never a local regex. ``alternative`` selects which option of an
+    ``[a:b]`` reading to keep: the datasets are built with the first, and the
+    Phase 1 uncertainty analysis re-reads with the second.
     """
     if source is Transcription.ZL:
-        return line.text_clean
+        if alternative == 0:
+            return line.text_clean
+        return clean_text_for_analysis(line.text, alternative) or None
     if mismatch is None:
         return None
     raw = mismatch.texts.get(source.value)
     if raw is None:
         return None
-    cleaned = clean_text_for_analysis(raw)
+    cleaned = clean_text_for_analysis(raw, alternative)
     return cleaned or None

@@ -13,9 +13,13 @@ Variants
     Compound-aware: ``ch sh cth ckh cph cfh`` are single units, a high-ASCII
     token ``@NNN;`` is one opaque unit, and the ligature connector ``'`` is
     dropped (it marks how glyphs are joined, it is not a glyph).
-``T2-slot`` / ``T3-merge``
-    Depend on the morphology induction (Phase 1.4) and the glyph-merge search
-    (Phase 2) and raise :class:`NotImplementedError` until those land.
+``T2-slot``
+    ``T1`` re-segmented into morphs by an induced slot model. The segmenter is
+    passed in — the induction lives in ``translations.analysis.segmentation``,
+    so the tokenizer stays free of any model of its own.
+``T3-merge``
+    Depends on the Phase 2 glyph-merge search and raises
+    :class:`NotImplementedError` until that lands.
 
 The comma policy decides whether ``,`` — the *uncertain* word separator — is a
 word break or word-internal.
@@ -24,6 +28,7 @@ word break or word-internal.
 from __future__ import annotations
 
 import re
+from collections.abc import Callable
 
 from translations.config import CommaPolicy, Tokenizer
 from vcat.eva_charset import EVA_COMPOUNDS
@@ -65,12 +70,28 @@ def glyphs(word: str) -> list[str]:
     return units
 
 
-def tokenize_word(word: str, variant: Tokenizer = Tokenizer.T1_GLYPH) -> list[str]:
-    """Split one word into units of the requested variant."""
+Segmenter = Callable[[list[str]], list[list[str]]]
+
+
+def tokenize_word(
+    word: str,
+    variant: Tokenizer = Tokenizer.T1_GLYPH,
+    segmenter: Segmenter | None = None,
+) -> list[str]:
+    """Split one word into units of the requested variant.
+
+    ``T2-slot`` needs a ``segmenter`` mapping glyph units to morphs; without one
+    it raises, because a slot tokenization with no induced model behind it would
+    be a silent lie about what produced the units.
+    """
     if variant is Tokenizer.T0_CHAR:
         return list(word)
     if variant is Tokenizer.T1_GLYPH:
         return glyphs(word)
+    if variant is Tokenizer.T2_SLOT:
+        if segmenter is None:
+            raise ValueError("T2-slot requires an induced segmenter")
+        return ["".join(morph) for morph in segmenter(glyphs(word))]
     raise NotImplementedError(f"{variant} requires an induction from a later phase")
 
 
@@ -78,15 +99,17 @@ def tokenize_line(
     text: str,
     variant: Tokenizer = Tokenizer.T1_GLYPH,
     comma: CommaPolicy = CommaPolicy.BREAK,
+    segmenter: Segmenter | None = None,
 ) -> list[list[str]]:
     """Split a line into words, each a list of units."""
-    return [tokenize_word(word, variant) for word in split_words(text, comma)]
+    return [tokenize_word(word, variant, segmenter) for word in split_words(text, comma)]
 
 
 def unit_stream(
     text: str,
     variant: Tokenizer = Tokenizer.T1_GLYPH,
     comma: CommaPolicy = CommaPolicy.BREAK,
+    segmenter: Segmenter | None = None,
 ) -> list[str]:
     """Flatten a line to a single stream of units, word boundaries dropped."""
-    return [unit for word in tokenize_line(text, variant, comma) for unit in word]
+    return [unit for word in tokenize_line(text, variant, comma, segmenter) for unit in word]

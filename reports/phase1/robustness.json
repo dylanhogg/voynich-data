@@ -1,0 +1,127 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "deltas": {
+    "cd": {
+      "h2": 0.24247780847148892,
+      "hapax_rate": -0.010675044303650849,
+      "lines": 2154.0,
+      "mean_word_length": -0.8234854117841577,
+      "near_repeat_within_2": 0.06626823659688671,
+      "ttr": 0.0075678356586526
+    },
+    "fg": {
+      "h2": 0.1783024952798078,
+      "hapax_rate": -0.03667228304737491,
+      "lines": 3971.0,
+      "mean_word_length": -0.7959135536629303,
+      "near_repeat_within_2": 0.051697656657646654,
+      "ttr": -0.017155405295867177
+    },
+    "gc": {
+      "h2": 0.44135596608950545,
+      "hapax_rate": 0.002950705797133857,
+      "lines": 4070.0,
+      "mean_word_length": -1.179922483014308,
+      "near_repeat_within_2": 0.07410164259832475,
+      "ttr": 0.017482992951418252
+    },
+    "it": {
+      "h2": 0.006757688046349575,
+      "hapax_rate": -0.0011029014944118343,
+      "lines": 4061.0,
+      "mean_word_length": 0.10146009771372277,
+      "near_repeat_within_2": -0.0021384969299639706,
+      "ttr": 0.007647404158844712
+    }
+  },
+  "per_source": {
+    "cd (15,874 tokens)": {
+      "h2": 2.358426357275862,
+      "hapax_rate": 0.697998046875,
+      "mean_word_length": 4.16240393095628,
+      "near_repeat_within_2": 0.1925911925911926,
+      "tokens": 15874.0,
+      "ttr": 0.258032002015875
+    },
+    "fg (33,045 tokens)": {
+      "h2": 2.3012498307603244,
+      "hapax_rate": 0.663621135982945,
+      "mean_word_length": 4.279195037070661,
+      "near_repeat_within_2": 0.16662631642658274,
+      "tokens": 33045.0,
+      "ttr": 0.19872900590104403
+    },
+    "gc (36,100 tokens)": {
+      "h2": 2.566894727346929,
+      "hapax_rate": 0.703681639461456,
+      "mean_word_length": 3.890027700831025,
+      "near_repeat_within_2": 0.18942352973766585,
+      "tokens": 36100.0,
+      "ttr": 0.23249307479224376
+    },
+    "it (33,176 tokens)": {
+      "h2": 2.132070837841402,
+      "hapax_rate": 0.6999322951929587,
+      "mean_word_length": 5.171479382686279,
+      "near_repeat_within_2": 0.11327807083647325,
+      "tokens": 33176.0,
+      "ttr": 0.2226006751868821
+    },
+    "zl (all lines)": {
+      "h2": 2.125758223511679,
+      "hapax_rate": 0.7008547008547008,
+      "mean_word_length": 5.069615749525616,
+      "near_repeat_within_2": 0.11536750971032111,
+      "tokens": 33728.0,
+      "ttr": 0.21507352941176472
+    }
+  },
+  "stability": {
+    "h2": {
+      "all_abs_delta": 0.44135596608950545,
+      "all_ratio": 22.90302305640082,
+      "ci_width": 0.019270642351563172,
+      "eva_abs_delta": 0.006757688046349575,
+      "eva_ratio": 0.3506726928488408,
+      "robust": true,
+      "zl_value": 2.125758223511679
+    },
+    "hapax_rate": {
+      "all_abs_delta": 0.03667228304737491,
+      "all_ratio": 1.3022715855661693,
+      "ci_width": 0.028160242036941507,
+      "eva_abs_delta": 0.0011029014944118343,
+      "eva_ratio": 0.03916519939583661,
+      "robust": true,
+      "zl_value": 0.7008547008547008
+    },
+    "mean_word_length": {
+      "all_abs_delta": 1.179922483014308,
+      "all_ratio": 26.79635247352048,
+      "ci_width": 0.04403295128246576,
+      "eva_abs_delta": 0.10146009771372277,
+      "eva_ratio": 2.3041857236156895,
+      "robust": false,
+      "zl_value": 5.069615749525616
+    },
+    "near_repeat_within_2": {
+      "all_abs_delta": 0.07410164259832475,
+      "all_ratio": 11.142561123154653,
+      "ci_width": 0.006650324084320147,
+      "eva_abs_delta": 0.0021384969299639706,
+      "eva_ratio": 0.32156281451095414,
+      "robust": true,
+      "zl_value": 0.11536750971032111
+    },
+    "ttr": {
+      "all_abs_delta": 0.017482992951418252,
+      "all_ratio": 3.5030935247641786,
+      "ci_width": 0.004990729715843134,
+      "eva_abs_delta": 0.007647404158844712,
+      "eva_ratio": 1.5323218435508401,
+      "robust": false,
+      "zl_value": 0.21507352941176472
+    }
+  },
+  "topic": "robustness"
+}

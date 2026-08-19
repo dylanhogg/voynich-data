@@ -1,0 +1,153 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "battery": {
+    "currier_a (full)": {
+      "gallows_rate": 0.11219575405481286,
+      "h1": 3.857988490307054,
+      "h2": 2.3645375944414018,
+      "h3": 2.146207288056109,
+      "hapax_rate": 0.7222715173025732,
+      "mean_word_length": 4.297661035826991,
+      "near_repeat_within_2": 0.17339645409820847,
+      "tokens": 10774.0,
+      "ttr": 0.31381102654538706,
+      "types": 3381.0
+    },
+    "currier_a (matched)": {
+      "gallows_rate": 0.11219575405481286,
+      "h1": 3.857988490307054,
+      "h2": 2.3645375944414018,
+      "h3": 2.146207288056109,
+      "hapax_rate": 0.7222715173025732,
+      "mean_word_length": 4.297661035826991,
+      "near_repeat_within_2": 0.17339645409820847,
+      "tokens": 10774.0,
+      "ttr": 0.31381102654538706,
+      "types": 3381.0
+    },
+    "currier_b (full)": {
+      "gallows_rate": 0.1159498036210365,
+      "h1": 3.833760920266733,
+      "h2": 2.1002048764501984,
+      "h3": 1.8778543027689656,
+      "hapax_rate": 0.6892760838000415,
+      "mean_word_length": 4.635229341503486,
+      "near_repeat_within_2": 0.1347246891651865,
+      "tokens": 22521.0,
+      "ttr": 0.21406687092047422,
+      "types": 4821.0
+    },
+    "currier_b (matched)": {
+      "gallows_rate": 0.1160075178949894,
+      "h1": 3.835864358478113,
+      "h2": 2.094422374349076,
+      "h3": 1.864935747804675,
+      "hapax_rate": 0.6859418282548476,
+      "mean_word_length": 4.637796735905044,
+      "near_repeat_within_2": 0.133729017898544,
+      "tokens": 10784.0,
+      "ttr": 0.2678041543026706,
+      "types": 2888.0
+    }
+  },
+  "factors": {
+    "gallows_rate": {
+      "partial_r2_currier_language": 0.0002472387907023199,
+      "partial_r2_hand": 0.0030729314209235747,
+      "partial_r2_quire_id": 0.011160077213462571,
+      "partial_r2_section": 0.0034440419096011254,
+      "r2_full": 0.02821971744787688,
+      "response": "gallows_rate"
+    },
+    "mean_word_length": {
+      "partial_r2_currier_language": 0.025982389037837894,
+      "partial_r2_hand": 0.016120644400371087,
+      "partial_r2_quire_id": 0.058418137167519535,
+      "partial_r2_section": 0.04489228419627611,
+      "r2_full": 0.15232831218303422,
+      "response": "mean_word_length"
+    }
+  },
+  "topic": "currier",
+  "transformations": [
+    {
+      "baseline_coverage": 0.24282756580893228,
+      "coverage": 0.2656018929310855,
+      "detail": "d",
+      "gain": 0.022774327122153215,
+      "kind": "drop prefix"
+    },
+    {
+      "baseline_coverage": 0.24282756580893228,
+      "coverage": 0.2650103519668737,
+      "detail": "y",
+      "gain": 0.022182786157941448,
+      "kind": "drop prefix"
+    },
+    {
+      "baseline_coverage": 0.24282756580893228,
+      "coverage": 0.2623484176279207,
+      "detail": "ch",
+      "gain": 0.01952085181898844,
+      "kind": "drop prefix"
+    },
+    {
+      "baseline_coverage": 0.24282756580893228,
+      "coverage": 0.25524992605737945,
+      "detail": "o",
+      "gain": 0.012422360248447173,
+      "kind": "drop prefix"
+    },
+    {
+      "baseline_coverage": 0.24282756580893228,
+      "coverage": 0.2546583850931677,
+      "detail": "ol",
+      "gain": 0.011830819284235405,
+      "kind": "drop prefix"
+    },
+    {
+      "baseline_coverage": 0.24282756580893228,
+      "coverage": 0.25347530316474415,
+      "detail": "m\u2192r",
+      "gain": 0.01064773735581187,
+      "kind": "substitute"
+    },
+    {
+      "baseline_coverage": 0.24282756580893228,
+      "coverage": 0.25317953268263826,
+      "detail": "qo",
+      "gain": 0.010351966873705987,
+      "kind": "drop prefix"
+    },
+    {
+      "baseline_coverage": 0.24282756580893228,
+      "coverage": 0.2528837622005324,
+      "detail": "d",
+      "gain": 0.010056196391600103,
+      "kind": "drop suffix"
+    },
+    {
+      "baseline_coverage": 0.24282756580893228,
+      "coverage": 0.2522922212363206,
+      "detail": "m\u2192l",
+      "gain": 0.009464655427388335,
+      "kind": "substitute"
+    },
+    {
+      "baseline_coverage": 0.24282756580893228,
+      "coverage": 0.25199645075421473,
+      "detail": "ckh\u2192k",
+      "gain": 0.009168884945282452,
+      "kind": "substitute"
+    }
+  ],
+  "vocabulary": {
+    "a_only": 2560.0,
+    "b_only": 2067.0,
+    "jaccard": 0.15069750367107196,
+    "matched_tokens": 10774.0,
+    "shared": 821.0,
+    "types_a": 3381.0,
+    "types_b": 2888.0
+  }
+}

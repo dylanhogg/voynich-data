@@ -1,0 +1,96 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "findings": [
+    [
+      "h2 far below natural language at matched size",
+      "-0.965 bits vs mean baseline",
+      "[2.242, 2.262]",
+      true,
+      true,
+      true
+    ],
+    [
+      "Hapax rate above every natural baseline",
+      "0.700",
+      "\u2014",
+      true,
+      true,
+      true
+    ],
+    [
+      "Adjacent near-repeat rate several times natural language",
+      "0.148 vs 0.038 (Latin)",
+      "\u2014",
+      true,
+      true,
+      true
+    ],
+    [
+      "Rigid word-internal ordering (slot structure)",
+      "k=1 acceptor accepts 0.926 of held-out types",
+      "\u2014",
+      null,
+      null,
+      true
+    ],
+    [
+      "Affixal structure pays for itself far more than in Latin",
+      "1.513 vs 0.153 bits/word",
+      "\u2014",
+      null,
+      null,
+      true
+    ],
+    [
+      "Line position changes the glyph distribution (LAAFU)",
+      "Cram\u00e9r's V 0.307 (Latin control 0.024)",
+      "\u2014",
+      null,
+      null,
+      null
+    ],
+    [
+      "Currier A/B differ after equalising sample size",
+      "\u0394h2 0.270 bits, Jaccard 0.151",
+      "\u2014",
+      true,
+      null,
+      null
+    ],
+    [
+      "Word order carries little information",
+      "0.093 bits/word gained from order vs 0.504 in Latin",
+      "\u2014",
+      null,
+      null,
+      null
+    ],
+    [
+      "Page word distributions track the illustration sections",
+      "NMI 0.410, purity 0.762",
+      "\u2014",
+      null,
+      null,
+      null
+    ],
+    [
+      "No single transformation maps Currier A onto B (negative result)",
+      "best gain 0.023 over a 0.24 baseline",
+      "\u2014",
+      null,
+      null,
+      null
+    ]
+  ],
+  "gate_passed": true,
+  "open_questions": [
+    "Whether the low h2 comes from the writing system (verbose cipher, abjad) or from the language: entropy alone cannot separate those, and both fit.",
+    "Whether Currier A and B are two languages, two cipher settings, or two scribal habits: hand, section and quire each explain part of the per-line variance and none dominates.",
+    "Whether the hapax tail is a property of the text or of transcription disagreement: hapax rate is stable across the EVA pair but the non-EVA transcriptions disagree enough that this cannot be settled at line level.",
+    "Whether words are morphologically composed or positionally generated: the order-2 chain and the MDL morphology are within ~1 bit/word of each other on the manuscript, unlike on natural language where morphology wins clearly.",
+    "What labels refer to: there is no illustration\u2194label linkage in the data, so the 115 label lines cannot be tied to the plants, stars or nymphs beside them.",
+    "Whether the near-repeat rate reflects meaningful repetition or autocopying: the tuned selfcite surrogate reproduces it, and nothing in the text distinguishes the two at this level of analysis.",
+    "Token-level alignment across transcriptions is still missing: the mismatch index aligns lines, so per-glyph disagreement cannot be quantified."
+  ],
+  "topic": "summary"
+}

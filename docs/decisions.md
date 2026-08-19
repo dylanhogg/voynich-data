@@ -449,6 +449,181 @@ Hard by design.
 
 ---
 
+## Decision 11: Entropy Estimation and Bootstrap Protocol
+
+**Date**: 2026-08-19  
+**Status**: Active  
+**Context**: Plug-in entropy on ~170k glyphs overestimates order-3+ structure. The plan
+(§3.2) required Miller–Madow and, "where feasible", NSB, plus bootstrap CIs.
+
+### Options Considered
+
+1. Plug-in only, with a caveat in the text.
+2. Miller–Madow plus a second estimator, with a block bootstrap over lines.
+3. Full NSB / Bayesian estimation.
+
+### Decision
+
+Option 2. `translations/analysis/stats.py` reports Miller–Madow as the headline
+estimator, offers Chao–Shen as a cross-check, and computes 95% CIs by a block bootstrap
+that resamples *lines* (200 resamples; 50 for metrics that require rebuilding a view).
+NSB was **not** implemented.
+
+### Rationale
+
+Miller–Madow and Chao–Shen disagree by less than the bootstrap CI at orders 1–3, which is
+the range every claim in Phase 1 rests on. NSB's advantage appears where both are already
+unreliable (orders 4+), so it would have bought precision only where no claim is made.
+Resampling lines rather than glyphs preserves within-line structure, which is itself one
+of the objects of study.
+
+### Consequences
+
+Orders 4 and 5 are reported but never used for a claim. If Phase 2 needs h4/h5 as evidence,
+NSB (or a Bayesian estimator) has to be added first.
+
+### Reversibility
+
+Easy — one module, one estimator function to add.
+
+---
+
+## Decision 12: Definition of the "Running Prose" Subset
+
+**Date**: 2026-08-19  
+**Status**: Active  
+**Context**: §3.6 requires excluding circular and radial text from prose statistics, but
+the built data has no line-level marker for it: `line_type` is only `paragraph` or `label`.
+
+### Options Considered
+
+1. Skip the exclusion and note the limitation.
+2. Exclude by page-level illustration type.
+3. Hand-annotate circular lines.
+
+### Decision
+
+Option 2. Running prose = paragraph lines on pages whose `illustration_type` is not
+`A` (astronomical) or `C` (cosmological), configured as `CONFIG.prose_exclude_illustration`.
+Hand annotation is out of scope by the plan's own rule (§0.3, fully automated).
+
+### Rationale
+
+Circular and radial writing is concentrated on astronomical and cosmological pages. The
+rule is coarse — some circular text on biological pages survives it — but it is
+reproducible from the data, which hand annotation would not be.
+
+### Consequences
+
+The subset costs 170 lines (4.2%) and 587 tokens (1.7%), and moves h2 by 0.006 bits. Layout
+effects are therefore real but not what drives the headline numbers. A finer rule needs
+either glyph coordinates or page images, both of which are open data gaps.
+
+### Reversibility
+
+Easy — one config tuple.
+
+---
+
+## Decision 13: Cross-Transcription Stability Is Judged on the EVA Pair Only
+
+**Date**: 2026-08-19  
+**Status**: Active  
+**Context**: §3.8 asks for a per-metric stability score across transcriptions. CD, FG and GC
+use different alphabets (Currier, FSG, v101), so their metric differences mix alphabet
+choice with transcription disagreement.
+
+### Options Considered
+
+1. Pool all five sources into one stability score.
+2. Score stability on ZL vs IT (both EVA) and report the others as context.
+
+### Decision
+
+Option 2. The `robust` verdict uses the ZL/IT paired difference against the metric's own
+bootstrap CI; CD/FG/GC deltas are reported in the same table but explicitly labelled as
+alphabet-plus-transcription.
+
+### Rationale
+
+Pooling made every metric "transcription-limited", which is true only in the trivial sense
+that different alphabets count different things. The EVA-only comparison answers the
+question actually being asked: would this number change if we had used the other EVA
+transcription?
+
+### Consequences
+
+h2, hapax rate and near-repeat rate are robust within EVA; TTR and mean word length are
+not, and cannot by themselves support a decipherment claim.
+
+### Reversibility
+
+Easy.
+
+---
+
+## Decision 14: Currier B Is Not Reachable from A by a Single Systematic Transformation
+
+**Date**: 2026-08-19  
+**Status**: Active (negative result)  
+**Context**: §3.7 asks whether B is derivable from A by a systematic glyph- or affix-level
+mapping. A positive result would have been a major structural finding.
+
+### Test
+
+At matched sample size (10,774 tokens each), 24.3% of A word types already occur in B.
+Every single-glyph substitution (all ordered pairs over the glyph inventory) and every
+addition or removal of twelve common affixes was applied to the A vocabulary and scored by
+coverage of the B vocabulary.
+
+### Result
+
+**Falsified.** The best single transformation ("drop prefix `d`") raises coverage from
+0.243 to 0.266 — a 2.3 point gain, in the range expected from chance overlap of short
+strings. Vocabulary Jaccard between A and B at matched size is 0.151.
+
+### Consequences
+
+Phase 2 must treat A and B as separate systems with separate keys rather than assuming one
+is a transform of the other. Compound transformations (two or more simultaneous changes)
+were not searched, so the negative result covers single-step transformations only.
+
+### Reversibility
+
+n/a — recorded as a falsified hypothesis.
+
+---
+
+## Decision 15: `[a:b]` Alternative Selection Is a Parameter, Not a Hard-Coded Convention
+
+**Date**: 2026-08-19  
+**Status**: Active  
+**Context**: `vcat/text_processing.py` kept the first option of every `[a:b]` alternative
+reading. §3.9 requires quantifying what that convention decides, which needs the second
+reading — and the repo rule is that all stripping lives in that one module.
+
+### Decision
+
+`strip_ivtff_markup` and `clean_text_for_analysis` take an `alternative: int = 0` argument
+selecting which option to keep. The default is unchanged, so every built dataset is
+byte-identical; the Phase 1 uncertainty analysis passes `alternative=1`.
+
+### Rationale
+
+The alternative was re-implementing the regex inside `translations/`, which the repo rule
+forbids for good reason: the builder and the verifier would then be able to drift apart.
+
+### Consequences
+
+584 lines carry alternatives; the second reading changes 627 tokens (1.9%) and moves every
+headline metric by less than 0.3%. The first-option convention is therefore not load-bearing.
+
+### Reversibility
+
+Easy — the parameter defaults to the old behaviour.
+
+---
+
 ## Template for Future Decisions
 
 Copy this template for new decisions:
@@ -490,9 +665,10 @@ Copy this template for new decisions:
 |-------|-----------|
 | Data Sources | 1, 2, 9 |
 | Schema Design | 5, 6 |
-| Text Processing | 3, 4, 8 |
+| Text Processing | 3, 4, 8, 15 |
 | Content Inclusion | 7 |
-| Analysis Methodology | 8, 10 |
+| Analysis Methodology | 8, 10, 11, 12, 13 |
+| Falsified Hypotheses | 14 |
 
 ---
 

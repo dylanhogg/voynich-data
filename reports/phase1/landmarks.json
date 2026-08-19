@@ -1,0 +1,71 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "landmarks": {
+    "Conditional entropy h2 well below natural language": {
+      "detail": "Voynich h2 2.253 vs lowest baseline douay_rheims 3.077",
+      "evidence": {
+        "ci_separated": true,
+        "lowest_baseline": "douay_rheims",
+        "voynich_h2": 2.2530059920022585
+      },
+      "passed": true
+    },
+    "Currier A/B divergence surviving sample-size control": {
+      "detail": "matched h2 differs by 0.270 bits; vocabulary Jaccard 0.151",
+      "evidence": {
+        "h2_a": 2.3645375944414018,
+        "h2_b": 2.094422374349076,
+        "jaccard": 0.15069750367107196
+      },
+      "passed": true
+    },
+    "High rate of near-repeat adjacent words": {
+      "detail": "within-2 rate 14.8% vs austen_pride_prejudice 8.2%",
+      "evidence": {
+        "austen_pride_prejudice": 0.08192249533015092,
+        "voynich": 0.14759688083731135,
+        "vulgate_clementine": 0.037981439203012425
+      },
+      "passed": true
+    },
+    "Line-position effects (initial/final differ from mid)": {
+      "detail": "Voynich \u03c7\u00b2 p = 0.00e+00, V = 0.307; Latin control p = 0.589",
+      "evidence": {
+        "latin_control": {
+          "chi2": 37.37752121261274,
+          "cramers_v": 0.023546009556398993,
+          "dof": 40.0,
+          "p_value": 0.5889442178346449
+        },
+        "voynich": {
+          "chi2": 6328.027979451288,
+          "cramers_v": 0.30670229491899054,
+          "dof": 36.0,
+          "p_value": 0.0
+        }
+      },
+      "passed": true
+    },
+    "Rigid word-internal glyph ordering / slot structure": {
+      "detail": "within-word shuffle raises h2 by 1.344 bits; k=1 acceptor accepts 92.6% of held-out word types",
+      "evidence": {
+        "fsa_acceptance": 0.9261049723756906,
+        "h2_real": 2.2530059920022585,
+        "h2_shuffled": 3.5974972960553644
+      },
+      "passed": true
+    },
+    "Zipf-like frequencies with an anomalous low-frequency tail": {
+      "detail": "\u03b1 = 2.116, hapax 70.0% vs highest baseline clusius_rariorum 67.0%",
+      "evidence": {
+        "alpha": 2.1162137857134486,
+        "hapax_rate": 0.7001934235976789,
+        "highest_baseline": "clusius_rariorum",
+        "highest_baseline_hapax": 0.6700251889168766
+      },
+      "passed": true
+    }
+  },
+  "passed": true,
+  "topic": "landmarks"
+}

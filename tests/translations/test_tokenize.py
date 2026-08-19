@@ -76,7 +76,18 @@ def test_glyph_variant_is_never_longer_than_char_variant() -> None:
         assert len(units) < len(chars)
 
 
-def test_unimplemented_variants_raise() -> None:
-    for variant in (Tokenizer.T2_SLOT, Tokenizer.T3_MERGE):
-        with pytest.raises(NotImplementedError):
-            tokenize_word("fachys", variant)
+def test_t3_is_not_implemented_yet() -> None:
+    with pytest.raises(NotImplementedError):
+        tokenize_word("fachys", Tokenizer.T3_MERGE)
+
+
+def test_t2_requires_an_induced_segmenter() -> None:
+    with pytest.raises(ValueError, match="segmenter"):
+        tokenize_word("qokeedy", Tokenizer.T2_SLOT)
+
+
+def test_t2_applies_the_segmenter_to_glyph_units() -> None:
+    def segmenter(units: list[str]) -> list[list[str]]:
+        return [units[:2], units[2:]]
+
+    assert tokenize_word("qokeedy", Tokenizer.T2_SLOT, segmenter) == ["qo", "keedy"]

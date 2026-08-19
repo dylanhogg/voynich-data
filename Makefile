@@ -27,6 +27,10 @@ phase0:
 	# Verify inputs, summarise strata + corpora, write output/translation/phase0_manifest.json
 	uv run python -m translations.phase0
 
+analyse1:
+	# Phase 1 analysis suite -> reports/phase1/ (~100s; fails if the landmark gate is red)
+	uv run python -m translations.phase1
+
 quick-analysis:
 	uv run python scripts/quick_analysis.py
 

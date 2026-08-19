@@ -41,10 +41,21 @@ class CommaPolicy(StrEnum):
 
 
 class Transcription(StrEnum):
-    """Transcription sources available at line level."""
+    """Transcription sources available at line level.
+
+    ZL and IT are EVA. CD (Currier), FG (FSG) and GC (v101) use different
+    alphabets, so only ``T0-char`` tokenization and alphabet-agnostic metrics
+    are meaningful for them.
+    """
 
     ZL = "zl"
     IT = "it"
+    CD = "cd"
+    FG = "fg"
+    GC = "gc"
+
+
+EVA_TRANSCRIPTIONS: tuple[Transcription, ...] = (Transcription.ZL, Transcription.IT)
 
 
 @dataclass(frozen=True)
@@ -57,6 +68,7 @@ class Paths:
     folios: Path = REPO_ROOT / "output" / "metadata" / "folios.jsonl"
     quires: Path = REPO_ROOT / "output" / "metadata" / "quires.jsonl"
     mismatch_index: Path = REPO_ROOT / "output" / "mismatch_index.jsonl"
+    reports_dir: Path = REPO_ROOT / "reports" / "phase1"
     sources_yaml: Path = REPO_ROOT / "data_sources" / "sources.yaml"
     corpora_cache: Path = REPO_ROOT / "data_sources" / "cache" / "corpora"
     output_dir: Path = REPO_ROOT / "output" / "translation"
@@ -73,6 +85,15 @@ class Config:
     default_transcription: Transcription = Transcription.ZL
     # Mismatch-index statuses that make up the consensus subset (plan §3.1).
     consensus_statuses: tuple[str, ...] = ("exact_match", "normalized_match", "high_similarity")
+    # Phase 1 analysis budget.
+    bootstrap_resamples: int = 200
+    max_ngram_order: int = 5
+    # "Running prose" subset (plan §3.6): paragraph lines on pages whose
+    # illustration type does not imply circular or radial writing. No line-level
+    # marker for circular text exists in the data, so the rule is page-level.
+    prose_exclude_illustration: tuple[str, ...] = ("A", "C")
+    # Gallows glyphs, and the compounds built on them (plan §3.4).
+    gallows: tuple[str, ...] = ("k", "t", "p", "f", "cth", "ckh", "cph", "cfh")
 
 
 PATHS = Paths()

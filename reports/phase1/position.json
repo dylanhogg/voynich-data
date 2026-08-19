@@ -1,0 +1,208 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "first_glyph_by_position": {
+    "currier_a": {
+      "final": {
+        "a": 73,
+        "ch": 223,
+        "cth": 77,
+        "d": 412,
+        "o": 243,
+        "q": 81,
+        "s": 92,
+        "sh": 72
+      },
+      "initial": {
+        "d": 234,
+        "o": 272,
+        "p": 80,
+        "q": 212,
+        "s": 101,
+        "sh": 99,
+        "t": 133,
+        "y": 234
+      },
+      "mid": {
+        "ch": 1754,
+        "cth": 310,
+        "d": 936,
+        "k": 354,
+        "o": 1269,
+        "q": 815,
+        "sh": 778,
+        "y": 351
+      }
+    },
+    "currier_b": {
+      "final": {
+        "a": 251,
+        "ch": 298,
+        "d": 246,
+        "l": 225,
+        "o": 647,
+        "q": 266,
+        "r": 92,
+        "sh": 88
+      },
+      "initial": {
+        "d": 375,
+        "o": 250,
+        "p": 297,
+        "q": 313,
+        "s": 308,
+        "sh": 88,
+        "t": 239,
+        "y": 342
+      },
+      "mid": {
+        "a": 1172,
+        "ch": 2955,
+        "d": 866,
+        "k": 618,
+        "l": 1028,
+        "o": 4114,
+        "q": 3508,
+        "sh": 1784
+      }
+    },
+    "voynich|base": {
+      "final": {
+        "a": 331,
+        "ch": 532,
+        "d": 668,
+        "l": 235,
+        "o": 904,
+        "q": 348,
+        "s": 153,
+        "sh": 162
+      },
+      "initial": {
+        "d": 627,
+        "o": 537,
+        "p": 377,
+        "q": 529,
+        "s": 414,
+        "sh": 191,
+        "t": 381,
+        "y": 588
+      },
+      "mid": {
+        "a": 1407,
+        "ch": 4771,
+        "d": 1824,
+        "k": 979,
+        "l": 1096,
+        "o": 5428,
+        "q": 4353,
+        "sh": 2613
+      }
+    },
+    "vulgate_clementine": {
+      "final": {
+        "a": 387,
+        "c": 242,
+        "d": 332,
+        "e": 728,
+        "i": 308,
+        "m": 199,
+        "p": 256,
+        "s": 353
+      },
+      "initial": {
+        "a": 375,
+        "c": 264,
+        "d": 345,
+        "e": 667,
+        "i": 339,
+        "m": 192,
+        "p": 247,
+        "s": 356
+      },
+      "mid": {
+        "a": 2372,
+        "c": 1364,
+        "d": 2038,
+        "e": 4200,
+        "i": 2034,
+        "m": 1171,
+        "p": 1426,
+        "s": 2169
+      }
+    }
+  },
+  "first_line_effect": {
+    "first_line_mean_word_length": 4.755249343832021,
+    "first_line_words": 1524.0,
+    "mannwhitney_p": 4.1789574314221455e-06,
+    "other_line_mean_word_length": 4.5135386908458575
+  },
+  "labels": {
+    "label_mean_word_length": 2.370967741935484,
+    "label_tokens": 124.0,
+    "label_types": 64.0,
+    "prose_mean_word_length": 4.534081651127003,
+    "share_of_label_types_in_prose": 0.5,
+    "shared_with_prose": 32.0
+  },
+  "position_tests": {
+    "currier_a": {
+      "chi2": 1482.150716109986,
+      "cramers_v": 0.2628771172652803,
+      "dof": 36.0,
+      "p_value": 2.521841007835991e-288
+    },
+    "currier_b": {
+      "chi2": 5523.880530913833,
+      "cramers_v": 0.3505637068864407,
+      "dof": 34.0,
+      "p_value": 0.0
+    },
+    "voynich|base": {
+      "chi2": 6328.027979451288,
+      "cramers_v": 0.30670229491899054,
+      "dof": 36.0,
+      "p_value": 0.0
+    },
+    "vulgate_clementine": {
+      "chi2": 37.37752121261274,
+      "cramers_v": 0.023546009556398993,
+      "dof": 40.0,
+      "p_value": 0.5889442178346449
+    }
+  },
+  "prose_subset": {
+    "excluded_lines": 170.0,
+    "excluded_share_of_lines": 0.04174852652259332,
+    "excluded_share_of_tokens": 0.017403937381404173,
+    "excluded_tokens": 587.0,
+    "h2_full": 2.2530059920022585,
+    "h2_prose": 2.247242759479905,
+    "hapax_full": 0.7001934235976789,
+    "hapax_prose": 0.7008978675645342,
+    "near_repeat_full": 0.14759688083731135,
+    "near_repeat_prose": 0.1464091732045866
+  },
+  "topic": "position",
+  "word_length_by_position": {
+    "currier_a": {
+      "final": 4.5058746736292425,
+      "initial": 4.592189500640205,
+      "mid": 4.196223958333333
+    },
+    "currier_b": {
+      "final": 4.407079646017699,
+      "initial": 4.979072630283135,
+      "mid": 4.6184856868612725
+    },
+    "voynich|base": {
+      "final": 4.444051528163678,
+      "initial": 4.828339882121807,
+      "mid": 4.488695178425497
+    },
+    "vulgate_clementine": {
+      "final": 5.24573055028463,
+      "initial": 5.227229601518027,
+      "mid": 5.220706831119545
+    }
+  }
+}
