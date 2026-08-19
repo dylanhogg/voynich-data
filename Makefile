@@ -24,3 +24,12 @@ notebook:
 
 test:
 	uv run pytest -vv --capture=no --no-cov tests
+
+agent-skills-symlink:
+	ln -s AGENTS.md CLAUDE.md
+	ln -s ../.agents/skills ./.claude/skills
+	ln -s ../.agents/skills ./.codex/skills
+
+agent-skills-verify:
+	ls -la CLAUDE.md
+	ls -la ./.claude/skills ./.codex/skills
