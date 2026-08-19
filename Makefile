@@ -19,6 +19,12 @@ build:
 	uv run python -m builders.build_metadata
 	uv run python -m builders.build_mismatch_index
 
+quick-analysis:
+	uv run python scripts/quick_analysis.py
+
+deep-analysis:
+	uv run python scripts/deep_analysis.py
+
 notebook:
 	uv run jupyter lab
 

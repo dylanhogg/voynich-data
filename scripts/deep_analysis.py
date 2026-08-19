@@ -11,13 +11,16 @@ import math
 from collections import Counter, defaultdict
 
 from datasets import load_dataset
+from report_writer import Report
 
-print("=" * 60)
-print("VCAT DEEP ANALYSIS")
-print("=" * 60)
+report = Report("Deep Voynich Analysis", "deep_analysis.md")
+
+report.print("=" * 60)
+report.print("VCAT DEEP ANALYSIS")
+report.print("=" * 60)
 
 # Load data
-print("\nLoading dataset...")
+report.print("\nLoading dataset...")
 ds = load_dataset("Ched-ai/voynich-eva", data_files="eva_lines.parquet")
 data = ds["train"]
 
@@ -31,16 +34,16 @@ for row in data:
         if w and w.isalpha():
             words.append(w)
 
-print(f"Characters: {len(chars):,}")
-print(f"Words: {len(words):,}")
+report.print(f"Characters: {len(chars):,}")
+report.print(f"Words: {len(words):,}")
 
 
 # =============================================================================
 # 1. COMPRESSION-BASED ENTROPY BOUNDS
 # =============================================================================
-print("\n" + "=" * 60)
-print("1. COMPRESSION ANALYSIS (Entropy Upper Bounds)")
-print("=" * 60)
+report.print("\n" + "=" * 60)
+report.print("1. COMPRESSION ANALYSIS (Entropy Upper Bounds)")
+report.print("=" * 60)
 
 text_bytes = all_clean.encode("utf-8")
 original_size = len(text_bytes)
@@ -51,14 +54,14 @@ compressors = {
     "lzma": lzma.compress,
 }
 
-print(f"\nOriginal size: {original_size:,} bytes")
-print("\nCompression ratios (lower = more structure):")
+report.print(f"\nOriginal size: {original_size:,} bytes")
+report.print("\nCompression ratios (lower = more structure):")
 
 for name, func in compressors.items():
     compressed = func(text_bytes)
     ratio = len(compressed) / original_size
     bits_per_char = (len(compressed) * 8) / len(chars)
-    print(f"  {name:6}: {ratio:.3f} ({bits_per_char:.2f} bits/char)")
+    report.print(f"  {name:6}: {ratio:.3f} ({bits_per_char:.2f} bits/char)")
 
 # Compare to shuffled (baseline)
 import random
@@ -68,21 +71,21 @@ random.seed(42)
 random.shuffle(shuffled_chars)
 shuffled_bytes = "".join(shuffled_chars).encode("utf-8")
 
-print("\nShuffled text (destroys structure):")
+report.print("\nShuffled text (destroys structure):")
 for name, func in compressors.items():
     compressed = func(shuffled_bytes)
     ratio = len(compressed) / len(shuffled_bytes)
-    print(f"  {name:6}: {ratio:.3f}")
+    report.print(f"  {name:6}: {ratio:.3f}")
 
-print("\n→ Lower ratio on real vs shuffled = genuine structure exists")
+report.print("\n→ Lower ratio on real vs shuffled = genuine structure exists")
 
 
 # =============================================================================
 # 2. CHARACTER-LEVEL ENTROPY (Shannon)
 # =============================================================================
-print("\n" + "=" * 60)
-print("2. SHANNON ENTROPY")
-print("=" * 60)
+report.print("\n" + "=" * 60)
+report.print("2. SHANNON ENTROPY")
+report.print("=" * 60)
 
 
 def entropy(sequence):
@@ -123,24 +126,24 @@ h2 = conditional_entropy(chars, 1)
 h3 = conditional_entropy(chars, 2)
 h4 = conditional_entropy(chars, 3)
 
-print("\nCharacter entropy (bits/char):")
-print(f"  H0 (max possible): {h0:.3f}")
-print(f"  H1 (unigram):      {h1:.3f}")
-print(f"  h2 (bigram):       {h2:.3f}  ← KEY METRIC")
-print(f"  h3 (trigram):      {h3:.3f}")
-print(f"  h4 (4-gram):       {h4:.3f}")
+report.print("\nCharacter entropy (bits/char):")
+report.print(f"  H0 (max possible): {h0:.3f}")
+report.print(f"  H1 (unigram):      {h1:.3f}")
+report.print(f"  h2 (bigram):       {h2:.3f}  ← KEY METRIC")
+report.print(f"  h3 (trigram):      {h3:.3f}")
+report.print(f"  h4 (4-gram):       {h4:.3f}")
 
-print("\n→ Bowern (2021) found h2 ≈ 2.0 for Voynich")
-print("→ Natural languages typically h2 ≈ 3.0-4.0")
-print(f"→ Your result: h2 = {h2:.3f}")
+report.print("\n→ Bowern (2021) found h2 ≈ 2.0 for Voynich")
+report.print("→ Natural languages typically h2 ≈ 3.0-4.0")
+report.print(f"→ Your result: h2 = {h2:.3f}")
 
 
 # =============================================================================
 # 3. WORD-POSITION ENTROPY
 # =============================================================================
-print("\n" + "=" * 60)
-print("3. WORD-POSITION ENTROPY (Novel Analysis)")
-print("=" * 60)
+report.print("\n" + "=" * 60)
+report.print("3. WORD-POSITION ENTROPY (Novel Analysis)")
+report.print("=" * 60)
 
 # What characters appear at each position in words?
 max_pos = 10
@@ -150,38 +153,38 @@ for word in words:
     for i, char in enumerate(word[:max_pos]):
         position_chars[i].append(char)
 
-print("\nEntropy by character position in word:")
-print("(Lower = more constrained/predictable)")
-print()
+report.print("\nEntropy by character position in word:")
+report.print("(Lower = more constrained/predictable)")
+report.print()
 for pos in range(min(8, max_pos)):
     if position_chars[pos]:
         h = entropy(position_chars[pos])
         n = len(position_chars[pos])
         top3 = Counter(position_chars[pos]).most_common(3)
         top_str = ", ".join(f"{c}:{p/n:.0%}" for c, p in top3)
-        print(f"  Position {pos+1}: H={h:.2f} bits  (n={n:,})  top: {top_str}")
+        report.print(f"  Position {pos+1}: H={h:.2f} bits  (n={n:,})  top: {top_str}")
 
-print("\n→ Natural languages: fairly uniform entropy across positions")
-print("→ Voynich: rigid positional constraints suggest slot grammar")
+report.print("\n→ Natural languages: fairly uniform entropy across positions")
+report.print("→ Voynich: rigid positional constraints suggest slot grammar")
 
 
 # =============================================================================
 # 4. BIGRAM TRANSITION MATRIX (Top Patterns)
 # =============================================================================
-print("\n" + "=" * 60)
-print("4. CHARACTER TRANSITIONS (What follows what?)")
-print("=" * 60)
+report.print("\n" + "=" * 60)
+report.print("4. CHARACTER TRANSITIONS (What follows what?)")
+report.print("=" * 60)
 
 bigrams = Counter(zip(chars[:-1], chars[1:]))
 char_counts = Counter(chars)
 
-print("\nMost common bigrams:")
+report.print("\nMost common bigrams:")
 for (c1, c2), count in bigrams.most_common(15):
     expected = (char_counts[c1] / len(chars)) * (char_counts[c2] / len(chars)) * (len(chars) - 1)
     ratio = count / expected if expected > 0 else 0
-    print(f"  {c1}{c2}: {count:5}  (observed/expected: {ratio:.1f}x)")
+    report.print(f"  {c1}{c2}: {count:5}  (observed/expected: {ratio:.1f}x)")
 
-print("\nRarest bigrams (that should exist but don't):")
+report.print("\nRarest bigrams (that should exist but don't):")
 common_chars = [c for c, _ in char_counts.most_common(10)]
 missing = []
 for c1 in common_chars:
@@ -193,46 +196,46 @@ for c1 in common_chars:
 
 missing.sort(key=lambda x: -x[2])
 for c1, c2, exp in missing[:10]:
-    print(f"  {c1}{c2}: 0 occurrences (expected ~{exp:.0f})")
+    report.print(f"  {c1}{c2}: 0 occurrences (expected ~{exp:.0f})")
 
-print("\n→ Missing expected bigrams suggest phonotactic constraints")
+report.print("\n→ Missing expected bigrams suggest phonotactic constraints")
 
 
 # =============================================================================
 # 5. WORD-LENGTH DISTRIBUTION
 # =============================================================================
-print("\n" + "=" * 60)
-print("5. WORD LENGTH DISTRIBUTION")
-print("=" * 60)
+report.print("\n" + "=" * 60)
+report.print("5. WORD LENGTH DISTRIBUTION")
+report.print("=" * 60)
 
 lengths = [len(w) for w in words]
 length_counts = Counter(lengths)
 
-print("\nWord length frequencies:")
+report.print("\nWord length frequencies:")
 for length in range(1, 13):
     count = length_counts.get(length, 0)
     pct = count / len(words) * 100
     bar = "█" * int(pct)
-    print(f"  {length:2}: {count:5} ({pct:5.1f}%) {bar}")
+    report.print(f"  {length:2}: {count:5} ({pct:5.1f}%) {bar}")
 
 mean_len = sum(lengths) / len(lengths)
 variance = sum((l - mean_len) ** 2 for l in lengths) / len(lengths)
 std_len = variance**0.5
 
-print(f"\nMean length: {mean_len:.2f}")
-print(f"Std dev:     {std_len:.2f}")
-print(f"Coefficient of variation: {std_len/mean_len:.2f}")
+report.print(f"\nMean length: {mean_len:.2f}")
+report.print(f"Std dev:     {std_len:.2f}")
+report.print(f"Coefficient of variation: {std_len/mean_len:.2f}")
 
-print("\n→ Natural language CV typically 0.4-0.6")
-print("→ Voynich shows unusually symmetric distribution")
+report.print("\n→ Natural language CV typically 0.4-0.6")
+report.print("→ Voynich shows unusually symmetric distribution")
 
 
 # =============================================================================
 # 6. CURRIER A vs B ENTROPY COMPARISON
 # =============================================================================
-print("\n" + "=" * 60)
-print("6. CURRIER A vs B: ENTROPY COMPARISON")
-print("=" * 60)
+report.print("\n" + "=" * 60)
+report.print("6. CURRIER A vs B: ENTROPY COMPARISON")
+report.print("=" * 60)
 
 a_chars = []
 b_chars = []
@@ -249,48 +252,48 @@ b_h1 = entropy(b_chars)
 a_h2 = conditional_entropy(a_chars, 1)
 b_h2 = conditional_entropy(b_chars, 1)
 
-print(f"\n{'Metric':<20} {'Language A':>12} {'Language B':>12} {'Difference':>12}")
-print("-" * 58)
-print(f"{'Characters':<20} {len(a_chars):>12,} {len(b_chars):>12,}")
-print(f"{'H1 (unigram)':<20} {a_h1:>12.3f} {b_h1:>12.3f} {abs(a_h1-b_h1):>12.3f}")
-print(f"{'h2 (bigram)':<20} {a_h2:>12.3f} {b_h2:>12.3f} {abs(a_h2-b_h2):>12.3f}")
+report.print(f"\n{'Metric':<20} {'Language A':>12} {'Language B':>12} {'Difference':>12}")
+report.print("-" * 58)
+report.print(f"{'Characters':<20} {len(a_chars):>12,} {len(b_chars):>12,}")
+report.print(f"{'H1 (unigram)':<20} {a_h1:>12.3f} {b_h1:>12.3f} {abs(a_h1-b_h1):>12.3f}")
+report.print(f"{'h2 (bigram)':<20} {a_h2:>12.3f} {b_h2:>12.3f} {abs(a_h2-b_h2):>12.3f}")
 
-print("\n→ Different entropies suggest different underlying systems")
-print("→ Or: same system with different vocabulary/register")
+report.print("\n→ Different entropies suggest different underlying systems")
+report.print("→ Or: same system with different vocabulary/register")
 
 
 # =============================================================================
 # 7. HAPAX LEGOMENA (Words appearing only once)
 # =============================================================================
-print("\n" + "=" * 60)
-print("7. HAPAX LEGOMENA (Single-occurrence words)")
-print("=" * 60)
+report.print("\n" + "=" * 60)
+report.print("7. HAPAX LEGOMENA (Single-occurrence words)")
+report.print("=" * 60)
 
 word_counts = Counter(words)
 hapax = [w for w, c in word_counts.items() if c == 1]
 dis = [w for w, c in word_counts.items() if c == 2]
 
-print(f"\nTotal unique words:  {len(word_counts):,}")
-print(f"Hapax legomena (1x): {len(hapax):,} ({len(hapax)/len(word_counts):.1%})")
-print(f"Dis legomena (2x):   {len(dis):,} ({len(dis)/len(word_counts):.1%})")
+report.print(f"\nTotal unique words:  {len(word_counts):,}")
+report.print(f"Hapax legomena (1x): {len(hapax):,} ({len(hapax)/len(word_counts):.1%})")
+report.print(f"Dis legomena (2x):   {len(dis):,} ({len(dis)/len(word_counts):.1%})")
 
-print(f"\nHapax ratio: {len(hapax)/len(words):.2%} of all word tokens")
+report.print(f"\nHapax ratio: {len(hapax)/len(words):.2%} of all word tokens")
 
-print("\n→ Natural language hapax ratio typically 40-60% of vocabulary")
-print("→ Very high hapax suggests productive morphology or noise")
+report.print("\n→ Natural language hapax ratio typically 40-60% of vocabulary")
+report.print("→ Very high hapax suggests productive morphology or noise")
 
-print("\nSample hapax (longest):")
+report.print("\nSample hapax (longest):")
 hapax_sorted = sorted(hapax, key=len, reverse=True)[:10]
 for w in hapax_sorted:
-    print(f"  {w}")
+    report.print(f"  {w}")
 
 
 # =============================================================================
 # 8. LINE-INITIAL vs LINE-FINAL WORDS
 # =============================================================================
-print("\n" + "=" * 60)
-print("8. LINE POSITION EFFECTS")
-print("=" * 60)
+report.print("\n" + "=" * 60)
+report.print("8. LINE POSITION EFFECTS")
+report.print("=" * 60)
 
 initial_words = []
 final_words = []
@@ -305,38 +308,38 @@ for row in data:
     if len(line_words) >= 3:
         middle_words.extend(line_words[1:-1])
 
-print("\nMost common LINE-INITIAL words:")
+report.print("\nMost common LINE-INITIAL words:")
 for w, c in Counter(initial_words).most_common(10):
     pct = c / len(initial_words) * 100
-    print(f"  {w:15} {c:4} ({pct:.1f}%)")
+    report.print(f"  {w:15} {c:4} ({pct:.1f}%)")
 
-print("\nMost common LINE-FINAL words:")
+report.print("\nMost common LINE-FINAL words:")
 for w, c in Counter(final_words).most_common(10):
     pct = c / len(final_words) * 100
-    print(f"  {w:15} {c:4} ({pct:.1f}%)")
+    report.print(f"  {w:15} {c:4} ({pct:.1f}%)")
 
 # Compare entropy
 init_h = entropy(initial_words)
 final_h = entropy(final_words)
 mid_h = entropy(middle_words)
 
-print("\nEntropy by line position:")
-print(f"  Initial: {init_h:.2f} bits")
-print(f"  Middle:  {mid_h:.2f} bits")
-print(f"  Final:   {final_h:.2f} bits")
+report.print("\nEntropy by line position:")
+report.print(f"  Initial: {init_h:.2f} bits")
+report.print(f"  Middle:  {mid_h:.2f} bits")
+report.print(f"  Final:   {final_h:.2f} bits")
 
-print("\n→ Lower entropy = more constrained choices")
-print("→ Line position affects word choice (unusual for cipher)")
+report.print("\n→ Lower entropy = more constrained choices")
+report.print("→ Line position affects word choice (unusual for cipher)")
 
 
 # =============================================================================
 # SUMMARY
 # =============================================================================
-print("\n" + "=" * 60)
-print("SUMMARY OF FINDINGS")
-print("=" * 60)
+report.print("\n" + "=" * 60)
+report.print("SUMMARY OF FINDINGS")
+report.print("=" * 60)
 
-print(f"""
+report.print(f"""
 Key metrics:
   • h2 (conditional entropy): {h2:.3f} bits/char
   • Compression ratio (gzip): {len(gzip.compress(text_bytes))/original_size:.3f}
@@ -352,6 +355,8 @@ Structural findings:
   • Many "expected" bigrams are completely absent
 """)
 
-print("=" * 60)
-print("Analysis complete.")
-print("=" * 60)
+report.print("=" * 60)
+report.print("Analysis complete.")
+report.print("=" * 60)
+
+report.save()
