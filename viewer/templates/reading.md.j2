@@ -1,0 +1,49 @@
+{% macro prose(runs) -%}
+{% for run in runs %}{% if run is string %}{{ run }}{% elif run == 1 %}[…]{% else %}[…×{{ run }}]{% endif %}{{ " " if not loop.last }}{% endfor %}
+{%- endmacro %}
+# The Voynich Manuscript — An English Rendering
+
+> **{{ banner }}**
+
+Rendered under hypothesis **{{ hypothesis.id }}** (`{{ hypothesis.variant }}`). Run against a
+control corpus built to encode nothing at all, the same pipeline produced *more* confident
+English than it does from the manuscript — 75.1% of words against 61.1%. Four of the five
+failure tests agreed in advance were met, and the decipherment attempt is **declared
+unsuccessful**. Treat every word below as machine output, never as the meaning of a Voynich
+word.
+
+## How to read this file
+
+- One section per page, in manuscript order; {{ page_count }} pages carry text.
+- Each page header gives its section, Currier language, scribal hand, quire, line count, and
+  the share of its words that survived the confidence gate.
+- **Illustration:** names what is drawn on the leaf. No images are included here.
+- `[…]` marks one word the pipeline could not read, `[…×3]` three consecutive ones. Unread
+  words at the start
+  and end of a block are dropped rather than marked.
+- Paragraph blocks come from the IVTFF `<%>`/`<$>` markers. **Label:** lines are captions
+  written beside an illustration, not running prose — they are the least reliable text here
+  (21% gated coverage against 61% for paragraphs).
+- Punctuation and sentence boundaries do not exist in the source and none have been invented.
+
+---
+{% for page in pages %}
+
+## Folio {{ page.id[1:] }}
+
+*{{ page.section_label }} · Currier {{ page.currier }} · hand {{ page.hand }} · quire {{ page.quire }} · {{ page.lines|length }} lines · {{ page.gated }}% of words read*
+
+**Illustration:** {{ page.illustration_label }}
+{% for block in page.prose %}
+
+{% if block.kind == 'label' %}
+**Label:** {{ prose(block.runs) }}
+{% else %}
+{{ prose(block.runs) }}
+{% endif %}
+{% endfor %}
+{% if not page.prose %}
+
+*(No word on this leaf survived the confidence gate.)*
+{% endif %}
+{% endfor %}

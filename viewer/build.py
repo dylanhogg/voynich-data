@@ -24,14 +24,21 @@ DEFAULT_OUT = ROOT / "output" / "viewer"
 TEMPLATES = {
     "workbench.html": "workbench.html.j2",
     "manuscript.html": "manuscript.html.j2",
+    "voynich_reading.md": "reading.md.j2",
+    "voynich_clean.md": "clean.md.j2",
 }
+
+
+def _escape_html_only(name: str | None) -> bool:
+    """Markdown templates must not be HTML-escaped."""
+    return name is not None and name.endswith(".html.j2")
 
 
 def render(payload: Payload, out_dir: Path) -> list[Path]:
     env = Environment(
         loader=FileSystemLoader(TEMPLATE_DIR),
         undefined=StrictUndefined,
-        autoescape=True,
+        autoescape=_escape_html_only,
         trim_blocks=True,
         lstrip_blocks=True,
     )
@@ -47,6 +54,7 @@ def render(payload: Payload, out_dir: Path) -> list[Path]:
                 hypothesis=payload.hypothesis,
                 stats=payload.stats,
                 sections=payload.sections,
+                pages=payload.pages,
                 page_count=len(payload.pages),
             )
         )

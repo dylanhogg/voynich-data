@@ -40,21 +40,40 @@ def test_every_page_resolves_to_a_folio_image(payload):
     assert image_url(load_map(), "f68r2", 400).endswith("/full/!400,400/0/default.jpg")
 
 
-def test_views_are_self_contained_and_bannered(payload, tmp_path):
-    written = render(payload, tmp_path)
-    assert {path.name for path in written} == set(TEMPLATES)
-    for path in written:
-        html = path.read_text()
+def test_prose_keeps_every_gated_gloss_in_order(payload):
+    """Paragraph blocks in block order, then the label lines; nothing added or dropped."""
+    for page in payload.pages:
+        ordered = [line for line in page["lines"] if not line[4]] + [
+            line for line in page["lines"] if line[4]
+        ]
+        glosses = [
+            token[2] for line in ordered for token in line[6] if token[3] >= GATE and token[2]
+        ]
+        spans = [run for block in page["prose"] for run in block["runs"] if isinstance(run, str)]
+        assert " ".join(spans).lower() == " ".join(glosses).lower()
+
+
+def test_html_views_are_self_contained_and_bannered(payload, tmp_path):
+    written = {path.name: path for path in render(payload, tmp_path)}
+    assert set(written) == set(TEMPLATES)
+    for name in ("workbench.html", "manuscript.html"):
+        html = written[name].read_text()
         assert "FAILED VALIDATION" in html
-        assert "</script" not in html.split('id="payload"')[1].split("</script>")[0]
-        assert (
-            json.loads(
-                html.split('type="application/json">')[1]
-                .split("</script>")[0]
-                .replace("<\\/", "</")
-            )["stats"]["control_ratio"]
-            > 1
-        )
+        blob = html.split('type="application/json">')[1].split("</script>")[0]
+        assert "</script" not in blob
+        assert json.loads(blob.replace("<\\/", "</"))["stats"]["control_ratio"] > 1
+
+
+def test_markdown_views_carry_the_notice_and_the_right_scaffolding(payload, tmp_path):
+    written = {path.name: path for path in render(payload, tmp_path)}
+    reading = written["voynich_reading.md"].read_text()
+    clean = written["voynich_clean.md"].read_text()
+    assert payload.banner in reading
+    assert "75.1%" in reading and "75.1%" in clean
+    assert reading.count("\n## Folio ") == len(payload.pages)
+    assert "**Illustration:**" in reading and "[…×" in reading
+    assert "## Folio" not in clean and "[…" not in clean and "**Label:**" not in clean
+    assert "…" in clean
 
 
 def test_render_is_byte_stable(payload, tmp_path):

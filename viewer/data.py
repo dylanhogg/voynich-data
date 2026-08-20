@@ -33,6 +33,17 @@ THUMB_PX = 400
 PLATE_PX = 1000
 MAX_ALTERNATIVES = 4
 
+ILLUSTRATION_LABELS = {
+    "H": "plants (herbal)",
+    "A": "astronomical / zodiac diagrams",
+    "B": "human figures and biological imagery",
+    "C": "cosmological diagrams",
+    "P": "plant parts (pharmaceutical)",
+    "S": "star diagrams",
+    "T": "none — text only",
+    "Z": "zodiac signs",
+}
+
 SECTION_LABELS = {
     "herbal": "Herbal",
     "astronomical": "Astronomical",
@@ -114,6 +125,45 @@ def _encode_line(line: dict[str, Any], blocks: dict[str, int]) -> list[Any]:
     ]
 
 
+def _runs(lines: list[list[Any]]) -> list[str | int]:
+    """Gated words as text spans; an integer is a run of that many unread words."""
+    words = [
+        token[2] if token[3] >= GATE and token[2] else None for line in lines for token in line[6]
+    ]
+    while words and words[0] is None:
+        words.pop(0)
+    while words and words[-1] is None:
+        words.pop()
+    runs: list[str | int] = []
+    for word in words:
+        if word is None:
+            if isinstance(runs[-1], int):
+                runs[-1] += 1
+            else:
+                runs.append(1)
+        elif runs and isinstance(runs[-1], str):
+            runs[-1] = runs[-1] + " " + word
+        else:
+            runs.append(word)
+    if runs and isinstance(runs[0], str):
+        runs[0] = runs[0][0].upper() + runs[0][1:]
+    return runs
+
+
+def _prose(lines: list[list[Any]]) -> list[dict[str, Any]]:
+    """Paragraph blocks, then label lines, each as a run list. Empty blocks are dropped."""
+    paragraphs: dict[int, list[list[Any]]] = {}
+    labels: list[list[Any]] = []
+    for line in lines:
+        if line[4]:
+            labels.append(line)
+        else:
+            paragraphs.setdefault(line[3], []).append(line)
+    blocks = [{"kind": "paragraph", "runs": _runs(group)} for group in paragraphs.values()]
+    blocks += [{"kind": "label", "runs": _runs([line])} for line in labels]
+    return [block for block in blocks if block["runs"]]
+
+
 def _page_summary(lines: list[dict[str, Any]]) -> tuple[int, int, int]:
     tokens = [token for line in lines for token in line["tokens"]]
     if not tokens:
@@ -155,6 +205,7 @@ def build_payload() -> Payload:
         meta = metadata.get(page_id, {})
         blocks: dict[str, int] = {}
         tokens, gated, confidence = _page_summary(page_lines)
+        encoded = [_encode_line(line, blocks) for line in page_lines]
         pages.append(
             {
                 "id": page_id,
@@ -162,15 +213,22 @@ def build_payload() -> Payload:
                 "side": meta.get("side", ""),
                 "quire": meta.get("quire_id", ""),
                 "section": first["section"] or "text_only",
+                "section_label": SECTION_LABELS.get(
+                    first["section"] or "text_only", first["section"] or "text_only"
+                ),
                 "currier": first["currier_language"] or "-",
                 "hand": first["hand"] or "-",
                 "illustration": meta.get("illustration_type", ""),
+                "illustration_label": ILLUSTRATION_LABELS.get(
+                    meta.get("illustration_type", ""), "unrecorded"
+                ),
                 "thumb": image_url(services, page_id, THUMB_PX),
                 "plate": image_url(services, page_id, PLATE_PX),
                 "tokens": tokens,
                 "gated": gated,
                 "confidence": confidence,
-                "lines": [_encode_line(line, blocks) for line in page_lines],
+                "lines": encoded,
+                "prose": _prose(encoded),
             }
         )
 

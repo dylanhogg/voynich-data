@@ -1,0 +1,16 @@
+{% macro prose(runs) -%}
+{% for run in runs %}{% if run is string %}{{ run }}{% else %}…{% endif %}{{ " " if not loop.last }}{% endfor %}
+{%- endmacro %}
+# The Voynich Manuscript
+
+*An English rendering that failed its own validation: the same pipeline renders a control
+corpus encoding nothing at 75.1% of words against this manuscript's 61.1%. Read it as machine
+output, not as the meaning of the manuscript. `…` marks words it could not read.*
+
+---
+{% for page in pages %}
+{% for block in page.prose %}
+
+{{ prose(block.runs) }}
+{% endfor %}
+{% endfor %}

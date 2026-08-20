@@ -185,31 +185,22 @@ function openReader() {
   render();
 }
 
-/* A block of lines becomes a paragraph; ungated words become a lacuna. */
-function paragraph(lines) {
-  const words = [];
-  for (const line of lines) for (const tok of line[6]) words.push(tok[3] >= 2 ? tok[2] : null);
-  const para = document.createElement('p');
-  let gap = 0;
-  const flush = () => {
-    if (!gap) return;
+/* One prose block from the payload; an integer run is a stretch of unread words. */
+function block(kind, runs) {
+  const node = document.createElement(kind === 'label' ? 'div' : 'p');
+  if (kind === 'label') { node.className = 'caption'; node.append(el('<b>Label</b>')); }
+  for (const run of runs) {
+    if (typeof run === 'string') {
+      node.append(document.createTextNode(node.childNodes.length ? ' ' + run : run));
+      continue;
+    }
     const span = document.createElement('span');
     span.className = 'lac';
-    span.textContent = ' ' + '· '.repeat(Math.min(6, 1 + gap)).trim() + ' ';
-    span.title = gap + (gap === 1 ? ' word' : ' words') + ' the machine could not read';
-    para.append(span);
-    gap = 0;
-  };
-  let first = true;
-  for (const word of words) {
-    if (word === null) { if (!first) gap++; continue; }
-    flush();
-    const text = first ? word.charAt(0).toUpperCase() + word.slice(1) : word;
-    para.append(document.createTextNode((first ? '' : ' ') + text));
-    first = false;
+    span.textContent = ' ' + '\u00b7 '.repeat(Math.min(3, run)).trim() + ' ';
+    span.title = run + (run === 1 ? ' word' : ' words') + ' the machine could not read';
+    node.append(span);
   }
-  flush();
-  return para.textContent.trim() ? para : null;
+  return node;
 }
 
 function render() {
@@ -228,27 +219,9 @@ function render() {
     + ' cataloguers number ' + page.hand + '.';
 
   const body = document.getElementById('text');
-  body.replaceChildren();
-  const blocks = new Map();
-  const labels = [];
-  for (const line of page.lines) {
-    if (line[4]) { labels.push(line); continue; }
-    if (!blocks.has(line[3])) blocks.set(line[3], []);
-    blocks.get(line[3]).push(line);
-  }
-  for (const lines of blocks.values()) {
-    const para = paragraph(lines);
-    if (para) body.append(para);
-  }
-  for (const line of labels) {
-    const para = paragraph([line]);
-    if (!para) continue;
-    const cap = el('<div class="caption"><b>Label</b></div>');
-    cap.append(para.textContent);
-    body.append(cap);
-  }
+  body.replaceChildren(...page.prose.map(b => block(b.kind, b.runs)));
   if (!body.childElementCount)
-    body.append(el('<p><span class="lac">· · · · ·</span></p>'));
+    body.append(el('<p><span class="lac">\u00b7 \u00b7 \u00b7</span></p>'));
 
   document.getElementById('colophon').textContent =
     'Words the machine could not read are left as gaps. This page is an artefact of a decipherment '

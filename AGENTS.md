@@ -23,7 +23,7 @@ make analyse2    # Phase 3 gap remediation + round 2 + re-scoring -> reports/pha
 make calibrate   # Phase 4 confidence calibration on synthetic ciphertexts (~2 min)
 make translate   # Phase 4 translation pipeline -> output/translation/ + reports/translation/ (~35 s)
 make audit       # Phase 5 adversarial self-audit -> reports/translation/strengths_weaknesses.md (~9 min)
-make viewer      # Render the two HTML views -> output/viewer/ (~5 s)
+make viewer      # Render the HTML + Markdown views -> output/viewer/ (~5 s)
 make test        # pytest (expect ~616 passed, 7 skipped)
 make notebook    # jupyter lab
 ```
@@ -54,7 +54,7 @@ Python 3.11+. Prefer `uv run <cmd>` over activating the venv.
 | `reports/phase2/` | Phase 2 outputs: `hypothesis_scores.md`, `approach.md`, `synthetic_validation.md` |
 | `reports/phase3/` | Phase 3 outputs: `gap_analysis.md`, `round2_findings.md`, `rescoring.md`, plus the round-2 topic reports |
 | `viewer/` | HTML views of the translation: `data.py` payload, `iiif.py` folio-image map, Jinja2 templates |
-| `output/viewer/` | `workbench.html` (analyst view) and `manuscript.html` (presentation view) |
+| `output/viewer/` | `workbench.html` (analyst), `manuscript.html` (presentation), `voynich_reading.md` (annotated text), `voynich_clean.md` (text only) |
 | `reports/translation/` | Phase 4–5 outputs: `strengths_weaknesses.md` (read first), `coverage.md`, `calibration.md`, `folio_readings.md` |
 | `plans/` | Multi-phase work plans; `001_...md` carries the phase status table |
 | `schemas/`, `docs/`, `notebooks/`, `scripts/`, `tests/` | as named |
@@ -212,14 +212,20 @@ report numbers the artifacts do not have; and measure any "the translation shows
 against the same statistic on the untranslated types, since glossing is a deterministic
 many-to-one map and can only lose structure (Decision 32).
 
-**The two HTML views live in `viewer/`** and are rebuilt with `make viewer`. `workbench.html` is
+**The four rendered views live in `viewer/`** and are rebuilt with `make viewer`. `workbench.html` is
 the analyst view: interlinear EVA/English with per-token evidence (decoded string, confidence,
 random-key p, ZL↔IT reliability, competing glosses), folio filtering and search, and an Evidence
 tab built from `coverage.json` / `strengths_weaknesses.json` / `calibration.json`. `manuscript.html`
 is the presentation view: a title page carrying the failed-validation banner and the 75.1%/61.1%
 control comparison, then folio-by-folio gated text beside the Beinecke plate, with unread words
-shown as gaps (Decision 35). Both are single files, driven entirely by the committed artifacts —
-no number is recomputed here — and both are byte-stable for a given set of inputs. Folio images
+shown as gaps (Decision 35). `voynich_reading.md` is the same gated text for reading or for
+feeding to a model — page headers with section / Currier / hand / quire / coverage, an
+`**Illustration:**` annotation in place of the image, labels marked, and `[…×3]` for a run of
+unread words. `voynich_clean.md` is that text with the scaffolding stripped: paragraphs, `…`
+for anything unread, and a single notice at the top. All four are driven entirely by the committed artifacts — no number is recomputed here — the
+HTML views are single self-contained files, and every output is byte-stable for a given set of
+inputs. The gated prose the three reading views share is assembled once, in
+`viewer.data._prose`. Folio images
 are hotlinked from Yale's IIIF service via the committed `viewer/iiif_folio_map.json`; refresh it
 with `uv run python -m viewer.iiif`.
 
