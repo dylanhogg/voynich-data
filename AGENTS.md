@@ -20,7 +20,9 @@ make phase0      # verify inputs + write output/translation/phase0_manifest.json
 make analyse1    # Phase 1 analysis suite -> reports/phase1/ (~100s)
 make decipher    # Phase 2 hypothesis search -> reports/phase2/ (budgeted, ~40 min)
 make analyse2    # Phase 3 gap remediation + round 2 + re-scoring -> reports/phase3/ (~2 h)
-make test        # pytest (expect ~549 passed, 7 skipped)
+make calibrate   # Phase 4 confidence calibration on synthetic ciphertexts (~2 min)
+make translate   # Phase 4 translation pipeline -> output/translation/ + reports/translation/ (~35 s)
+make test        # pytest (expect ~601 passed, 7 skipped)
 make notebook    # jupyter lab
 ```
 
@@ -49,6 +51,7 @@ Python 3.11+. Prefer `uv run <cmd>` over activating the venv.
 | `reports/phase1/` | Phase 1 outputs: one `.md` + `.json` per topic, `summary.md`, landmark gate |
 | `reports/phase2/` | Phase 2 outputs: `hypothesis_scores.md`, `approach.md`, `synthetic_validation.md` |
 | `reports/phase3/` | Phase 3 outputs: `gap_analysis.md`, `round2_findings.md`, `rescoring.md`, plus the round-2 topic reports |
+| `reports/translation/` | Phase 4 outputs: `coverage.md` (read first), `calibration.md`, `folio_readings.md` |
 | `plans/` | Multi-phase work plans; `001_...md` carries the phase status table |
 | `schemas/`, `docs/`, `notebooks/`, `scripts/`, `tests/` | as named |
 
@@ -167,6 +170,24 @@ checksum-verified non-Voynich baselines with sample-size matching, and
 `translations.decipher` holds the Phase 2 engine (`lm`, `channel`, `score`,
 `search`, `generative`, `priors`, `stats`, `budget`, `anchors`, `synthetic`).
 Held-out pages (`StratumRow.is_holdout`) must not feed any key search.
+
+**Phase 4 results live in `reports/translation/`** (`coverage.md` first — it opens with the
+pseudo-Voynich control, which is the whole verdict). The pipeline renders all 4,072 lines
+under five keyed hypotheses into `output/translation/translation_lines.jsonl` (primary,
+with per-token trace), `.parquet` (all five, line level) and `lexicon.jsonl` (type ->
+ranked glosses). `docs/translation_method.md` is the method. **The `grille` pseudo-Voynich
+control renders 75.1% of tokens against the manuscript's 61.1%** — a corpus that encodes
+nothing translates *better* — so under the plan's own pre-committed criterion the output
+carries no evidential weight (Decision 29). Never quote a rendering without that number.
+
+Phase 4 modules: `translations.decode` (a committed key plus its channel -> intermediate
+plaintext), `translations.lexicon.whitakers` (48k Latin stems -> English senses),
+`translations.gloss` (the strict fallback chain and the *measured* length-specificity
+model), `translations.calibrate` (blind search on synthetic ciphertext, PAVA isotonic
+maps), `translations.pipeline` (scoring, the 20-key random-key null, per-token
+confidence), `translations.render` (confidence bands, `english_speculative` /
+`english_gated`). Validate artifacts with
+`uv run python -m validators.validate_translation_outputs`.
 
 Phase 3 adds four things worth reaching for before writing new code:
 `translations.alignment` (ZL↔IT token alignment and the per-token reliability

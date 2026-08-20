@@ -40,6 +40,16 @@ analyse2:
 	# (budgeted; ~2 h at current grids; --analysis-only skips the re-scoring)
 	uv run python -m translations.phase3
 
+calibrate:
+	# Phase 4 confidence calibration on synthetic ciphertexts -> output/translation/calibration.json
+	# (blind key search per hypothesis; ~2 min, ceiling 4 h)
+	uv run python -m translations.calibrate
+
+translate:
+	# Phase 4 translation pipeline -> output/translation/ + reports/translation/ (~35 s)
+	uv run python -m translations.phase4
+	uv run python -m validators.validate_translation_outputs
+
 quick-analysis:
 	uv run python scripts/quick_analysis.py
 

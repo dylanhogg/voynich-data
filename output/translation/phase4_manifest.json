@@ -1,0 +1,129 @@
+{
+  "artifacts": {
+    "lines": 20360,
+    "types": 7238
+  },
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "config_hash": "ba6bc928a3e63629e2a331cbb4d0a7e60881bce32a1eed95f595801cf480b848",
+  "controls": {
+    "grille": {
+      "band_high": 0.2485472011385199,
+      "band_low": 0.06235175521821632,
+      "band_medium": 0.502698055028463,
+      "band_none": 0.18640298861480076,
+      "beat_every_null_key": 0.0,
+      "gated_coverage": 0.7512452561669829,
+      "lines": 4072.0,
+      "mean_confidence": 0.5239182366494985,
+      "mean_null_p": 0.47608176335050145,
+      "tokens": 33728.0
+    },
+    "real": {
+      "band_high": 0.34890891840607213,
+      "band_low": 0.13801589184060722,
+      "band_medium": 0.2620078273244782,
+      "band_none": 0.2510673624288425,
+      "beat_every_null_key": 0.09733752371916508,
+      "gated_coverage": 0.6109167457305503,
+      "lines": 4072.0,
+      "mean_confidence": 0.4936591206752781,
+      "mean_null_p": 0.46867658353664043,
+      "tokens": 33728.0
+    },
+    "selfcite": {
+      "band_high": 0.017700426944971537,
+      "band_low": 0.03626067362428843,
+      "band_medium": 0.02730668880455408,
+      "band_none": 0.9187322106261859,
+      "beat_every_null_key": 0.0005929791271347248,
+      "gated_coverage": 0.045007115749525616,
+      "lines": 4072.0,
+      "mean_confidence": 0.04485887096774194,
+      "mean_null_p": 0.9551411290322581,
+      "tokens": 33728.0
+    }
+  },
+  "coverage": {
+    "band_high": 0.34890891840607213,
+    "band_low": 0.13801589184060722,
+    "band_medium": 0.2620078273244782,
+    "band_none": 0.2510673624288425,
+    "beat_every_null_key": 0.09733752371916508,
+    "gated_coverage": 0.6109167457305503,
+    "lines": 4072.0,
+    "mean_confidence": 0.4936591206752781,
+    "mean_null_p": 0.46867658353664043,
+    "tokens": 33728.0
+  },
+  "git_commit": "c016005a7ed587929aa6fd3231dd8dec4d075325",
+  "gloss_fallback_all_forms": {
+    "lexicon": 0.0061048404601693074,
+    "nearest": 0.14243120372380194,
+    "none": 0.8343432699032872,
+    "stripped": 0.01712068591274148
+  },
+  "hypotheses": [
+    {
+      "converged": true,
+      "gain_per_token": -5.771475081908847,
+      "hypothesis": "H1",
+      "p_value": 0.3076923076923077,
+      "representation": "merged",
+      "variant": "clusius_rariorum-o3|plain"
+    },
+    {
+      "converged": false,
+      "gain_per_token": -0.10518954574398559,
+      "hypothesis": "H2",
+      "p_value": 0.3076923076923077,
+      "representation": "merged",
+      "variant": "austen_pride_prejudice-o3|fixed-width-3"
+    },
+    {
+      "converged": false,
+      "gain_per_token": -3.6770822499466496,
+      "hypothesis": "H3",
+      "p_value": 0.3076923076923077,
+      "representation": "merged",
+      "variant": "vulgate_clementine-abjad-o3|plain"
+    },
+    {
+      "converged": false,
+      "gain_per_token": -5.675532468687792,
+      "hypothesis": "H4",
+      "p_value": 0.3076923076923077,
+      "representation": "merged",
+      "variant": "clusius_rariorum-abbrev-o3|plain"
+    },
+    {
+      "converged": true,
+      "gain_per_token": -7.73042359666548,
+      "hypothesis": "H7",
+      "p_value": 0.3076923076923077,
+      "representation": "merged",
+      "variant": "austen_pride_prejudice-o1|plain"
+    }
+  ],
+  "inputs": {
+    "output/eva_lines.jsonl": "53e5db5ab1364eec553de3e20974a16b7af00916906f3758b5f3e2cfd0f4f7c7",
+    "output/metadata/pages.jsonl": "cf4f60f1e2b2ace3789924d04765a83a005850a1dda3d7bfde6312931562ccf3",
+    "output/mismatch_index.jsonl": "72316ceff4d6976744406e649bf7a053dd951a93f58e6e863cf23baa88b18679",
+    "output/translation/calibration.json": "971a33e88976ef99c066a117c7f29d874570501e9ef1c77e19a22c0a4fcec9f7"
+  },
+  "packages": {
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "pyyaml": "6.0.3",
+    "scipy": "1.18.0",
+    "vcat-data": "0.2.3"
+  },
+  "phase": 4,
+  "primary": "H1",
+  "reliability_floor": 0.5,
+  "representation": {
+    "gain_per_token": -6.502882297440821,
+    "n_merges": 22,
+    "variant": "clusius_rariorum-o3|searched-merges"
+  },
+  "seed": 20260819
+}

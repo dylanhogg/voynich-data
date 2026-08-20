@@ -283,6 +283,15 @@ medieval herbal: Isidore (c. 625) is encyclopaedic and Columella (1st c.) is
 Roman agronomy. Both were retrievable as checksummable plain text; the medieval
 herbals were not.
 
+`whitakers_words` is the only entry consumed as a dictionary rather than as running
+text (`kind: lexicon`, so `translations.corpora.load_corpus` refuses it). Phase 4 parses
+it in `translations/lexicon/whitakers.py`: `DICTLINE.GEN` is fixed-column — four 19-char
+stem slots, then the part of speech and its codes, then `;`-separated English senses —
+and yields 48,492 lowercased stems. The frequency code decides which entry wins a
+contested stem. `iau_star_names` is declared and pinned but not yet consumed: with no
+illustration↔label concordance (Decision 24) there is nothing to match star names
+against.
+
 Corpora are read through `translations/corpora/`, which strips the delivery
 format (Project Gutenberg header/footer, `[chapter:verse]` references) and then
 normalises: casefold, fold diacritics and ligatures (`æ`→`ae`), keep letters and

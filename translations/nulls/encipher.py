@@ -36,13 +36,15 @@ class Key:
         return tuple(sorted(self.mapping))
 
 
-def _make_key(plaintext_symbols: list[str], scheme: str, rng: random.Random) -> Key:
+def _make_key(plaintext_symbols: list[str], scheme: str, rng: random.Random, width: int = 2) -> Key:
     ciphertext_symbols: list[tuple[str, ...]]
     pool = list(CIPHER_UNITS)
     rng.shuffle(pool)
     if scheme == "verbose":
-        # Two glyphs per plaintext symbol: the "verbose cipher" hypothesis.
-        ciphertext_symbols = [(first, second) for first in pool for second in pool]
+        # ``width`` glyphs per plaintext symbol: the "verbose cipher" hypothesis.
+        ciphertext_symbols = [(unit,) for unit in pool]
+        for _ in range(width - 1):
+            ciphertext_symbols = [(*group, unit) for group in ciphertext_symbols for unit in pool]
         rng.shuffle(ciphertext_symbols)
     else:
         ciphertext_symbols = [(unit,) for unit in pool]
@@ -56,12 +58,14 @@ def _make_key(plaintext_symbols: list[str], scheme: str, rng: random.Random) -> 
     )
 
 
-def encipher(words: list[str], scheme: str, rng: random.Random) -> tuple[Words, Key]:
+def encipher(
+    words: list[str], scheme: str, rng: random.Random, width: int = 2
+) -> tuple[Words, Key]:
     """Encipher normalised plaintext words under ``scheme``.
 
     ``substitution`` maps each letter to one glyph, ``abjad`` drops vowels
-    first, ``verbose`` maps each letter to a fixed pair of glyphs. Returns the
-    ciphertext as unit lists plus the key that produced it.
+    first, ``verbose`` maps each letter to a fixed group of ``width`` glyphs.
+    Returns the ciphertext as unit lists plus the key that produced it.
     """
     if scheme not in SCHEMES:
         raise ConfigurationError("Unknown cipher scheme", {"scheme": scheme, "known": SCHEMES})
@@ -72,6 +76,6 @@ def encipher(words: list[str], scheme: str, rng: random.Random) -> tuple[Words, 
         ]
 
     symbols = sorted({char for word in words for char in word})
-    key = _make_key(symbols, scheme, rng)
+    key = _make_key(symbols, scheme, rng, width)
     ciphertext: Words = [[unit for char in word for unit in key.mapping[char]] for word in words]
     return ciphertext, key

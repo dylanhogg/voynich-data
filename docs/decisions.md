@@ -1023,6 +1023,175 @@ rewrites the write-up from the manifest without re-searching.
 
 ---
 
+## Decision 26: Confidence Is the Calibrated Score Times a Random-Key Null, Not the Calibrated Score Alone
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: Plan 001 §4.6 specified calibrating confidence on synthetic ciphertexts: encipher
+a reference corpus under a hypothesis' scheme, attack it blind, and fit a score→accuracy map.
+Phase 4 ran that. For four of the five keyed hypotheses the blind search recovers the hidden
+key with **100% token-weighted accuracy**, so the fitted map is flat at 1.0 everywhere above
+zero. Taken at face value it would mark most of the manuscript "high confidence".
+
+### Options Considered
+
+1. **Ship the calibrated value as the confidence** — faithful to §4.6, and indefensible: it
+   would print a confident-looking translation under a key that lost to a Markov model.
+2. **Degrade the synthetic problem until the search performs as badly as it does on the
+   manuscript** — no ciphertext in this harness reaches the manuscript's score, because a
+   genuine substitution cipher always beats an order-2 Markov model once decoded. The regime
+   does not exist to calibrate in.
+3. **Multiply the calibrated value by an empirical per-token null** — permute the key's
+   letter assignments 20 times, re-run decode and gloss, and take the share of permutations
+   that glossed the token at least as well.
+
+### Decision
+
+Option 3. `confidence = calibrated(raw) × (1 − null p) × transcription reliability`, with
+`raw = gloss score × length specificity × key coverage`, and the length specificity itself
+*measured* — random strings drawn from the decoded text's own letter distribution, looked up,
+and scored `1 − hit rate` per length.
+
+### Rationale
+
+The calibration answers "how often is a gloss right *given* the hypothesis". It cannot answer
+"is the hypothesis right", and Phase 2/3 already answered that in the negative. The null term
+answers a third, checkable question: how much of this gloss would a key carrying no
+information have produced anyway. On the manuscript a one-letter hit against a 48,000-stem
+Latin dictionary is worth a specificity of 0.087 and a two-letter hit 0.60 — measured, not
+assumed — which is exactly the failure mode a scalar lexicon score hides.
+
+### Consequences
+
+- The confidence column is a declared composition of three measured factors, in the same
+  spirit as the Phase 3 reliability weight (Decision 22), and the reports say so.
+- The p-value floor is 1/21 = 0.048, so no token exceeds 0.952 × reliability.
+- `reports/translation/calibration.md` prints the flat maps and states that the manuscript
+  sits far outside the range they were fitted on.
+
+### Reversibility
+
+Easy: the composition is three lines in `translations/pipeline.py`. Changing it changes every
+confidence in the artifacts, so it needs a new decision entry and a re-run.
+
+---
+
+## Decision 27: The Distributional Gloss Fallback Is Not Implemented
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: Plan 001 §6.2 lists three fallbacks for tokens the Latin lexicon misses:
+(a) nearest-neighbour lemma by edit distance, (b) a distributional gloss assigning the English
+word whose corpus distribution best matches the Voynich type's, (c) transliteration
+passthrough.
+
+### Options Considered
+
+1. **Implement all three**, with (b) clearly flagged as a weak heuristic — raises coverage of
+   `english_speculative` and gives Phase 5 more to attack.
+2. **Implement (a) and (c) only**, and record (b) as deliberately declined.
+
+### Decision
+
+Option 2.
+
+### Rationale
+
+A distributional gloss assigns a real English word on the basis of frequency profile alone.
+It manufactures the appearance of meaning with no lexical evidence behind it, and under a key
+that already lost to a Markov model that is the single most misleading thing this pipeline
+could emit. The plan's own honesty rules (§0.4) rank "never silently invented" above coverage.
+
+### Consequences
+
+- 20.1% of types fall through to transliteration and claim no English at all.
+- The fallback chain is strict: the first rung that fires supplies all the candidates, so a
+  distance-1 neighbour never sits in a list beside an exact hit.
+
+### Reversibility
+
+Easy, and it would be a new decision entry: the rung would slot into
+`translations.gloss.candidates`.
+
+---
+
+## Decision 28: No Word Reordering and No Inserted Function Words
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: Plan 001 §6.3 called for rule-based English assembly that reorders glosses under
+"the induced syntactic ordering (from §5.2)" and inserts function words "only where the
+induced grammar licenses them".
+
+### Decision
+
+Neither is implemented. `english_speculative` keeps the manuscript's own word order and adds
+nothing.
+
+### Rationale
+
+There is no induced grammar to apply. Phase 1 §3.5 measured whether word order carries
+information and found no ordering model worth the name; Phase 3's paradigm probe weakened the
+morphology reading further rather than yielding syntax. Reordering under a grammar that was
+never induced, or inserting words nothing licenses, would be invention dressed as method — and
+would make the output read more like English precisely where the evidence is weakest.
+
+### Consequences
+
+The renderings read as word salad, which is an honest depiction of what the pipeline has. If a
+later phase induces a defensible ordering model, this becomes a real stage.
+
+### Reversibility
+
+Easy; `translations/render.py` is the only place that would change.
+
+---
+
+## Decision 29: The Pseudo-Voynich Control Renders More Than the Manuscript Does
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: Plan 001 §7.2.1 named this the decisive test and §6.6 gated Phase 4 on running it:
+put a corpus that encodes nothing through the *entire* pipeline, unchanged, and compare.
+
+### The result
+
+| corpus | gated coverage | mean confidence |
+| --- | --- | --- |
+| manuscript (H1) | 0.611 | 0.494 |
+| `grille` (Rugg-style table generation) | 0.751 | 0.524 |
+| `selfcite` (Timm-style autocopying) | 0.045 | 0.045 |
+
+### Decision
+
+Recorded as a negative result, and printed at the top of
+`reports/translation/coverage.md` before any sample translation.
+
+### Rationale
+
+`grille` text is generated from a syllable table induced from the manuscript and encodes
+nothing whatsoever. The identical pipeline, key and lexicon render *more* of it, and slightly
+more confidently, than they render the manuscript. Under the plan's own pre-committed
+criterion the pipeline is a fluency generator and its Voynich output carries no evidential
+weight.
+
+`selfcite` collapses to 4.5% for a different and instructive reason: its vocabulary is so
+repetitive that permuted keys gloss it about as well as the real key does, so the random-key
+null wipes out the confidence. The two controls fail the pipeline in opposite directions.
+
+### Consequences
+
+- Every Phase 4 artifact carries the speculative banner and the coverage report leads with
+  this table.
+- Phase 5's audit inherits a result that is already decisive; its job is to quantify the rest.
+- Nothing from this plan is published (§0.3), and this is a large part of why.
+
+### Reversibility
+
+n/a — a recorded negative result. `make calibrate && make translate` reproduces it.
+
+---
+
 ## Template for Future Decisions
 
 Copy this template for new decisions:
@@ -1066,9 +1235,9 @@ Copy this template for new decisions:
 | Schema Design | 5, 6 |
 | Text Processing | 3, 4, 8, 15 |
 | Content Inclusion | 7 |
-| Analysis Methodology | 8, 10, 11, 12, 13, 16, 17 |
-| Decipherment | 16, 17, 18, 19 |
-| Falsified Hypotheses | 14, 20 |
+| Analysis Methodology | 8, 10, 11, 12, 13, 16, 17, 26 |
+| Decipherment | 16, 17, 18, 19, 27, 28 |
+| Falsified Hypotheses | 14, 20, 29 |
 
 ---
 

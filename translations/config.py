@@ -101,6 +101,10 @@ class Config:
     # Phase 3 round-2 ceiling: re-characterisation plus re-scoring the funded
     # hypotheses on each improved representation.
     round2_budget_seconds: float = 14400.0
+    # Phase 4 calibration: how many words of synthetic ciphertext each keyed
+    # hypothesis is attacked on, and the ceiling for the whole calibration run.
+    calibration_words: int = 20000
+    calibration_budget_seconds: float = 14400.0
     # A token whose reliability weight falls below this is dropped from the
     # "reliable" representation (plan §5.2.6).
     reliability_floor: float = 0.5

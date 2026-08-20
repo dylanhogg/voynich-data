@@ -1,9 +1,10 @@
 # Plan 001 — Initial Automated English Translation
 
-**Status**: Phases 0–3 complete (landmark gate green; no hypothesis beat its null on
-any representation); Phases 4–5 not started
+**Status**: Phases 0–4 complete (landmark gate green; no hypothesis beat its null on
+any representation; the pseudo-Voynich control renders *more* than the manuscript does);
+Phase 5 not started
 **Author**: VCAT / agent-assisted
-**Date**: 2026-08-19 (Phases 0–1 implemented 2026-08-19, Phases 2–3 on 2026-08-20)
+**Date**: 2026-08-19 (Phases 0–1 implemented 2026-08-19, Phases 2–4 on 2026-08-20)
 **Scope**: Extend voynich-data (VCAT) from dataset building into analysis, code
 breaking, and a best-efforts automated English translation.
 
@@ -17,10 +18,10 @@ breaking, and a best-efforts automated English translation.
 | 1 — Analysis round 1 | **Complete** | `translations/analysis/` (12 modules), `reports/phase1/` (9 topic reports + `summary.md`), landmark gate **GREEN** (6/6), 64 new tests (455 passed / 7 skipped total), `make analyse1` ≈100 s and byte-stable across runs |
 | 2 — Hypothesis space + search | **Complete** | 10 pre-registered records in `translations/hypotheses/`, `translations/decipher/` (11 modules), `reports/phase2/` (scores, approach, synthetic validation), 143 candidates in `output/decipher/candidates.parquet`, engine validated at ~100% key recovery on self-built ciphers, all 8 funded hypotheses falsified by their own criteria (Decision 20), 47 new tests (504 passed / 7 skipped) |
 | 3 — Analysis round 2 | **Complete** | `reports/phase3/` (gap register, `round2_findings.md`, `rescoring.md` + 5 topic reports), 3 of 7 gaps closed and 1 partially, `output/translation/token_alignment.parquet` (33,728 tokens, 86.2% ZL/IT exact agreement), 717 paragraph blocks, 2 new checksummed corpora, `T3-merge` implemented, 286 round-2 candidates in `output/decipher/round2_candidates.parquet`, 48 new tests (552 passed / 7 skipped), `make analyse2` ≈2 h 6 min |
-| 4 — Translation pipeline | Not started | — |
+| 4 — Translation pipeline | **Complete** | `translations/` +6 modules (`decode`, `gloss`, `lexicon/whitakers`, `render`, `pipeline`, `calibrate`, `phase4`), all 4,072 lines rendered under 5 keyed hypotheses, `output/translation/translation_lines.jsonl` + `.parquet` + `lexicon.jsonl` + `calibration.json` + `SHA256SUMS`, `reports/translation/` (coverage, calibration, folio readings), schema + validator, 49 new tests (601 passed / 7 skipped), `make calibrate` ≈2 min + `make translate` ≈35 s, byte-identical across runs. **Gate §6.6 met; the `grille` control renders 75.1% of tokens against the manuscript's 61.1%** (Decision 29) |
 | 5 — Audit + honesty gate | Not started | — |
 
-**Run Phases 0–2:**
+**Run Phases 0–4:**
 
 ```bash
 make corpora   # fetch + SHA256-verify reference corpora into data_sources/cache/corpora/
@@ -28,14 +29,18 @@ make phase0    # verify inputs, summarise strata, write output/translation/phase
 make analyse1  # Phase 1 suite -> reports/phase1/ (~100 s; non-zero exit if the gate is red)
 make decipher  # Phase 2 hypothesis search -> reports/phase2/ (budgeted; ~50 min at current grids)
 make analyse2  # Phase 3 remediation + round 2 + re-scoring -> reports/phase3/ (~2 h; --analysis-only skips the search)
-make test      # 552 passed, 7 skipped
+make calibrate # Phase 4 blind search on synthetic ciphertext -> output/translation/calibration.json (~2 min)
+make translate # Phase 4 pipeline + validators -> output/translation/, reports/translation/ (~35 s)
+make test      # 601 passed, 7 skipped
 ```
 
 Start reading at `reports/phase1/summary.md` (findings table, landmark gate, and
 the "what we still cannot tell" list), then `reports/phase2/hypothesis_scores.md`
 (ranked hypotheses, null-relative significance, held-out scores), then
 `reports/phase3/round2_findings.md` (what remediation changed) with
-`reports/phase3/gap_analysis.md` for what could not be sourced.
+`reports/phase3/gap_analysis.md` for what could not be sourced, and finally
+`reports/translation/coverage.md`, whose first table — the pseudo-Voynich control — is the
+verdict on everything downstream of it. `docs/translation_method.md` is the Phase 4 method.
 
 ### Phase 0 as built (deltas from the plan below)
 
@@ -336,6 +341,107 @@ scoped the token alignment to the EVA pair.*
     the write-up must be fixable without spending them again. Both flags exist on
     `translations.phase3` and the reports regenerate from
     `output/translation/phase3_manifest.json`.
+
+---
+
+### Phase 4 as built (deltas from the plan below)
+
+*Numbers from the run of 2026-08-20. The clarifying answers for this session rendered all
+five keyed hypotheses, skipped the distributional gloss, ran the full blind-search
+calibration, and set a ~4 h ceiling for it (107 s were spent).*
+
+1. **The control is the result** (Decision 29). §7.2.1 called the pseudo-Voynich control
+   decisive and §6.6 gated Phase 4 on running it. It was run, and the `grille` corpus —
+   Rugg-style table generation from a syllable table induced from the manuscript, encoding
+   nothing — renders **75.1%** of tokens in the gated view against the manuscript's
+   **61.1%**, at a slightly *higher* mean confidence (0.524 vs 0.494). A corpus with no
+   content translates better than the manuscript. `reports/translation/coverage.md` prints
+   this before anything else. `selfcite` fails the pipeline from the other side, collapsing
+   to 4.5%: its vocabulary is so repetitive that permuted keys gloss it as well as the real
+   one does.
+
+2. **All five keyed hypotheses are rendered** — H1 (primary, the Phase 3 `chosen`), H2, H3,
+   H4, H7. H6a, H6b, H8 and H9 are generative: they claim a production process rather than
+   an encipherment, so there is no plaintext to gloss and no rendering to make. The
+   variant, channel and significance for each come from
+   `reports/phase3/rescoring.json` — Phase 4 re-derives no score.
+
+3. **The calibration is real and mostly flat** (Decision 26). §4.6's design was implemented
+   in full: encipher a reference corpus in the language each hypothesis' own model assumes,
+   at its own channel width, attack it blind with its own search settings, gloss the
+   result. Four of the five recover the hidden key at **100%** token-weighted accuracy, so
+   their isotonic maps are flat at 1.0 above zero. Only H7 (order-1 assignment, 49.1% key
+   accuracy) yields an informative curve. The map is fitted on half the synthetic tokens
+   and the reliability diagram computed on the other half; predicted and observed agree
+   within 0.01 in every bin.
+
+4. **So confidence is not the calibrated value alone.** A flat map would print a confident
+   translation under a key that lost to a Markov model. The confidence is
+   `calibrated(raw) × (1 − null p) × reliability`, where `raw = gloss score × length
+   specificity × key coverage`, and the **null p** is an empirical per-token p-value against
+   20 permutations of the key's own letter assignments. The **length specificity** is
+   *measured*, not assumed: a one-letter hit against a 48,000-stem Latin dictionary is worth
+   0.087 and a two-letter hit 0.60. Without these two terms the pipeline would report most of
+   the manuscript as high confidence purely because short strings hit dictionaries.
+
+5. **The distributional gloss is not implemented** (Decision 27). The chain is exact stem →
+   stem after one stripped ending → verified edit-distance-1 neighbour → transliteration, and
+   it is *strict*: the first rung that fires supplies all the candidates. 18.1% of types
+   resolve on an exact stem, 30.4% stripped, 31.5% by neighbour, 20.1% not at all.
+
+6. **No reordering and no inserted function words** (Decision 28). §6.3 assumed an induced
+   syntactic ordering from §5.2. There is none: Phase 1 §3.5 found no word-order model worth
+   applying and Phase 3 did not produce one. Applying a grammar that was never induced would
+   make the output read more like English exactly where the evidence is weakest.
+
+7. **No per-stratum gloss overrides.** §6.2 allows them "when Phase 3 evidence supports
+   them". Phase 3 showed section-specific *vocabulary* (0.461 bits, p = 0.005) — that
+   different sections use different words, not that one word means different things in
+   different sections. The second is what an override needs, so the consistency constraint
+   holds corpus-wide.
+
+8. **`make calibrate` is split from `make translate`.** §6.5 asks for the full corpus in
+   minutes; the blind searches are the expensive half. Calibration writes
+   `output/translation/calibration.json` (107 s of a 4 h ceiling) and `make translate`
+   reads it, running the whole corpus × 5 hypotheses × 3 corpora in **33 s**. `phase4`
+   refuses to run without the maps rather than silently falling back to raw scores.
+
+9. **Artifact shape (§6.4) is normalised.** Ranked gloss candidates are a property of the
+   *type*, so they live once per type in `lexicon.jsonl` and are joined on `surface` rather
+   than repeated on all 33,728 tokens — that alone halved the JSONL. `translation_lines.jsonl`
+   is the primary hypothesis with the full per-token trace (10 MB);
+   `translation_lines.parquet` is all five hypotheses at line level (20,360 rows, 1.5 MB).
+   `token_alignment.parquet` is not re-emitted: Phase 3 already writes it to the same
+   directory.
+
+10. **`nulls.encipher` gained a `width` parameter.** H2's committed channel is
+    `fixed-width-3`, but the verbose scheme was hard-coded to glyph *pairs*, so calibrating
+    it would have simulated a channel narrower than the one its key was searched on. The
+    default is unchanged, so Phase 2's synthetic validation numbers are untouched.
+
+11. **The synthetic plaintext alphabet is fitted to the cipher alphabet.** A
+    one-glyph-per-letter channel has 23 symbols (17 basic EVA glyphs + 6 compounds) and the
+    normalised Latin corpora carry 26 letters. Words using the rarest letters are dropped
+    rather than the cipher alphabet padded — padding would simulate a wider channel than the
+    real one.
+
+12. **Held-out pages were rendered and scored once**: 0.600 gated coverage against 0.613 on
+    the training pages. A pipeline that had learned something about the manuscript would
+    show a gap; one matching a dictionary against short strings does not, and this is the
+    expected result rather than a reassuring one.
+
+13. **`iau_star_names` is pinned but unconsumed.** It was fetched for label glossing in
+    Phase 3, and with no illustration↔label concordance (Decision 24) there is nothing to
+    match star names against. Recorded in `docs/sources.md` rather than quietly used.
+
+14. **Schema and validator** were added per repo convention:
+    `schemas/translation_lines.schema.json` and
+    `validators/validate_translation_outputs.py`, which checks the schema, the banner on
+    every row and report, one row per manuscript line, that the gated view exactly matches
+    the confidence bands, and that `SHA256SUMS` matches disk. `make translate` runs it.
+
+15. **Determinism holds**: two runs produce byte-identical `translation_lines.jsonl`,
+    manifest and reports. The manifest carries no wall-clock field.
 
 ---
 
@@ -1109,13 +1215,15 @@ Stated limitation, to be printed in the output: calibration is valid **only if
 the true system resembles the hypothesised one**. It bounds optimism; it does
 not certify correctness.
 
-**As built (harness now, maps in Phase 4):** `synthetic.py` builds ciphertexts
+**As built (harness in Phase 2, maps built in Phase 4):** `synthetic.py` builds ciphertexts
 from a reference corpus under each scheme and runs the *whole* search against
 them blind, reporting token-weighted key accuracy and token accuracy. Recovery is
 100% for monoalphabetic substitution, fixed-width verbose and abjad. The
-reliability diagrams and the isotonic/Platt maps are deferred to Phase 4, where
-the confidence column they calibrate will exist. Two engine bugs were caught only
-by this harness — see Phase 2 delta 3.
+reliability diagrams and the isotonic/Platt maps were built in Phase 4
+(`translations/calibrate.py`, PAVA isotonic): four of the five keyed hypotheses recover
+their hidden key at 100%, so their maps are flat at 1.0 above zero and the confidence
+column had to be composed rather than read off the map — see Phase 4 delta 3–4 and
+Decision 26. Two engine bugs were caught only by this harness — see Phase 2 delta 3.
 
 ### 4.7 Phase 2 exit deliverables — **met 2026-08-20**
 
@@ -1226,7 +1334,7 @@ ceiling. 286 candidates in `output/decipher/round2_candidates.parquet`.
 full-coverage English rendering of all 4,072 lines, with calibrated per-token
 confidence and mandatory speculative labelling.
 
-### 6.1 Pipeline architecture
+### 6.1 Pipeline architecture — **built 2026-08-20**
 
 ```
 eva_lines (+ metadata, mismatch_index, token_alignment)
@@ -1245,7 +1353,7 @@ Every stage is a pure function with typed inputs/outputs and its own tests.
 Intermediate stages are persisted so any English word can be traced back to a
 glyph sequence.
 
-### 6.2 Gloss generation (`translations/gloss.py`, `translations/lexicon/`)
+### 6.2 Gloss generation (`translations/gloss.py`, `translations/lexicon/`) — **built 2026-08-20, fallback (b) declined**
 
 - Intermediate plaintext token → lexicon lookup (Latin/Romance lemma lists with
   English glosses; morphological stripping for inflected forms).
@@ -1260,11 +1368,20 @@ glyph sequence.
   corpus-wide by default; per-stratum overrides only when Phase 3 evidence
   supports them, and always logged.
 
-### 6.3 Line rendering (`translations/render.py`)
+**As built:** fallback (b) is declined (Decision 27) and the chain is strict — the first
+rung that fires supplies all the candidates. No per-stratum overrides were taken: Phase 3
+showed section-specific *vocabulary*, not section-specific *meaning*. See Phase 4 deltas
+5 and 7.
+
+### 6.3 Line rendering (`translations/render.py`) — **built 2026-08-20, no reordering**
 
 - Rule-based English assembly: apply the induced syntactic ordering (from §5.2)
   to reorder glosses; insert function words only where the induced grammar
   licenses them; no free-text generation.
+
+  **As built:** neither reordering nor insertion happens — there is no induced ordering
+  model to apply (Decision 28). Word order is the manuscript's own. The band thresholds
+  below are applied to the *composed* confidence of Phase 4 delta 4, not to a raw score.
 - **Full coverage (per the chosen output posture)**: every line always produces
   a non-empty `english_speculative` string. Low-confidence material is rendered
   but visually marked, never silently invented:
@@ -1280,7 +1397,7 @@ glyph sequence.
   `UNKNOWN`. It is retained as the honest diagnostic view and is what §7 uses
   for coverage statistics.
 
-### 6.4 Output artifacts (`output/translation/`)
+### 6.4 Output artifacts (`output/translation/`) — **written 2026-08-20**
 
 | File | Contents |
 | --- | --- |
@@ -1292,15 +1409,23 @@ glyph sequence.
 | `reports/translation/folio_readings.md` | human-readable page-by-page rendering, banner at top of every page section |
 | `reports/translation/coverage.md` | coverage and confidence distribution by stratum |
 
+**As built:** ranked gloss candidates live once per type in `lexicon.jsonl` and are joined
+on `surface` rather than repeated on every token; `translation_lines.jsonl` carries the
+primary hypothesis with the full per-token trace and `.parquet` carries all five at line
+level; `token_alignment.parquet` is not re-emitted because Phase 3 already writes it here.
+`calibration.json` is added. See Phase 4 delta 9.
+
 Schemas added to `schemas/`; validators added to `validators/` mirroring existing
 practice. **Nothing is published** — no HuggingFace dataset, no dataset card, no
 release. Artifacts remain local to `output/translation/` and
 `reports/translation/`, and the existing published VCAT datasets are untouched
 by this plan.
 
-### 6.5 Repeatability requirements
+### 6.5 Repeatability requirements — **met 2026-08-20**
 
-- `make translate` runs end-to-end offline from `output/` + cached corpora.
+- `make translate` runs end-to-end offline from `output/` + cached corpora. **As built** the
+  expensive blind-search calibration is split into `make calibrate`, so `make translate`
+  itself is 33 s (Phase 4 delta 8).
 - Two runs produce byte-identical artifacts (asserted in tests).
 - Runtime target: full corpus in minutes, not hours, on a laptop, CPU-only; the
   expensive search lives in Phases 2–3 under the 24 h ceiling (§4.3.6) and its
@@ -1309,14 +1434,25 @@ by this plan.
 - Config, seeds and hypothesis id are recorded in every row, so a row can be
   regenerated from the manifest alone.
 
-### 6.6 Phase 4 validation gate (before any artifact is shared)
+### 6.6 Phase 4 validation gate — **met 2026-08-20**
 
-- [ ] Held-out folios scored once; results reported whatever they are.
-- [ ] Confidence calibration curves produced and included.
-- [ ] Pseudo-Voynich control run completed (§7.2) and its results included in
-      the same report.
-- [ ] Banner present in every artifact and every report.
-- [ ] Determinism test green.
+- [x] Held-out folios scored once; results reported whatever they are — 0.600 gated
+      coverage against 0.613 on the training pages (`coverage.md`).
+- [x] Confidence calibration curves produced and included — `calibration.md`, with the
+      reliability diagrams computed on synthetic tokens the maps were not fitted on.
+- [x] Pseudo-Voynich control run completed (§7.2) and its results included in the same
+      report — and it is the first table in `coverage.md`, because the `grille` control
+      renders *more* than the manuscript does (Decision 29).
+- [x] Banner present in every artifact and every report — asserted by
+      `validators/validate_translation_outputs.py` and by `tests/translations/test_phase4.py`.
+- [x] Determinism test green — two runs byte-identical.
+
+**Run cost**: 107 s of the 14,400 s calibration ceiling, plus 33 s for the pipeline itself.
+
+**Verdict carried into Phase 5**: the pipeline meets every engineering requirement in this
+section and produces a full-coverage, traceable, calibrated rendering — of nothing. Under
+the criterion §7.2.1 fixed in advance, the control result already retires it as evidence.
+Phase 5's job is to quantify the remaining weaknesses, not to decide the question.
 
 ---
 

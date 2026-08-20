@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Voynich Speculative Translation Lines",
+  "description": "One row per manuscript line, rendered under one decipherment hypothesis. SPECULATIVE OUTPUT: no verified decipherment of the Voynich Manuscript exists. Produced by plan 001 Phase 4; nothing here is published.",
+  "type": "object",
+  "required": [
+    "line_id",
+    "page_id",
+    "text_clean",
+    "tokens",
+    "english_speculative",
+    "english_gated",
+    "line_confidence",
+    "hypothesis_id",
+    "key_id",
+    "banner"
+  ],
+  "properties": {
+    "line_id": {
+      "type": "string",
+      "pattern": "^f\\d+[rv]\\d*:\\d+$"
+    },
+    "page_id": {
+      "type": "string",
+      "pattern": "^f\\d+[rv]\\d*$"
+    },
+    "section": { "type": ["string", "null"] },
+    "currier_language": { "type": ["string", "null"] },
+    "hand": { "type": ["string", "null"] },
+    "line_type": { "type": ["string", "null"] },
+    "is_holdout": {
+      "type": "boolean",
+      "description": "Page is in the frozen held-out split; no key search ever saw it"
+    },
+    "block_id": {
+      "type": "string",
+      "description": "Paragraph block from the IVTFF <%> / <$> markers, empty if unmarked"
+    },
+    "text_clean": { "type": "string" },
+    "tokens": {
+      "type": "array",
+      "description": "Per-token trace. Ranked gloss candidates are not repeated here; they live once per type in lexicon.jsonl, joined on `surface`.",
+      "items": {
+        "type": "object",
+        "required": [
+          "surface",
+          "intermediate",
+          "key_coverage",
+          "reliability",
+          "raw_score",
+          "null_p",
+          "confidence",
+          "band",
+          "chosen"
+        ],
+        "properties": {
+          "surface": {
+            "type": "string",
+            "description": "EVA word as transcribed"
+          },
+          "intermediate": {
+            "type": "string",
+            "description": "Plaintext hypothesis for this token under the key"
+          },
+          "key_coverage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Share of the token's channel units the key had an entry for"
+          },
+          "reliability": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Phase 3 cross-transcription reliability weight"
+          },
+          "raw_score": { "type": "number", "minimum": 0 },
+          "null_p": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1,
+            "description": "Empirical p-value against 20 information-free permutations of the key"
+          },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "band": {
+            "type": "string",
+            "enum": ["high", "medium", "low", "none"]
+          },
+          "chosen": { "type": "string" }
+        }
+      }
+    },
+    "english_speculative": {
+      "type": "string",
+      "description": "Full-coverage rendering; markers encode the confidence band"
+    },
+    "english_gated": {
+      "type": "string",
+      "description": "Everything below the medium band masked with UNKNOWN"
+    },
+    "line_confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "hypothesis_id": { "type": "string" },
+    "key_id": { "type": "string" },
+    "banner": {
+      "type": "string",
+      "pattern": "^SPECULATIVE OUTPUT"
+    }
+  }
+}
