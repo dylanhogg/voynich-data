@@ -1,0 +1,25 @@
+id: H6b
+title: Autocopying / self-citation generation (Timm and Schinner)
+family: generative
+description: >
+  Each word is a copy of a recent word with small mutations. No plaintext.
+prior: live-rival
+prior_rationale: >
+  The manuscript's near-repeat rate is several times natural language, which is
+  exactly what autocopying produces.
+phase1_evidence:
+  for:
+    - Adjacent near-repeat rate 14.8% against 3.8% for Latin
+    - A tuned autocopy surrogate reproduces word length and repetition
+  against:
+    - The tuned surrogate overshoots badly (90.5% of tokens identical to a recent word, against 12.4% observed)
+prediction: >
+  A copy-plus-edit code describes the manuscript in fewer bits than a plaintext code.
+falsifier: >
+  The copy code costs more bits per token than the baseline.
+funded: true
+budget_share: 0.05
+search:
+  kind: selfcite
+  window: 20
+nulls: [grille, selfcite, shuffle_chars, markov_chars]

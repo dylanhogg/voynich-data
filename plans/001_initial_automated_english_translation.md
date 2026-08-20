@@ -1,8 +1,9 @@
 # Plan 001 — Initial Automated English Translation
 
-**Status**: Phases 0–1 complete (landmark gate green); Phases 2–5 not started
+**Status**: Phases 0–2 complete (landmark gate green; no hypothesis beat its null);
+Phases 3–5 not started
 **Author**: VCAT / agent-assisted
-**Date**: 2026-08-19 (Phases 0 and 1 implemented 2026-08-19)
+**Date**: 2026-08-19 (Phases 0–1 implemented 2026-08-19, Phase 2 on 2026-08-20)
 **Scope**: Extend voynich-data (VCAT) from dataset building into analysis, code
 breaking, and a best-efforts automated English translation.
 
@@ -14,22 +15,24 @@ breaking, and a best-efforts automated English translation.
 | --- | --- | --- |
 | 0 — Foundations | **Complete** | `translations/` package (config, determinism, io, tokenize, strata, corpora, nulls, phase0), 10 checksum-pinned reference corpora, 48 new tests (391 passed / 7 skipped total), `output/translation/phase0_manifest.json` byte-identical across runs |
 | 1 — Analysis round 1 | **Complete** | `translations/analysis/` (12 modules), `reports/phase1/` (9 topic reports + `summary.md`), landmark gate **GREEN** (6/6), 64 new tests (455 passed / 7 skipped total), `make analyse1` ≈100 s and byte-stable across runs |
-| 2 — Hypothesis space + search | Not started | — |
+| 2 — Hypothesis space + search | **Complete** | 10 pre-registered records in `translations/hypotheses/`, `translations/decipher/` (11 modules), `reports/phase2/` (scores, approach, synthetic validation), 143 candidates in `output/decipher/candidates.parquet`, engine validated at ~100% key recovery on self-built ciphers, all 8 funded hypotheses falsified by their own criteria (Decision 20), 47 new tests (504 passed / 7 skipped) |
 | 3 — Analysis round 2 | Not started | — |
 | 4 — Translation pipeline | Not started | — |
 | 5 — Audit + honesty gate | Not started | — |
 
-**Run Phases 0–1:**
+**Run Phases 0–2:**
 
 ```bash
 make corpora   # fetch + SHA256-verify reference corpora into data_sources/cache/corpora/
 make phase0    # verify inputs, summarise strata, write output/translation/phase0_manifest.json
 make analyse1  # Phase 1 suite -> reports/phase1/ (~100 s; non-zero exit if the gate is red)
-make test      # 455 passed, 7 skipped
+make decipher  # Phase 2 hypothesis search -> reports/phase2/ (budgeted; ~50 min at current grids)
+make test      # 504 passed, 7 skipped
 ```
 
-Start reading at `reports/phase1/summary.md`: findings table, landmark gate, and
-the "what we still cannot tell" list that feeds Phase 3.
+Start reading at `reports/phase1/summary.md` (findings table, landmark gate, and
+the "what we still cannot tell" list) and then `reports/phase2/hypothesis_scores.md`
+(ranked hypotheses, null-relative significance, held-out scores).
 
 ### Phase 0 as built (deltas from the plan below)
 
@@ -159,6 +162,87 @@ the "what we still cannot tell" list that feeds Phase 3.
     `robustness`, `uncertainty`, `landmarks`) plus `summary.md`. §3.1's
     stratification harness landed in Phase 0 as `translations/strata.py`, so no
     separate `analysis/strata.py` exists.
+
+---
+
+### Phase 2 as built (deltas from the plan below)
+
+*Numbers below come from the scored run of 2026-08-20. The clarifying answers for
+this session set the search budget at 1–2 h (against the plan's 24 h ceiling, which
+stays in `config.py`), kept the engine on CPU with no torch, funded H1/H2/H3/H4/
+H6a/H6b/H7 plus the descriptive H8/H9, left H5 registered but unfunded, and built
+the synthetic-ciphertext harness now while deferring the calibration maps to
+Phase 4.*
+
+1. **One scale for all ten records** (Decision 16). Every hypothesis is scored as a
+   *code*: total bits to reconstruct the observed glyph stream, model plus data,
+   measured as **gain per token against an order-2 Markov model of the glyph stream
+   itself**. This is what puts "enciphered Latin" and "meaningless table-generated
+   text" on one axis, and it is the plan's MDL penalty made concrete. Two costs are
+   charged that are easy to omit: the key description, and **ambiguity bits** —
+   without the latter every search collapses the key onto `e`, because the decoded
+   plaintext alone would not reconstruct the manuscript.
+2. **The headline result is negative and uniform.** No hypothesis — cipher or
+   generative — describes the manuscript better than its own local statistics. The
+   ranking is a ranking of *losers*, and the plan's §4.2 rule that H6a/H6b are scored
+   on the same scale means the "no plaintext" rivals lose too, and by more than the
+   cipher hypotheses do.
+3. **The engine works, and that is checkable.** On ciphers this project built and
+   then attacked blind, key recovery is 100% for monoalphabetic substitution,
+   fixed-width verbose, and abjad. Two real bugs surfaced only because of this test:
+   scoring vowel-suppressed plaintext against a vowel-ful LM rewards the wrong key
+   (H3 needs a matched stripped model), and a verbose cipher must be attacked
+   through the same fixed-width channel H2 uses or it cannot be recovered at all.
+4. **A search-correctness fix mid-phase.** Injective key moves are meaningless once
+   the cipher alphabet exceeds 26 units, which silently disabled most of the
+   annealer's moves on the wide fixed-width channels (142 and 263 units). The first
+   full run reported those variants as unconverged; `can_be_injective` now switches
+   to unrestricted moves and the run was repeated.
+5. **Null resolution is a design limit, and it is stated in the report.** With one
+   surrogate per family the empirical p-value cannot fall below 0.2, which is not a
+   test. Each family now gets `CONFIG.null_replicates = 3` independently seeded
+   surrogates (12 nulls), flooring p at 0.077 — still short of 0.05, and the report
+   says so rather than dressing the number up.
+6. **Gibbs decipherment was not implemented** (Decision 17). Frequency-matched
+   initialisation, annealing with restarts, and exact linear assignment for the
+   order-1 case cover every funded hypothesis; Gibbs earns its keep on H5-sized key
+   spaces, and H5 is unfunded.
+7. **H4 was funded** at a 6% share beyond the hypotheses named in the session scope,
+   because it reuses the H3 machinery with an abbreviation-transformed Latin model.
+   The transform is a crude rule-based proxy for scribal abbreviation (Decision 18),
+   so a negative H4 falsifies *this model*, not abbreviated Latin.
+8. **H5 is registered unfunded, never falsified** (Decision 19), with its grid and
+   iteration counts committed so it can be run unchanged when the budget exists.
+9. **Anchors are implemented as a protocol with an empty catalogue.** The zodiac
+   month names and marginalia cannot enter it until Phase 3 can source them with
+   checksums, and the code enforces the plan's rule that anchors may only rank
+   finished candidates — never train, constrain or seed a search.
+10. **Language models are dense n-gram tables capped at order 4.** A 27-symbol
+    alphabet at order 5 needs a 115 MB table per corpus; orders 3–4 are what the
+    budget and the memory allow, against the plan's "order-3 to order-6". Scoring is
+    vectorised over *distinct* cipher n-grams rather than positions, which is what
+    makes ~1M key evaluations per hypothesis affordable on CPU.
+11. **Held-out discipline held.** Searches see training pages only; the frozen 41
+    held-out pages are scored exactly once per hypothesis, with the key the search
+    had already committed to. Every candidate — losers, null runs, held-out rows —
+    is written to `output/decipher/candidates.parquet` with its budget, convergence
+    and truncation flags.
+12. **Budget.** The ceiling is `CONFIG.search_budget_seconds` (7,200 s) allocated by
+    each record's declared share, H2 taking 45%. The scored run spent 3,356 s of it
+    (H2: 1,750 s of its 3,240 s allocation); nothing was truncated. `make decipher`
+    is ≈56 min end to end.
+13. **H2's advantage is in the wrong place.** Its best variants are the *wide*
+    fixed-width channels — 142 units at width 2, 263 at width 3 — which are large
+    codebooks, not verbose ciphers, and neither converged across restarts. The
+    linguistically motivated searched-merge variant (22 merges, 48 units, seeded
+    with the Phase 1 morphs) converged and scored −6.50 bits/token. H2 is therefore
+    falsified on its converged variants and *inconclusive* on the wide-alphabet
+    corner of its space.
+14. **The rivals lose too, and by more.** H6a costs 24 bits/token more than a plain
+    bigram model of the glyphs and H6b costs 13 more, so this run supports neither
+    Rugg nor Timm & Schinner. The honest summary of Phase 2 is that no registered
+    model of any family beats the manuscript's own local statistics — which is a
+    statement about the models tested at this budget, not about the manuscript.
 
 ---
 
@@ -727,6 +811,16 @@ Currier A and B, and must beat the score achieved by the same search run on
 pseudo-Voynich. The complexity penalty (MDL) is essential — an unconstrained
 key space will always fit something.
 
+**As built:** the objective is expressed as a two-part code — `model_bits +
+data_bits` — so the MDL penalty is not a term bolted onto a likelihood but the
+score itself (Decision 16). `model_bits` pays for the key, the merge partition,
+the syllable table or the automaton; `data_bits` pays for the manuscript under
+that model, including **ambiguity bits** (`log2` of the number of glyphs sharing
+a plaintext letter, charged per occurrence) so that a decode which cannot be
+inverted is priced accordingly. Scores are reported as *gain per token* against
+an order-2 Markov model of the glyph stream itself: the model that knows the
+manuscript's local statistics and nothing about language.
+
 ### 4.2 Pre-registered hypothesis space (`translations/hypotheses/*.yaml`)
 
 Each hypothesis is a YAML record: id, description, prior rationale, the Phase 1
@@ -749,6 +843,41 @@ it, the search algorithm, and the parameter grid. Registered *before* running.
 Rule: **H6a/H6b are scored on the same scale as H1–H9 in every comparison.** If
 a "no plaintext" hypothesis wins, that is the finding, and the translation in
 Phase 4 is delivered explicitly labelled as a rendering under a losing model.
+
+**As built** (`reports/phase2/hypothesis_scores.md`, run of 2026-08-20). All ten
+records exist as YAML with prediction, falsifier, prior, Phase 1 evidence, search
+grid and budget share, committed before any search ran. Eight were funded and
+executed; H5 was registered unfunded. Scored gain is bits per token against an
+order-2 Markov model of the glyph stream, each hypothesis positioned against 12
+seeded surrogates:
+
+| id | best variant | gain | held-out | nulls beating it | outcome |
+| --- | --- | --- | --- | --- | --- |
+| H2 | fixed-width-3, herbal Latin | −4.23 | −2.37 | 6 / 12 | falsified (widest variant unconverged) |
+| H8 | MDL slot inventory | −5.39 | −5.38 | 6 / 12 | falsified |
+| H7 | Latin unigram, exact assignment | −9.66 | −8.70 | 3 / 12 | falsified |
+| H1 | herbal Latin (Clusius) | −10.28 | −9.07 | **0 / 12** | falsified vs baseline; only null-beating result |
+| H4 | abbreviation proxy | −10.38 | −9.34 | 1 / 12 | falsified (this model) |
+| H3 | vowel-stripped Latin | −11.01 | −10.03 | 4 / 12 | falsified |
+| H6b | copy-plus-edit code | −13.02 | −10.36 | 9 / 12 | falsified |
+| H9 | k=2 slot grammar | −15.20 | −13.94 | 7 / 12 | falsified |
+| H6a | fitted table + grilles | −23.92 | −18.22 | 11 / 12 | falsified |
+
+The rule above was honoured and its consequence is unusual: **the "no plaintext"
+rivals lose too, and by more than the cipher hypotheses.** H6a costs 24 bits per
+token more than a bigram model of the glyphs; H6b costs 13 more. So this run gives
+no support to Rugg or to Timm & Schinner either — the finding is that *no
+registered model of any family* beats the manuscript's own local statistics.
+Decision 20 records the falsifications; the one residual asymmetry is H1 on the
+herbal-Latin model, which beat all twelve surrogates by 0.16 bits/token (p at the
+0.077 floor, q = 0.69 — not significant, but the only asymmetry in the table).
+
+Two priors from the table above were wrong in an informative direction. H2's prior
+was "high" and it is still the best-scoring channel, but its advantage is entirely
+in the *wide* fixed-width channels (142 and 263 units), which are large codebooks
+rather than verbose ciphers — the linguistically motivated searched-merge variant
+(22 merges, 48 units) scores −6.50. And H6a's live-rival status is downgraded by
+its own score, not by argument.
 
 ### 4.3 The decipherment engine (`translations/decipher/`)
 
@@ -779,6 +908,11 @@ Deterministic algorithms only, all seeded:
 5. **Runner** (`run_hypothesis.py`): takes a hypothesis YAML, executes the grid,
    writes every candidate key with its scores to
    `output/decipher/candidates.parquet` — including losers.
+
+   **As built:** implemented as described. Rows carry hypothesis, variant, corpus
+   (real or which null), split (train or holdout), model/data/total bits, gain,
+   the key as a readable mapping, the merge list, iterations, restarts,
+   evaluations, `budget_spent_s`, `converged` and `truncated`.
 6. **Compute budget** (`budget.py`): a hard **24 h wall-clock ceiling** across
    all Phase 2/3 search runs, declared in `config.py` and enforced by the runner.
    Consequences for the design:
@@ -795,6 +929,14 @@ Deterministic algorithms only, all seeded:
      checkpoint must reproduce the same result as an uninterrupted run (tested).
    - The null-distribution runs (§4.5) are inside the same budget: a search that
      cannot afford its own null does not get to report a score.
+
+   **As built:** `budget.py` allocates each record's declared share of
+   `CONFIG.search_budget_seconds` and hands the search a `Deadline` that can only
+   *stop* it (marking `truncated`), never change the result of a run that
+   finishes — iteration counts, not seconds, define the output. Null runs are
+   inside each hypothesis' allocation, and use the identical settings on the best
+   variant only; running every language against every null would quadruple the
+   cost for no extra discrimination.
 7. **Torch / Apple Metal**: torch with the MPS backend is permitted for the
    larger LMs and for batched scoring. Constraint: **MPS and multi-threaded
    float reductions are not bit-reproducible.** Therefore anything whose value
@@ -803,6 +945,13 @@ Deterministic algorithms only, all seeded:
    a CPU recomputation of the final selected candidate, with the CPU value being
    the one recorded. MPS is an accelerator for search, never the authority for
    an emitted number. The determinism test (§2.2) runs CPU-only.
+
+   **As built: no torch.** Scoring is vectorised over the *distinct* cipher
+   n-grams of a text rather than its positions, which turns a key evaluation into
+   one numpy fancy-index over a few thousand rows — about 26,000 evaluations per
+   second on CPU in float64. At that rate the whole phase fits in ~25 minutes, so
+   the accelerator (and its non-reproducible reductions) was never needed. The
+   MPS protocol above stands unused, for Phase 4 to invoke if it ever is.
 
 ### 4.4 Anchors and cribs (`translations/decipher/anchors.py`)
 
@@ -823,6 +972,12 @@ Anchor use protocol: an anchor may *rank* candidate keys; it may never be
 injected as ground truth into the LM or the training data. Anchor-derived
 scores are reported separately from corpus-derived scores.
 
+**As built:** `anchors.py` implements the protocol with an **empty catalogue**.
+No anchor can be entered by hand under this plan's automation rule (§0.3), so the
+catalogue stays empty until Phase 3 can source the zodiac month names and
+marginalia with checksums. `anchor_score` returns 0.0 for every candidate today,
+which is the honest value: nothing in the Phase 2 ranking is anchor-derived.
+
 ### 4.5 Statistical discipline (`translations/decipher/stats.py`)
 
 The failure mode of Voynich research is multiple comparisons. Enforcement:
@@ -837,6 +992,14 @@ The failure mode of Voynich research is multiple comparisons. Enforcement:
 - A key that scores well in-sample but not on held-out pages is recorded as
   falsified and written to `docs/decisions.md`.
 
+**As built:** all four rules hold, with one limitation stated in the report rather
+than smoothed over. The empirical p-value is the real score's position among the
+surrogate runs, so with *n* nulls it cannot fall below `1/(n+1)`. Each family
+(grille, autocopy, glyph shuffle, order-2 Markov) therefore gets
+`CONFIG.null_replicates` independently seeded surrogates; at 3 replicates the
+floor is 0.077. Nothing in Phase 2 could have reached p < 0.05 by design, and the
+report says exactly that instead of presenting the q-values as a passed test.
+
 ### 4.6 Confidence calibration design (used in Phase 4)
 
 Because there is no ground truth, confidence is calibrated on **synthetic
@@ -850,14 +1013,37 @@ Stated limitation, to be printed in the output: calibration is valid **only if
 the true system resembles the hypothesised one**. It bounds optimism; it does
 not certify correctness.
 
-### 4.7 Phase 2 exit deliverables
+**As built (harness now, maps in Phase 4):** `synthetic.py` builds ciphertexts
+from a reference corpus under each scheme and runs the *whole* search against
+them blind, reporting token-weighted key accuracy and token accuracy. Recovery is
+100% for monoalphabetic substitution, fixed-width verbose and abjad. The
+reliability diagrams and the isotonic/Platt maps are deferred to Phase 4, where
+the confidence column they calibrate will exist. Two engine bugs were caught only
+by this harness — see Phase 2 delta 3.
 
-- `translations/hypotheses/` with all registered hypotheses.
-- `reports/phase2/hypothesis_scores.md` — ranked table with null-relative
-  significance, held-out results, and MDL-penalised scores.
-- `reports/phase2/approach.md` — the full method write-up.
-- Decision-log entries for hypotheses falsified at this stage.
-- A ranked shortlist (expected: 2–4 hypotheses) carried into Phase 4.
+### 4.7 Phase 2 exit deliverables — **met 2026-08-20**
+
+- [x] `translations/hypotheses/` — ten registered records (H1–H9 plus H6a/H6b as
+      separate files), each with prediction, falsifier and grid, committed before
+      the run.
+- [x] `reports/phase2/hypothesis_scores.md` — ranked table with null-relative
+      significance, held-out results and MDL-penalised scores, plus the explicit
+      statement that with 12 nulls the p-value floor is 0.077.
+- [x] `reports/phase2/approach.md` — the method write-up.
+- [x] `reports/phase2/synthetic_validation.md` — the known-answer tests (not in the
+      original deliverable list; added because a search that cannot break its own
+      cipher cannot be trusted with the manuscript).
+- [x] `output/decipher/candidates.parquet` — 143 candidate rows: every variant,
+      every null run, every held-out score, with budget, convergence and
+      truncation flags.
+- [x] Decision-log entries — Decisions 16–20 (scale, search choice, the H4 proxy,
+      H5 unfunded, and the falsifications).
+- [x] A ranked shortlist carried into Phase 4: **H2, H8, H1, and H6b as the rival
+      control** — all four of which lost, so Phase 4 renders under a losing model
+      and must label every artifact accordingly.
+
+**Run cost**: 3,356 s of the 7,200 s ceiling (H2 took 1,750 s of its 3,240 s
+allocation); nothing truncated. Wall clock for `make decipher` ≈ 56 min.
 
 ---
 

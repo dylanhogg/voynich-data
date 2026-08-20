@@ -66,27 +66,37 @@ def tune_pseudo(base: View) -> tuple[View, View, dict[str, Any]]:
     target = profile(base)
 
     grilles = [
-        grille_view(base, derived_rng(f"grille-{size}-{count}"), size, count)
+        (
+            grille_view(base, derived_rng(f"grille-{size}-{count}"), size, count),
+            {"table_size": size, "n_grilles": count},
+        )
         for size in GRILLE_SIZES
         for count in GRILLE_COUNTS
     ]
     selfcites = [
-        selfcite_view(base, derived_rng(f"selfcite-{window}-{rate}"), window, rate)
+        (
+            selfcite_view(base, derived_rng(f"selfcite-{window}-{rate}"), window, rate),
+            {"window": window, "mutation_rate": rate},
+        )
         for window in SELFCITE_WINDOWS
         for rate in SELFCITE_RATES
     ]
-    best_grille = min(grilles, key=lambda view: _distance(profile(view), target))
-    best_selfcite = min(selfcites, key=lambda view: _distance(profile(view), target))
+    best_grille, grille_params = min(grilles, key=lambda item: _distance(profile(item[0]), target))
+    best_selfcite, selfcite_params = min(
+        selfcites, key=lambda item: _distance(profile(item[0]), target)
+    )
 
     parameters = {
         "target": dict(zip(("h2", "mean_word_length", "hapax_rate"), target, strict=True)),
         "grille": {
             "name": best_grille.name,
+            "params": grille_params,
             "profile": profile(best_grille),
             "distance": _distance(profile(best_grille), target),
         },
         "selfcite": {
             "name": best_selfcite.name,
+            "params": selfcite_params,
             "profile": profile(best_selfcite),
             "distance": _distance(profile(best_selfcite), target),
         },

@@ -92,6 +92,12 @@ class Config:
     # illustration type does not imply circular or radial writing. No line-level
     # marker for circular text exists in the data, so the rule is page-level.
     prose_exclude_illustration: tuple[str, ...] = ("A", "C")
+    # Phase 2 search ceiling, allocated per hypothesis by its declared share.
+    search_budget_seconds: float = 7200.0
+    # Surrogate replicates per null family. The empirical p-value cannot fall
+    # below 1 / (nulls + 1), so this sets the resolution of every significance
+    # claim in Phase 2: 3 replicates x 4 families floors p at 0.077.
+    null_replicates: int = 3
     # Gallows glyphs, and the compounds built on them (plan §3.4).
     gallows: tuple[str, ...] = ("k", "t", "p", "f", "cth", "ckh", "cph", "cfh")
 

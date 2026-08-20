@@ -44,4 +44,4 @@ Blank cells are questions this table cannot answer for that finding, not silent 
 
 ## Run
 
-Topics: currier, entropy, landmarks, lexis, morphology, position, robustness, syntax, uncertainty. Bootstrap resamples: 200. Wall clock: 98s (excluded from the manifest, which is byte-stable).
+Topics: currier, entropy, landmarks, lexis, morphology, position, robustness, syntax, uncertainty. Bootstrap resamples: 200. Wall clock: 97s (excluded from the manifest, which is byte-stable).

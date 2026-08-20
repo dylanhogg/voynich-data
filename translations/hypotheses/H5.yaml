@@ -1,0 +1,36 @@
+id: H5
+title: Homophonic or slot-conditioned polyalphabetic cipher
+family: substitution
+description: >
+  The substitution alphabet depends on the position of the glyph within the
+  word (or a plaintext letter has several glyph spellings), so no single global
+  key exists.
+prior: medium
+prior_rationale: >
+  Slot structure is the strongest single signal in Phase 1, and a slot-conditioned
+  cipher would produce exactly that.
+phase1_evidence:
+  for:
+    - Per-position glyph distributions differ sharply (position 1 dominated by o/c/q, position 6+ by y)
+    - A positional slot code is one of the three models scored in Phase 1
+  against:
+    - The positional slot code was the *worst* of the three word-structure models (18.5 bits/word vs 12.1 for an order-2 chain)
+prediction: >
+  Per-slot decipherment succeeds where a global key fails.
+falsifier: >
+  Per-slot keys do no better than a global key at equal total key cost.
+funded: false
+budget_share: 0.0
+unfunded_rationale: >
+  The key space is (slots x alphabet) rather than alphabet, which needs Gibbs
+  sampling with sparse priors and a budget an order of magnitude beyond the one
+  allocated to this run. Registered with its grid so it can be run unchanged
+  when that budget exists; reported as unfunded, never as falsified.
+search:
+  kind: slot_conditioned
+  languages: [vulgate_clementine]
+  lm_order: 3
+  slots: [1, 2, 3, 4, 5, 6]
+  iterations: 400000
+  restarts: 12
+nulls: [grille, selfcite, shuffle_chars, markov_chars]

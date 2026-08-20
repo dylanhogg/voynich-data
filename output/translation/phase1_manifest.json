@@ -1,8 +1,8 @@
 {
   "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
   "bootstrap_resamples": 200,
-  "config_hash": "712aedf2b6a67156aa34df8599ce741e9492ea3cd2099d147e1878e03586d57b",
-  "git_commit": "970cda86669b1e2b3fa6df8e355f616a2527a9f4",
+  "config_hash": "29a95daaeaab0f78913a2bf9a51a3f2a534170e6ed37ae8770f332760ca71ebb",
+  "git_commit": "0edefa361607ad0aef161518861e77a9c3b9e80a",
   "headline": {
     "h2": {
       "ci_high": 2.2618043668356167,
@@ -100,6 +100,10 @@
     "grille": {
       "distance": 1.0485550260278031,
       "name": "pseudo|grille|size=24|g=4",
+      "params": {
+        "n_grilles": 4,
+        "table_size": 24
+      },
       "profile": [
         2.7486488433740295,
         4.581445683111954,
@@ -109,6 +113,10 @@
     "selfcite": {
       "distance": 0.3104901968584571,
       "name": "pseudo|selfcite|w=40|m=0.05",
+      "params": {
+        "mutation_rate": 0.05,
+        "window": 40
+      },
       "profile": [
         2.6451253906091345,
         3.4962345825426944,

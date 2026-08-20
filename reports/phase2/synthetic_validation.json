@@ -1,0 +1,36 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "recoveries": [
+    {
+      "bits_found_key": 168615.61303349532,
+      "bits_true_key": 168643.8983349839,
+      "corpus": "caesar_bello_gallico",
+      "found_better_than_truth": true,
+      "key_accuracy": 0.9999788068242026,
+      "n_tokens": 8000,
+      "scheme": "substitution",
+      "token_accuracy": 0.999875
+    },
+    {
+      "bits_found_key": 169571.4637073236,
+      "bits_true_key": 169571.4637073236,
+      "corpus": "caesar_bello_gallico",
+      "found_better_than_truth": false,
+      "key_accuracy": 1.0,
+      "n_tokens": 8000,
+      "scheme": "verbose",
+      "token_accuracy": 1.0
+    },
+    {
+      "bits_found_key": 104067.37996433064,
+      "bits_true_key": 104100.95416061507,
+      "corpus": "caesar_bello_gallico",
+      "found_better_than_truth": true,
+      "key_accuracy": 0.999960943602562,
+      "n_tokens": 7854,
+      "scheme": "abjad",
+      "token_accuracy": 0.9998726763432646
+    }
+  ],
+  "topic": "synthetic_validation"
+}

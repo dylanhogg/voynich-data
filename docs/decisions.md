@@ -624,6 +624,204 @@ Easy — the parameter defaults to the old behaviour.
 
 ---
 
+## Decision 16: One Description-Length Scale for Every Hypothesis
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: Phase 2 has to compare "enciphered Latin" against "meaningless table-generated
+text" (plan §4.2 requires H6a/H6b to be scored on the same scale as H1–H9). Likelihoods
+under different model families are not comparable, and an unconstrained key fits anything.
+
+### Options Considered
+
+1. Compare LM likelihoods of the decoded text, penalised ad hoc.
+2. Score every hypothesis as a **code**: total bits to reconstruct the observed glyph
+   stream, model plus data.
+3. Score cipher hypotheses by likelihood and generative rivals by a separate criterion.
+
+### Decision
+
+Option 2. A hypothesis' score is `model_bits + data_bits`, where model bits pay for the key,
+merge partition, syllable table or automaton, and data bits pay for the manuscript under it.
+Reported **gain** is bits per token saved against an order-2 Markov model of the glyph
+stream itself (parameters priced at ½·log2 N). Two costs are charged explicitly:
+**ambiguity bits** (`log2` of the number of glyphs sharing a plaintext letter, per
+occurrence) and the key description.
+
+### Rationale
+
+MDL is the plan's own complexity penalty (§4.1) and it makes the rivals commensurable.
+Without ambiguity bits every search collapses the key onto the most frequent letter, which
+is a decode that cannot be inverted and therefore is not a description of the manuscript.
+The order-2 Markov reference knows nothing about language, so beating it is the minimum bar
+for "this hypothesis explains something".
+
+### Consequences
+
+All scores are negative in this run — no hypothesis, cipher or generative, describes the
+manuscript better than its own local statistics. The comparison that carries the evidence is
+therefore the null-relative one (same search on pseudo-Voynich), not the absolute score.
+
+### Reversibility
+
+Easy in principle, but a rescoring invalidates every Phase 2 number, so it needs a new
+decision entry.
+
+---
+
+## Decision 17: Annealing with Restarts Instead of Gibbs Decipherment
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: §4.3.3 lists EM (Knight et al.) and Bayesian/Gibbs decipherment (Ravi & Knight)
+as the search workhorses.
+
+### Decision
+
+Implemented: frequency-matched initialisation (the cheap end of EM), simulated annealing with
+multi-restart, exact linear assignment where the model is order-1, and a stochastic
+steepest-descent search over glyph-merge partitions. **Not** implemented: Gibbs sampling with
+sparse priors.
+
+### Rationale
+
+The cipher alphabet is 25 units. Annealing reaches the same optimum from independent restarts
+well inside budget — verified on synthetic ciphers, where it recovers hidden keys at 100%
+token accuracy. Gibbs earns its keep on key spaces an order of magnitude larger, which is the
+slot-conditioned hypothesis H5, and H5 is registered unfunded for exactly that reason.
+
+### Consequences
+
+If H5 is ever funded, the sampler has to be written first. Recorded so that "we used
+annealing" is a choice on the record rather than an omission.
+
+### Reversibility
+
+Easy — one module.
+
+---
+
+## Decision 18: The H4 Abbreviation Transform Is a Crude Proxy
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: H4 (medieval Latin scribal abbreviation) needs an abbreviated-Latin language
+model, and this plan forbids hand annotation (§0.3), so the abbreviation has to be generated
+by rule.
+
+### Decision
+
+`translations.decipher.lm.abbreviate` applies a deterministic transform: suspension of the
+commonest endings (`-orum -arum -ibus -us -um -is -em`), nasal contraction before a
+consonant, and `-que` written as one sign. H4 is funded at a 6% share on top of the four
+hypotheses named in the session scope, because it reuses the H3 machinery unchanged.
+
+### Rationale
+
+Real scribal abbreviation is irregular, context-dependent and scribe-specific. A rule-based
+proxy is the only automatable option, and it is better than not testing the hypothesis at all
+— provided the limitation is stated wherever the result is.
+
+### Consequences
+
+A negative H4 result is weaker than a negative H1 result: it falsifies "this abbreviation
+model", not "abbreviated Latin". The hypothesis record says so, and so does the report.
+
+### Reversibility
+
+Easy — a checksummed corpus of genuinely abbreviated Latin would replace the transform.
+
+---
+
+## Decision 19: H5 Is Registered Unfunded, Not Falsified
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: H5 (homophonic / slot-conditioned polyalphabetic) has a key space of
+slots × alphabet rather than alphabet, needing a sampler and a budget beyond this run's.
+
+### Decision
+
+H5 is registered in full — prediction, falsifier, grid, iteration counts — with
+`funded: false` and a written rationale, and appears in the report under "unfunded".
+
+### Rationale
+
+The plan's own rule (§4.3.6) is that a truncated or unfunded hypothesis is *inconclusive*,
+never falsified. Silently dropping it would have been the dishonest option; scoring it with a
+budget it cannot use would have been worse.
+
+### Consequences
+
+Any future claim that "slot-conditioned ciphers were ruled out" is unsupported by this work.
+
+### Reversibility
+
+n/a — H5 runs unchanged when the budget exists.
+
+---
+
+## Decision 20: Every Funded Phase 2 Hypothesis Was Falsified by Its Own Criterion
+
+**Date**: 2026-08-20  
+**Status**: Active (negative results)  
+**Context**: Nine hypotheses were pre-registered with an explicit falsifier before any search
+ran (`translations/hypotheses/*.yaml`). Phase 2 executed the eight funded ones, each against
+12 independently seeded surrogate corpora, with the held-out pages scored once at the end.
+
+### Test
+
+Each hypothesis is scored as a code for the manuscript (Decision 16), and its **gain** is
+bits per token saved against an order-2 Markov model of the glyph stream itself. Every
+falsifier in the registered records reduces to: *does the hypothesis beat that baseline, and
+does the same search do better on the manuscript than on surrogate text?*
+
+### Result — falsified
+
+| id | best variant | gain (bits/token) | held-out | nulls beating it | verdict |
+|----|--------------|-------------------|----------|------------------|---------|
+| H2 verbose cipher | fixed-width-3, herbal Latin | −4.23 | −2.37 | 6 of 12 | falsified; widest variant unconverged |
+| H8 affixal morphology | MDL slot inventory | −5.39 | −5.38 | 6 of 12 | falsified |
+| H7 transposition | Latin unigram, exact assignment | −9.66 | −8.70 | 3 of 12 | falsified |
+| H1 monoalphabetic | herbal Latin (Clusius) | −10.28 | −9.07 | **0 of 12** | falsified against baseline |
+| H4 abbreviated Latin | abbreviation proxy | −10.38 | −9.34 | 1 of 12 | falsified (this model, not the idea) |
+| H3 abjad | vowel-stripped Latin | −11.01 | −10.03 | 4 of 12 | falsified |
+| H6b autocopying | copy-plus-edit code | −13.02 | −10.36 | 9 of 12 | falsified |
+| H9 ars combinatoria | k=2 slot grammar | −15.20 | −13.93 | 7 of 12 | falsified |
+| H6a Rugg grille | fitted table + grilles | −23.92 | −18.22 | 11 of 12 | falsified |
+
+Not one hypothesis — cipher or "no plaintext" — describes the manuscript in fewer bits than
+its own order-2 glyph statistics. The two rival generative models lose by more than the
+cipher hypotheses do, so this is not a result in favour of meaninglessness either.
+
+### The one residual signal
+
+H1 on the herbal-Latin model is the only hypothesis whose real score beat **all twelve**
+surrogates (p at the 0.077 floor, q = 0.69 after correction). The margin is 0.16 bits/token
+and it is not significant at any conventional threshold. It is recorded because it is the
+only asymmetry in the table, not because it supports monoalphabetic Latin — which its own
+falsifier rejects.
+
+### Consequences
+
+- Phase 4 will render English under a **losing** model, and every artifact must carry that
+  label (plan §0.4, §6.3).
+- The Phase 4 shortlist is H2, H8, H1 and H6b (as the rival control) — carried as least-bad,
+  not as supported.
+- H2 is the one hypothesis whose *best* variant did not converge across restarts (263 cipher
+  units against 26 letters). Its converged variants — fixed-width-2 and the searched merge
+  partition — met the falsifier independently, so the verdict stands, but the wide-alphabet
+  corner of H2's space is properly described as inconclusive.
+- These are results about *these* models at *this* budget on the ZL transcription. They do
+  not show the manuscript is meaningless, and they do not exclude H5, which was never run.
+
+### Reversibility
+
+n/a — recorded as falsified hypotheses. Re-running a record unchanged with a larger budget is
+the intended way to revisit any of them.
+
+---
+
 ## Template for Future Decisions
 
 Copy this template for new decisions:
@@ -667,8 +865,9 @@ Copy this template for new decisions:
 | Schema Design | 5, 6 |
 | Text Processing | 3, 4, 8, 15 |
 | Content Inclusion | 7 |
-| Analysis Methodology | 8, 10, 11, 12, 13 |
-| Falsified Hypotheses | 14 |
+| Analysis Methodology | 8, 10, 11, 12, 13, 16, 17 |
+| Decipherment | 16, 17, 18, 19 |
+| Falsified Hypotheses | 14, 20 |
 
 ---
 

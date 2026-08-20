@@ -1,0 +1,26 @@
+id: H6a
+title: Table and grille generated meaningless text (Rugg)
+family: generative
+description: >
+  The text was produced by reading syllables out of a table through a Cardan
+  grille. There is no plaintext and nothing to decipher.
+prior: live-rival
+prior_rationale: >
+  Must be scored on the same scale as every plaintext hypothesis, not dismissed.
+phase1_evidence:
+  for:
+    - A tuned grille matches the manuscript's h2 to 0.02 bits and its word length to 0.06 glyphs
+    - Word order carries almost no information (0.093 bits/word vs 0.504 for Latin)
+  against:
+    - A tuned grille produced 96 word types against the manuscript's 7,238, and a hapax rate of 0.000 against 0.700
+prediction: >
+  A fitted table-plus-grille code describes the manuscript in fewer bits than
+  any cipher hypothesis.
+falsifier: >
+  The fitted grille code costs far more bits per token than the baseline, which
+  is what a vocabulary it cannot generate looks like.
+funded: true
+budget_share: 0.05
+search:
+  kind: grille
+nulls: [grille, selfcite, shuffle_chars, markov_chars]

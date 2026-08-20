@@ -18,7 +18,8 @@ make build       # builders: eva_lines, metadata, mismatch_index -> output/
 make corpora     # fetch_corpora.py -> data_sources/cache/corpora/ (reference baselines)
 make phase0      # verify inputs + write output/translation/phase0_manifest.json
 make analyse1    # Phase 1 analysis suite -> reports/phase1/ (~100s)
-make test        # pytest (expect ~455 passed, 7 skipped)
+make decipher    # Phase 2 hypothesis search -> reports/phase2/ (budgeted, ~40 min)
+make test        # pytest (expect ~504 passed, 7 skipped)
 make notebook    # jupyter lab
 ```
 
@@ -45,6 +46,7 @@ Python 3.11+. Prefer `uv run <cmd>` over activating the venv.
 | `hf/`, `huggingface/` | Export code / published dataset cards |
 | `translations/` | Analysis / decipherment / translation programme (plan 001). Tokenizer, strata, determinism, reference corpora, null models, `analysis/` topic modules |
 | `reports/phase1/` | Phase 1 outputs: one `.md` + `.json` per topic, `summary.md`, landmark gate |
+| `reports/phase2/` | Phase 2 outputs: `hypothesis_scores.md`, `approach.md`, `synthetic_validation.md` |
 | `plans/` | Multi-phase work plans; `001_...md` carries the phase status table |
 | `schemas/`, `docs/`, `notebooks/`, `scripts/`, `tests/` | as named |
 
@@ -135,6 +137,11 @@ Existing starting points: `scripts/quick_analysis.py` (frequencies, A/B
 vocabulary), `scripts/deep_analysis.py` (compression-based entropy bounds),
 `notebooks/02_sanity_statistics.ipynb`.
 
+**Phase 2 results live in `reports/phase2/`** (`hypothesis_scores.md` for the
+ranked table, `approach.md` for the method). Hypotheses are pre-registered YAML
+in `translations/hypotheses/` — never edit a record to match a result; register a
+new one. Searches run on training pages only; held-out pages are scored once.
+
 **Phase 1 results live in `reports/phase1/`** (`summary.md` first: findings table,
 landmark gate, open questions). Reproduce with `make analyse1`; the run is
 deterministic and byte-stable.
@@ -148,7 +155,9 @@ checksum-verified non-Voynich baselines with sample-size matching, and
 `translations.determinism` gives seeded RNGs and run manifests, and
 `translations.analysis` holds the Phase 1 topic modules (`stats`, `entropy`,
 `lexis`, `morphology`, `segmentation`, `fsa`, `syntax`, `position`, `currier`,
-`robustness`, `uncertainty`, `landmarks`) plus the shared `Context` of views.
+`robustness`, `uncertainty`, `landmarks`) plus the shared `Context` of views, and
+`translations.decipher` holds the Phase 2 engine (`lm`, `channel`, `score`,
+`search`, `generative`, `priors`, `stats`, `budget`, `anchors`, `synthetic`).
 Held-out pages (`StratumRow.is_holdout`) must not feed any key search.
 
 ---

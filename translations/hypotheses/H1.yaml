@@ -1,0 +1,34 @@
+id: H1
+title: Monoalphabetic substitution of a natural language
+family: substitution
+description: >
+  Each EVA glyph stands for one plaintext letter of a natural language, written
+  in the usual order. The classical first hypothesis for any unknown script.
+prior: very-low
+prior_rationale: >
+  Phase 1 measured h2 = 2.25 bits/glyph against 3.08-3.37 for matched natural
+  language, and a word-length CV of 0.39 against 0.50-0.55. A monoalphabetic
+  substitution preserves both quantities exactly, so it cannot produce the
+  observed text from any of the tested languages.
+phase1_evidence:
+  for:
+    - Zipf-like word frequency distribution (alpha = 2.12)
+    - Word-internal ordering is rigid, which a substitution of a real language would also show
+  against:
+    - h2 far below every matched natural-language baseline, and substitution is entropy-preserving
+    - Word-length distribution is binomial, not negative binomial
+prediction: >
+  A key exists whose decoded text scores close to the language's own held-out
+  cross-entropy (~2.0-2.3 bits/char), beating the order-2 glyph Markov baseline.
+falsifier: >
+  Best key over all languages leaves the decoded text far above the language's
+  own cross-entropy, and the description length loses to the baseline.
+funded: true
+budget_share: 0.06
+search:
+  kind: substitution
+  languages: [vulgate_clementine, clusius_rariorum, austen_pride_prejudice, dante_commedia]
+  lm_order: 3
+  iterations: 120000
+  restarts: 8
+nulls: [grille, selfcite, shuffle_chars, markov_chars]

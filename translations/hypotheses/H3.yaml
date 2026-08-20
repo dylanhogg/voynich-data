@@ -1,0 +1,32 @@
+id: H3
+title: Abjad / vowel-suppressed script
+family: substitution
+description: >
+  Vowels are not written, as in Semitic scripts or heavily abbreviated Romance.
+  The plaintext is therefore a consonant skeleton.
+prior: medium
+prior_rationale: >
+  Vowel suppression lowers per-symbol entropy and shortens words, both in the
+  direction the manuscript deviates from natural language.
+phase1_evidence:
+  for:
+    - Low h2 and short words are both consistent with dropped vowels
+    - Rigid slot structure resembles consonantal roots plus affixes
+  against:
+    - Vowel-stripped Latin still has higher h2 than the manuscript
+prediction: >
+  A key exists whose decode scores near the cross-entropy of vowel-stripped
+  Latin/English, beating the baseline.
+falsifier: >
+  Decode against vowel-stripped language models loses to the baseline, or does
+  no better than the same search on pseudo-Voynich.
+funded: true
+budget_share: 0.08
+search:
+  kind: substitution
+  languages: [vulgate_clementine, austen_pride_prejudice]
+  lm_order: 3
+  strip_vowels: true
+  iterations: 120000
+  restarts: 8
+nulls: [grille, selfcite, shuffle_chars, markov_chars]

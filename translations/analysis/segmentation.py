@@ -95,7 +95,7 @@ class SlotModel:
         }
 
 
-def _description_length(model: SlotModel, types: Counter[Units], alphabet: int) -> float:
+def description_length(model: SlotModel, types: Counter[Units], alphabet: int) -> float:
     """Bits to encode the segment inventory plus the corpus under it."""
     segments: Counter[Units] = Counter()
     for word, count in types.items():
@@ -129,7 +129,7 @@ def induce_slots(
     pool += [("suffix", affix) for affix, _ in suffix_counts.most_common(candidates)]
 
     model = SlotModel(prefixes=(), suffixes=())
-    best = _description_length(model, types, alphabet)
+    best = description_length(model, types, alphabet)
     history = [best]
     for _ in range(max_affixes):
         scored: list[tuple[float, SlotModel]] = []
@@ -141,7 +141,7 @@ def induce_slots(
                 if kind == "prefix"
                 else SlotModel(model.prefixes, (*model.suffixes, affix))
             )
-            scored.append((_description_length(candidate, types, alphabet), candidate))
+            scored.append((description_length(candidate, types, alphabet), candidate))
         if not scored:
             break
         length, candidate = min(scored, key=lambda item: item[0])

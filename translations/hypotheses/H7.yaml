@@ -1,0 +1,26 @@
+id: H7
+title: Transposition or anagrammed plaintext
+family: substitution
+description: >
+  The letters are a natural language's letters, substituted glyph for glyph, but
+  their order has been scrambled, so only the multiset is informative.
+prior: low
+prior_rationale: >
+  Cheap to test and it isolates a real question: do the glyph frequencies alone
+  look like a language, independently of order?
+phase1_evidence:
+  for:
+    - Word order carries almost no information, which transposition would also produce
+  against:
+    - Word-internal order is rigid, which scrambling would destroy
+prediction: >
+  The best unigram-only key scores near the language's unigram cross-entropy.
+falsifier: >
+  Even with order ignored, the glyph frequency profile does not match any tested language.
+funded: true
+budget_share: 0.02
+search:
+  kind: assignment
+  languages: [vulgate_clementine, austen_pride_prejudice]
+  lm_order: 1
+nulls: [grille, selfcite, shuffle_chars, markov_chars]

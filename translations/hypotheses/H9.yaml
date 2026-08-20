@@ -1,0 +1,26 @@
+id: H9
+title: Constructed language or ars combinatoria
+family: generative
+description: >
+  The vocabulary is generated systematically from a slot grammar, as in a
+  seventeenth-century philosophical language or a combinatorial word list.
+prior: medium
+prior_rationale: >
+  The induced acceptor takes 92.6% of held-out word types, which is what a
+  systematically generated vocabulary looks like.
+phase1_evidence:
+  for:
+    - k=1 acceptor accepts 92.6% of held-out word types
+    - Word structure is more predictable than word choice
+  against:
+    - The acceptor over-generates 95.7% - it accepts far more than the manuscript uses
+prediction: >
+  A slot-grammar code describes the manuscript in fewer bits than the baseline.
+falsifier: >
+  The grammar code loses to the baseline, meaning the grammar is not constraining enough to pay for itself.
+funded: true
+budget_share: 0.05
+search:
+  kind: slot_grammar
+  k: 2
+nulls: [grille, selfcite, shuffle_chars, markov_chars]

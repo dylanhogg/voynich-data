@@ -1,0 +1,43 @@
+id: H2
+title: Verbose cipher - one plaintext letter written as several glyphs
+family: substitution
+description: >
+  Groups of EVA glyphs (qo, ch, ee, ain, dy ...) each spell a single plaintext
+  letter. After the correct merge the text should behave like an ordinary
+  substitution of a natural language.
+prior: high
+prior_rationale: >
+  Directly explains the two headline Phase 1 anomalies: low conditional entropy
+  (because glyph sequences are partly redundant) and rigid word-internal
+  ordering (because multi-glyph codes have fixed internal order).
+phase1_evidence:
+  for:
+    - h2 = 2.25 bits/glyph, about 1 bit below matched natural language
+    - Harris segmentation recovers exactly the candidate units (qo, che, she, ol, dy)
+    - MDL affixes save 1.51 bits/word against 0.15 for Latin
+  against:
+    - Mean word length 4.52 glyphs; a width-2 verbose cipher implies ~2.3 plaintext letters per word
+prediction: >
+  Under the correct merge, entropy rises into the natural-language range and
+  decoded word lengths become plausible; the merged substitution beats both the
+  baseline and every unmerged variant.
+falsifier: >
+  No merge partition (fixed-width or searched) produces a decode that beats the
+  order-2 glyph Markov baseline, or the same search does as well on pseudo-Voynich.
+funded: true
+budget_share: 0.45
+search:
+  kind: merge
+  languages: [vulgate_clementine, clusius_rariorum, austen_pride_prejudice]
+  lm_order: 3
+  iterations: 60000
+  restarts: 6
+  fixed_widths: [2, 3]
+  merge:
+    pool: 40
+    outer_steps: 24
+    width: 8
+    inner_iterations: 20000
+    inner_restarts: 4
+    seed_with_phase1_morphs: true
+nulls: [grille, selfcite, shuffle_chars, markov_chars]

@@ -1,0 +1,25 @@
+id: H8
+title: Natural language with heavy affixal morphology, lightly encoded
+family: generative
+description: >
+  Words are prefix + root + suffix over a real morphology; whatever encoding is
+  applied is shallow enough that the morphology shows through.
+prior: medium
+prior_rationale: >
+  The MDL induction found affixes that pay for themselves ten times more than in Latin.
+phase1_evidence:
+  for:
+    - MDL affixes save 1.51 bits/word against 0.15 for Latin and 0.00 for both pseudo-Voynich generators
+    - Harris segmentation recovers a coherent morph inventory unsupervised
+  against:
+    - Morphology lost to an order-2 chain on held-out bits per word (13.04 vs 12.10), the reverse of natural language
+prediction: >
+  A morphological code describes the manuscript in fewer bits than a plain
+  Markov code, as it does for Latin and Finnish.
+falsifier: >
+  The morphological code loses to the baseline on the manuscript.
+funded: true
+budget_share: 0.05
+search:
+  kind: morphology
+nulls: [grille, selfcite, shuffle_chars, markov_chars]
