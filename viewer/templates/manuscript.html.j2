@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Voynich Manuscript — An English Rendering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --parch-1:#f4ead6; --parch-2:#e7d9bb; --parch-3:#d9c8a4;
+  --ink:#3a3026; --ink-soft:#6b5f4e; --ink-faint:#a2937a;
+  --rubric:#8d3a2b; --gold:#a8842c; --leaf:#5c6b46;
+  --display:"Cinzel",Georgia,serif;
+  --body:"Cormorant Garamond","EB Garamond",Georgia,serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  font-family:var(--body);color:var(--ink);font-size:20px;line-height:1.62;
+  background:var(--parch-2);
+  background-image:radial-gradient(120% 90% at 50% 0%,var(--parch-1),var(--parch-2) 60%,var(--parch-3) 100%);
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.32;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23f)' opacity='0.5'/></svg>");
+  mix-blend-mode:multiply;
+}
+button{font:inherit;cursor:pointer}
+
+/* ---------- cover ---------- */
+#cover{position:relative;z-index:1;min-height:100vh;display:grid;place-items:center;padding:6vh 5vw;text-align:center}
+.plate{max-width:720px}
+.rule{width:190px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:26px auto}
+#cover .orn{color:var(--gold);display:block;margin:0 auto 10px}
+#cover h1{font-family:var(--display);font-weight:600;font-size:clamp(34px,6vw,62px);margin:.1em 0 .1em;letter-spacing:.06em;line-height:1.12}
+#cover .sub{font-family:var(--display);font-size:clamp(12px,1.6vw,15px);letter-spacing:.34em;text-transform:uppercase;color:var(--rubric)}
+#cover .shelf{color:var(--ink-soft);font-style:italic;font-size:17px;margin-top:6px}
+.disclosure{
+  margin:34px auto 0;max-width:620px;text-align:left;font-size:15.5px;line-height:1.6;
+  color:var(--ink-soft);border:1px solid rgba(141,58,43,.28);border-left:3px solid var(--rubric);
+  background:rgba(255,252,244,.5);padding:16px 20px;border-radius:2px;
+}
+.disclosure b{color:var(--rubric);font-weight:600}
+.disclosure p{margin:0 0 9px}
+.disclosure p:last-child{margin:0}
+.enter{
+  margin-top:30px;font-family:var(--display);letter-spacing:.2em;text-transform:uppercase;font-size:13px;
+  background:transparent;border:1px solid var(--gold);color:var(--ink);padding:13px 30px;border-radius:2px;
+  transition:background .25s,color .25s;
+}
+.enter:hover{background:var(--gold);color:#fffaf0}
+
+/* ---------- reader ---------- */
+#reader{display:none;position:relative;z-index:1;min-height:100vh;padding-bottom:96px}
+#reader.open{display:block}
+.topbar{
+  position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:18px;
+  padding:12px 28px;border-bottom:1px solid rgba(58,48,38,.16);
+  background:rgba(244,234,214,.9);backdrop-filter:blur(6px);
+}
+.topbar .brand{font-family:var(--display);font-size:13px;letter-spacing:.24em;text-transform:uppercase}
+.topbar .grow{flex:1}
+.topbar select{
+  font:inherit;font-size:15px;background:transparent;border:1px solid rgba(58,48,38,.25);
+  color:var(--ink);padding:5px 10px;border-radius:2px;max-width:230px;
+}
+.spread{display:grid;grid-template-columns:minmax(280px,42%) minmax(0,58%);gap:46px;padding:40px 46px 10px;max-width:1500px;margin:0 auto}
+.leaf{position:sticky;top:74px;align-self:start}
+.leaf figure{margin:0;background:var(--parch-1);border-radius:2px;
+  box-shadow:0 2px 4px rgba(58,48,38,.2),0 18px 44px rgba(58,48,38,.22)}
+.leaf img{display:block;width:100%;min-height:280px;opacity:0;transition:opacity .5s ease;border-radius:2px}
+.leaf figcaption{margin-top:12px;font-size:14px;color:var(--ink-soft);font-style:italic;text-align:center}
+.leaf figcaption a{color:var(--ink-soft)}
+
+.folioname{font-family:var(--display);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-faint)}
+.section{font-family:var(--display);color:var(--rubric);font-size:clamp(24px,3vw,34px);margin:2px 0 4px;letter-spacing:.03em}
+.headnote{font-style:italic;color:var(--ink-soft);font-size:16px;margin:0 0 26px}
+.text p{margin:0 0 1.15em;text-align:justify;hyphens:auto;text-indent:1.4em}
+.text p:first-of-type{text-indent:0}
+.text p:first-of-type::first-letter{
+  font-family:var(--display);float:left;font-size:3.35em;line-height:.82;
+  padding:.06em .1em 0 0;color:var(--rubric);
+}
+.lac{color:var(--ink-faint);opacity:.62;letter-spacing:.18em;font-size:.7em;vertical-align:.14em}
+.caption{
+  border-left:2px solid var(--gold);padding:2px 0 2px 14px;margin:0 0 1.1em;
+  font-style:italic;color:var(--ink-soft);font-size:17px;
+}
+.caption b{font-style:normal;font-family:var(--display);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);display:block}
+.colophon{margin-top:34px;padding-top:16px;border-top:1px solid rgba(58,48,38,.16);
+  font-style:italic;color:var(--ink-faint);font-size:14.5px}
+
+.pager{
+  position:fixed;bottom:0;left:0;right:0;z-index:6;display:flex;align-items:center;justify-content:center;
+  gap:26px;padding:14px;background:linear-gradient(180deg,rgba(231,217,187,0),rgba(231,217,187,.92) 45%);
+}
+.pager button{
+  font-family:var(--display);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  background:rgba(255,252,244,.75);border:1px solid rgba(58,48,38,.22);color:var(--ink);
+  padding:9px 18px;border-radius:2px;
+}
+.pager button:hover{border-color:var(--gold)}
+.pager .where{font-family:var(--display);font-size:13px;letter-spacing:.16em;color:var(--ink-soft)}
+@media(max-width:900px){
+  .spread{grid-template-columns:1fr;gap:26px;padding:24px 22px 10px}
+  .leaf{position:static}
+  body{font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<section id="cover">
+  <div class="plate">
+    <svg class="orn" viewBox="0 0 220 26" width="220" height="26" aria-hidden="true">
+      <path d="M4 13h72M144 13h72" stroke="currentColor" stroke-width="1" opacity=".55"/>
+      <path d="M110 3c-7 5-11 7-11 10s4 5 11 10c7-5 11-7 11-10s-4-5-11-10z" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <circle cx="110" cy="13" r="2.1" fill="currentColor"/>
+      <circle cx="86" cy="13" r="1.6" fill="currentColor" opacity=".7"/>
+      <circle cx="134" cy="13" r="1.6" fill="currentColor" opacity=".7"/>
+    </svg>
+    <h1>The Voynich<br>Manuscript</h1>
+    <div class="rule"></div>
+    <div class="sub">An English Rendering</div>
+    <div class="shelf">Beinecke Rare Book &amp; Manuscript Library, MS 408 · 206 leaves of text</div>
+    <div class="disclosure">
+      <p><b>Before you begin.</b> {{ banner }}</p>
+      <p>The rendering was produced under hypothesis {{ hypothesis.id }}
+      (<i>{{ hypothesis.variant }}</i>). Run against a control corpus built to encode nothing at all,
+      the same machinery produced <b>more</b> confident English than it does from the manuscript —
+      75.1% of words against 61.1%. Four of the five failure tests agreed in advance were met, and
+      the decipherment attempt is <b>declared unsuccessful</b>.</p>
+      <p>What follows is therefore offered as an artefact of the attempt, not as a reading of the
+      manuscript. Gaps are shown where the machine had nothing to say. Nothing here should be
+      quoted as the meaning of a Voynich word.</p>
+    </div>
+    <button class="enter" onclick="openReader()">Open the manuscript</button>
+  </div>
+</section>
+
+<section id="reader">
+  <div class="topbar">
+    <span class="brand">Voynich · MS 408</span>
+    <span class="grow"></span>
+    <select id="jump" onchange="goto(this.value)"></select>
+  </div>
+  <div class="spread">
+    <div class="leaf">
+      <figure>
+        <img id="plate" alt="" loading="eager" decoding="async">
+        <figcaption id="platecap"></figcaption>
+      </figure>
+    </div>
+    <article>
+      <div class="folioname" id="folioname"></div>
+      <h2 class="section" id="sectionname"></h2>
+      <p class="headnote" id="headnote"></p>
+      <div class="text" id="text"></div>
+      <div class="colophon" id="colophon"></div>
+    </article>
+  </div>
+  <div class="pager">
+    <button onclick="step(-1)">‹ Preceding leaf</button>
+    <span class="where" id="where"></span>
+    <button onclick="step(1)">Following leaf ›</button>
+  </div>
+</section>
+
+<script id="payload" type="application/json">{{ payload_json|safe }}</script>
+<script>
+const DATA = JSON.parse(document.getElementById('payload').textContent);
+const PAGES = DATA.pages;
+const SECLABEL = Object.fromEntries(DATA.sections.map(s => [s.id, s.label]));
+const CATALOG = 'https://collections.library.yale.edu/catalog/2002046';
+let index = 0;
+
+const el = (h) => Object.assign(document.createElement('div'), {innerHTML: h}).firstElementChild;
+
+function openReader() {
+  document.getElementById('cover').style.display = 'none';
+  document.getElementById('reader').classList.add('open');
+  render();
+}
+
+/* A block of lines becomes a paragraph; ungated words become a lacuna. */
+function paragraph(lines) {
+  const words = [];
+  for (const line of lines) for (const tok of line[6]) words.push(tok[3] >= 2 ? tok[2] : null);
+  const para = document.createElement('p');
+  let gap = 0;
+  const flush = () => {
+    if (!gap) return;
+    const span = document.createElement('span');
+    span.className = 'lac';
+    span.textContent = ' ' + '· '.repeat(Math.min(6, 1 + gap)).trim() + ' ';
+    span.title = gap + (gap === 1 ? ' word' : ' words') + ' the machine could not read';
+    para.append(span);
+    gap = 0;
+  };
+  let first = true;
+  for (const word of words) {
+    if (word === null) { if (!first) gap++; continue; }
+    flush();
+    const text = first ? word.charAt(0).toUpperCase() + word.slice(1) : word;
+    para.append(document.createTextNode((first ? '' : ' ') + text));
+    first = false;
+  }
+  flush();
+  return para.textContent.trim() ? para : null;
+}
+
+function render() {
+  const page = PAGES[index];
+  const plate = document.getElementById('plate');
+  plate.style.opacity = 0;
+  plate.onload = () => { plate.style.opacity = 1; };
+  plate.src = page.plate || '';
+  if (plate.complete) plate.style.opacity = 1;
+  document.getElementById('platecap').innerHTML =
+    'Folio ' + page.id.slice(1) + ' · <a href="' + CATALOG + '" target="_blank" rel="noopener">Beinecke MS 408</a>';
+  document.getElementById('folioname').textContent = 'Folio ' + page.id.slice(1);
+  document.getElementById('sectionname').textContent = SECLABEL[page.section] || page.section;
+  document.getElementById('headnote').textContent =
+    page.lines.length + (page.lines.length === 1 ? ' line' : ' lines') + ' of Voynichese, in the hand the'
+    + ' cataloguers number ' + page.hand + '.';
+
+  const body = document.getElementById('text');
+  body.replaceChildren();
+  const blocks = new Map();
+  const labels = [];
+  for (const line of page.lines) {
+    if (line[4]) { labels.push(line); continue; }
+    if (!blocks.has(line[3])) blocks.set(line[3], []);
+    blocks.get(line[3]).push(line);
+  }
+  for (const lines of blocks.values()) {
+    const para = paragraph(lines);
+    if (para) body.append(para);
+  }
+  for (const line of labels) {
+    const para = paragraph([line]);
+    if (!para) continue;
+    const cap = el('<div class="caption"><b>Label</b></div>');
+    cap.append(para.textContent);
+    body.append(cap);
+  }
+  if (!body.childElementCount)
+    body.append(el('<p><span class="lac">· · · · ·</span></p>'));
+
+  document.getElementById('colophon').textContent =
+    'Words the machine could not read are left as gaps. This page is an artefact of a decipherment '
+    + 'attempt that failed its own tests; it is not a reading of the manuscript.';
+  document.getElementById('where').textContent = (index + 1) + ' of ' + PAGES.length;
+  document.getElementById('jump').value = page.id;
+  window.scrollTo(0, 0);
+}
+
+function step(delta) {
+  index = (index + delta + PAGES.length) % PAGES.length;
+  render();
+}
+
+function goto(id) {
+  index = PAGES.findIndex(p => p.id === id);
+  render();
+}
+
+const jump = document.getElementById('jump');
+for (const p of PAGES)
+  jump.append(new Option('Folio ' + p.id.slice(1) + ' — ' + (SECLABEL[p.section] || p.section), p.id));
+
+addEventListener('keydown', (e) => {
+  if (!document.getElementById('reader').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') step(1);
+  if (e.key === 'ArrowLeft') step(-1);
+});
+</script>
+</body>
+</html>

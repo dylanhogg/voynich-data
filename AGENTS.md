@@ -23,6 +23,7 @@ make analyse2    # Phase 3 gap remediation + round 2 + re-scoring -> reports/pha
 make calibrate   # Phase 4 confidence calibration on synthetic ciphertexts (~2 min)
 make translate   # Phase 4 translation pipeline -> output/translation/ + reports/translation/ (~35 s)
 make audit       # Phase 5 adversarial self-audit -> reports/translation/strengths_weaknesses.md (~9 min)
+make viewer      # Render the two HTML views -> output/viewer/ (~5 s)
 make test        # pytest (expect ~616 passed, 7 skipped)
 make notebook    # jupyter lab
 ```
@@ -52,6 +53,8 @@ Python 3.11+. Prefer `uv run <cmd>` over activating the venv.
 | `reports/phase1/` | Phase 1 outputs: one `.md` + `.json` per topic, `summary.md`, landmark gate |
 | `reports/phase2/` | Phase 2 outputs: `hypothesis_scores.md`, `approach.md`, `synthetic_validation.md` |
 | `reports/phase3/` | Phase 3 outputs: `gap_analysis.md`, `round2_findings.md`, `rescoring.md`, plus the round-2 topic reports |
+| `viewer/` | HTML views of the translation: `data.py` payload, `iiif.py` folio-image map, Jinja2 templates |
+| `output/viewer/` | `workbench.html` (analyst view) and `manuscript.html` (presentation view) |
 | `reports/translation/` | Phase 4–5 outputs: `strengths_weaknesses.md` (read first), `coverage.md`, `calibration.md`, `folio_readings.md` |
 | `plans/` | Multi-phase work plans; `001_...md` carries the phase status table |
 | `schemas/`, `docs/`, `notebooks/`, `scripts/`, `tests/` | as named |
@@ -208,6 +211,17 @@ rendering by passing `translations.phase4.render_salt(...)` to `Harness.render`,
 report numbers the artifacts do not have; and measure any "the translation shows X" claim
 against the same statistic on the untranslated types, since glossing is a deterministic
 many-to-one map and can only lose structure (Decision 32).
+
+**The two HTML views live in `viewer/`** and are rebuilt with `make viewer`. `workbench.html` is
+the analyst view: interlinear EVA/English with per-token evidence (decoded string, confidence,
+random-key p, ZL↔IT reliability, competing glosses), folio filtering and search, and an Evidence
+tab built from `coverage.json` / `strengths_weaknesses.json` / `calibration.json`. `manuscript.html`
+is the presentation view: a title page carrying the failed-validation banner and the 75.1%/61.1%
+control comparison, then folio-by-folio gated text beside the Beinecke plate, with unread words
+shown as gaps (Decision 35). Both are single files, driven entirely by the committed artifacts —
+no number is recomputed here — and both are byte-stable for a given set of inputs. Folio images
+are hotlinked from Yale's IIIF service via the committed `viewer/iiif_folio_map.json`; refresh it
+with `uv run python -m viewer.iiif`.
 
 Phase 3 adds four things worth reaching for before writing new code:
 `translations.alignment` (ZL↔IT token alignment and the per-token reliability

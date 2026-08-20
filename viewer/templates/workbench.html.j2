@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voynich Translation Workbench — {{ hypothesis.id }}</title>
+<style>
+:root{
+  --ink:#1b1f24; --ink-2:#4a5560; --ink-3:#7c8794; --rule:#e2e6ea;
+  --bg:#f6f7f9; --panel:#ffffff; --accent:#2a5d8f; --accent-soft:#eaf1f8;
+  --alarm:#a32d2d; --alarm-soft:#fbeceb;
+  --b3:#12735a; --b3-bg:#e2f1eb; --b2:#9a6410; --b2-bg:#fbf0dd;
+  --b1:#6f52ab; --b1-bg:#efeafa; --b0:#8b95a1; --b0-bg:#eef0f3;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);font-size:14px;line-height:1.5}
+a{color:var(--accent)}
+button{font:inherit;cursor:pointer}
+header{display:flex;align-items:center;gap:14px;padding:10px 18px;background:var(--panel);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:20}
+header h1{font-size:15px;margin:0;font-weight:650;letter-spacing:-.01em}
+header .sub{color:var(--ink-3);font-size:12px}
+.spacer{flex:1}
+.chip{font-size:11px;padding:3px 8px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-weight:600;white-space:nowrap}
+.chip.bad{background:var(--alarm-soft);color:var(--alarm)}
+.banner{background:var(--alarm-soft);border-bottom:1px solid #f0d5d3;color:#7d2222;padding:9px 18px;font-size:12.5px;display:flex;gap:12px;align-items:flex-start}
+.banner b{color:var(--alarm)}
+.banner .close{margin-left:auto;border:0;background:transparent;color:#7d2222;font-size:16px;line-height:1;padding:0 4px}
+nav.tabs{display:flex;gap:2px;padding:0 18px;background:var(--panel);border-bottom:1px solid var(--rule);position:sticky;top:49px;z-index:19}
+nav.tabs button{border:0;background:transparent;padding:10px 14px;color:var(--ink-2);border-bottom:2px solid transparent;font-weight:550}
+nav.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+main{display:none}
+main.active{display:block}
+
+/* ---------- read ---------- */
+#read:not(.active){display:none}
+#read{display:grid;grid-template-columns:290px minmax(0,1fr) 330px;height:calc(100vh - 100px)}
+#read>*{overflow-y:auto;min-width:0}
+aside{background:var(--panel);border-right:1px solid var(--rule)}
+.filters{padding:12px;border-bottom:1px solid var(--rule);display:grid;gap:8px;position:sticky;top:0;background:var(--panel);z-index:2}
+.filters input,.filters select{width:100%;padding:6px 8px;border:1px solid var(--rule);border-radius:6px;font:inherit;background:#fff}
+.filters .row{display:flex;gap:8px}
+.folio{display:grid;grid-template-columns:minmax(0,1fr) 56px 32px;gap:8px;align-items:center;padding:7px 12px;border-bottom:1px solid #f1f3f5;cursor:pointer}
+.folio:hover{background:#f7fafd}
+.folio[aria-current="true"]{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+.folio .id{font-family:var(--mono);font-size:12.5px;font-weight:600}
+.folio .meta{font-size:11px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.folio .pct{font-size:11px;color:var(--ink-2);text-align:right;font-variant-numeric:tabular-nums}
+.bar{height:4px;background:var(--rule);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.count{padding:8px 12px;font-size:11px;color:var(--ink-3);border-bottom:1px solid var(--rule)}
+
+section#page{padding:18px 22px 60px}
+.pagehead{display:flex;gap:16px;margin-bottom:16px}
+.pagehead img{width:150px;border-radius:6px;border:1px solid var(--rule);background:#fff;object-fit:cover}
+.pagehead h2{margin:0 0 6px;font-size:20px;font-family:var(--mono);letter-spacing:-.02em}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.tag{font-size:11px;padding:2px 7px;border:1px solid var(--rule);border-radius:4px;color:var(--ink-2);background:#fff}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px;padding:8px 10px;background:var(--panel);border:1px solid var(--rule);border-radius:8px;position:sticky;top:0;z-index:3}
+.toolbar label{font-size:12px;color:var(--ink-2);display:flex;gap:5px;align-items:center}
+.seg{display:flex;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.seg button{border:0;background:#fff;padding:5px 10px;font-size:12px;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+
+.line{display:grid;grid-template-columns:42px minmax(0,1fr) 46px;gap:10px;padding:7px 0;border-bottom:1px solid #f1f3f5;align-items:start}
+.line:hover{background:#fcfdfe}
+.line.holdout{box-shadow:inset 3px 0 0 #c9a227}
+.ln{font-family:var(--mono);font-size:11px;color:var(--ink-3);padding-top:3px;text-align:right}
+.toks{display:flex;flex-wrap:wrap;gap:4px 9px}
+.tok{display:flex;flex-direction:column;padding:2px 4px;border-radius:4px;cursor:pointer;border-bottom:2px solid transparent}
+.tok:hover{background:#eef4fa}
+.tok.sel{background:#dbe9f6;outline:1px solid var(--accent)}
+.tok.echo{background:#f3f0dd}
+.tok .eva{font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+.tok .en{font-size:13.5px}
+.tok.b3{border-bottom-color:var(--b3)} .tok.b3 .en{color:var(--b3);font-weight:600}
+.tok.b2{border-bottom-color:var(--b2)} .tok.b2 .en{color:var(--b2)}
+.tok.b1{border-bottom-color:var(--b1)} .tok.b1 .en{color:var(--b1);font-style:italic}
+.tok.b0{border-bottom-color:transparent} .tok.b0 .en{color:var(--b0);font-style:italic}
+.tok .en.gap{color:var(--b0);letter-spacing:2px}
+.lconf{padding-top:6px}
+.blockgap{height:14px;border-bottom:1px dashed var(--rule);margin-bottom:10px}
+.labelline .ln::after{content:" ‹label›";font-size:9px}
+
+#inspect{background:var(--panel);border-left:1px solid var(--rule);padding:14px 16px}
+#inspect h3{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:5px 10px;font-size:12.5px;margin-bottom:14px}
+.kv dt{color:var(--ink-3)} .kv dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.big{font-family:var(--mono);font-size:19px;font-weight:600;margin:0 0 2px}
+.gloss{font-size:16px;margin:0 0 10px}
+.alts{list-style:none;margin:0 0 14px;padding:0;font-size:12.5px;color:var(--ink-2)}
+.alts li{padding:3px 0;border-bottom:1px solid #f1f3f5}
+.note{font-size:11.5px;color:var(--ink-3);line-height:1.5;border-top:1px solid var(--rule);padding-top:10px}
+.legend{display:grid;gap:6px;font-size:12px;margin-bottom:14px}
+.legend div{display:flex;gap:8px;align-items:center}
+.sw{width:22px;height:0;border-bottom:3px solid}
+
+/* ---------- evidence ---------- */
+#evidence{padding:22px;max-width:1180px;margin:0 auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 18px}
+.card.wide{grid-column:1/-1}
+.card.alarm{border-color:#f0c9c6;background:linear-gradient(180deg,#fdf4f3,#fff)}
+.card h3{margin:0 0 4px;font-size:14px}
+.card p.lede{margin:0 0 14px;font-size:12.5px;color:var(--ink-2)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--rule)}
+th{color:var(--ink-3);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.hbar{display:grid;grid-template-columns:120px 1fr 52px;gap:10px;align-items:center;margin-bottom:7px;font-size:12.5px}
+.hbar .track{height:16px;background:var(--rule);border-radius:4px;overflow:hidden}
+.hbar .track i{display:block;height:100%;background:var(--accent)}
+.hbar.hot .track i{background:var(--alarm)}
+.pill{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600}
+.pill.yes{background:var(--alarm-soft);color:var(--alarm)}
+.pill.no{background:var(--b3-bg);color:var(--b3)}
+.pill.neutral{background:var(--b0-bg);color:var(--ink-2)}
+.pill.weak{background:var(--b2-bg);color:var(--b2)}
+.stat{font-size:26px;font-weight:650;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.statrow{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:8px}
+.statrow small{display:block;color:var(--ink-3);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+@media(max-width:1100px){ #read{grid-template-columns:240px minmax(0,1fr);height:auto} #inspect{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Voynich Manuscript · Translation Workbench</h1>
+  <span class="sub">{{ page_count }} pages · 4,072 lines · Beinecke MS 408</span>
+  <span class="spacer"></span>
+  <span class="chip">{{ hypothesis.id }} · {{ hypothesis.variant }}</span>
+  <span class="chip bad">FAILED VALIDATION</span>
+  <a class="chip" href="manuscript.html" style="text-decoration:none">Reading view →</a>
+</header>
+<div class="banner" id="banner">
+  <div><b>{{ banner }}</b> The identical pipeline renders the <code>grille</code> pseudo-Voynich
+  control — a corpus that encodes nothing — at <b>75.1%</b> of tokens against the manuscript's
+  <b>61.1%</b>. Read the Evidence tab before quoting anything below.</div>
+  <button class="close" onclick="document.getElementById('banner').remove()" title="dismiss">×</button>
+</div>
+<nav class="tabs">
+  <button id="tab-read" aria-selected="true" onclick="showTab('read')">Read</button>
+  <button id="tab-evidence" aria-selected="false" onclick="showTab('evidence')">Evidence</button>
+</nav>
+
+<main id="read" class="active">
+  <aside>
+    <div class="filters">
+      <input id="q" type="search" placeholder="Search EVA or English…">
+      <div class="row">
+        <select id="fsection"><option value="">All sections</option></select>
+        <select id="fcurrier"><option value="">A + B</option><option>A</option><option>B</option></select>
+      </div>
+      <div class="row">
+        <select id="fhand"><option value="">All hands</option></select>
+        <select id="fsort">
+          <option value="folio">Folio order</option>
+          <option value="gated">Best covered first</option>
+          <option value="worst">Least covered first</option>
+        </select>
+      </div>
+    </div>
+    <div class="count" id="count"></div>
+    <div id="folios"></div>
+  </aside>
+
+  <section id="page"></section>
+
+  <div id="inspect"></div>
+</main>
+
+<main id="evidence"></main>
+
+<script id="payload" type="application/json">{{ payload_json|safe }}</script>
+<script>
+const DATA = JSON.parse(document.getElementById('payload').textContent);
+const PAGES = DATA.pages, LEX = DATA.lexicon, FREQ = DATA.freq, S = DATA.stats;
+const SECLABEL = Object.fromEntries(DATA.sections.map(s => [s.id, s.label]));
+const BANDNAME = ['none', 'low', 'medium', 'high'];
+const state = {page: PAGES[0].id, mode: 'inter', gated: true, sel: null, echo: null};
+
+const el = (h) => Object.assign(document.createElement('div'), {innerHTML: h}).firstElementChild;
+const esc = (s) => s.replace(/[&<>]/g, c => (c === '&' ? '&amp;' : c === '<' ? '&lt;' : '&gt;'));
+const pct = (n) => n.toFixed(1) + '%';
+
+function showTab(name) {
+  for (const id of ['read', 'evidence']) {
+    document.getElementById(id).classList.toggle('active', id === name);
+    document.getElementById('tab-' + id).setAttribute('aria-selected', String(id === name));
+  }
+}
+
+/* ---------- folio list ---------- */
+function fillSelects() {
+  const sec = document.getElementById('fsection'), hand = document.getElementById('fhand');
+  for (const s of DATA.sections) sec.append(new Option(s.label + ' (' + s.lines + ')', s.id));
+  for (const h of [...new Set(PAGES.map(p => p.hand))].sort()) hand.append(new Option('Hand ' + h, h));
+}
+
+function filtered() {
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  const sec = document.getElementById('fsection').value;
+  const cur = document.getElementById('fcurrier').value;
+  const hand = document.getElementById('fhand').value;
+  const sort = document.getElementById('fsort').value;
+  let out = PAGES.filter(p =>
+    (!sec || p.section === sec) && (!cur || p.currier === cur) && (!hand || p.hand === hand) &&
+    (!q || p.id.includes(q) || p.lines.some(l => l[1].includes(q) || l[6].some(t => t[2].toLowerCase().includes(q)))));
+  if (sort === 'gated') out = [...out].sort((a, b) => b.gated - a.gated);
+  if (sort === 'worst') out = [...out].sort((a, b) => a.gated - b.gated);
+  return out;
+}
+
+function renderFolios() {
+  const list = filtered();
+  document.getElementById('count').textContent =
+    list.length + ' pages · ' + list.reduce((n, p) => n + p.lines.length, 0) + ' lines';
+  const box = document.getElementById('folios');
+  box.replaceChildren(...list.map(p => {
+    const row = el('<div class="folio" role="button"><div><div class="id"></div>' +
+      '<div class="meta"></div></div><div class="bar"><i></i></div><div class="pct"></div></div>');
+    row.querySelector('.id').textContent = p.id;
+    row.querySelector('.meta').textContent =
+      (SECLABEL[p.section] || p.section) + ' · ' + p.currier + ' · h' + p.hand;
+    row.querySelector('.bar i').style.width = p.gated + '%';
+    row.querySelector('.pct').textContent = p.gated + '%';
+    row.setAttribute('aria-current', String(p.id === state.page));
+    row.onclick = () => { state.page = p.id; state.sel = null; renderFolios(); renderPage(); };
+    return row;
+  }));
+}
+
+/* ---------- page ---------- */
+function tokenNode(tok, li, ti) {
+  const node = el('<span class="tok b' + tok[3] + '"><span class="eva"></span><span class="en"></span></span>');
+  node.querySelector('.eva').textContent = tok[0];
+  const en = node.querySelector('.en');
+  const hidden = state.gated && tok[3] < 2;
+  en.textContent = hidden ? '····' : (tok[2] || '····');
+  if (hidden || !tok[2]) en.classList.add('gap');
+  if (state.sel && state.sel[0] === li && state.sel[1] === ti) node.classList.add('sel');
+  if (state.echo && state.echo === tok[0] && !(state.sel && state.sel[0] === li && state.sel[1] === ti))
+    node.classList.add('echo');
+  node.onclick = () => { state.sel = [li, ti]; state.echo = tok[0]; renderPage(); renderInspector(tok); };
+  return node;
+}
+
+function renderPage() {
+  const p = PAGES.find(x => x.id === state.page);
+  const box = document.getElementById('page');
+  box.replaceChildren();
+  const head = el('<div class="pagehead"></div>');
+  if (p.thumb) {
+    const a = el('<a target="_blank" rel="noopener"><img loading="lazy" alt=""></a>');
+    a.href = 'https://collections.library.yale.edu/catalog/2002046';
+    a.querySelector('img').src = p.thumb;
+    head.append(a);
+  }
+  const info = el('<div></div>');
+  info.append(el('<h2></h2>'), el('<div class="tags"></div>'), el('<div></div>'));
+  info.querySelector('h2').textContent = p.id;
+  const tags = [SECLABEL[p.section] || p.section, 'Currier ' + p.currier, 'hand ' + p.hand,
+    'quire ' + p.quire, p.lines.length + ' lines', p.tokens + ' tokens',
+    'illustration ' + (p.illustration || '—')];
+  info.querySelector('.tags').replaceChildren(...tags.map(t => {
+    const s = el('<span class="tag"></span>'); s.textContent = t; return s;
+  }));
+  info.lastElementChild.append(el('<div class="hbar"><span>gated coverage</span>' +
+    '<span class="track"><i style="width:' + p.gated + '%"></i></span><span class="num">' +
+    p.gated + '%</span></div>'));
+  info.lastElementChild.append(el('<div class="hbar"><span>mean confidence</span>' +
+    '<span class="track"><i style="width:' + p.confidence + '%"></i></span><span class="num">' +
+    p.confidence + '%</span></div>'));
+  head.append(info);
+  box.append(head, toolbar());
+
+  let block = null;
+  p.lines.forEach((line, li) => {
+    if (block !== null && line[3] !== block) box.append(el('<div class="blockgap"></div>'));
+    block = line[3];
+    const row = el('<div class="line"><div class="ln"></div><div class="toks"></div>' +
+      '<div class="lconf"><div class="bar"><i></i></div></div></div>');
+    if (line[5]) row.classList.add('holdout');
+    if (line[4]) row.classList.add('labelline');
+    row.querySelector('.ln').textContent = line[0];
+    row.querySelector('.toks').append(...line[6].map((t, ti) => tokenNode(t, li, ti)));
+    row.querySelector('.lconf i').style.width = line[2] + '%';
+    row.querySelector('.lconf').title = 'line confidence ' + line[2] + '%';
+    box.append(row);
+  });
+  box.classList.toggle('m-en', state.mode === 'en');
+  document.querySelectorAll('#page .tok .eva').forEach(n => n.style.display = state.mode === 'en' ? 'none' : '');
+  document.querySelectorAll('#page .tok .en').forEach(n => n.style.display = state.mode === 'eva' ? 'none' : '');
+}
+
+function toolbar() {
+  const bar = el('<div class="toolbar"></div>');
+  const seg = el('<div class="seg"></div>');
+  for (const [key, label] of [['inter', 'Interlinear'], ['en', 'English only'], ['eva', 'EVA only']]) {
+    const b = el('<button></button>');
+    b.textContent = label;
+    b.setAttribute('aria-pressed', String(state.mode === key));
+    b.onclick = () => { state.mode = key; renderPage(); };
+    seg.append(b);
+  }
+  const gate = el('<label><input type="checkbox"> Gate low-confidence tokens</label>');
+  gate.querySelector('input').checked = state.gated;
+  gate.querySelector('input').onchange = (e) => { state.gated = e.target.checked; renderPage(); };
+  bar.append(seg, gate);
+  const hint = el('<span style="font-size:12px;color:var(--ink-3)">Click a token for its evidence</span>');
+  bar.append(hint);
+  return bar;
+}
+
+/* ---------- inspector ---------- */
+function renderInspector(tok) {
+  const box = document.getElementById('inspect');
+  if (!tok) {
+    box.replaceChildren(el('<h3>Legend</h3>'), el(
+      '<div class="legend">' +
+      '<div><span class="sw" style="border-color:var(--b3)"></span><b style="color:var(--b3)">high</b>&nbsp;≥0.70 confidence</div>' +
+      '<div><span class="sw" style="border-color:var(--b2)"></span><span style="color:var(--b2)">medium</span>&nbsp;0.40–0.70</div>' +
+      '<div><span class="sw" style="border-color:var(--b1)"></span><i style="color:var(--b1)">low</i>&nbsp;0.15–0.40</div>' +
+      '<div><span class="sw" style="border-color:var(--b0)"></span><i style="color:var(--b0)">none</i>&nbsp;&lt;0.15</div>' +
+      '</div>'),
+      el('<div class="note">The gate keeps <b>medium</b> and <b>high</b> only — 61.1% of tokens. ' +
+        'Gold left edge on a line = held-out page, never seen by the key search. ' +
+        'Dashed rules separate paragraph blocks taken from the IVTFF markers.</div>'));
+    return;
+  }
+  const alts = LEX[tok[0]] || [];
+  box.replaceChildren();
+  box.append(el('<h3>Token evidence</h3>'));
+  const head = el('<div><p class="big"></p><p class="gloss"></p></div>');
+  head.querySelector('.big').textContent = tok[0];
+  head.querySelector('.gloss').textContent = tok[2] || '(no gloss)';
+  box.append(head);
+  const band = el('<div style="margin-bottom:12px"><span class="pill"></span></div>');
+  const pill = band.querySelector('.pill');
+  pill.textContent = BANDNAME[tok[3]] + ' · ' + tok[4] + '% confidence';
+  pill.classList.add(tok[3] >= 2 ? 'no' : tok[3] === 1 ? 'weak' : 'neutral');
+  box.append(band);
+  const kv = el('<dl class="kv"></dl>');
+  const rows = [
+    ['decoded string', tok[1] || '—'],
+    ['confidence', tok[4] + '%'],
+    ['random-key p', (tok[5] / 100).toFixed(2)],
+    ['ZL↔IT reliability', tok[6] + '%'],
+    ['occurrences in corpus', (FREQ[tok[0]] || 0).toLocaleString()],
+  ];
+  for (const [k, v] of rows) {
+    const dt = document.createElement('dt'); dt.textContent = k;
+    const dd = document.createElement('dd'); dd.textContent = v;
+    kv.append(dt, dd);
+  }
+  box.append(kv);
+  if (alts.length > 1) {
+    box.append(el('<h3>Competing glosses</h3>'));
+    const ul = el('<ul class="alts"></ul>');
+    for (const a of alts) { const li = document.createElement('li'); li.textContent = a; ul.append(li); }
+    box.append(ul);
+  }
+  box.append(el('<div class="note">The decoded string is what the committed key turns this EVA ' +
+    'word into; the gloss is the best Latin-stem match for that string. <b>Random-key p</b> is the ' +
+    'share of 20 permuted keys that glossed it at least as well — near 1.00 means the key ' +
+    'contributed nothing. Re-running the key search with a different seed changes about seven ' +
+    'tokens in ten, so no single reading here is quotable.</div>'));
+}
+
+/* ---------- evidence tab ---------- */
+function hbar(label, value, right, hot) {
+  const row = el('<div class="hbar"><span></span><span class="track"><i></i></span><span class="num"></span></div>');
+  row.children[0].textContent = label;
+  row.querySelector('i').style.width = Math.min(100, value) + '%';
+  row.children[2].textContent = right;
+  if (hot) row.classList.add('hot');
+  return row;
+}
+
+function table(head, rows) {
+  const t = el('<table><thead><tr></tr></thead><tbody></tbody></table>');
+  const headRow = t.querySelector('tr'), body = t.querySelector('tbody');
+  for (const h of head) { const th = document.createElement('th'); th.textContent = h; headRow.append(th); }
+  for (const r of rows) {
+    const tr = document.createElement('tr');
+    r.forEach((cell, i) => {
+      const td = document.createElement('td');
+      if (cell instanceof Node) td.append(cell); else td.textContent = cell;
+      if (i && typeof cell === 'string' && /^[-\d.]+%?$/.test(cell)) td.className = 'num';
+      tr.append(td);
+    });
+    body.append(tr);
+  }
+  return t;
+}
+
+function pill(text, cls) { const s = el('<span class="pill"></span>'); s.textContent = text; s.classList.add(cls); return s; }
+
+function renderEvidence() {
+  const box = document.getElementById('evidence');
+  const grid = el('<div class="grid"></div>');
+
+  const control = el('<div class="card wide alarm"><h3>The decisive control</h3>' +
+    '<p class="lede">Two pseudo-Voynich corpora, matched to the manuscript in token count and built ' +
+    'from its own statistics, encode nothing at all. The identical pipeline, key, calibration map ' +
+    'and lexicon were run over them.</p></div>');
+  for (const [name, label] of [['real', 'manuscript'], ['grille', 'grille (encodes nothing)'], ['selfcite', 'selfcite (encodes nothing)']]) {
+    const c = S.controls[name];
+    control.append(hbar(label, c.gated_coverage * 100, pct(c.gated_coverage * 100), name === 'grille'));
+  }
+  control.append(el('<p class="lede" style="margin:12px 0 0"><b>The grille control renders ' +
+    Math.round(S.control_ratio * 100) + '% of what the manuscript does.</b> On the test plan §7.4 named ' +
+    'decisive, this pipeline is a fluency generator and its Voynich output carries no evidential weight.</p>'));
+  grid.append(control);
+
+  const kill = el('<div class="card wide"><h3>Kill criteria, agreed in advance (§7.4)</h3>' +
+    '<p class="lede">Four of five are met. The decipherment attempt is declared unsuccessful.</p></div>');
+  kill.append(table(['criterion', 'measured', 'met'], S.kill_criteria.map(k =>
+    [k.criterion, k.measured, pill(k.met ? 'met' : 'not met', k.met ? 'yes' : 'no')])));
+  grid.append(kill);
+
+  const head = el('<div class="card"><h3>Headline numbers</h3></div>');
+  const stats = el('<div class="statrow"></div>');
+  for (const [label, value] of [
+    ['gated coverage', pct(S.overall.gated_coverage * 100)],
+    ['mean confidence', S.overall.mean_confidence.toFixed(3)],
+    ['tokens', S.overall.tokens.toLocaleString()],
+    ['beat every null key', pct(S.overall.beat_every_null_key * 100)]]) {
+    const d = el('<div></div>');
+    d.append(el('<small></small>'), el('<div class="stat"></div>'));
+    d.firstElementChild.textContent = label; d.lastElementChild.textContent = value;
+    stats.append(d);
+  }
+  head.append(stats, el('<p class="lede" style="margin-top:10px">Only 9.7% of tokens are glossed better ' +
+    'by the real key than by all 20 permuted keys. A two-letter string hits a 48,000-stem Latin ' +
+    'dictionary whatever the key says.</p>'));
+  grid.append(head);
+
+  const bands = el('<div class="card"><h3>Confidence bands</h3><p class="lede">The gate keeps medium and high.</p></div>');
+  for (const [key, label] of [['band_high', 'high ≥0.70'], ['band_medium', 'medium 0.40–0.70'],
+    ['band_low', 'low 0.15–0.40'], ['band_none', 'none <0.15']])
+    bands.append(hbar(label, S.overall[key] * 100, pct(S.overall[key] * 100)));
+  grid.append(bands);
+
+  const hyp = el('<div class="card wide"><h3>Every keyed hypothesis</h3>' +
+    '<p class="lede">Gain per token is measured against an order-2 Markov model of the manuscript ' +
+    'itself. Every hypothesis lost to it.</p></div>');
+  hyp.append(table(['id', 'variant', 'gain/token', 'p', 'converged', 'gated', 'mean conf'],
+    S.hypotheses.map(h => [h.hypothesis, h.variant, h.gain_per_token.toFixed(3), h.p_value.toFixed(3),
+      h.converged ? 'yes' : 'no', pct(h.gated_coverage * 100), h.mean_confidence.toFixed(3)])));
+  grid.append(hyp);
+
+  const split = el('<div class="card"><h3>Held-out pages, scored once</h3>' +
+    '<p class="lede">A pipeline that had learned something would do worse on pages it never saw. ' +
+    'It does not.</p></div>');
+  split.append(table(['split', 'lines', 'tokens', 'gated', 'mean conf'], S.splits.map(s =>
+    [s.split, s.lines.toLocaleString(), s.tokens.toLocaleString(), pct(s.gated_coverage * 100),
+      s.mean_confidence.toFixed(3)])));
+  grid.append(split);
+
+  const fall = el('<div class="card"><h3>Where the glosses come from</h3>' +
+    '<p class="lede">Only 18% of types come from a direct lexicon hit; the rest are ' +
+    'nearest-string or stripped-ending fallbacks.</p></div>');
+  for (const [k, v] of Object.entries(S.fallback).sort((a, b) => b[1] - a[1]))
+    fall.append(hbar(k, v * 100, pct(v * 100)));
+  grid.append(fall);
+
+  for (const [name, label] of [['section', 'section'], ['currier_language', 'Currier language'],
+    ['hand', 'hand'], ['line_type', 'line type']]) {
+    const card = el('<div class="card"><h3>Coverage by ' + label + '</h3></div>');
+    for (const row of S.strata[name])
+      card.append(hbar(String(row.stratum) + ' (' + row.lines + ')', row.gated_coverage * 100,
+        pct(row.gated_coverage * 100)));
+    grid.append(card);
+  }
+
+  const audit = el('<div class="card wide"><h3>Phase 5 audit battery</h3>' +
+    '<p class="lede">Every §7.1 strength test and §7.2 weakness test, with the implication the audit drew.</p></div>');
+  audit.append(table(['test', 'metric', 'null / baseline', 'verdict', 'implication'], S.audit.map(a =>
+    [a.test, a.metric, a.null, pill(a.verdict, a.verdict === 'weakness' ? 'yes' : a.verdict === 'strength' ? 'no' : 'neutral'),
+      a.implication])));
+  grid.append(audit);
+
+  box.replaceChildren(grid);
+}
+
+addEventListener('keydown', (e) => {
+  if (e.target.matches('input,select,textarea')) return;
+  const list = filtered(), at = list.findIndex(p => p.id === state.page);
+  if (e.key === 'j' || e.key === 'ArrowDown') var next = list[Math.min(list.length - 1, at + 1)];
+  if (e.key === 'k' || e.key === 'ArrowUp') next = list[Math.max(0, at - 1)];
+  if (!next) return;
+  e.preventDefault();
+  state.page = next.id; state.sel = null; renderFolios(); renderPage();
+});
+
+fillSelects();
+for (const id of ['q', 'fsection', 'fcurrier', 'fhand', 'fsort'])
+  document.getElementById(id).addEventListener('input', renderFolios);
+renderFolios(); renderPage(); renderInspector(null); renderEvidence();
+</script>
+</body>
+</html>

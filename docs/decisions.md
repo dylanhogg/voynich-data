@@ -1408,6 +1408,51 @@ n/a — a recorded negative result.
 
 ---
 
+## Decision 35: The Presentation View Carries the Failed-Validation Notice Once, on Its Title Page
+
+**Date**: 2026-08-21  
+**Status**: Active  
+**Context**: `viewer/` renders two browser-loadable HTML views of the Phase 4 output:
+`workbench.html`, an analyst's view, and `manuscript.html`, a presentation view whose stated
+purpose is to read as a manuscript rather than as a report. The standing rule (Decision 30) is
+that every artifact carries the failed-validation banner and never quotes a rendering without
+the pseudo-Voynich control number.
+
+### Options Considered
+
+1. Banner block above the text on every folio, as in the Markdown reports.
+2. The notice once, on a title page the reader passes through before any rendering.
+3. No notice in the presentation view.
+
+### Decision
+
+Option 2. `manuscript.html` opens on a title page carrying the verbatim banner, the
+75.1% / 61.1% control comparison, and the words *declared unsuccessful*; the reader must
+dismiss it to reach any folio. Each folio then carries a one-line colophon repeating that the
+page is an artefact of a failed attempt and not a reading. `workbench.html` keeps the full
+banner at the top of the document.
+
+### Rationale
+
+The control number is what makes the rendering interpretable, so it must be seen before any
+English is — but a banner repeated on every leaf of a presentation piece is read as chrome and
+stops being read at all. Placing it on an unavoidable title page buys attention for it once,
+and the per-folio colophon keeps a screenshot of any single leaf from travelling without the
+qualification. No single-token reading is exposed anywhere in the presentation view, per
+Decision 33; the view renders whole gated lines with unread words shown as visible gaps.
+
+### Consequences
+
+A folio screenshotted out of `manuscript.html` carries the colophon but not the control
+number. That is a real, accepted loss relative to the Markdown reports.
+
+### Reversibility
+
+Trivial — the notice is a single block in `viewer/templates/manuscript.html.j2`.
+
+
+---
+
 ## Template for Future Decisions
 
 Copy this template for new decisions:
@@ -1454,6 +1499,7 @@ Copy this template for new decisions:
 | Analysis Methodology | 8, 10, 11, 12, 13, 16, 17, 26, 32 |
 | Decipherment | 16, 17, 18, 19, 27, 28, 31 |
 | Falsified Hypotheses | 14, 20, 29, 30, 33, 34 |
+| Presentation | 35 |
 
 ---
 

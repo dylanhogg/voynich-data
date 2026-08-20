@@ -56,6 +56,11 @@ audit:
 	#  training subsets; budgeted, ~1 h at current settings, ceiling 2 h)
 	uv run python -m translations.phase5
 
+viewer:
+	# Render the two browser-loadable HTML views -> output/viewer/ (~5 s)
+	# `uv run python -m viewer.iiif` refreshes the Beinecke folio-image map.
+	uv run python -m viewer.build
+
 quick-analysis:
 	uv run python scripts/quick_analysis.py
 
