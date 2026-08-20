@@ -1,0 +1,164 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "budget_expired": false,
+  "budget_seconds": 7200.0,
+  "config_hash": "4af820e7ec36a0f73a7e0d97968527126181f3bc29234895fe47d7dafeadf68c",
+  "declared_unsuccessful": true,
+  "findings": [
+    {
+      "implication": "A ceiling, not evidence. The pipeline recovers a key it is given, which is why a confident-looking rendering proves nothing on its own.",
+      "metric": "H1 gloss accuracy on ciphertext we built",
+      "null": "key accuracy 1.000",
+      "test": "\u00a77.1.1 synthetic recovery",
+      "value": 0.9087068965517241,
+      "verdict": "neutral"
+    },
+    {
+      "implication": "Held-out and training pages are indistinguishable, which is what a dictionary-matching pipeline looks like \u2014 it is not evidence of generalisation.",
+      "metric": "train \u2212 holdout gated coverage",
+      "null": "permutation p = 0.162",
+      "test": "\u00a77.1.2 held-out generalisation",
+      "value": 0.023487079296725333,
+      "verdict": "undermines"
+    },
+    {
+      "implication": "Where the two transcriptions disagree, so do the glosses, four times out of five. The reading is a property of the transcription, not of the manuscript.",
+      "metric": "gloss agreement on tokens whose ZL and IT surfaces differ",
+      "null": "surface agreement 0.890; line identity 0.293",
+      "test": "\u00a77.1.3 cross-transcription stability",
+      "value": 0.16806253489670575,
+      "verdict": "undermines"
+    },
+    {
+      "implication": "Consistency is guaranteed by context-free glossing, so it is not evidence. The collapse ratio it hides is: the rendering is heavily many-to-one.",
+      "metric": "Voynich types per distinct English word (gated view)",
+      "null": "1.0 would be a one-to-one reading",
+      "test": "\u00a77.1.4 internal consistency",
+      "value": 4.74163783160323,
+      "verdict": "vacuous"
+    },
+    {
+      "implication": "Page topic and glossed vocabulary vary together beyond chance, and pseudo-Voynich under the same page labels does not.",
+      "metric": "gloss-profile divergence across illustration types",
+      "null": "permutation p = 0.001",
+      "test": "\u00a77.1.5 illustration congruence",
+      "value": 0.09016034981718923,
+      "verdict": "supports"
+    },
+    {
+      "implication": "The rendering is no more English-like in its word order than the same words in random order, and both are far from real English.",
+      "metric": "bits/word of the rendering under a douay_rheims bigram model",
+      "null": "shuffled 12.74; real English 9.25",
+      "test": "\u00a77.1.6 syntactic plausibility",
+      "value": 12.751572166231124,
+      "verdict": "undermines"
+    },
+    {
+      "implication": "Blocked by the three open \u00a75.1 gaps; no anchor evidence exists either way.",
+      "metric": "catalogued anchors",
+      "null": "\u2014",
+      "test": "\u00a77.1.7 anchor agreement",
+      "value": 0,
+      "verdict": "not run"
+    },
+    {
+      "implication": "Text that encodes nothing renders at least as well as the manuscript. Under the criterion the plan fixed in advance, the pipeline is a fluency generator and its Voynich output carries no evidential weight.",
+      "metric": "`grille` gated coverage as a share of the manuscript's",
+      "null": "1.00 means gibberish renders as well; 5 draws span 103%\u2013122%",
+      "test": "\u00a77.2.1 pseudo-Voynich control",
+      "value": 1.2297015287551565,
+      "verdict": "undermines"
+    },
+    {
+      "implication": "The pipeline does distinguish the manuscript from character noise, which sounds better than it is: \u00a77.2.1's `grille` clears the same bar and then renders more than the manuscript. Reordering whole words, meanwhile, changes nothing at all, because no stage of the pipeline reads a sequence.",
+      "metric": "character-shuffled Voynichese, gated coverage as a share of the manuscript's",
+      "null": "word-order shuffle scores 0.978 \u2014 a tautology, not a test",
+      "test": "\u00a77.2.2 shuffled-input control",
+      "value": 0.4191046400870867,
+      "verdict": "neutral"
+    },
+    {
+      "implication": "Unrelated plaintext languages produce comparable Latin gloss rates, so the method does not identify the language and the glosses are not evidence for one.",
+      "metric": "spread in gated coverage across plaintext languages",
+      "null": "gain spread 1.318 bits/token",
+      "test": "\u00a77.2.3 rival-language ambiguity",
+      "value": 0.1491638994307401,
+      "verdict": "undermines"
+    },
+    {
+      "implication": "Re-running the same search with a different seed changes a large share of the reading, so the key is not identified and no individual gloss is stable.",
+      "metric": "mean token-level gloss agreement across independent re-searches",
+      "null": "1.00 would mean the key is identified",
+      "test": "\u00a77.2.4 key instability",
+      "value": 0.2926431056293485,
+      "verdict": "undermines"
+    },
+    {
+      "implication": "The headline coverage depends heavily on choices \u2014 tokenization above all \u2014 that no evidence fixes.",
+      "metric": "largest swing in gated coverage across analysis choices",
+      "null": "committed run reads 0.641",
+      "test": "\u00a77.2.5 ablations",
+      "value": 0.13973553130929783,
+      "verdict": "undermines"
+    },
+    {
+      "implication": "Every listed zone is enumerated with its row count, so no reader has to infer which parts of the rendering are least supported.",
+      "metric": "weakest zone: tokens containing a unit the key never saw",
+      "null": "whole manuscript 0.611",
+      "test": "\u00a77.2.6 known-weak zones",
+      "value": 0.13821138211382114,
+      "verdict": "neutral"
+    },
+    {
+      "implication": "Stated at the top of every report and broken out per stratum, so a complete-looking speculative rendering cannot be mistaken for complete coverage.",
+      "metric": "gated coverage, whole manuscript",
+      "null": "\u2014",
+      "test": "\u00a77.2.7 coverage honesty",
+      "value": 0.6109167457305503,
+      "verdict": "neutral"
+    }
+  ],
+  "git_commit": "bb10c45de9226f470fc489a9a839376fbb917548",
+  "inputs": {
+    "output/eva_lines.jsonl": "53e5db5ab1364eec553de3e20974a16b7af00916906f3758b5f3e2cfd0f4f7c7",
+    "output/metadata/pages.jsonl": "cf4f60f1e2b2ace3789924d04765a83a005850a1dda3d7bfde6312931562ccf3",
+    "output/mismatch_index.jsonl": "72316ceff4d6976744406e649bf7a053dd951a93f58e6e863cf23baa88b18679"
+  },
+  "kill_criteria": [
+    {
+      "criterion": "Comparable fluency and confidence on pseudo-Voynich",
+      "measured": "control renders at 123% of the manuscript's rate",
+      "met": true
+    },
+    {
+      "criterion": "Held-out performance indistinguishable from the null distribution",
+      "measured": "permutation p = 0.162",
+      "met": true
+    },
+    {
+      "criterion": "Cross-transcription gloss agreement no better than transcription identity",
+      "measured": "gloss agreement 0.909 against a 0.293 line-identity baseline",
+      "met": false
+    },
+    {
+      "criterion": "Multiple unrelated plaintext languages score equivalently",
+      "measured": "gated coverage spread 0.149 across 4 language models",
+      "met": true
+    },
+    {
+      "criterion": "Illustration congruence shows no signal above the permutation null",
+      "measured": "rendering 0.0902 bits at p = 0.001; untranslated types 0.2108 at p = 0.001",
+      "met": true
+    }
+  ],
+  "packages": {
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "pyyaml": "6.0.3",
+    "scipy": "1.18.0",
+    "vcat-data": "0.2.3"
+  },
+  "phase": 5,
+  "primary": "H1",
+  "seed": 20260819
+}

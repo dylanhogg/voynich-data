@@ -11,7 +11,7 @@ import pytest
 
 from translations.analysis.common import View
 from translations.calibrate import CALIBRATION_PATH, CalibrationMap, load_maps
-from translations.config import SPECULATIVE_BANNER
+from translations.config import FAILED_VALIDATION_BANNER, active_banner
 from translations.decode import CANDIDATES, RANKING, TRANSLATOR_CONFIG, keyed_hypotheses
 from translations.lexicon import whitakers
 from translations.phase4 import (
@@ -31,15 +31,22 @@ pytestmark = pytest.mark.skipif(
 
 
 @pytest.fixture(scope="module")
+def banner() -> str:
+    """The banner this run's own control verdict requires (plan §7.4)."""
+    verdict = json.loads((REPORTS / "coverage.json").read_text())
+    return active_banner(bool(verdict["validation_failed"]))
+
+
+@pytest.fixture(scope="module")
 def rows() -> list[dict]:
     """The committed translation rows."""
     return [json.loads(line) for line in LINES_JSONL.read_text().splitlines() if line.strip()]
 
 
-def test_every_manuscript_line_is_rendered(rows: list[dict]) -> None:
+def test_every_manuscript_line_is_rendered(rows: list[dict], banner: str) -> None:
     assert len(rows) == 4072
     assert all(row["english_speculative"] for row in rows if row["tokens"])
-    assert all(row["banner"] == SPECULATIVE_BANNER for row in rows)
+    assert all(row["banner"] == banner for row in rows)
 
 
 def test_gated_view_masks_everything_below_the_medium_band(rows: list[dict]) -> None:
@@ -69,24 +76,24 @@ def test_parquet_carries_every_keyed_hypothesis() -> None:
     assert len(frame) == 4072 * 5
 
 
-def test_lexicon_holds_the_candidates_the_rows_omit() -> None:
+def test_lexicon_holds_the_candidates_the_rows_omit(banner: str) -> None:
     entries = [json.loads(line) for line in LEXICON_PATH.read_text().splitlines() if line.strip()]
     assert entries
     assert all(
         {"voynich_type", "intermediate", "glosses", "support"} <= set(row) for row in entries
     )
-    assert all(row["banner"] == SPECULATIVE_BANNER for row in entries)
+    assert all(row["banner"] == banner for row in entries)
 
 
 @pytest.mark.parametrize("topic", ["coverage", "calibration"])
-def test_each_report_carries_the_banner(topic: str) -> None:
-    assert SPECULATIVE_BANNER in (REPORTS / f"{topic}.md").read_text()
-    assert json.loads((REPORTS / f"{topic}.json").read_text())["banner"] == SPECULATIVE_BANNER
+def test_each_report_carries_the_banner(topic: str, banner: str) -> None:
+    assert banner in (REPORTS / f"{topic}.md").read_text()
+    assert json.loads((REPORTS / f"{topic}.json").read_text())["banner"] == banner
 
 
-def test_folio_readings_repeat_the_banner_on_every_page() -> None:
+def test_folio_readings_repeat_the_banner_on_every_page(banner: str) -> None:
     text = (REPORTS / "folio_readings.md").read_text()
-    assert text.count("## f") == text.count(SPECULATIVE_BANNER) - 1  # one banner at the top
+    assert text.count("## f") == text.count(banner) - 1  # one banner at the top
 
 
 def test_coverage_report_leads_with_the_control_comparison() -> None:
@@ -132,7 +139,7 @@ def test_the_run_is_byte_stable() -> None:
     fitted = CalibrationMap("H1", (0.0, 1.0), (0.0, 1.0), 4, 1.0, 1.0, "latin", "substitution")
     runs = [
         [
-            line.as_dict(entry, SPECULATIVE_BANNER)
+            line.as_dict(entry, FAILED_VALIDATION_BANNER)
             for line in translate(
                 view, entry, GlossCache(lexicon), fitted, {}, {}, {}, random.Random(11)
             )

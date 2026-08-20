@@ -1,12 +1,12 @@
 # Phase 4 — Folio readings
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 Rendered under **H1** (`merged` / `clusius_rariorum-o3|plain`), which scored -5.771 bits/token against an order-2 Markov model of the manuscript — that is, it lost. Read `coverage.md` before reading a single line here.
 
 ## f1r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: text_only · Currier: A · hand: 1 · lines: 24
 
@@ -39,7 +39,7 @@ section: text_only · Currier: A · hand: 1 · lines: 24
 
 ## f1v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 10
 
@@ -58,7 +58,7 @@ section: herbal · Currier: A · hand: 1 · lines: 10
 
 ## f2r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 14
 
@@ -81,7 +81,7 @@ section: herbal · Currier: A · hand: 1 · lines: 14
 
 ## f2v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 8
 
@@ -98,7 +98,7 @@ section: herbal · Currier: A · hand: 1 · lines: 8
 
 ## f3r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 20
 
@@ -127,7 +127,7 @@ section: herbal · Currier: A · hand: 1 · lines: 20
 
 ## f3v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 14
 
@@ -150,7 +150,7 @@ section: herbal · Currier: A · hand: 1 · lines: 14
 
 ## f4r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -172,7 +172,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f4v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 14
 
@@ -195,7 +195,7 @@ section: herbal · Currier: A · hand: 1 · lines: 14
 
 ## f5r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 7
 
@@ -211,7 +211,7 @@ section: herbal · Currier: A · hand: 1 · lines: 7
 
 ## f5v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 6
 
@@ -226,7 +226,7 @@ section: herbal · Currier: A · hand: 1 · lines: 6
 
 ## f6r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 14
 
@@ -249,7 +249,7 @@ section: herbal · Currier: A · hand: 1 · lines: 14
 
 ## f6v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 21
 
@@ -279,7 +279,7 @@ section: herbal · Currier: A · hand: 1 · lines: 21
 
 ## f7r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 10
 
@@ -298,7 +298,7 @@ section: herbal · Currier: A · hand: 1 · lines: 10
 
 ## f7v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 9
 
@@ -316,7 +316,7 @@ section: herbal · Currier: A · hand: 1 · lines: 9
 
 ## f8r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 18
 
@@ -343,7 +343,7 @@ section: herbal · Currier: A · hand: 1 · lines: 18
 
 ## f8v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 17
 
@@ -369,7 +369,7 @@ section: herbal · Currier: A · hand: 1 · lines: 17
 
 ## f9r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 9
 
@@ -387,7 +387,7 @@ section: herbal · Currier: A · hand: 1 · lines: 9
 
 ## f9v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 12
 
@@ -408,7 +408,7 @@ section: herbal · Currier: A · hand: 1 · lines: 12
 
 ## f10r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 12
 
@@ -429,7 +429,7 @@ section: herbal · Currier: A · hand: 1 · lines: 12
 
 ## f10v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 7
 
@@ -445,7 +445,7 @@ section: herbal · Currier: A · hand: 1 · lines: 7
 
 ## f11r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 7
 
@@ -461,7 +461,7 @@ section: herbal · Currier: A · hand: 1 · lines: 7
 
 ## f11v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 7
 
@@ -477,7 +477,7 @@ section: herbal · Currier: A · hand: 1 · lines: 7
 
 ## f13r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 10
 
@@ -496,7 +496,7 @@ section: herbal · Currier: A · hand: 1 · lines: 10
 
 ## f13v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 10
 
@@ -515,7 +515,7 @@ section: herbal · Currier: A · hand: 1 · lines: 10
 
 ## f14r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -537,7 +537,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f14v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 9
 
@@ -555,7 +555,7 @@ section: herbal · Currier: A · hand: 1 · lines: 9
 
 ## f15r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 15
 
@@ -579,7 +579,7 @@ section: herbal · Currier: A · hand: 1 · lines: 15
 
 ## f15v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 12
 
@@ -600,7 +600,7 @@ section: herbal · Currier: A · hand: 1 · lines: 12
 
 ## f16r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 12
 
@@ -621,7 +621,7 @@ section: herbal · Currier: A · hand: 1 · lines: 12
 
 ## f16v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -643,7 +643,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f17r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 12
 
@@ -664,7 +664,7 @@ section: herbal · Currier: A · hand: 1 · lines: 12
 
 ## f17v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 23
 
@@ -696,7 +696,7 @@ section: herbal · Currier: A · hand: 1 · lines: 23
 
 ## f18r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -718,7 +718,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f18v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 10
 
@@ -737,7 +737,7 @@ section: herbal · Currier: A · hand: 1 · lines: 10
 
 ## f19r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -759,7 +759,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f19v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -781,7 +781,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f20r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -803,7 +803,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f20v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 11
 
@@ -823,7 +823,7 @@ section: herbal · Currier: A · hand: 1 · lines: 11
 
 ## f21r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 12
 
@@ -844,7 +844,7 @@ section: herbal · Currier: A · hand: 1 · lines: 12
 
 ## f21v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 8
 
@@ -861,7 +861,7 @@ section: herbal · Currier: A · hand: 1 · lines: 8
 
 ## f22r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -883,7 +883,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f22v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 15
 
@@ -907,7 +907,7 @@ section: herbal · Currier: A · hand: 1 · lines: 15
 
 ## f23r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 11
 
@@ -927,7 +927,7 @@ section: herbal · Currier: A · hand: 1 · lines: 11
 
 ## f23v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 12
 
@@ -948,7 +948,7 @@ section: herbal · Currier: A · hand: 1 · lines: 12
 
 ## f24r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 19
 
@@ -976,7 +976,7 @@ section: herbal · Currier: A · hand: 1 · lines: 19
 
 ## f24v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 16
 
@@ -1001,7 +1001,7 @@ section: herbal · Currier: A · hand: 1 · lines: 16
 
 ## f25r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 6
 
@@ -1016,7 +1016,7 @@ section: herbal · Currier: A · hand: 1 · lines: 6
 
 ## f25v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 7
 
@@ -1032,7 +1032,7 @@ section: herbal · Currier: A · hand: 1 · lines: 7
 
 ## f26r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 10
 
@@ -1051,7 +1051,7 @@ section: herbal · Currier: B · hand: 2 · lines: 10
 
 ## f26v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 9
 
@@ -1069,7 +1069,7 @@ section: herbal · Currier: B · hand: 2 · lines: 9
 
 ## f27r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 12
 
@@ -1090,7 +1090,7 @@ section: herbal · Currier: A · hand: 1 · lines: 12
 
 ## f27v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 8
 
@@ -1107,7 +1107,7 @@ section: herbal · Currier: A · hand: 1 · lines: 8
 
 ## f28r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 9
 
@@ -1125,7 +1125,7 @@ section: herbal · Currier: A · hand: 1 · lines: 9
 
 ## f28v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 8
 
@@ -1142,7 +1142,7 @@ section: herbal · Currier: A · hand: 1 · lines: 8
 
 ## f29r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 9
 
@@ -1160,7 +1160,7 @@ section: herbal · Currier: A · hand: 1 · lines: 9
 
 ## f29v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 12
 
@@ -1181,7 +1181,7 @@ section: herbal · Currier: A · hand: 1 · lines: 12
 
 ## f30r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -1203,7 +1203,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f30v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 11
 
@@ -1223,7 +1223,7 @@ section: herbal · Currier: A · hand: 1 · lines: 11
 
 ## f31r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 15
 
@@ -1247,7 +1247,7 @@ section: herbal · Currier: B · hand: 2 · lines: 15
 
 ## f31v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 11
 
@@ -1267,7 +1267,7 @@ section: herbal · Currier: B · hand: 2 · lines: 11
 
 ## f32r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 19
 
@@ -1295,7 +1295,7 @@ section: herbal · Currier: A · hand: 1 · lines: 19
 
 ## f32v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 11
 
@@ -1315,7 +1315,7 @@ section: herbal · Currier: A · hand: 1 · lines: 11
 
 ## f33r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 7
 
@@ -1331,7 +1331,7 @@ section: herbal · Currier: B · hand: 2 · lines: 7
 
 ## f33v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 11
 
@@ -1351,7 +1351,7 @@ section: herbal · Currier: B · hand: 2 · lines: 11
 
 ## f34r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 15
 
@@ -1375,7 +1375,7 @@ section: herbal · Currier: B · hand: 2 · lines: 15
 
 ## f34v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 11
 
@@ -1395,7 +1395,7 @@ section: herbal · Currier: B · hand: 2 · lines: 11
 
 ## f35r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 15
 
@@ -1419,7 +1419,7 @@ section: herbal · Currier: A · hand: 1 · lines: 15
 
 ## f35v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 21
 
@@ -1449,7 +1449,7 @@ section: herbal · Currier: A · hand: 1 · lines: 21
 
 ## f36r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 9
 
@@ -1467,7 +1467,7 @@ section: herbal · Currier: A · hand: 1 · lines: 9
 
 ## f36v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 14
 
@@ -1490,7 +1490,7 @@ section: herbal · Currier: A · hand: 1 · lines: 14
 
 ## f37r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 11
 
@@ -1510,7 +1510,7 @@ section: herbal · Currier: A · hand: 1 · lines: 11
 
 ## f37v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 23
 
@@ -1542,7 +1542,7 @@ section: herbal · Currier: A · hand: 1 · lines: 23
 
 ## f38r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 6
 
@@ -1557,7 +1557,7 @@ section: herbal · Currier: A · hand: 1 · lines: 6
 
 ## f38v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 8
 
@@ -1574,7 +1574,7 @@ section: herbal · Currier: A · hand: 1 · lines: 8
 
 ## f39r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 15
 
@@ -1598,7 +1598,7 @@ section: herbal · Currier: B · hand: 2 · lines: 15
 
 ## f39v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 14
 
@@ -1621,7 +1621,7 @@ section: herbal · Currier: B · hand: 2 · lines: 14
 
 ## f40r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 11
 
@@ -1641,7 +1641,7 @@ section: herbal · Currier: B · hand: 2 · lines: 11
 
 ## f40v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 18
 
@@ -1668,7 +1668,7 @@ section: herbal · Currier: B · hand: 2 · lines: 18
 
 ## f41r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 5 · lines: 11
 
@@ -1688,7 +1688,7 @@ section: herbal · Currier: B · hand: 5 · lines: 11
 
 ## f41v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 5 · lines: 7
 
@@ -1704,7 +1704,7 @@ section: herbal · Currier: B · hand: 5 · lines: 7
 
 ## f42r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 20
 
@@ -1733,7 +1733,7 @@ section: herbal · Currier: A · hand: 1 · lines: 20
 
 ## f42v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 15
 
@@ -1757,7 +1757,7 @@ section: herbal · Currier: A · hand: 1 · lines: 15
 
 ## f43r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 14
 
@@ -1780,7 +1780,7 @@ section: herbal · Currier: B · hand: 2 · lines: 14
 
 ## f43v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 16
 
@@ -1805,7 +1805,7 @@ section: herbal · Currier: B · hand: 2 · lines: 16
 
 ## f44r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 11
 
@@ -1825,7 +1825,7 @@ section: herbal · Currier: A · hand: 1 · lines: 11
 
 ## f44v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -1847,7 +1847,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f45r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 11
 
@@ -1867,7 +1867,7 @@ section: herbal · Currier: A · hand: 1 · lines: 11
 
 ## f45v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 11
 
@@ -1887,7 +1887,7 @@ section: herbal · Currier: A · hand: 1 · lines: 11
 
 ## f46r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 15
 
@@ -1911,7 +1911,7 @@ section: herbal · Currier: B · hand: 2 · lines: 15
 
 ## f46v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 12
 
@@ -1932,7 +1932,7 @@ section: herbal · Currier: B · hand: 2 · lines: 12
 
 ## f47r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 11
 
@@ -1952,7 +1952,7 @@ section: herbal · Currier: A · hand: 1 · lines: 11
 
 ## f47v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 14
 
@@ -1975,7 +1975,7 @@ section: herbal · Currier: A · hand: 1 · lines: 14
 
 ## f48r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 5 · lines: 7
 
@@ -1991,7 +1991,7 @@ section: herbal · Currier: B · hand: 5 · lines: 7
 
 ## f48v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 5 · lines: 11
 
@@ -2011,7 +2011,7 @@ section: herbal · Currier: B · hand: 5 · lines: 11
 
 ## f49r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 21
 
@@ -2041,7 +2041,7 @@ section: herbal · Currier: A · hand: 1 · lines: 21
 
 ## f49v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 52
 
@@ -2102,7 +2102,7 @@ section: herbal · Currier: A · hand: 1 · lines: 52
 
 ## f50r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 10
 
@@ -2121,7 +2121,7 @@ section: herbal · Currier: B · hand: 2 · lines: 10
 
 ## f50v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 11
 
@@ -2141,7 +2141,7 @@ section: herbal · Currier: B · hand: 2 · lines: 11
 
 ## f51r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 15
 
@@ -2165,7 +2165,7 @@ section: herbal · Currier: A · hand: 1 · lines: 15
 
 ## f51v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -2187,7 +2187,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f52r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 8
 
@@ -2204,7 +2204,7 @@ section: herbal · Currier: A · hand: 1 · lines: 8
 
 ## f52v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 14
 
@@ -2227,7 +2227,7 @@ section: herbal · Currier: A · hand: 1 · lines: 14
 
 ## f53r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 9
 
@@ -2245,7 +2245,7 @@ section: herbal · Currier: A · hand: 1 · lines: 9
 
 ## f53v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -2267,7 +2267,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f54r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 12
 
@@ -2288,7 +2288,7 @@ section: herbal · Currier: A · hand: 1 · lines: 12
 
 ## f54v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 16
 
@@ -2313,7 +2313,7 @@ section: herbal · Currier: A · hand: 1 · lines: 16
 
 ## f55r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 13
 
@@ -2335,7 +2335,7 @@ section: herbal · Currier: B · hand: 2 · lines: 13
 
 ## f55v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 2 · lines: 12
 
@@ -2356,7 +2356,7 @@ section: herbal · Currier: B · hand: 2 · lines: 12
 
 ## f56r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 19
 
@@ -2384,7 +2384,7 @@ section: herbal · Currier: A · hand: 1 · lines: 19
 
 ## f56v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 16
 
@@ -2409,7 +2409,7 @@ section: herbal · Currier: A · hand: 1 · lines: 16
 
 ## f57r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 5 · lines: 11
 
@@ -2429,7 +2429,7 @@ section: herbal · Currier: B · hand: 5 · lines: 11
 
 ## f57v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: cosmological · Currier: — · hand: 1 · lines: 5
 
@@ -2443,7 +2443,7 @@ section: cosmological · Currier: — · hand: 1 · lines: 5
 
 ## f58r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: A · hand: 3 · lines: 41
 
@@ -2493,7 +2493,7 @@ section: stars · Currier: A · hand: 3 · lines: 41
 
 ## f58v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: A · hand: 3 · lines: 38
 
@@ -2540,7 +2540,7 @@ section: stars · Currier: A · hand: 3 · lines: 38
 
 ## f65v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: — · hand: 3 · lines: 6
 
@@ -2555,7 +2555,7 @@ section: herbal · Currier: — · hand: 3 · lines: 6
 
 ## f66r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: text_only · Currier: B · hand: 5 · lines: 81
 
@@ -2645,7 +2645,7 @@ section: text_only · Currier: B · hand: 5 · lines: 81
 
 ## f66v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 5 · lines: 13
 
@@ -2667,7 +2667,7 @@ section: herbal · Currier: B · hand: 5 · lines: 13
 
 ## f67r1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: astronomical · Currier: — · hand: 4 · lines: 4
 
@@ -2680,7 +2680,7 @@ section: astronomical · Currier: — · hand: 4 · lines: 4
 
 ## f67r2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: astronomical · Currier: — · hand: 4 · lines: 12
 
@@ -2701,7 +2701,7 @@ section: astronomical · Currier: — · hand: 4 · lines: 12
 
 ## f67v1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: astronomical · Currier: — · hand: 4 · lines: 1
 
@@ -2711,7 +2711,7 @@ section: astronomical · Currier: — · hand: 4 · lines: 1
 
 ## f68r1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: astronomical · Currier: — · hand: 4 · lines: 4
 
@@ -2724,7 +2724,7 @@ section: astronomical · Currier: — · hand: 4 · lines: 4
 
 ## f68r2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: astronomical · Currier: — · hand: 4 · lines: 5
 
@@ -2738,7 +2738,7 @@ section: astronomical · Currier: — · hand: 4 · lines: 5
 
 ## f68v2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: astronomical · Currier: — · hand: 4 · lines: 5
 
@@ -2752,7 +2752,7 @@ section: astronomical · Currier: — · hand: 4 · lines: 5
 
 ## f68v3
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: cosmological · Currier: — · hand: 4 · lines: 6
 
@@ -2767,7 +2767,7 @@ section: cosmological · Currier: — · hand: 4 · lines: 6
 
 ## f69r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: cosmological · Currier: — · hand: 4 · lines: 11
 
@@ -2787,7 +2787,7 @@ section: cosmological · Currier: — · hand: 4 · lines: 11
 
 ## f70r2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: cosmological · Currier: — · hand: 4 · lines: 14
 
@@ -2810,7 +2810,7 @@ section: cosmological · Currier: — · hand: 4 · lines: 14
 
 ## f75r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 46
 
@@ -2865,7 +2865,7 @@ section: biological · Currier: B · hand: 2 · lines: 46
 
 ## f75v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 39
 
@@ -2913,7 +2913,7 @@ section: biological · Currier: B · hand: 2 · lines: 39
 
 ## f76r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: text_only · Currier: B · hand: 2 · lines: 56
 
@@ -2978,7 +2978,7 @@ section: text_only · Currier: B · hand: 2 · lines: 56
 
 ## f76v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 41
 
@@ -3028,7 +3028,7 @@ section: biological · Currier: B · hand: 2 · lines: 41
 
 ## f77r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 40
 
@@ -3077,7 +3077,7 @@ section: biological · Currier: B · hand: 2 · lines: 40
 
 ## f77v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 37
 
@@ -3123,7 +3123,7 @@ section: biological · Currier: B · hand: 2 · lines: 37
 
 ## f78r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 41
 
@@ -3173,7 +3173,7 @@ section: biological · Currier: B · hand: 2 · lines: 41
 
 ## f78v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 32
 
@@ -3214,7 +3214,7 @@ section: biological · Currier: B · hand: 2 · lines: 32
 
 ## f79r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 44
 
@@ -3267,7 +3267,7 @@ section: biological · Currier: B · hand: 2 · lines: 44
 
 ## f79v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 42
 
@@ -3318,7 +3318,7 @@ section: biological · Currier: B · hand: 2 · lines: 42
 
 ## f80r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 43
 
@@ -3370,7 +3370,7 @@ section: biological · Currier: B · hand: 2 · lines: 43
 
 ## f80v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 44
 
@@ -3423,7 +3423,7 @@ section: biological · Currier: B · hand: 2 · lines: 44
 
 ## f81r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 31
 
@@ -3463,7 +3463,7 @@ section: biological · Currier: B · hand: 2 · lines: 31
 
 ## f81v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 27
 
@@ -3499,7 +3499,7 @@ section: biological · Currier: B · hand: 2 · lines: 27
 
 ## f82r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 31
 
@@ -3539,7 +3539,7 @@ section: biological · Currier: B · hand: 2 · lines: 31
 
 ## f82v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 34
 
@@ -3582,7 +3582,7 @@ section: biological · Currier: B · hand: 2 · lines: 34
 
 ## f83r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 44
 
@@ -3635,7 +3635,7 @@ section: biological · Currier: B · hand: 2 · lines: 44
 
 ## f83v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 31
 
@@ -3675,7 +3675,7 @@ section: biological · Currier: B · hand: 2 · lines: 31
 
 ## f84r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 34
 
@@ -3718,7 +3718,7 @@ section: biological · Currier: B · hand: 2 · lines: 34
 
 ## f84v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: biological · Currier: B · hand: 2 · lines: 41
 
@@ -3768,7 +3768,7 @@ section: biological · Currier: B · hand: 2 · lines: 41
 
 ## f85r1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: text_only · Currier: B · hand: 2 · lines: 33
 
@@ -3810,7 +3810,7 @@ section: text_only · Currier: B · hand: 2 · lines: 33
 
 ## f86v3
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: cosmological · Currier: B · hand: 2 · lines: 8
 
@@ -3827,7 +3827,7 @@ section: cosmological · Currier: B · hand: 2 · lines: 8
 
 ## f86v4
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: cosmological · Currier: B · hand: 2 · lines: 4
 
@@ -3840,7 +3840,7 @@ section: cosmological · Currier: B · hand: 2 · lines: 4
 
 ## f86v5
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: text_only · Currier: B · hand: 2 · lines: 38
 
@@ -3887,7 +3887,7 @@ section: text_only · Currier: B · hand: 2 · lines: 38
 
 ## f86v6
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: text_only · Currier: B · hand: 2 · lines: 45
 
@@ -3941,7 +3941,7 @@ section: text_only · Currier: B · hand: 2 · lines: 45
 
 ## f87r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 16
 
@@ -3966,7 +3966,7 @@ section: herbal · Currier: A · hand: 1 · lines: 16
 
 ## f87v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 16
 
@@ -3991,7 +3991,7 @@ section: herbal · Currier: A · hand: 1 · lines: 16
 
 ## f88r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 16
 
@@ -4016,7 +4016,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 16
 
 ## f88v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 17
 
@@ -4042,7 +4042,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 17
 
 ## f89r1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 14
 
@@ -4065,7 +4065,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 14
 
 ## f89r2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 14
 
@@ -4088,7 +4088,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 14
 
 ## f89v1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 16
 
@@ -4113,7 +4113,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 16
 
 ## f89v2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 12
 
@@ -4134,7 +4134,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 12
 
 ## f90r1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 8
 
@@ -4151,7 +4151,7 @@ section: herbal · Currier: A · hand: 1 · lines: 8
 
 ## f90r2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 6
 
@@ -4166,7 +4166,7 @@ section: herbal · Currier: A · hand: 1 · lines: 6
 
 ## f90v1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 11
 
@@ -4186,7 +4186,7 @@ section: herbal · Currier: A · hand: 1 · lines: 11
 
 ## f90v2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 8
 
@@ -4203,7 +4203,7 @@ section: herbal · Currier: A · hand: 1 · lines: 8
 
 ## f93r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 32
 
@@ -4244,7 +4244,7 @@ section: herbal · Currier: A · hand: 1 · lines: 32
 
 ## f93v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 10
 
@@ -4263,7 +4263,7 @@ section: herbal · Currier: A · hand: 1 · lines: 10
 
 ## f94r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 3 · lines: 8
 
@@ -4280,7 +4280,7 @@ section: herbal · Currier: B · hand: 3 · lines: 8
 
 ## f94v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 3 · lines: 12
 
@@ -4301,7 +4301,7 @@ section: herbal · Currier: B · hand: 3 · lines: 12
 
 ## f95r1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 3 · lines: 11
 
@@ -4321,7 +4321,7 @@ section: herbal · Currier: B · hand: 3 · lines: 11
 
 ## f95r2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 3 · lines: 9
 
@@ -4339,7 +4339,7 @@ section: herbal · Currier: B · hand: 3 · lines: 9
 
 ## f95v1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 3 · lines: 13
 
@@ -4361,7 +4361,7 @@ section: herbal · Currier: B · hand: 3 · lines: 13
 
 ## f95v2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: B · hand: 3 · lines: 7
 
@@ -4377,7 +4377,7 @@ section: herbal · Currier: B · hand: 3 · lines: 7
 
 ## f96r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -4399,7 +4399,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f96v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: herbal · Currier: A · hand: 1 · lines: 13
 
@@ -4421,7 +4421,7 @@ section: herbal · Currier: A · hand: 1 · lines: 13
 
 ## f99r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 18
 
@@ -4448,7 +4448,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 18
 
 ## f99v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 19
 
@@ -4476,7 +4476,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 19
 
 ## f100r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 10
 
@@ -4495,7 +4495,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 10
 
 ## f100v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 9
 
@@ -4513,7 +4513,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 9
 
 ## f101r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 10
 
@@ -4532,7 +4532,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 10
 
 ## f101v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 9
 
@@ -4550,7 +4550,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 9
 
 ## f102r1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 13
 
@@ -4572,7 +4572,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 13
 
 ## f102r2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 15
 
@@ -4596,7 +4596,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 15
 
 ## f102v1
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 14
 
@@ -4619,7 +4619,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 14
 
 ## f102v2
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: pharmaceutical · Currier: A · hand: 1 · lines: 17
 
@@ -4645,7 +4645,7 @@ section: pharmaceutical · Currier: A · hand: 1 · lines: 17
 
 ## f103r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 54
 
@@ -4708,7 +4708,7 @@ section: stars · Currier: B · hand: 3 · lines: 54
 
 ## f103v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 46
 
@@ -4763,7 +4763,7 @@ section: stars · Currier: B · hand: 3 · lines: 46
 
 ## f104r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 45
 
@@ -4817,7 +4817,7 @@ section: stars · Currier: B · hand: 3 · lines: 45
 
 ## f104v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 44
 
@@ -4870,7 +4870,7 @@ section: stars · Currier: B · hand: 3 · lines: 44
 
 ## f105r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 35
 
@@ -4914,7 +4914,7 @@ section: stars · Currier: B · hand: 3 · lines: 35
 
 ## f105v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 38
 
@@ -4961,7 +4961,7 @@ section: stars · Currier: B · hand: 3 · lines: 38
 
 ## f106r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 47
 
@@ -5017,7 +5017,7 @@ section: stars · Currier: B · hand: 3 · lines: 47
 
 ## f106v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 47
 
@@ -5073,7 +5073,7 @@ section: stars · Currier: B · hand: 3 · lines: 47
 
 ## f107r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 51
 
@@ -5133,7 +5133,7 @@ section: stars · Currier: B · hand: 3 · lines: 51
 
 ## f107v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 49
 
@@ -5191,7 +5191,7 @@ section: stars · Currier: B · hand: 3 · lines: 49
 
 ## f108r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 50
 
@@ -5250,7 +5250,7 @@ section: stars · Currier: B · hand: 3 · lines: 50
 
 ## f108v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 52
 
@@ -5311,7 +5311,7 @@ section: stars · Currier: B · hand: 3 · lines: 52
 
 ## f111r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 54
 
@@ -5374,7 +5374,7 @@ section: stars · Currier: B · hand: 3 · lines: 54
 
 ## f111v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 51
 
@@ -5434,7 +5434,7 @@ section: stars · Currier: B · hand: 3 · lines: 51
 
 ## f112r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 45
 
@@ -5488,7 +5488,7 @@ section: stars · Currier: B · hand: 3 · lines: 45
 
 ## f112v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 47
 
@@ -5544,7 +5544,7 @@ section: stars · Currier: B · hand: 3 · lines: 47
 
 ## f113r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 51
 
@@ -5604,7 +5604,7 @@ section: stars · Currier: B · hand: 3 · lines: 51
 
 ## f113v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 49
 
@@ -5662,7 +5662,7 @@ section: stars · Currier: B · hand: 3 · lines: 49
 
 ## f114r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 44
 
@@ -5715,7 +5715,7 @@ section: stars · Currier: B · hand: 3 · lines: 44
 
 ## f114v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 41
 
@@ -5765,7 +5765,7 @@ section: stars · Currier: B · hand: 3 · lines: 41
 
 ## f115r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: @ · lines: 45
 
@@ -5819,7 +5819,7 @@ section: stars · Currier: B · hand: @ · lines: 45
 
 ## f115v
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 45
 
@@ -5873,7 +5873,7 @@ section: stars · Currier: B · hand: 3 · lines: 45
 
 ## f116r
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 section: stars · Currier: B · hand: 3 · lines: 50
 

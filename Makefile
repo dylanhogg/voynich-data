@@ -50,6 +50,12 @@ translate:
 	uv run python -m translations.phase4
 	uv run python -m validators.validate_translation_outputs
 
+audit:
+	# Phase 5 adversarial self-audit -> reports/translation/strengths_weaknesses.md
+	# (re-searches every keyed hypothesis under fresh seeds and perturbed
+	#  training subsets; budgeted, ~1 h at current settings, ceiling 2 h)
+	uv run python -m translations.phase5
+
 quick-analysis:
 	uv run python scripts/quick_analysis.py
 

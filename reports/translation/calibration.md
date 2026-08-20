@@ -1,6 +1,6 @@
 # Phase 4 — Confidence calibration
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 ## Method
 

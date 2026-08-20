@@ -22,7 +22,8 @@ make decipher    # Phase 2 hypothesis search -> reports/phase2/ (budgeted, ~40 m
 make analyse2    # Phase 3 gap remediation + round 2 + re-scoring -> reports/phase3/ (~2 h)
 make calibrate   # Phase 4 confidence calibration on synthetic ciphertexts (~2 min)
 make translate   # Phase 4 translation pipeline -> output/translation/ + reports/translation/ (~35 s)
-make test        # pytest (expect ~601 passed, 7 skipped)
+make audit       # Phase 5 adversarial self-audit -> reports/translation/strengths_weaknesses.md (~9 min)
+make test        # pytest (expect ~616 passed, 7 skipped)
 make notebook    # jupyter lab
 ```
 
@@ -51,7 +52,7 @@ Python 3.11+. Prefer `uv run <cmd>` over activating the venv.
 | `reports/phase1/` | Phase 1 outputs: one `.md` + `.json` per topic, `summary.md`, landmark gate |
 | `reports/phase2/` | Phase 2 outputs: `hypothesis_scores.md`, `approach.md`, `synthetic_validation.md` |
 | `reports/phase3/` | Phase 3 outputs: `gap_analysis.md`, `round2_findings.md`, `rescoring.md`, plus the round-2 topic reports |
-| `reports/translation/` | Phase 4 outputs: `coverage.md` (read first), `calibration.md`, `folio_readings.md` |
+| `reports/translation/` | Phase 4–5 outputs: `strengths_weaknesses.md` (read first), `coverage.md`, `calibration.md`, `folio_readings.md` |
 | `plans/` | Multi-phase work plans; `001_...md` carries the phase status table |
 | `schemas/`, `docs/`, `notebooks/`, `scripts/`, `tests/` | as named |
 
@@ -171,14 +172,19 @@ checksum-verified non-Voynich baselines with sample-size matching, and
 `search`, `generative`, `priors`, `stats`, `budget`, `anchors`, `synthetic`).
 Held-out pages (`StratumRow.is_holdout`) must not feed any key search.
 
-**Phase 4 results live in `reports/translation/`** (`coverage.md` first — it opens with the
-pseudo-Voynich control, which is the whole verdict). The pipeline renders all 4,072 lines
+**The programme's verdict: the decipherment attempt is declared unsuccessful**
+(`reports/translation/strengths_weaknesses.md`, Decision 30). Four of the five kill criteria
+plan 001 §7.4 agreed *in advance* are met. **The `grille` pseudo-Voynich control renders
+75.1% of tokens against the manuscript's 61.1%** — a corpus that encodes nothing translates
+*better* (Decision 29). Every artifact carries a banner saying so. Never quote a rendering
+without that number, and never quote a single-token reading at all: re-running the key search
+with a different seed changes seven tokens in ten (Decision 33).
+
+**Phase 4 results live in `reports/translation/`** (`coverage.md` — it opens with the
+pseudo-Voynich control). The pipeline renders all 4,072 lines
 under five keyed hypotheses into `output/translation/translation_lines.jsonl` (primary,
 with per-token trace), `.parquet` (all five, line level) and `lexicon.jsonl` (type ->
-ranked glosses). `docs/translation_method.md` is the method. **The `grille` pseudo-Voynich
-control renders 75.1% of tokens against the manuscript's 61.1%** — a corpus that encodes
-nothing translates *better* — so under the plan's own pre-committed criterion the output
-carries no evidential weight (Decision 29). Never quote a rendering without that number.
+ranked glosses). `docs/translation_method.md` is the method.
 
 Phase 4 modules: `translations.decode` (a committed key plus its channel -> intermediate
 plaintext), `translations.lexicon.whitakers` (48k Latin stems -> English senses),
@@ -188,6 +194,20 @@ maps), `translations.pipeline` (scoring, the 20-key random-key null, per-token
 confidence), `translations.render` (confidence bands, `english_speculative` /
 `english_gated`). Validate artifacts with
 `uv run python -m validators.validate_translation_outputs`.
+
+**Phase 5 results live in `reports/translation/strengths_weaknesses.md`** — read it before
+anything else in that directory. `translations.audit` holds the battery: `common` (the
+harness — one loaded pipeline re-run over whatever view a test hands it, plus `Finding` /
+`Check`), `strength` (§7.1: synthetic ceiling, held-out permutation, ZL↔IT gloss agreement,
+gloss collapse, illustration congruence against the *untranslated* types, English-LM
+plausibility, blocked anchors) and `weakness` (§7.2: pseudo-Voynich, shuffled input, rival
+languages, key instability under fresh seeds and perturbed subsets, ablations, known-weak
+zones, coverage honesty). `translations.phase5` scores the §7.4 kill criteria and writes the
+report. Two rules the audit established and new work must respect: reproduce a committed
+rendering by passing `translations.phase4.render_salt(...)` to `Harness.render`, or you will
+report numbers the artifacts do not have; and measure any "the translation shows X" claim
+against the same statistic on the untranslated types, since glossing is a deterministic
+many-to-one map and can only lose structure (Decision 32).
 
 Phase 3 adds four things worth reaching for before writing new code:
 `translations.alignment` (ZL↔IT token alignment and the per-token reliability

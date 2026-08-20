@@ -19,6 +19,21 @@ SPECULATIVE_BANNER = (
     "the manuscript."
 )
 
+# Plan §7.4: meeting a kill criterion does not withdraw the artifacts, it
+# re-frames them. Both strings start with "SPECULATIVE OUTPUT" so the schema
+# and every downstream banner check keep working.
+FAILED_VALIDATION_BANNER = (
+    "SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED "
+    "VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes "
+    "nothing, at least as well as it renders the manuscript (plan §7.4). This is "
+    "model output, not a reading of the manuscript."
+)
+
+
+def active_banner(failed_validation: bool) -> str:
+    """The banner an artifact must carry, given whether validation failed."""
+    return FAILED_VALIDATION_BANNER if failed_validation else SPECULATIVE_BANNER
+
 
 class Tokenizer(StrEnum):
     """Tokenization variants (plan §2.3).
@@ -108,6 +123,14 @@ class Config:
     # A token whose reliability weight falls below this is dropped from the
     # "reliable" representation (plan §5.2.6).
     reliability_floor: float = 0.5
+    # Phase 5 audit (plan §7). The key-instability battery re-searches every
+    # keyed hypothesis under fresh seeds and under perturbed training subsets;
+    # the ceiling truncates the battery rather than the run.
+    audit_seeds: int = 6
+    audit_subsets: int = 3
+    audit_subset_fraction: float = 0.8
+    audit_permutations: int = 1000
+    audit_budget_seconds: float = 7200.0
     # Gallows glyphs, and the compounds built on them (plan §3.4).
     gallows: tuple[str, ...] = ("k", "t", "p", "f", "cth", "ckh", "cph", "cfh")
 

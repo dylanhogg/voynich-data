@@ -26,7 +26,7 @@ import pandas as pd
 from translations import alignment, paragraphs
 from translations.analysis.common import View, grille_view, selfcite_view, voynich_view
 from translations.calibrate import CALIBRATION_PATH, CalibrationMap, load_maps
-from translations.config import CONFIG, PATHS, SPECULATIVE_BANNER
+from translations.config import CONFIG, PATHS, active_banner
 from translations.decode import CANDIDATES, RANKING, TRANSLATOR_CONFIG, KeyedHypothesis
 from translations.decode import keyed_hypotheses as load_keyed
 from translations.determinism import derived_rng, sha256_file, write_manifest
@@ -54,6 +54,22 @@ CONTROLS: dict[str, Callable[[View], View]] = {
     "selfcite": lambda base: selfcite_view(base, derived_rng("phase4-selfcite")),
 }
 STRATA_FIELDS = ("section", "currier_language", "line_type", "hand")
+
+# Plan §7.2.1 / §7.4: if a corpus that encodes nothing renders at least as well
+# as the manuscript, the artifacts stay but their framing changes. Phase 4 runs
+# that test itself, so `make translate` alone stamps the honest banner; Phase 5
+# re-checks it alongside the other four kill criteria.
+KILL_RATIO = 1.0
+
+
+def render_salt(hypothesis_id: str, view: str) -> str:
+    """The RNG salt one rendering uses.
+
+    Phase 5 re-runs the same renderings to audit them, and the null-key draw is
+    seeded from this string, so the salt has to be shared rather than spelled
+    out twice — otherwise the audit reports numbers the artifacts do not have.
+    """
+    return f"phase4-{hypothesis_id}-{view}"
 
 
 def summarise(lines: list[TranslatedLine]) -> dict[str, float]:
@@ -113,7 +129,7 @@ def render_all(
                 weights if name == "real" else {},
                 blocks,
                 text,
-                derived_rng(f"phase4-{entry.hypothesis_id}-{name}"),
+                derived_rng(render_salt(entry.hypothesis_id, name)),
             )
             logger.info(
                 "Rendered",
@@ -177,11 +193,19 @@ def controls_topic(
     return section, {"controls": rows, "control_ratio": ratio, "verdict": verdict}
 
 
+def validation_failed(
+    renderings: dict[tuple[str, str], list[TranslatedLine]], primary: str
+) -> bool:
+    """Did the pseudo-Voynich control render at least as well as the manuscript?"""
+    return bool(controls_topic(renderings, primary)[1]["control_ratio"] >= KILL_RATIO)
+
+
 def coverage_topic(
     renderings: dict[tuple[str, str], list[TranslatedLine]],
     keyed: list[KeyedHypothesis],
     maps: dict[str, CalibrationMap],
     lexicon_rows: list[dict[str, Any]],
+    banner: str,
 ) -> Topic:
     """`reports/translation/coverage.md` — how much of this is worth reading."""
     primary = keyed[0].hypothesis_id
@@ -320,8 +344,17 @@ def coverage_topic(
                 ["Pseudo-Voynich control run and included", "yes, above"],
                 ["Banner present in every artifact and every report", "yes"],
                 ["Determinism test green", "`tests/translations/test_phase4.py`"],
+                [
+                    "Framing under plan §7.4",
+                    (
+                        "**failed validation** — artifacts re-bannered"
+                        if control_data["control_ratio"] >= KILL_RATIO
+                        else "control passed; standard speculative banner"
+                    ),
+                ],
             ],
-        ),
+        )
+        + f"\n\nEvery artifact written by this run carries:\n\n> {banner}",
     ]
     return Topic(
         topic="coverage",
@@ -334,6 +367,8 @@ def coverage_topic(
             "splits": splits,
             "strata": strata,
             "fallback": fallback,
+            "banner": banner,
+            "validation_failed": control_data["control_ratio"] >= KILL_RATIO,
             **control_data,
         },
     )
@@ -403,7 +438,7 @@ def calibration_topic(maps: dict[str, CalibrationMap]) -> Topic:
     )
 
 
-def folio_readings(lines: list[TranslatedLine], hypothesis: KeyedHypothesis) -> str:
+def folio_readings(lines: list[TranslatedLine], hypothesis: KeyedHypothesis, banner: str) -> str:
     """Page-by-page rendering, banner at the top of every page section."""
     pages: dict[str, list[TranslatedLine]] = {}
     for line in lines:
@@ -411,7 +446,7 @@ def folio_readings(lines: list[TranslatedLine], hypothesis: KeyedHypothesis) -> 
 
     parts = [
         "# Phase 4 — Folio readings",
-        banner_markdown(),
+        banner_markdown(banner),
         f"Rendered under **{hypothesis.hypothesis_id}** "
         f"(`{hypothesis.representation}` / `{hypothesis.variant}`), which scored "
         f"{hypothesis.gain_per_token:.3f} bits/token against an order-2 Markov model of the "
@@ -420,7 +455,7 @@ def folio_readings(lines: list[TranslatedLine], hypothesis: KeyedHypothesis) -> 
     for page_id, rows in pages.items():
         first = rows[0]
         parts.append(
-            f"## {page_id}\n\n{banner_markdown()}\n\n"
+            f"## {page_id}\n\n{banner_markdown(banner)}\n\n"
             f"section: {first.section or '—'} · Currier: {first.currier_language or '—'} · "
             f"hand: {first.hand or '—'} · lines: {len(rows)}\n\n"
             + table(
@@ -435,7 +470,7 @@ def folio_readings(lines: list[TranslatedLine], hypothesis: KeyedHypothesis) -> 
 
 
 def lexicon_rows(
-    renderings: dict[tuple[str, str], list[TranslatedLine]], primary: str
+    renderings: dict[tuple[str, str], list[TranslatedLine]], primary: str, banner: str
 ) -> list[dict[str, Any]]:
     """Voynich type -> ranked glosses, with support counts and provenance."""
     counts: Counter[str] = Counter()
@@ -455,7 +490,7 @@ def lexicon_rows(
                 },
             )
     return [
-        {**detail[form], "support": count, "banner": SPECULATIVE_BANNER}
+        {**detail[form], "support": count, "banner": banner}
         for form, count in sorted(counts.items())
     ]
 
@@ -464,6 +499,7 @@ def write_artifacts(
     renderings: dict[tuple[str, str], list[TranslatedLine]],
     keyed: list[KeyedHypothesis],
     entries: list[dict[str, Any]],
+    banner: str,
 ) -> dict[str, int]:
     """Write the JSONL, parquet, lexicon and checksum artifacts."""
     primary = keyed[0]
@@ -471,14 +507,10 @@ def write_artifacts(
 
     with LINES_JSONL.open("w") as handle:
         for line in renderings[(primary.hypothesis_id, "real")]:
-            handle.write(json.dumps(line.as_dict(primary, SPECULATIVE_BANNER)) + "\n")
+            handle.write(json.dumps(line.as_dict(primary, banner)) + "\n")
 
     flat = [
-        {
-            key: value
-            for key, value in line.as_dict(entry, SPECULATIVE_BANNER).items()
-            if key != "tokens"
-        }
+        {key: value for key, value in line.as_dict(entry, banner).items() if key != "tokens"}
         | {"n_tokens": len(line.tokens), "gated_coverage": _gated_share(line)}
         for entry in keyed
         for line in renderings[(entry.hypothesis_id, "real")]
@@ -530,15 +562,17 @@ def main() -> int:
     renderings = render_all(views, keyed, maps, cache)
 
     primary = keyed[0]
-    entries = lexicon_rows(renderings, primary.hypothesis_id)
-    written = write_artifacts(renderings, keyed, entries)
+    failed = validation_failed(renderings, primary.hypothesis_id)
+    banner = active_banner(failed)
+    entries = lexicon_rows(renderings, primary.hypothesis_id, banner)
+    written = write_artifacts(renderings, keyed, entries, banner)
 
-    topics = [coverage_topic(renderings, keyed, maps, entries), calibration_topic(maps)]
+    topics = [coverage_topic(renderings, keyed, maps, entries, banner), calibration_topic(maps)]
     for topic in topics:
-        write_report(REPORTS, topic.topic, topic.title, topic.sections, topic.data)
+        write_report(REPORTS, topic.topic, topic.title, topic.sections, topic.data, banner)
     REPORTS.mkdir(parents=True, exist_ok=True)
     (REPORTS / "folio_readings.md").write_text(
-        folio_readings(renderings[(primary.hypothesis_id, "real")], primary)
+        folio_readings(renderings[(primary.hypothesis_id, "real")], primary, banner)
     )
 
     write_manifest(
@@ -547,6 +581,8 @@ def main() -> int:
         extra={
             "phase": 4,
             "primary": primary.hypothesis_id,
+            "validation_failed": failed,
+            "banner": banner,
             "representation": provenance,
             "hypotheses": [
                 {

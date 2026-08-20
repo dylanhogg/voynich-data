@@ -1,12 +1,14 @@
-# Translation method (plan 001, Phase 4)
+# Translation method (plan 001, Phases 4–5)
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists.
-> Everything this document describes is model output under a stated hypothesis, not a
-> reading of the manuscript. Nothing produced by this pipeline is published.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION.
+> Everything this document describes is model output, not a reading of the manuscript.
+> Nothing produced by this pipeline is published.**
 
 This is the method behind `output/translation/translation_lines.jsonl` and
-`reports/translation/`. Read `reports/translation/coverage.md` first: it opens with the
-control comparison that tells you how much of this to believe.
+`reports/translation/`. Read `reports/translation/strengths_weaknesses.md` first: it is the
+Phase 5 audit, and it declares the decipherment attempt **unsuccessful** on 4 of the 5 kill
+criteria plan 001 §7.4 agreed in advance (Decision 30). `coverage.md` is next, for the
+control comparison that drives the verdict.
 
 ## The short version
 
@@ -109,17 +111,40 @@ The §6.6 gate requires the pseudo-Voynich control, and it is the first thing
 autocopying) are built from the manuscript's own statistics, matched in token count, and
 encode nothing. The identical pipeline, key and lexicon run over them.
 
+`grille` renders 75.1% of tokens against the manuscript's 61.1%, so the pipeline fails its
+own decisive test. Phase 4 acts on that itself: `translations.config.active_banner()` returns
+one of two banner strings, and Phase 4 picks the failed-validation one whenever the control
+ratio reaches 1.0. Both strings begin with `SPECULATIVE OUTPUT`, so the JSON schema is
+unchanged; the validator checks that the banner on disk matches the verdict recorded in
+`coverage.json` (Decision 31).
+
+## The audit
+
+Phase 5 (`make audit`, `translations/audit/`) re-runs this pipeline over everything that
+should change the answer and everything that should not: fresh key searches under six seeds
+and three perturbed training subsets, four rival plaintext languages, eight ablations, ZL
+against IT, shuffled surrogates, and page-level illustration congruence measured against the
+*untranslated* types. `reports/translation/strengths_weaknesses.md` holds the results and the
+kill-criteria table. Two of its findings bear directly on how this method may be quoted: the
+key is not identified — re-searching changes seven tokens in ten (Decision 33) — and where the
+two transcriptions disagree, so do the glosses, four times in five (Decision 34).
+
 ## Reproducing
 
 ```bash
 make calibrate   # blind search on synthetic ciphertext -> output/translation/calibration.json
 make translate   # the pipeline + validators -> output/translation/, reports/translation/
+make audit       # the Phase 5 self-audit -> reports/translation/strengths_weaknesses.md
 ```
 
-Both are offline, CPU-only and deterministic: two runs produce byte-identical artifacts,
+All three are offline, CPU-only and deterministic: two runs produce byte-identical artifacts,
 asserted in `tests/translations/test_phase4.py`. Seeds, config hash, git commit, package
-versions and input checksums are in `output/translation/phase4_manifest.json`, which
-carries no wall-clock field by design.
+versions and input checksums are in `output/translation/phase4_manifest.json` and
+`phase5_manifest.json`, neither of which carries a wall-clock field, by design.
+
+Reproducing a committed rendering from your own code needs its seed: pass
+`translations.phase4.render_salt(hypothesis_id, view)` to the pipeline, or the random-key
+null draws differently and you will report numbers the artifacts do not have.
 
 ## What would change the verdict
 
@@ -128,4 +153,5 @@ loses to a Markov model, and the control shows it renders gibberish at least as 
 as it renders the manuscript. What would change the verdict is a hypothesis that beats its
 surrogates in Phase 2/3 terms, or an anchor catalogue — an illustration↔label concordance
 or a defensible marginalia reading — that ties a rendering to something outside the text.
-Both remain open; see `reports/phase3/gap_analysis.md`.
+Both remain open; see `reports/phase3/gap_analysis.md`, and
+`reports/translation/strengths_weaknesses.md` for the falsification conditions in full.

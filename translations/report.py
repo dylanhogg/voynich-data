@@ -21,9 +21,9 @@ class Topic:
     data: dict[str, Any]
 
 
-def banner_markdown() -> str:
+def banner_markdown(banner: str = SPECULATIVE_BANNER) -> str:
     """The mandatory banner, as a markdown blockquote."""
-    return f"> **{SPECULATIVE_BANNER}**"
+    return f"> **{banner}**"
 
 
 def table(headers: Sequence[str], rows: Sequence[Sequence[Any]]) -> str:
@@ -64,18 +64,23 @@ def _json_safe(value: Any) -> Any:
 
 
 def write_report(
-    directory: Path, topic: str, title: str, sections: list[str], data: dict[str, Any]
+    directory: Path,
+    topic: str,
+    title: str,
+    sections: list[str],
+    data: dict[str, Any],
+    banner: str = SPECULATIVE_BANNER,
 ) -> tuple[Path, Path]:
     """Write ``<topic>.md`` and ``<topic>.json`` with the banner attached."""
     directory.mkdir(parents=True, exist_ok=True)
     md_path = directory / f"{topic}.md"
     json_path = directory / f"{topic}.json"
 
-    body = "\n\n".join([f"# {title}", banner_markdown(), *sections])
+    body = "\n\n".join([f"# {title}", banner_markdown(banner), *sections])
     md_path.write_text(body.rstrip() + "\n")
     json_path.write_text(
         json.dumps(
-            {"banner": SPECULATIVE_BANNER, "topic": topic, **data},
+            {"banner": banner, "topic": topic, **data},
             indent=2,
             sort_keys=True,
             default=_json_safe,

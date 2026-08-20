@@ -11,7 +11,8 @@ Usage:
 
 Checks performed:
     1. Schema validation of translation_lines.jsonl
-    2. Banner present on every row and every report
+    2. Banner present on every row and every report, and it is the banner the
+       run's own pseudo-Voynich verdict requires (plan §7.4)
     3. Coverage: one row per manuscript line, no line silently dropped
     4. Gated view never renders a token the confidence bands mark as low or none
     5. SHA256SUMS matches the artifacts on disk
@@ -24,7 +25,7 @@ import json
 import sys
 from pathlib import Path
 
-from translations.config import SPECULATIVE_BANNER
+from translations.config import active_banner
 from translations.phase4 import LEXICON_PATH, LINES_JSONL, REPORTS, SUMS_PATH
 from translations.render import GATED_MASK
 from validators.schema import validate_against_schema
@@ -37,17 +38,24 @@ def check_schema(rows: list[dict]) -> list[str]:
     return validate_against_schema(rows, "translation_lines.schema")[1]
 
 
+def expected_banner() -> str:
+    """The banner this run's own control verdict requires (plan §7.4)."""
+    verdict = json.loads((REPORTS / "coverage.json").read_text())
+    return active_banner(bool(verdict["validation_failed"]))
+
+
 def check_banner(rows: list[dict]) -> list[str]:
-    """Every row and every report carries the speculative banner."""
+    """Every row and every report carries the banner the verdict requires."""
+    banner = expected_banner()
     errors = [
-        f"Row {row.get('line_id', '?')}: banner missing"
+        f"Row {row.get('line_id', '?')}: wrong or missing banner"
         for row in rows
-        if row.get("banner") != SPECULATIVE_BANNER
+        if row.get("banner") != banner
     ]
     errors += [
-        f"{path.name}: banner missing"
+        f"{path.name}: wrong or missing banner"
         for path in sorted(REPORTS.glob("*.md"))
-        if SPECULATIVE_BANNER not in path.read_text()
+        if banner not in path.read_text()
     ]
     return errors
 

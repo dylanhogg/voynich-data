@@ -1192,6 +1192,222 @@ n/a — a recorded negative result. `make calibrate && make translate` reproduce
 
 ---
 
+## Decision 30: The Decipherment Attempt Is Declared Unsuccessful
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: Plan 001 §7.4 fixed five kill criteria in advance, before any Phase 4 output
+existed. Phase 5 (`make audit`) scores all five and publishes the result whatever it is.
+
+### The result
+
+| criterion (§7.4) | measured | met |
+|---|---|---|
+| Comparable fluency and confidence on pseudo-Voynich | `grille` renders at 123% of the manuscript's rate | **yes** |
+| Held-out performance indistinguishable from the null | permutation p = 0.162 | **yes** |
+| Cross-transcription gloss agreement no better than transcription identity | 0.909 against a 0.293 baseline | no |
+| Multiple unrelated plaintext languages score equivalently | gated-coverage spread 0.149 across four language models | **yes** |
+| Illustration congruence shows no signal above the null | rendering 0.090 bits, untranslated types 0.211 bits, both p = 0.001 | **yes** |
+
+### Decision
+
+The decipherment attempt is declared **unsuccessful**, and that declaration is the finding
+this programme publishes. The Phase 4 artifacts are not withdrawn — the full-coverage
+rendering was the requested deliverable — but their framing changes to "speculative
+rendering under a hypothesis that failed validation" (Decision 31).
+
+### Rationale
+
+Four of the five criteria are met, and any one of them was agreed to be sufficient. The
+third is not met on its literal wording, and its own test explains why: the 0.909 headline
+is carried by the 89.0% of tokens the two transcribers already write identically. On the
+3,582 tokens they disagree about, the glosses agree 16.8% of the time (Decision 33).
+
+### Consequences
+
+- `reports/translation/strengths_weaknesses.md` leads with this table.
+- Phases 0–4 stand as built; nothing is re-run to try to change the verdict, and no
+  hypothesis is re-registered after seeing it.
+- Nothing from plan 001 is published to HuggingFace or anywhere else (§0.3).
+
+### Reversibility
+
+A future hypothesis that beats an order-2 Markov model of the manuscript's own statistics
+on held-out pages would reopen the question. None in this programme does.
+
+---
+
+## Decision 31: The Artifact Banner Is Chosen by the Run's Own Control Result
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: §7.4 requires that meeting a kill criterion changes the framing of the Phase 4
+artifacts "in the banner, the report's first paragraph, and `coverage.md`". The obvious
+implementation — Phase 5 rewrites what Phase 4 wrote — makes the artifacts depend on a
+later phase and leaves `make translate` alone producing artifacts that overclaim.
+
+### Options Considered
+
+1. **Phase 5 rewrites the banner** after the audit.
+2. **Phase 4 stamps the banner itself**, from the pseudo-Voynich control it already runs.
+3. **Leave the banner unchanged** and put the verdict in the reports only.
+
+### Decision
+
+Option 2. `translations.config.active_banner(failed)` returns one of two strings, and
+`translations.phase4` picks between them using the §7.2.1 control ratio it computes anyway
+(`KILL_RATIO = 1.0`). Phase 5 re-checks it alongside the other four criteria; the validator
+checks that the banner on disk matches the verdict in `coverage.json`.
+
+### Rationale
+
+`make translate` on its own now produces honestly-framed artifacts — there is no window in
+which the JSONL claims more than the evidence supports. Both banner strings begin with
+`SPECULATIVE OUTPUT`, so the JSON schema, the validator and every existing banner check keep
+working unchanged.
+
+### Consequences
+
+- Every row of `translation_lines.jsonl`, every lexicon entry and every report now carries
+  "unvalidated rendering under a hypothesis that FAILED VALIDATION".
+- A consumer reading only the JSONL, with no reports, still sees that validation failed.
+- `validators.validate_translation_outputs` fails if artifacts and verdict disagree.
+
+### Reversibility
+
+Flip when a control passes: the banner follows the measurement, not a hard-coded verdict.
+
+---
+
+## Decision 32: Illustration Congruence Is Measured Against the Untranslated Text
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: Plan §7.1.5 called a positive illustration-congruence result "the strongest
+evidence in the whole programme". The rendering produces one: glossed vocabulary differs by
+illustration type at p = 0.001 over 1,000 page-label permutations, and pseudo-Voynich
+under the same page labels does not (p = 0.954).
+
+### Decision
+
+The test is reported as **vacuous**, not as support, because the same statistic on the
+*untranslated* Voynich types is larger and equally significant: 0.211 bits against the
+rendering's 0.090, both at p = 0.001.
+
+### Rationale
+
+Glossing is a deterministic many-to-one function of the surface type. By the data-processing
+inequality it cannot create page-level structure the surface types do not already have — it
+can only lose some, and here it loses more than half. That the manuscript's vocabulary varies
+by section is a Phase 1 landmark; passing it through a Latin dictionary and rediscovering it
+is not evidence about meaning.
+
+Two weaker controls were also run and are reported: permuting labels only within a Currier
+language (p = 0.001, so the effect is not purely the A/B word-length confound), and the
+`grille` control (p = 0.954, so it is not page layout).
+
+### Consequences
+
+- Kill criterion 5 is scored on whether translating *adds* congruence, not on whether
+  congruence exists. It does not, so the criterion is met.
+- The label-level variant stays blocked by the §5.1 concordance gap, and no hand-built
+  plant or body-part word list is substituted for it.
+
+### Reversibility
+
+A label-level test against a sourced concordance would ask a different question — whether a
+*specific* label reads as the thing beside it — which the surface types cannot answer.
+
+---
+
+## Decision 33: The Key Is Not Identified — Re-Searching Changes Most of the Reading
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: §7.2.4 asks how much the glosses move under different seeds and perturbed
+training subsets. Every keyed hypothesis was searched again from scratch nine times — six
+fresh seeds on the full training pages, three on random 80% page subsets.
+
+### The result
+
+| hypothesis | mean key agreement | mean gloss agreement | worst |
+|---|---|---|---|
+| H1 (primary) | 0.527 | 0.430 | 0.038 |
+| H2 | 0.174 | 0.344 | 0.037 |
+| H3 | 0.427 | 0.416 | 0.159 |
+| H4 | 0.285 | 0.191 | 0.044 |
+| H7 | 0.045 | 0.082 | 0.070 |
+
+### Decision
+
+Recorded as a negative result. Mean token-level gloss agreement across independent
+re-searches is **0.293**: re-running the same search with a different seed changes about
+seven tokens in ten.
+
+### Rationale
+
+Agreement here is an *upper* bound on stability, not a measure of it — two keys also "agree"
+when both gloss a token to nothing. Even so, no individual gloss in `folio_readings.md` is
+stable under a change that carries no information about the manuscript. The search is not
+converging on an identified key; it is sampling one of many equally-scoring keys.
+
+H7's row is not comparable: its committed key came from an exact assignment under an order-1
+model, which has no seed, so its number measures how far annealing lands from a known
+optimum.
+
+### Consequences
+
+- No single-token reading from any Phase 4 artifact may be quoted as a result.
+- Confirms from a second direction what Decision 26 built the confidence column around: the
+  key carries little information the null does not.
+
+### Reversibility
+
+n/a — a recorded negative result. `make audit` reproduces it.
+
+---
+
+## Decision 34: The Glosses Inherit Transcription Disagreement Rather Than Surviving It
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: §7.1.3 re-runs the gloss stage on the IT transcription and compares, token by
+token, against ZL over the 32,661 aligned tokens.
+
+### The result
+
+| comparison | tokens | agreement |
+|---|---|---|
+| surface forms identical (ZL vs IT) | 32,661 | 0.890 |
+| glosses identical, all aligned tokens | 32,661 | 0.909 |
+| glosses identical, tokens whose surfaces differ | 3,582 | **0.168** |
+
+### Decision
+
+Recorded as a negative result, and the headline 0.909 is reported as uninformative.
+
+### Rationale
+
+The headline agreement is carried by the tokens the transcribers already write the same way,
+plus the tokens that gloss to nothing under either reading. On the tokens they actually
+disagree about, four glosses in five change. Which English word a line receives is decided by
+which transcription you loaded — and only 29.3% of lines are identical between the two
+(Decision 13). A rendering that sensitive to transcriber judgement is a property of the
+transcription, not of the manuscript.
+
+### Consequences
+
+- Kill criterion 3 is *not* met on its literal wording (0.909 > 0.293), and the report says
+  so plainly while explaining why the number does not mean what it appears to.
+- Strengthens the case for the reliability weight already in the confidence column
+  (Decision 22, Decision 26).
+
+### Reversibility
+
+n/a — a recorded negative result.
+
+---
+
 ## Template for Future Decisions
 
 Copy this template for new decisions:
@@ -1235,9 +1451,9 @@ Copy this template for new decisions:
 | Schema Design | 5, 6 |
 | Text Processing | 3, 4, 8, 15 |
 | Content Inclusion | 7 |
-| Analysis Methodology | 8, 10, 11, 12, 13, 16, 17, 26 |
-| Decipherment | 16, 17, 18, 19, 27, 28 |
-| Falsified Hypotheses | 14, 20, 29 |
+| Analysis Methodology | 8, 10, 11, 12, 13, 16, 17, 26, 32 |
+| Decipherment | 16, 17, 18, 19, 27, 28, 31 |
+| Falsified Hypotheses | 14, 20, 29, 30, 33, 34 |
 
 ---
 

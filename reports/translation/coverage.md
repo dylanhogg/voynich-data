@@ -1,6 +1,6 @@
 # Phase 4 — Coverage and confidence
 
-> **SPECULATIVE OUTPUT — no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.**
+> **SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.**
 
 ## Bottom line
 
@@ -115,3 +115,8 @@ Every token is scored again under 20 keys that permute the real key's letter ass
 | Pseudo-Voynich control run and included | yes, above |
 | Banner present in every artifact and every report | yes |
 | Determinism test green | `tests/translations/test_phase4.py` |
+| Framing under plan §7.4 | **failed validation** — artifacts re-bannered |
+
+Every artifact written by this run carries:
+
+> SPECULATIVE OUTPUT — unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan §7.4). This is model output, not a reading of the manuscript.

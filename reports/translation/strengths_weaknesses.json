@@ -1,0 +1,864 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 unvalidated rendering under a hypothesis that FAILED VALIDATION: the identical pipeline renders pseudo-Voynich, which encodes nothing, at least as well as it renders the manuscript (plan \u00a77.4). This is model output, not a reading of the manuscript.",
+  "declared_unsuccessful": true,
+  "detail": {
+    "\u00a77.1.1 synthetic recovery": {
+      "synthetic": [
+        {
+          "corpus": "clusius_rariorum",
+          "hypothesis": "H1",
+          "key_accuracy": 1.0,
+          "scheme": "substitution",
+          "token_accuracy": 0.9087068965517241,
+          "tokens": 11600
+        },
+        {
+          "corpus": "austen_pride_prejudice",
+          "hypothesis": "H2",
+          "key_accuracy": 1.0,
+          "scheme": "verbose",
+          "token_accuracy": 0.71645,
+          "tokens": 20000
+        },
+        {
+          "corpus": "vulgate_clementine",
+          "hypothesis": "H3",
+          "key_accuracy": 1.0,
+          "scheme": "abjad",
+          "token_accuracy": 0.7327032900389144,
+          "tokens": 19787
+        },
+        {
+          "corpus": "clusius_rariorum",
+          "hypothesis": "H4",
+          "key_accuracy": 1.0,
+          "scheme": "substitution",
+          "token_accuracy": 0.886551724137931,
+          "tokens": 11600
+        },
+        {
+          "corpus": "austen_pride_prejudice",
+          "hypothesis": "H7",
+          "key_accuracy": 0.4910727246334737,
+          "scheme": "substitution",
+          "token_accuracy": 0.12219793625781528,
+          "tokens": 19673
+        }
+      ]
+    },
+    "\u00a77.1.2 held-out generalisation": {
+      "difference": 0.023487079296725333,
+      "holdout": 0.5517260755056631,
+      "p_value": 0.16183816183816183,
+      "pages": 206,
+      "train": 0.5752131548023884
+    },
+    "\u00a77.1.3 cross-transcription stability": {
+      "aligned_tokens": 32661,
+      "differing_tokens": 3582,
+      "gloss_agreement": 0.9087596828021187,
+      "gloss_agreement_on_differing": 0.16806253489670575,
+      "line_identity_baseline": 0.293,
+      "surface_agreement": 0.8903279140259025
+    },
+    "\u00a77.1.4 internal consistency": {
+      "collision": 4.74163783160323,
+      "determinism": 1.0,
+      "distinct_words": 867,
+      "most_collided": [
+        [
+          "by",
+          119
+        ],
+        [
+          "but",
+          80
+        ],
+        [
+          "go",
+          72
+        ],
+        [
+          "out of",
+          67
+        ],
+        [
+          "love",
+          62
+        ],
+        [
+          "money",
+          51
+        ],
+        [
+          "whether",
+          51
+        ],
+        [
+          "altar",
+          50
+        ],
+        [
+          "to",
+          49
+        ],
+        [
+          "big toe",
+          38
+        ]
+      ],
+      "types_printed": 4111
+    },
+    "\u00a77.1.5 illustration congruence": {
+      "control_p_value": 0.954045954045954,
+      "control_statistic": 0.00033823448465512194,
+      "label_level": "blocked by open gap \u00a75.1 (illustration\u2194label concordance)",
+      "p_value": 0.000999000999000999,
+      "pages": 205,
+      "statistic": 0.09016034981718923,
+      "stratified_p_value": 0.000999000999000999,
+      "surface_p_value": 0.000999000999000999,
+      "surface_statistic": 0.2107827594711942,
+      "types": [
+        "A",
+        "B",
+        "C",
+        "H",
+        "P",
+        "S",
+        "T"
+      ]
+    },
+    "\u00a77.1.6 syntactic plausibility": {
+      "austen_pride_prejudice|manuscript rendering": {
+        "char_bits": 3.5427297036636896,
+        "word_bits": 12.55815992664588
+      },
+      "austen_pride_prejudice|pseudo-Voynich rendering": {
+        "char_bits": 4.0737347821235605,
+        "word_bits": 12.64821517976941
+      },
+      "austen_pride_prejudice|same glosses, shuffled order": {
+        "char_bits": 3.542370315242212,
+        "word_bits": 12.54889607022768
+      },
+      "austen_pride_prejudice|the reference corpus itself": {
+        "char_bits": 2.5648075351463855,
+        "word_bits": 10.510632822236785
+      },
+      "douay_rheims|manuscript rendering": {
+        "char_bits": 3.5062308538901203,
+        "word_bits": 12.751572166231124
+      },
+      "douay_rheims|pseudo-Voynich rendering": {
+        "char_bits": 4.1209327809027245,
+        "word_bits": 12.831779146274187
+      },
+      "douay_rheims|same glosses, shuffled order": {
+        "char_bits": 3.5061705979871065,
+        "word_bits": 12.739042135435676
+      },
+      "douay_rheims|the reference corpus itself": {
+        "char_bits": 2.4530379169695884,
+        "word_bits": 9.254745512618722
+      }
+    },
+    "\u00a77.1.7 anchor agreement": {
+      "anchors": 0
+    },
+    "\u00a77.2.1 pseudo-Voynich control": {
+      "confidence": {
+        "grille": 0.5239182366494985,
+        "real": 0.4936591206752781,
+        "selfcite": 0.04485887096774194
+      },
+      "coverage": {
+        "grille": 0.7512452561669829,
+        "real": 0.6109167457305503,
+        "selfcite": 0.045007115749525616
+      },
+      "draws": {
+        "grille": [
+          0.6881522770398482,
+          0.7491994781783681,
+          0.7512452561669829,
+          0.6237547438330171,
+          0.6868477229601518
+        ],
+        "real": [
+          0.6029115275142315,
+          0.6170837286527514,
+          0.614444971537002,
+          0.6083076375711575,
+          0.6138519924098672
+        ],
+        "selfcite": [
+          0.05846774193548387,
+          0.04186432637571157,
+          0.03964065464895636,
+          0.04355431688804554,
+          0.04814990512333966
+        ]
+      },
+      "ratio": 1.2297015287551565,
+      "ratio_mean": 1.144485405003866,
+      "ratio_range": [
+        1.0253935760588782,
+        1.2226404169079328
+      ],
+      "worst": "grille"
+    },
+    "\u00a77.2.2 shuffled-input control": {
+      "destructive_ratio": 0.4191046400870867,
+      "real": 0.653670540796964,
+      "shuffle_chars": 0.2739563567362429,
+      "shuffle_within_word": 0.3608574478178368,
+      "shuffle_word_order": 0.6395872865275142
+    },
+    "\u00a77.2.3 rival-language ambiguity": {
+      "coverage_spread": 0.1491638994307401,
+      "gain_spread": 1.318131049289729,
+      "languages": [
+        {
+          "gain_per_token": -5.771475081908847,
+          "gated_coverage": 0.6433823529411765,
+          "language": "clusius_rariorum",
+          "variant": "clusius_rariorum-o3|plain"
+        },
+        {
+          "gain_per_token": -5.926669083877931,
+          "gated_coverage": 0.4942184535104364,
+          "language": "dante_commedia",
+          "variant": "dante_commedia-o3|plain"
+        },
+        {
+          "gain_per_token": -6.834550115429264,
+          "gated_coverage": 0.6276387571157496,
+          "language": "vulgate_clementine",
+          "variant": "vulgate_clementine-o3|plain"
+        },
+        {
+          "gain_per_token": -7.089606131198576,
+          "gated_coverage": 0.5459262333965844,
+          "language": "austen_pride_prejudice",
+          "variant": "austen_pride_prejudice-o3|plain"
+        }
+      ]
+    },
+    "\u00a77.2.4 key instability": {
+      "mean_gloss_agreement": 0.2926431056293485,
+      "per_hypothesis": [
+        {
+          "hypothesis": "H1",
+          "mean_gloss_agreement": 0.42981103731815307,
+          "mean_key_agreement": 0.5265186555658341,
+          "min_gloss_agreement": 0.038306451612903226,
+          "per_run": [
+            {
+              "gloss_agreement": 0.05920896584440228,
+              "key_agreement": 0.14893617021276595,
+              "run": "seed 0"
+            },
+            {
+              "gloss_agreement": 0.2812203510436433,
+              "key_agreement": 0.44680851063829785,
+              "run": "seed 1"
+            },
+            {
+              "gloss_agreement": 0.7476280834914611,
+              "key_agreement": 0.7446808510638298,
+              "run": "seed 2"
+            },
+            {
+              "gloss_agreement": 0.3907139468690702,
+              "key_agreement": 0.5106382978723404,
+              "run": "seed 3"
+            },
+            {
+              "gloss_agreement": 0.6973138045540797,
+              "key_agreement": 0.7872340425531915,
+              "run": "seed 4"
+            },
+            {
+              "gloss_agreement": 0.038306451612903226,
+              "key_agreement": 0.0851063829787234,
+              "run": "seed 5"
+            },
+            {
+              "gloss_agreement": 0.6052834440227703,
+              "key_agreement": 0.7021276595744681,
+              "run": "subset 0"
+            },
+            {
+              "gloss_agreement": 0.4781783681214421,
+              "key_agreement": 0.5957446808510638,
+              "run": "subset 1"
+            },
+            {
+              "gloss_agreement": 0.5704459203036053,
+              "key_agreement": 0.717391304347826,
+              "run": "subset 2"
+            }
+          ],
+          "runs": 9
+        },
+        {
+          "hypothesis": "H2",
+          "mean_gloss_agreement": 0.3442803868859372,
+          "mean_key_agreement": 0.17435751780308043,
+          "min_gloss_agreement": 0.03658681214421253,
+          "per_run": [
+            {
+              "gloss_agreement": 0.482685009487666,
+              "key_agreement": 0.16785714285714284,
+              "run": "seed 0"
+            },
+            {
+              "gloss_agreement": 0.14157376660341556,
+              "key_agreement": 0.2571428571428571,
+              "run": "seed 1"
+            },
+            {
+              "gloss_agreement": 0.48090607210626185,
+              "key_agreement": 0.17857142857142858,
+              "run": "seed 2"
+            },
+            {
+              "gloss_agreement": 0.45395517077798864,
+              "key_agreement": 0.16428571428571428,
+              "run": "seed 3"
+            },
+            {
+              "gloss_agreement": 0.14101043643263758,
+              "key_agreement": 0.2392857142857143,
+              "run": "seed 4"
+            },
+            {
+              "gloss_agreement": 0.03658681214421253,
+              "key_agreement": 0.05,
+              "run": "seed 5"
+            },
+            {
+              "gloss_agreement": 0.44749169829222013,
+              "key_agreement": 0.1630901287553648,
+              "run": "subset 0"
+            },
+            {
+              "gloss_agreement": 0.41191295066413663,
+              "key_agreement": 0.13777777777777778,
+              "run": "subset 1"
+            },
+            {
+              "gloss_agreement": 0.5024015654648957,
+              "key_agreement": 0.21120689655172414,
+              "run": "subset 2"
+            }
+          ],
+          "runs": 9
+        },
+        {
+          "hypothesis": "H3",
+          "mean_gloss_agreement": 0.4160506272401434,
+          "mean_key_agreement": 0.4270223044506116,
+          "min_gloss_agreement": 0.15882945920303607,
+          "per_run": [
+            {
+              "gloss_agreement": 0.15882945920303607,
+              "key_agreement": 0.14893617021276595,
+              "run": "seed 0"
+            },
+            {
+              "gloss_agreement": 0.24039373814041745,
+              "key_agreement": 0.1702127659574468,
+              "run": "seed 1"
+            },
+            {
+              "gloss_agreement": 0.35036171726755216,
+              "key_agreement": 0.3191489361702128,
+              "run": "seed 2"
+            },
+            {
+              "gloss_agreement": 0.64489444971537,
+              "key_agreement": 0.7021276595744681,
+              "run": "seed 3"
+            },
+            {
+              "gloss_agreement": 0.2975272770398482,
+              "key_agreement": 0.3191489361702128,
+              "run": "seed 4"
+            },
+            {
+              "gloss_agreement": 0.525171963946869,
+              "key_agreement": 0.5531914893617021,
+              "run": "seed 5"
+            },
+            {
+              "gloss_agreement": 0.6600450664136622,
+              "key_agreement": 0.6304347826086957,
+              "run": "subset 0"
+            },
+            {
+              "gloss_agreement": 0.4634131878557875,
+              "key_agreement": 0.5869565217391305,
+              "run": "subset 1"
+            },
+            {
+              "gloss_agreement": 0.4038187855787476,
+              "key_agreement": 0.41304347826086957,
+              "run": "subset 2"
+            }
+          ],
+          "runs": 9
+        },
+        {
+          "hypothesis": "H4",
+          "mean_gloss_agreement": 0.19127200611427367,
+          "mean_key_agreement": 0.2852811183060952,
+          "min_gloss_agreement": 0.04364326375711575,
+          "per_run": [
+            {
+              "gloss_agreement": 0.04364326375711575,
+              "key_agreement": 0.0851063829787234,
+              "run": "seed 0"
+            },
+            {
+              "gloss_agreement": 0.06549454459203036,
+              "key_agreement": 0.10638297872340426,
+              "run": "seed 1"
+            },
+            {
+              "gloss_agreement": 0.21317599620493358,
+              "key_agreement": 0.3191489361702128,
+              "run": "seed 2"
+            },
+            {
+              "gloss_agreement": 0.16250592979127135,
+              "key_agreement": 0.2978723404255319,
+              "run": "seed 3"
+            },
+            {
+              "gloss_agreement": 0.10898956356736243,
+              "key_agreement": 0.2127659574468085,
+              "run": "seed 4"
+            },
+            {
+              "gloss_agreement": 0.19586100569259962,
+              "key_agreement": 0.3404255319148936,
+              "run": "seed 5"
+            },
+            {
+              "gloss_agreement": 0.17398007590132827,
+              "key_agreement": 0.32608695652173914,
+              "run": "subset 0"
+            },
+            {
+              "gloss_agreement": 0.17157851043643263,
+              "key_agreement": 0.34782608695652173,
+              "run": "subset 1"
+            },
+            {
+              "gloss_agreement": 0.586219165085389,
+              "key_agreement": 0.5319148936170213,
+              "run": "subset 2"
+            }
+          ],
+          "runs": 9
+        },
+        {
+          "hypothesis": "H7",
+          "mean_gloss_agreement": 0.08180147058823531,
+          "mean_key_agreement": 0.045122828656593686,
+          "min_gloss_agreement": 0.0695268026565465,
+          "per_run": [
+            {
+              "gloss_agreement": 0.08091200189753321,
+              "key_agreement": 0.06382978723404255,
+              "run": "seed 0"
+            },
+            {
+              "gloss_agreement": 0.08236480075901328,
+              "key_agreement": 0.06382978723404255,
+              "run": "seed 1"
+            },
+            {
+              "gloss_agreement": 0.07954814990512334,
+              "key_agreement": 0.0425531914893617,
+              "run": "seed 2"
+            },
+            {
+              "gloss_agreement": 0.0695268026565465,
+              "key_agreement": 0.0,
+              "run": "seed 3"
+            },
+            {
+              "gloss_agreement": 0.0710092504743833,
+              "key_agreement": 0.0425531914893617,
+              "run": "seed 4"
+            },
+            {
+              "gloss_agreement": 0.08550759013282733,
+              "key_agreement": 0.02127659574468085,
+              "run": "seed 5"
+            },
+            {
+              "gloss_agreement": 0.0982566413662239,
+              "key_agreement": 0.043478260869565216,
+              "run": "subset 0"
+            },
+            {
+              "gloss_agreement": 0.08269093927893738,
+              "key_agreement": 0.043478260869565216,
+              "run": "subset 1"
+            },
+            {
+              "gloss_agreement": 0.08639705882352941,
+              "key_agreement": 0.0851063829787234,
+              "run": "subset 2"
+            }
+          ],
+          "runs": 9
+        }
+      ],
+      "worst": 0.08180147058823531
+    },
+    "\u00a77.2.5 ablations": {
+      "Currier A only": {
+        "gated_coverage": 0.5634861704102468,
+        "key_coverage": 0.9971534204920133,
+        "mean_confidence": 0.4621045373783447,
+        "tokens": 10774
+      },
+      "Currier B only": {
+        "gated_coverage": 0.6819412992318281,
+        "key_coverage": 0.9991519026686204,
+        "mean_confidence": 0.5597865272835301,
+        "tokens": 22521
+      },
+      "comma policy CB=join": {
+        "gated_coverage": 0.6659640381974385,
+        "key_coverage": 0.9984831133437054,
+        "mean_confidence": 0.5401159793226479,
+        "tokens": 31311
+      },
+      "committed (T1-glyph, CB=break, ZL, all lines)": {
+        "gated_coverage": 0.6406546489563567,
+        "key_coverage": 0.9985169874401374,
+        "mean_confidence": 0.5156122933044185,
+        "tokens": 33728
+      },
+      "consensus subset only": {
+        "gated_coverage": 0.6476250925632074,
+        "key_coverage": 0.9997434676822173,
+        "mean_confidence": 0.5386700115357684,
+        "tokens": 28359
+      },
+      "tokenizer T0-char": {
+        "gated_coverage": 0.5009191176470589,
+        "key_coverage": 0.8204430948342231,
+        "mean_confidence": 0.40963845215505557,
+        "tokens": 33728
+      },
+      "transcription IT": {
+        "gated_coverage": 0.6486013986013986,
+        "key_coverage": 0.9980177019949749,
+        "mean_confidence": 0.5300848576710645,
+        "tokens": 33176
+      },
+      "uncertainty-flagged lines dropped": {
+        "gated_coverage": 0.6524058465806039,
+        "key_coverage": 0.9985364920177681,
+        "mean_confidence": 0.5356317284195232,
+        "tokens": 28119
+      }
+    },
+    "\u00a77.2.6 known-weak zones": {
+      "overall": 0.6109167457305503,
+      "zones": [
+        {
+          "gated_coverage": 0.20967741935483872,
+          "lines": 115,
+          "mean_confidence": 0.19275889656938044,
+          "tokens": 124,
+          "zone": "labels"
+        },
+        {
+          "gated_coverage": 0.5566801619433198,
+          "lines": 79,
+          "mean_confidence": 0.4507404247798985,
+          "tokens": 494,
+          "zone": "circular / radial pages (illustration A or C)"
+        },
+        {
+          "gated_coverage": 0.4758842443729904,
+          "lines": 84,
+          "mean_confidence": 0.3424733313725254,
+          "tokens": 933,
+          "zone": "lines flagged uncertain"
+        },
+        {
+          "gated_coverage": null,
+          "lines": 0,
+          "mean_confidence": null,
+          "tokens": 0,
+          "zone": "lines flagged illegible"
+        },
+        {
+          "gated_coverage": 0.5576997298340409,
+          "lines": 584,
+          "mean_confidence": 0.40519100667220426,
+          "tokens": 5182,
+          "zone": "lines with transcriber alternatives"
+        },
+        {
+          "gated_coverage": 0.5104602510460251,
+          "lines": 115,
+          "mean_confidence": 0.4184877818374426,
+          "tokens": 956,
+          "zone": "lines with high-ASCII tokens"
+        },
+        {
+          "gated_coverage": 0.5496535796766744,
+          "lines": 73,
+          "mean_confidence": 0.44495375563620365,
+          "tokens": 433,
+          "zone": "Currier language unknown"
+        },
+        {
+          "gated_coverage": 0.5107096293536971,
+          "lines": 658,
+          "mean_confidence": 0.4123026030930427,
+          "tokens": 5369,
+          "zone": "outside the consensus subset (transcribers disagree)"
+        },
+        {
+          "gated_coverage": 0.5370689655172414,
+          "lines": 236,
+          "mean_confidence": 0.4225528721470955,
+          "tokens": 1160,
+          "zone": "lines at least half hapax"
+        },
+        {
+          "gated_coverage": 0.13821138211382114,
+          "lines": null,
+          "mean_confidence": 0.16241209412345303,
+          "tokens": 123,
+          "zone": "tokens containing a unit the key never saw"
+        }
+      ]
+    },
+    "\u00a77.2.7 coverage honesty": {
+      "overall": 0.6109167457305503,
+      "sections": [
+        {
+          "gated_coverage": 0.5555555555555556,
+          "high": 0.3333333333333333,
+          "low": 0.18181818181818182,
+          "medium": 0.2222222222222222,
+          "none": 0.26262626262626265,
+          "stratum": "astronomical",
+          "tokens": 198
+        },
+        {
+          "gated_coverage": 0.6862074580687184,
+          "high": 0.450578081745644,
+          "low": 0.11952450740921675,
+          "medium": 0.23562937632307443,
+          "none": 0.19426803452206481,
+          "stratum": "biological",
+          "tokens": 6141
+        },
+        {
+          "gated_coverage": 0.5574324324324325,
+          "high": 0.28716216216216217,
+          "low": 0.15202702702702703,
+          "medium": 0.2702702702702703,
+          "none": 0.2905405405405405,
+          "stratum": "cosmological",
+          "tokens": 296
+        },
+        {
+          "gated_coverage": 0.5520295202952029,
+          "high": 0.2830258302583026,
+          "low": 0.15940959409594097,
+          "medium": 0.2690036900369004,
+          "none": 0.28856088560885607,
+          "stratum": "herbal",
+          "tokens": 10840
+        },
+        {
+          "gated_coverage": 0.5299479166666666,
+          "high": 0.2682291666666667,
+          "low": 0.18055555555555555,
+          "medium": 0.26171875,
+          "none": 0.2894965277777778,
+          "stratum": "pharmaceutical",
+          "tokens": 2304
+        },
+        {
+          "gated_coverage": 0.6405026250107583,
+          "high": 0.37584990102418453,
+          "low": 0.12143902229107496,
+          "medium": 0.2646527239865737,
+          "none": 0.2380583526981668,
+          "stratum": "stars",
+          "tokens": 11619
+        },
+        {
+          "gated_coverage": 0.6304721030042918,
+          "high": 0.3420600858369099,
+          "low": 0.1223175965665236,
+          "medium": 0.28841201716738196,
+          "none": 0.24721030042918454,
+          "stratum": "text_only",
+          "tokens": 2330
+        }
+      ]
+    }
+  },
+  "gated_coverage": 0.6109167457305503,
+  "kill_criteria": [
+    {
+      "criterion": "Comparable fluency and confidence on pseudo-Voynich",
+      "measured": "control renders at 123% of the manuscript's rate",
+      "met": true
+    },
+    {
+      "criterion": "Held-out performance indistinguishable from the null distribution",
+      "measured": "permutation p = 0.162",
+      "met": true
+    },
+    {
+      "criterion": "Cross-transcription gloss agreement no better than transcription identity",
+      "measured": "gloss agreement 0.909 against a 0.293 line-identity baseline",
+      "met": false
+    },
+    {
+      "criterion": "Multiple unrelated plaintext languages score equivalently",
+      "measured": "gated coverage spread 0.149 across 4 language models",
+      "met": true
+    },
+    {
+      "criterion": "Illustration congruence shows no signal above the permutation null",
+      "measured": "rendering 0.0902 bits at p = 0.001; untranslated types 0.2108 at p = 0.001",
+      "met": true
+    }
+  ],
+  "mean_confidence": 0.4936591206752781,
+  "strength": {
+    "\u00a77.1.1 synthetic recovery": {
+      "implication": "A ceiling, not evidence. The pipeline recovers a key it is given, which is why a confident-looking rendering proves nothing on its own.",
+      "metric": "H1 gloss accuracy on ciphertext we built",
+      "null": "key accuracy 1.000",
+      "test": "\u00a77.1.1 synthetic recovery",
+      "value": 0.9087068965517241,
+      "verdict": "neutral"
+    },
+    "\u00a77.1.2 held-out generalisation": {
+      "implication": "Held-out and training pages are indistinguishable, which is what a dictionary-matching pipeline looks like \u2014 it is not evidence of generalisation.",
+      "metric": "train \u2212 holdout gated coverage",
+      "null": "permutation p = 0.162",
+      "test": "\u00a77.1.2 held-out generalisation",
+      "value": 0.023487079296725333,
+      "verdict": "undermines"
+    },
+    "\u00a77.1.3 cross-transcription stability": {
+      "implication": "Where the two transcriptions disagree, so do the glosses, four times out of five. The reading is a property of the transcription, not of the manuscript.",
+      "metric": "gloss agreement on tokens whose ZL and IT surfaces differ",
+      "null": "surface agreement 0.890; line identity 0.293",
+      "test": "\u00a77.1.3 cross-transcription stability",
+      "value": 0.16806253489670575,
+      "verdict": "undermines"
+    },
+    "\u00a77.1.4 internal consistency": {
+      "implication": "Consistency is guaranteed by context-free glossing, so it is not evidence. The collapse ratio it hides is: the rendering is heavily many-to-one.",
+      "metric": "Voynich types per distinct English word (gated view)",
+      "null": "1.0 would be a one-to-one reading",
+      "test": "\u00a77.1.4 internal consistency",
+      "value": 4.74163783160323,
+      "verdict": "vacuous"
+    },
+    "\u00a77.1.5 illustration congruence": {
+      "implication": "Page topic and glossed vocabulary vary together beyond chance, and pseudo-Voynich under the same page labels does not.",
+      "metric": "gloss-profile divergence across illustration types",
+      "null": "permutation p = 0.001",
+      "test": "\u00a77.1.5 illustration congruence",
+      "value": 0.09016034981718923,
+      "verdict": "supports"
+    },
+    "\u00a77.1.6 syntactic plausibility": {
+      "implication": "The rendering is no more English-like in its word order than the same words in random order, and both are far from real English.",
+      "metric": "bits/word of the rendering under a douay_rheims bigram model",
+      "null": "shuffled 12.74; real English 9.25",
+      "test": "\u00a77.1.6 syntactic plausibility",
+      "value": 12.751572166231124,
+      "verdict": "undermines"
+    },
+    "\u00a77.1.7 anchor agreement": {
+      "implication": "Blocked by the three open \u00a75.1 gaps; no anchor evidence exists either way.",
+      "metric": "catalogued anchors",
+      "null": "\u2014",
+      "test": "\u00a77.1.7 anchor agreement",
+      "value": 0,
+      "verdict": "not run"
+    }
+  },
+  "topic": "strengths_weaknesses",
+  "weakness": {
+    "\u00a77.2.1 pseudo-Voynich control": {
+      "implication": "Text that encodes nothing renders at least as well as the manuscript. Under the criterion the plan fixed in advance, the pipeline is a fluency generator and its Voynich output carries no evidential weight.",
+      "metric": "`grille` gated coverage as a share of the manuscript's",
+      "null": "1.00 means gibberish renders as well; 5 draws span 103%\u2013122%",
+      "test": "\u00a77.2.1 pseudo-Voynich control",
+      "value": 1.2297015287551565,
+      "verdict": "undermines"
+    },
+    "\u00a77.2.2 shuffled-input control": {
+      "implication": "The pipeline does distinguish the manuscript from character noise, which sounds better than it is: \u00a77.2.1's `grille` clears the same bar and then renders more than the manuscript. Reordering whole words, meanwhile, changes nothing at all, because no stage of the pipeline reads a sequence.",
+      "metric": "character-shuffled Voynichese, gated coverage as a share of the manuscript's",
+      "null": "word-order shuffle scores 0.978 \u2014 a tautology, not a test",
+      "test": "\u00a77.2.2 shuffled-input control",
+      "value": 0.4191046400870867,
+      "verdict": "neutral"
+    },
+    "\u00a77.2.3 rival-language ambiguity": {
+      "implication": "Unrelated plaintext languages produce comparable Latin gloss rates, so the method does not identify the language and the glosses are not evidence for one.",
+      "metric": "spread in gated coverage across plaintext languages",
+      "null": "gain spread 1.318 bits/token",
+      "test": "\u00a77.2.3 rival-language ambiguity",
+      "value": 0.1491638994307401,
+      "verdict": "undermines"
+    },
+    "\u00a77.2.4 key instability": {
+      "implication": "Re-running the same search with a different seed changes a large share of the reading, so the key is not identified and no individual gloss is stable.",
+      "metric": "mean token-level gloss agreement across independent re-searches",
+      "null": "1.00 would mean the key is identified",
+      "test": "\u00a77.2.4 key instability",
+      "value": 0.2926431056293485,
+      "verdict": "undermines"
+    },
+    "\u00a77.2.5 ablations": {
+      "implication": "The headline coverage depends heavily on choices \u2014 tokenization above all \u2014 that no evidence fixes.",
+      "metric": "largest swing in gated coverage across analysis choices",
+      "null": "committed run reads 0.641",
+      "test": "\u00a77.2.5 ablations",
+      "value": 0.13973553130929783,
+      "verdict": "undermines"
+    },
+    "\u00a77.2.6 known-weak zones": {
+      "implication": "Every listed zone is enumerated with its row count, so no reader has to infer which parts of the rendering are least supported.",
+      "metric": "weakest zone: tokens containing a unit the key never saw",
+      "null": "whole manuscript 0.611",
+      "test": "\u00a77.2.6 known-weak zones",
+      "value": 0.13821138211382114,
+      "verdict": "neutral"
+    },
+    "\u00a77.2.7 coverage honesty": {
+      "implication": "Stated at the top of every report and broken out per stratum, so a complete-looking speculative rendering cannot be mistaken for complete coverage.",
+      "metric": "gated coverage, whole manuscript",
+      "null": "\u2014",
+      "test": "\u00a77.2.7 coverage honesty",
+      "value": 0.6109167457305503,
+      "verdict": "neutral"
+    }
+  }
+}
