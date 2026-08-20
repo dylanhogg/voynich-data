@@ -1,0 +1,86 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "counts": {
+    "closed": 3,
+    "open": 3,
+    "partially closed": 1
+  },
+  "gaps": [
+    {
+      "blocks": "Per-token confidence weighting; every Phase 1 robustness claim was line-level",
+      "cost": "~3 s per run; one new module (`translations/alignment.py`)",
+      "gap": "No token-level cross-transcription alignment",
+      "outcome": "33,728 ZL tokens aligned. GC/FG/CD are excluded: their alphabets differ, so a glyph edit distance against them measures the alphabet, not the scribes (Decision 13).",
+      "provenance": "Derived from built artifacts only (`eva_lines`, `mismatch_index`); no new source",
+      "remedy": "Needleman\u2013Wunsch alignment of ZL against IT per line, substitution cost = glyph edit distance, written to `output/translation/token_alignment.parquet` with a reliability weight per token",
+      "status": "closed"
+    },
+    {
+      "blocks": "Anchor-based gloss seeding on labels; the 115 label lines cannot be tied to the plants, stars or nymphs beside them",
+      "cost": "Search cost only; nothing to implement without a source",
+      "gap": "No illustration\u2194label linkage",
+      "outcome": "No machine-readable concordance found that could be pinned. The candidates are narrative HTML pages and one application database covering three folios. \u00a75.1's pre-committed fallback applies: label-level anchor seeding is dropped and page-level `section` / `illustration_type` is used instead.",
+      "provenance": "Would need a `sources.yaml` entry with a checksum",
+      "remedy": "Ingest a published concordance (plant-ID list) as a checksummed source. No hand annotation.",
+      "status": "open"
+    },
+    {
+      "blocks": "The best cribs (f116v, f66r, f17r) are unavailable to anchor scoring",
+      "cost": "Would be small to build; the blocker is the source, not the code",
+      "gap": "Marginalia not in dataset",
+      "outcome": "The readings exist only as prose discussion on HTML pages, and they are actively disputed \u2014 exactly the case where a hand transcription would smuggle one scholar's reading into the dataset as fact. Left open; the anchor catalogue stays empty and no crib enters Phase 4.",
+      "provenance": "Would need a checksummed transcription source",
+      "remedy": "Add a `marginalia.jsonl` source with transcription variants and explicit dispute flags",
+      "status": "open"
+    },
+    {
+      "blocks": "Line-as-unit versus paragraph-as-unit modelling; LAAFU effects can only be tested at line level",
+      "cost": "~70 lines (`translations/paragraphs.py`); no heuristics needed",
+      "gap": "No paragraph/block segmentation",
+      "outcome": "717 blocks. IVTFF marks paragraph starts (`<%>`) and ends (`<$>`) inline and the builders drop them on the way to `text_clean`; reading them back gives an annotated segmentation rather than a guessed one. 93% of blocks are opened and closed by a marker; the rest are closed by a page break.",
+      "provenance": "Derived from the raw IVTFF text already in `eva_lines`",
+      "remedy": "Plan expected derivation from `position` plus layout heuristics",
+      "status": "closed"
+    },
+    {
+      "blocks": "Robustness checks against GC and FG stay alphabet-limited",
+      "cost": "Estimated 1\u20132 days: the mapping is many-to-many and needs its own validation against the images",
+      "gap": "Currier/v101 alphabet not mapped",
+      "outcome": "Deliberately deferred. Phase 3 scoped alignment to the EVA pair, so nothing in this phase depends on the mapping; a mapping asserted without validation would create the appearance of cross-alphabet robustness without the substance.",
+      "provenance": "Would need a decision-log entry per mapped glyph pair",
+      "remedy": "Build and test an explicit mapping table with lossiness documented",
+      "status": "open"
+    },
+    {
+      "blocks": "Anchor scoring for herbal and astronomical labels",
+      "cost": "Star names: one entry. Plant names: no comparable source located.",
+      "gap": "No plant/star reference lexicons",
+      "outcome": "Star names are pinned (`iau_star_names`, 451 IAU-approved proper names, mostly Arabic- or Latin-derived and current in medieval lists). No plant-name lexicon was pinned; the nearest available route is filtering the already-pinned Whitaker's Words dictionary by its subject-area codes, which Phase 4 can do without new provenance. Neither lexicon is used in this phase: the anchor protocol only ranks finished candidates.",
+      "provenance": "`sources.yaml` entries with checksums",
+      "remedy": "Add medieval herbal and star-name lexicons to `sources.yaml`",
+      "status": "partially closed"
+    },
+    {
+      "blocks": "Language-model quality for H1/H3/H4 \u2014 the herbal Latin model that scored best in Phase 2 was built on 11,638 words",
+      "cost": "One multi-part `sources.yaml` entry; registry gained `urls:` support",
+      "gap": "Register-matched Latin scarce",
+      "outcome": "`herbal_latin`: Isidore, *Etymologiae* IV and XVII plus Columella, *De re rustica* \u2014 128,497 words, 11\u00d7 the Clusius corpus. Size limits, stated: neither text is a *medieval herbal*; Isidore (c. 625) is encyclopaedic and Columella (1st c.) is Roman agronomy. They are the closest register match retrievable as checksummable plain text.",
+      "provenance": "15 pinned files at one commit, checksum over the concatenation",
+      "remedy": "Assemble a medieval-herbal Latin subcorpus; document its size limits",
+      "status": "closed"
+    }
+  ],
+  "paragraph_validation": {
+    "blocks": 717,
+    "closed_by_marker": 670,
+    "fully_marked": 670,
+    "fully_marked_share": 0.9344490934449093,
+    "label_only_blocks": 10,
+    "lines": 4072,
+    "max_lines_per_block": 49,
+    "median_lines_per_block": 4,
+    "opened_by_marker": 707,
+    "single_line_blocks": 5
+  },
+  "topic": "gap_analysis"
+}

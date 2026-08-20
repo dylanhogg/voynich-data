@@ -35,6 +35,11 @@ decipher:
 	# Phase 2 hypothesis search -> reports/phase2/ (budgeted; ~40 min at current grids)
 	uv run python -m translations.phase2
 
+analyse2:
+	# Phase 3 gap remediation + analysis round 2 + re-scoring -> reports/phase3/
+	# (budgeted; ~2 h at current grids; --analysis-only skips the re-scoring)
+	uv run python -m translations.phase3
+
 quick-analysis:
 	uv run python scripts/quick_analysis.py
 

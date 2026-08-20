@@ -19,7 +19,8 @@ make corpora     # fetch_corpora.py -> data_sources/cache/corpora/ (reference ba
 make phase0      # verify inputs + write output/translation/phase0_manifest.json
 make analyse1    # Phase 1 analysis suite -> reports/phase1/ (~100s)
 make decipher    # Phase 2 hypothesis search -> reports/phase2/ (budgeted, ~40 min)
-make test        # pytest (expect ~504 passed, 7 skipped)
+make analyse2    # Phase 3 gap remediation + round 2 + re-scoring -> reports/phase3/ (~2 h)
+make test        # pytest (expect ~549 passed, 7 skipped)
 make notebook    # jupyter lab
 ```
 
@@ -47,6 +48,7 @@ Python 3.11+. Prefer `uv run <cmd>` over activating the venv.
 | `translations/` | Analysis / decipherment / translation programme (plan 001). Tokenizer, strata, determinism, reference corpora, null models, `analysis/` topic modules |
 | `reports/phase1/` | Phase 1 outputs: one `.md` + `.json` per topic, `summary.md`, landmark gate |
 | `reports/phase2/` | Phase 2 outputs: `hypothesis_scores.md`, `approach.md`, `synthetic_validation.md` |
+| `reports/phase3/` | Phase 3 outputs: `gap_analysis.md`, `round2_findings.md`, `rescoring.md`, plus the round-2 topic reports |
 | `plans/` | Multi-phase work plans; `001_...md` carries the phase status table |
 | `schemas/`, `docs/`, `notebooks/`, `scripts/`, `tests/` | as named |
 
@@ -146,6 +148,12 @@ new one. Searches run on training pages only; held-out pages are scored once.
 landmark gate, open questions). Reproduce with `make analyse1`; the run is
 deterministic and byte-stable.
 
+**Phase 3 results live in `reports/phase3/`** (`round2_findings.md` first, then
+`gap_analysis.md` for what is and is not sourceable and `rescoring.md` for the
+final ranked hypotheses). Three of the seven §5.1 gaps are still open — the
+illustration↔label concordance, the marginalia and the v101 mapping — so the
+anchor catalogue is empty and nothing downstream may invent one.
+
 **Use `translations/` for new analysis** rather than re-rolling primitives:
 `translations.tokenize` is the only tokenizer (T0-char / T1-glyph, comma policy
 explicit), `translations.strata` gives the per-line stratum table plus the
@@ -159,6 +167,15 @@ checksum-verified non-Voynich baselines with sample-size matching, and
 `translations.decipher` holds the Phase 2 engine (`lm`, `channel`, `score`,
 `search`, `generative`, `priors`, `stats`, `budget`, `anchors`, `synthetic`).
 Held-out pages (`StratumRow.is_holdout`) must not feed any key search.
+
+Phase 3 adds four things worth reaching for before writing new code:
+`translations.alignment` (ZL↔IT token alignment and the per-token reliability
+weight, `output/translation/token_alignment.parquet`), `translations.paragraphs`
+(paragraph blocks from the IVTFF `<%>`/`<$>` markers), `translations.represent`
+(the `raw` / `merged` / `reliable` representations as `View -> View` functions,
+so any estimator runs on all three), and the round-2 topic modules
+`recharacterise`, `paradigms`, `distribution`, `labels`, `reliability`.
+`T3-merge` is now implemented: pass a merge partition to the tokenizer.
 
 ---
 

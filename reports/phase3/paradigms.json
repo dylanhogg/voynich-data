@@ -1,0 +1,396 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "topic": "paradigms",
+  "views": {
+    "finnish_bible": {
+      "classes": {
+        "classes": 6.0,
+        "entropy_explained": 0.5018206069556689,
+        "pooled_suffix_entropy": 3.4872459722908324,
+        "within_class_entropy": 1.737274081872135
+      },
+      "conditioning": {
+        "conditioned_share": 0.02536173124233714,
+        "mi_with_next_suffix": 0.0897261956834868,
+        "mi_with_previous_suffix": 0.08972619568348686,
+        "nmi_with_own_root": 0.5304938533208018,
+        "suffix_entropy": 3.537857681170599
+      },
+      "density": {
+        "cells_filled": 0.1254749641138225,
+        "excess_over_chance": -0.40659990852876576,
+        "expected_filled": 0.5320748726425883,
+        "mean_suffixes_per_root": 1.6311745334796925,
+        "roots": 911.0,
+        "single_suffix_roots": 0.5433589462129528,
+        "suffixes": 13.0
+      },
+      "frequency_inventory": {
+        "prefixes": [],
+        "suffixes": [
+          "an",
+          "en",
+          "in",
+          "ta",
+          "at",
+          "na",
+          "sa",
+          "a",
+          "n",
+          "t",
+          "i",
+          "e"
+        ]
+      },
+      "mdl_affixes": 4.0,
+      "mdl_inventory": {
+        "prefixes": [],
+        "suffixes": [
+          "nsa",
+          "vat",
+          "sta",
+          "si"
+        ]
+      }
+    },
+    "herbal_latin": {
+      "classes": {
+        "classes": 6.0,
+        "entropy_explained": 0.40278957297604556,
+        "pooled_suffix_entropy": 3.5229921846879115,
+        "within_class_entropy": 2.1039676670195218
+      },
+      "conditioning": {
+        "conditioned_share": 0.011966960328056643,
+        "mi_with_next_suffix": 0.04283819108063662,
+        "mi_with_previous_suffix": 0.04283819108063666,
+        "nmi_with_own_root": 0.483092279201689,
+        "suffix_entropy": 3.5797052807304883
+      },
+      "density": {
+        "cells_filled": 0.18210361067503925,
+        "excess_over_chance": -0.36501658664691683,
+        "expected_filled": 0.547120197321956,
+        "mean_suffixes_per_root": 2.36734693877551,
+        "roots": 1029.0,
+        "single_suffix_roots": 0.40524781341107874,
+        "suffixes": 13.0
+      },
+      "frequency_inventory": {
+        "prefixes": [],
+        "suffixes": [
+          "um",
+          "us",
+          "is",
+          "am",
+          "s",
+          "m",
+          "t",
+          "e",
+          "a",
+          "i",
+          "o",
+          "r"
+        ]
+      },
+      "mdl_affixes": 9.0,
+      "mdl_inventory": {
+        "prefixes": [
+          "de",
+          "re"
+        ],
+        "suffixes": [
+          "que",
+          "tur",
+          "bus",
+          "rum",
+          "nt",
+          "s",
+          "m"
+        ]
+      }
+    },
+    "merged": {
+      "classes": {
+        "classes": 6.0,
+        "entropy_explained": 0.29932973571541105,
+        "pooled_suffix_entropy": 3.230664919108272,
+        "within_class_entropy": 2.2636308426865432
+      },
+      "conditioning": {
+        "conditioned_share": 0.011592413396281455,
+        "mi_with_next_suffix": 0.03684020891830903,
+        "mi_with_previous_suffix": 0.036840208918309005,
+        "nmi_with_own_root": 0.3186030281588175,
+        "suffix_entropy": 3.1779585198476803
+      },
+      "density": {
+        "cells_filled": 0.28319451249387556,
+        "excess_over_chance": -0.27438398337866104,
+        "expected_filled": 0.5575784958725366,
+        "mean_suffixes_per_root": 3.6815286624203822,
+        "roots": 628.0,
+        "single_suffix_roots": 0.23885350318471338,
+        "suffixes": 13.0
+      },
+      "frequency_inventory": {
+        "prefixes": [],
+        "suffixes": [
+          "edy",
+          "dy",
+          "y",
+          "ar",
+          "aiin",
+          "ol",
+          "al",
+          "ey",
+          "ain",
+          "r",
+          "or",
+          "m"
+        ]
+      },
+      "mdl_affixes": 30.0,
+      "mdl_inventory": {
+        "prefixes": [
+          "yt",
+          "qok",
+          "y",
+          "l",
+          "ol",
+          "o",
+          "s",
+          "d",
+          "r",
+          "p",
+          "t",
+          "sh",
+          "k",
+          "qot",
+          "ot"
+        ],
+        "suffixes": [
+          "am",
+          "chy",
+          "chey",
+          "s",
+          "d",
+          "daiin",
+          "or",
+          "ol",
+          "ar",
+          "al",
+          "aiin",
+          "ain",
+          "o",
+          "chedy",
+          "ody"
+        ]
+      }
+    },
+    "raw": {
+      "classes": {
+        "classes": 6.0,
+        "entropy_explained": 0.36205263366538837,
+        "pooled_suffix_entropy": 3.5273212012741553,
+        "within_class_entropy": 2.250245270569086
+      },
+      "conditioning": {
+        "conditioned_share": 0.016761014938104512,
+        "mi_with_next_suffix": 0.05882650927276603,
+        "mi_with_previous_suffix": 0.058826509272766045,
+        "nmi_with_own_root": 0.3500439187384216,
+        "suffix_entropy": 3.509722381968038
+      },
+      "density": {
+        "cells_filled": 0.28948038716250635,
+        "excess_over_chance": -0.3084643996827978,
+        "expected_filled": 0.5979447868453042,
+        "mean_suffixes_per_root": 3.763245033112583,
+        "roots": 604.0,
+        "single_suffix_roots": 0.09105960264900662,
+        "suffixes": 13.0
+      },
+      "frequency_inventory": {
+        "prefixes": [],
+        "suffixes": [
+          "edy",
+          "iin",
+          "eey",
+          "dy",
+          "in",
+          "ey",
+          "ol",
+          "ar",
+          "y",
+          "n",
+          "l",
+          "r"
+        ]
+      },
+      "mdl_affixes": 30.0,
+      "mdl_inventory": {
+        "prefixes": [
+          "cheo",
+          "qok",
+          "qot",
+          "qo",
+          "cho",
+          "sho",
+          "ol",
+          "ot",
+          "ok",
+          "o",
+          "y",
+          "l",
+          "s",
+          "d",
+          "t",
+          "k"
+        ],
+        "suffixes": [
+          "kar",
+          "chey",
+          "ody",
+          "ain",
+          "eey",
+          "ky",
+          "or",
+          "ol",
+          "am",
+          "chy",
+          "al",
+          "ar",
+          "s",
+          "d"
+        ]
+      }
+    },
+    "reliable": {
+      "classes": {
+        "classes": 6.0,
+        "entropy_explained": 0.36137611692404076,
+        "pooled_suffix_entropy": 3.529672890002787,
+        "within_class_entropy": 2.254133407001523
+      },
+      "conditioning": {
+        "conditioned_share": 0.016657066117025117,
+        "mi_with_next_suffix": 0.058564800071860545,
+        "mi_with_previous_suffix": 0.058564800071860434,
+        "nmi_with_own_root": 0.35211121000964324,
+        "suffix_entropy": 3.515913286314071
+      },
+      "density": {
+        "cells_filled": 0.28519715578539107,
+        "excess_over_chance": -0.31426237421783615,
+        "expected_filled": 0.5994595300032273,
+        "mean_suffixes_per_root": 3.707563025210084,
+        "roots": 595.0,
+        "single_suffix_roots": 0.09411764705882353,
+        "suffixes": 13.0
+      },
+      "frequency_inventory": {
+        "prefixes": [],
+        "suffixes": [
+          "edy",
+          "iin",
+          "eey",
+          "dy",
+          "in",
+          "ey",
+          "ol",
+          "ar",
+          "y",
+          "n",
+          "l",
+          "r"
+        ]
+      },
+      "mdl_affixes": 30.0,
+      "mdl_inventory": {
+        "prefixes": [
+          "cheo",
+          "qok",
+          "qot",
+          "qo",
+          "cho",
+          "sho",
+          "ol",
+          "ot",
+          "ok",
+          "o",
+          "y",
+          "l",
+          "s",
+          "q",
+          "d",
+          "t"
+        ],
+        "suffixes": [
+          "kar",
+          "chey",
+          "kal",
+          "ody",
+          "ain",
+          "ky",
+          "am",
+          "or",
+          "ol",
+          "chy",
+          "ar",
+          "al",
+          "s",
+          "d"
+        ]
+      }
+    },
+    "vulgate_clementine": {
+      "classes": {
+        "classes": 6.0,
+        "entropy_explained": 0.3905279761239219,
+        "pooled_suffix_entropy": 3.5602813875557477,
+        "within_class_entropy": 2.169891902841933
+      },
+      "conditioning": {
+        "conditioned_share": 0.021103256936142685,
+        "mi_with_next_suffix": 0.07546977666222764,
+        "mi_with_previous_suffix": 0.07546977666222762,
+        "nmi_with_own_root": 0.5151782137659539,
+        "suffix_entropy": 3.5762146521077343
+      },
+      "density": {
+        "cells_filled": 0.14637002341920374,
+        "excess_over_chance": -0.4436187804501795,
+        "expected_filled": 0.5899888038693832,
+        "mean_suffixes_per_root": 1.9028103044496487,
+        "roots": 854.0,
+        "single_suffix_roots": 0.49765807962529274,
+        "suffixes": 13.0
+      },
+      "frequency_inventory": {
+        "prefixes": [],
+        "suffixes": [
+          "um",
+          "us",
+          "it",
+          "is",
+          "t",
+          "s",
+          "m",
+          "e",
+          "i",
+          "a",
+          "n",
+          "o"
+        ]
+      },
+      "mdl_affixes": 1.0,
+      "mdl_inventory": {
+        "prefixes": [],
+        "suffixes": [
+          "que"
+        ]
+      }
+    }
+  }
+}

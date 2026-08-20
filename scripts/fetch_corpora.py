@@ -31,6 +31,11 @@ def fetch(url: str) -> bytes:
     return data
 
 
+def fetch_all(urls: tuple[str, ...]) -> bytes:
+    """Download every part of a corpus, joined by a newline in declared order."""
+    return b"\n".join(fetch(url) for url in urls)
+
+
 def main() -> int:
     """Fetch every declared corpus and verify its checksum."""
     specs = load_specs()
@@ -38,12 +43,13 @@ def main() -> int:
 
     failures = 0
     for spec in specs:
-        print(f"{spec.corpus_id} ({spec.language}, {spec.group})")
+        parts = f", {len(spec.urls)} parts" if len(spec.urls) > 1 else ""
+        print(f"{spec.corpus_id} ({spec.language}, {spec.group}{parts})")
         if spec.path.exists() and sha256_bytes(spec.path.read_bytes()) == spec.sha256:
             print("  ✓ cached, checksum matches")
             continue
 
-        data = fetch(spec.url)
+        data = fetch_all(spec.urls)
         actual = sha256_bytes(data)
         if actual != spec.sha256:
             print(f"  ✗ checksum mismatch\n    expected {spec.sha256}\n    actual   {actual}")

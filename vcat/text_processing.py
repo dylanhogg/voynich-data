@@ -95,6 +95,24 @@ def clean_text_for_analysis(text: str, alternative: int = 0) -> str:
     return result
 
 
+def inline_tags(text: str) -> list[str]:
+    """
+    Return the angle-bracket tags of a raw IVTFF line, in order.
+
+    The cleaners above delete these; some carry layout information that the
+    cleaned text cannot express (``<%>`` paragraph start, ``<$>`` paragraph
+    end, ``<->`` plain line end). Reading them goes through here so no caller
+    grows its own copy of the tag regex.
+
+    Args:
+        text: Raw IVTFF transcription text
+
+    Returns:
+        The tags found, including their angle brackets
+    """
+    return re.findall(r"<[^>]*>", text)
+
+
 def compute_flags(text: str) -> tuple[bool, bool, bool]:
     """
     Compute quality flags from raw text.

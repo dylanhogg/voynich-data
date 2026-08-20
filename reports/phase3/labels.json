@@ -1,0 +1,56 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "overlap": {
+    "label_only_types": 32.0,
+    "label_types": 64.0,
+    "repeated_label_types": 0.25,
+    "shared_with_prose": 0.5
+  },
+  "shape": {
+    "labels": {
+      "cv_length": 0.9166124486167275,
+      "gallows_initial_rate": 0.11290322580645161,
+      "hapax_rate": 0.75,
+      "mean_length": 2.370967741935484,
+      "suffix_rate": 0.24193548387096775,
+      "tokens": 124.0,
+      "ttr": 0.5161290322580645,
+      "types": 64.0
+    },
+    "prose (all)": {
+      "cv_length": 0.3907008039259601,
+      "gallows_initial_rate": 0.10563954014664614,
+      "hapax_rate": 0.7008978675645342,
+      "mean_length": 4.534081651127003,
+      "suffix_rate": 0.8604145921969766,
+      "tokens": 33141.0,
+      "ttr": 0.21508101747080655,
+      "types": 7128.0
+    },
+    "prose (matched sample)": {
+      "cv_length": 0.3559765767570696,
+      "gallows_initial_rate": 0.10483870967741936,
+      "hapax_rate": 0.8666666666666667,
+      "mean_length": 4.919354838709677,
+      "suffix_rate": 0.8951612903225806,
+      "tokens": 124.0,
+      "ttr": 0.8467741935483871,
+      "types": 105.0
+    }
+  },
+  "similarity": {
+    "labels": {
+      "across_group_distance": 3.0927777777777776,
+      "pairs": 1800.0,
+      "tightening": 0.19333333333333336,
+      "within_group_distance": 2.8994444444444443
+    },
+    "prose": {
+      "across_group_distance": 4.438144329896907,
+      "pairs": 1940.0,
+      "tightening": 0.12422680412371179,
+      "within_group_distance": 4.313917525773196
+    }
+  },
+  "topic": "labels"
+}

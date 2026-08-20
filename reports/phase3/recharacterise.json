@@ -1,0 +1,401 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "inside_counts": {
+    "merged": 4,
+    "raw": 3,
+    "reliable": 3
+  },
+  "moved_counts": {
+    "merged": 4,
+    "reliable": 3
+  },
+  "natural_band": {
+    "h1": [
+      3.870699552381276,
+      4.0910368236744095
+    ],
+    "h2": [
+      3.0771330302107547,
+      3.3647649439106075
+    ],
+    "h3": [
+      2.281728449581517,
+      2.7889747676042997
+    ],
+    "hapax_rate": [
+      0.39471326164874554,
+      0.6717116125481563
+    ],
+    "mi_excess_d1": [
+      0.18486734771412128,
+      1.334528840542555
+    ],
+    "mi_excess_d5": [
+      -0.01733766581500662,
+      0.12695998036011202
+    ],
+    "morph_bits_saved_per_word": [
+      0.0,
+      0.6829452805126923
+    ],
+    "near_repeat_within_2": [
+      0.02318617131674919,
+      0.11364781925460314
+    ],
+    "word_length_cv": [
+      0.4579095780391654,
+      0.5646959560488902
+    ],
+    "word_length_mean": [
+      3.965725806451613,
+      6.12517789373814
+    ],
+    "zipf_alpha": [
+      1.6121919819833335,
+      2.2067229830111788
+    ]
+  },
+  "profiles": {
+    "austen_pride_prejudice": {
+      "h1": 4.0910368236744095,
+      "h2": 3.295656610969166,
+      "h3": 2.5389892133215977,
+      "hapax_rate": 0.45571166768478927,
+      "mi_excess_d1": 0.9331547044832176,
+      "mi_excess_d5": 0.012027821527931026,
+      "morph_bits_saved_per_word": 0.15072105248705536,
+      "near_repeat_within_2": 0.08192249533015092,
+      "word_length_cv": 0.5526661723995083,
+      "word_length_mean": 4.2787891366223905,
+      "zipf_alpha": 1.712712903543306
+    },
+    "caesar_bello_gallico": {
+      "h1": 4.011333628273231,
+      "h2": 3.2983965897870755,
+      "h3": 2.6330369035365235,
+      "hapax_rate": 0.6076327822722476,
+      "mi_excess_d1": 0.2988355776196381,
+      "mi_excess_d5": -0.01733766581500662,
+      "morph_bits_saved_per_word": 0.5813584638140323,
+      "near_repeat_within_2": 0.028037383177570093,
+      "word_length_cv": 0.48366259185583155,
+      "word_length_mean": 6.004283280603553,
+      "zipf_alpha": 2.03305955391342
+    },
+    "chaucer_canterbury": {
+      "h1": 4.0461335632471265,
+      "h2": 3.2488103754316233,
+      "h3": 2.636296737171908,
+      "hapax_rate": 0.5446833695008878,
+      "mi_excess_d1": 0.6348482588779667,
+      "mi_excess_d5": 0.024958756013137906,
+      "morph_bits_saved_per_word": 0.018372067294673628,
+      "near_repeat_within_2": 0.08770421324161651,
+      "word_length_cv": 0.5104451784425336,
+      "word_length_mean": 4.138697817836812,
+      "zipf_alpha": 1.8850719083712264
+    },
+    "clusius_rariorum": {
+      "h1": 4.046497384473577,
+      "h2": 3.3647649439106075,
+      "h3": 2.7889747676042997,
+      "hapax_rate": 0.6700251889168766,
+      "mi_excess_d1": 0.2588427946396523,
+      "mi_excess_d5": 0.0561113158412494,
+      "morph_bits_saved_per_word": 0.6829452805126923,
+      "near_repeat_within_2": 0.02535017616224113,
+      "word_length_cv": 0.4579095780391654,
+      "word_length_mean": 5.650799106375666,
+      "zipf_alpha": 2.2067229830111788
+    },
+    "dante_commedia": {
+      "h1": 3.9267107044399365,
+      "h2": 3.110112175028803,
+      "h3": 2.645162372226369,
+      "hapax_rate": 0.6194943552234059,
+      "mi_excess_d1": 0.5556445583926537,
+      "mi_excess_d5": -0.00115284038670449,
+      "morph_bits_saved_per_word": 0.11712658689918751,
+      "near_repeat_within_2": 0.11364781925460314,
+      "word_length_cv": 0.5646959560488902,
+      "word_length_mean": 3.965725806451613,
+      "zipf_alpha": 2.0071217065553144
+    },
+    "douay_rheims": {
+      "h1": 4.000309305529178,
+      "h2": 3.0771330302107547,
+      "h3": 2.281728449581517,
+      "hapax_rate": 0.39471326164874554,
+      "mi_excess_d1": 1.334528840542555,
+      "mi_excess_d5": 0.09497641983647331,
+      "morph_bits_saved_per_word": 0.0,
+      "near_repeat_within_2": 0.07631867643134581,
+      "word_length_cv": 0.4809635759373055,
+      "word_length_mean": 4.067718216318785,
+      "zipf_alpha": 1.6121919819833335
+    },
+    "finnish_bible": {
+      "h1": 3.870699552381276,
+      "h2": 3.1526433832023715,
+      "h3": 2.5741017095225374,
+      "hapax_rate": 0.5991643817730774,
+      "mi_excess_d1": 0.8094422018972365,
+      "mi_excess_d5": 0.12233239521526129,
+      "morph_bits_saved_per_word": 0.11108631717540794,
+      "near_repeat_within_2": 0.026803451240845613,
+      "word_length_cv": 0.4802961572832557,
+      "word_length_mean": 6.12517789373814,
+      "zipf_alpha": 2.023780163961462
+    },
+    "german_bible_elberfelder": {
+      "h1": 4.03519792400015,
+      "h2": 3.0896553634568242,
+      "h3": 2.331783861511112,
+      "hapax_rate": 0.4854263143557614,
+      "mi_excess_d1": 1.1304223372939473,
+      "mi_excess_d5": 0.12695998036011202,
+      "morph_bits_saved_per_word": 0.0,
+      "near_repeat_within_2": 0.04118362143090106,
+      "word_length_cv": 0.4775441167925578,
+      "word_length_mean": 4.826820445920304,
+      "zipf_alpha": 1.7626733520396378
+    },
+    "grille": {
+      "h1": 4.0916018595724095,
+      "h2": 2.7486488433740295,
+      "h3": 1.9318124896076538,
+      "hapax_rate": 0.0,
+      "mi_excess_d1": 0.0005229743502394857,
+      "mi_excess_d5": -0.004068826453169194,
+      "morph_bits_saved_per_word": 0.0,
+      "near_repeat_within_2": 0.059714768583034365,
+      "word_length_cv": 0.2808500941756776,
+      "word_length_mean": 4.581445683111954,
+      "zipf_alpha": 1.156017938706844
+    },
+    "herbal_latin": {
+      "h1": 4.015719389167139,
+      "h2": 3.3269433164587845,
+      "h3": 2.7856913105751593,
+      "hapax_rate": 0.6717116125481563,
+      "mi_excess_d1": 0.18486734771412128,
+      "mi_excess_d5": 0.04393326202076042,
+      "morph_bits_saved_per_word": 0.47896189876219675,
+      "near_repeat_within_2": 0.02318617131674919,
+      "word_length_cv": 0.4696311193444167,
+      "word_length_mean": 6.007204696394687,
+      "zipf_alpha": 2.1943021870900283
+    },
+    "merged": {
+      "h1": 4.501049093681141,
+      "h2": 3.111153322257988,
+      "h3": 2.8470296212412523,
+      "hapax_rate": 0.7001934235976789,
+      "mi_excess_d1": 0.1674688599987344,
+      "mi_excess_d5": 0.02015056475636179,
+      "morph_bits_saved_per_word": 0.9675330337512958,
+      "near_repeat_within_2": 0.3314851602573606,
+      "word_length_cv": 0.4713517471877372,
+      "word_length_mean": 2.813508064516129,
+      "zipf_alpha": 2.1162137857134486
+    },
+    "raw": {
+      "h1": 3.8547453239613145,
+      "h2": 2.2530059920022585,
+      "h3": 2.0321327962702425,
+      "hapax_rate": 0.7001934235976789,
+      "mi_excess_d1": 0.17295675733173033,
+      "mi_excess_d5": 0.01492648243241268,
+      "morph_bits_saved_per_word": 1.5125970501440298,
+      "near_repeat_within_2": 0.14759688083731135,
+      "word_length_cv": 0.3930988508227018,
+      "word_length_mean": 4.524460388994307,
+      "zipf_alpha": 2.1162137857134486
+    },
+    "reliable": {
+      "h1": 3.8498651388623566,
+      "h2": 2.2344909309823775,
+      "h3": 2.0142756742925663,
+      "hapax_rate": 0.6895003620564808,
+      "mi_excess_d1": 0.1701973556936891,
+      "mi_excess_d5": -0.00569364922541804,
+      "morph_bits_saved_per_word": 1.2174661037736112,
+      "near_repeat_within_2": 0.1474185813579385,
+      "word_length_cv": 0.3849223209255274,
+      "word_length_mean": 4.546497511229816,
+      "zipf_alpha": 2.0912795755058933
+    },
+    "selfcite": {
+      "h1": 4.820280775819578,
+      "h2": 2.6451253906091345,
+      "h3": 1.4638194771238329,
+      "hapax_rate": 0.36545079146593257,
+      "mi_excess_d1": 3.1093892314251925,
+      "mi_excess_d5": 2.6202624432335924,
+      "morph_bits_saved_per_word": 0.0,
+      "near_repeat_within_2": 0.8435378183651081,
+      "word_length_cv": 0.4380678969209099,
+      "word_length_mean": 3.4962345825426944,
+      "zipf_alpha": 1.5284692780459053
+    },
+    "vulgate_clementine": {
+      "h1": 4.0227503309436745,
+      "h2": 3.326610421304342,
+      "h3": 2.6304073878686234,
+      "hapax_rate": 0.5886034255599473,
+      "mi_excess_d1": 0.6979858517834585,
+      "mi_excess_d5": 0.05352471024965655,
+      "morph_bits_saved_per_word": 0.1534538851472034,
+      "near_repeat_within_2": 0.037981439203012425,
+      "word_length_cv": 0.4953990047636044,
+      "word_length_mean": 5.2246501423149905,
+      "zipf_alpha": 1.9337294758443357
+    }
+  },
+  "topic": "recharacterise",
+  "verdicts": [
+    {
+      "merged": 4.501049093681141,
+      "merged_inside": false,
+      "merged_moved_toward": false,
+      "metric": "h1",
+      "natural_high": 4.0910368236744095,
+      "natural_low": 3.870699552381276,
+      "raw": 3.8547453239613145,
+      "raw_inside": false,
+      "reliable": 3.8498651388623566,
+      "reliable_inside": false,
+      "reliable_moved_toward": false
+    },
+    {
+      "merged": 3.111153322257988,
+      "merged_inside": true,
+      "merged_moved_toward": true,
+      "metric": "h2",
+      "natural_high": 3.3647649439106075,
+      "natural_low": 3.0771330302107547,
+      "raw": 2.2530059920022585,
+      "raw_inside": false,
+      "reliable": 2.2344909309823775,
+      "reliable_inside": false,
+      "reliable_moved_toward": false
+    },
+    {
+      "merged": 2.8470296212412523,
+      "merged_inside": false,
+      "merged_moved_toward": true,
+      "metric": "h3",
+      "natural_high": 2.7889747676042997,
+      "natural_low": 2.281728449581517,
+      "raw": 2.0321327962702425,
+      "raw_inside": false,
+      "reliable": 2.0142756742925663,
+      "reliable_inside": false,
+      "reliable_moved_toward": false
+    },
+    {
+      "merged": 2.813508064516129,
+      "merged_inside": false,
+      "merged_moved_toward": false,
+      "metric": "word_length_mean",
+      "natural_high": 6.12517789373814,
+      "natural_low": 3.965725806451613,
+      "raw": 4.524460388994307,
+      "raw_inside": true,
+      "reliable": 4.546497511229816,
+      "reliable_inside": true,
+      "reliable_moved_toward": false
+    },
+    {
+      "merged": 0.4713517471877372,
+      "merged_inside": true,
+      "merged_moved_toward": true,
+      "metric": "word_length_cv",
+      "natural_high": 0.5646959560488902,
+      "natural_low": 0.4579095780391654,
+      "raw": 0.3930988508227018,
+      "raw_inside": false,
+      "reliable": 0.3849223209255274,
+      "reliable_inside": false,
+      "reliable_moved_toward": false
+    },
+    {
+      "merged": 2.1162137857134486,
+      "merged_inside": true,
+      "merged_moved_toward": false,
+      "metric": "zipf_alpha",
+      "natural_high": 2.2067229830111788,
+      "natural_low": 1.6121919819833335,
+      "raw": 2.1162137857134486,
+      "raw_inside": true,
+      "reliable": 2.0912795755058933,
+      "reliable_inside": true,
+      "reliable_moved_toward": false
+    },
+    {
+      "merged": 0.7001934235976789,
+      "merged_inside": false,
+      "merged_moved_toward": false,
+      "metric": "hapax_rate",
+      "natural_high": 0.6717116125481563,
+      "natural_low": 0.39471326164874554,
+      "raw": 0.7001934235976789,
+      "raw_inside": false,
+      "reliable": 0.6895003620564808,
+      "reliable_inside": false,
+      "reliable_moved_toward": true
+    },
+    {
+      "merged": 0.1674688599987344,
+      "merged_inside": false,
+      "merged_moved_toward": false,
+      "metric": "mi_excess_d1",
+      "natural_high": 1.334528840542555,
+      "natural_low": 0.18486734771412128,
+      "raw": 0.17295675733173033,
+      "raw_inside": false,
+      "reliable": 0.1701973556936891,
+      "reliable_inside": false,
+      "reliable_moved_toward": false
+    },
+    {
+      "merged": 0.02015056475636179,
+      "merged_inside": true,
+      "merged_moved_toward": false,
+      "metric": "mi_excess_d5",
+      "natural_high": 0.12695998036011202,
+      "natural_low": -0.01733766581500662,
+      "raw": 0.01492648243241268,
+      "raw_inside": true,
+      "reliable": -0.00569364922541804,
+      "reliable_inside": true,
+      "reliable_moved_toward": false
+    },
+    {
+      "merged": 0.3314851602573606,
+      "merged_inside": false,
+      "merged_moved_toward": false,
+      "metric": "near_repeat_within_2",
+      "natural_high": 0.11364781925460314,
+      "natural_low": 0.02318617131674919,
+      "raw": 0.14759688083731135,
+      "raw_inside": false,
+      "reliable": 0.1474185813579385,
+      "reliable_inside": false,
+      "reliable_moved_toward": true
+    },
+    {
+      "merged": 0.9675330337512958,
+      "merged_inside": false,
+      "merged_moved_toward": true,
+      "metric": "morph_bits_saved_per_word",
+      "natural_high": 0.6829452805126923,
+      "natural_low": 0.0,
+      "raw": 1.5125970501440298,
+      "raw_inside": false,
+      "reliable": 1.2174661037736112,
+      "reliable_inside": false,
+      "reliable_moved_toward": true
+    }
+  ]
+}

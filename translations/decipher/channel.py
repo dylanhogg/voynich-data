@@ -18,6 +18,7 @@ import numpy as np
 
 from translations.analysis.common import View
 from translations.decipher.lm import ALPHABET, BOUNDARY
+from translations.tokenize import apply_merges
 
 BOUNDARY_ID = 0
 RARE = "?"  # every unit below the frequency floor is folded into this one symbol
@@ -94,21 +95,7 @@ def merge_units(
     produced. Merges are sequences of *units*, so a compound glyph like ``ch``
     is never split apart.
     """
-    ordered = sorted(set(merges), key=len, reverse=True)
-    words: list[list[str]] = []
-    for word in view.words:
-        pieces: list[str] = []
-        cursor = 0
-        while cursor < len(word):
-            for merge in ordered:
-                if merge and tuple(word[cursor : cursor + len(merge)]) == merge:
-                    pieces.append("".join(merge))
-                    cursor += len(merge)
-                    break
-            else:
-                pieces.append(word[cursor])
-                cursor += 1
-        words.append(pieces)
+    words = [apply_merges(word, merges) for word in view.words]
     return build_ciphertext(View(name=name, lines=[words]), name, min_count)
 
 

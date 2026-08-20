@@ -13,6 +13,7 @@ from __future__ import annotations
 import json
 import sys
 import time
+from collections.abc import Callable
 from typing import Any
 
 import pandas as pd
@@ -64,15 +65,22 @@ SHORTLIST_REASONS: dict[str, str] = {
 
 def build_corpora(
     replicates: int = CONFIG.null_replicates,
+    transform: Callable[[View], View] | None = None,
 ) -> tuple[dict[str, View], View, dict[str, Any]]:
     """Training corpora (real plus null replicates) and the untouched held-out view.
 
     Each null family gets ``replicates`` independently seeded surrogates. One
     surrogate per family would floor the empirical p-value at 0.2, which is not a
     significance test — it is a rounding error with a p in front of it.
+
+    ``transform`` re-tokenises the manuscript before anything else happens (the
+    Phase 3 representations), so the surrogates are generated from the same
+    representation they are compared against.
     """
     train = voynich_view("voynich|train", keep=lambda row: not row.is_holdout)
     holdout = voynich_view("voynich|holdout", keep=lambda row: row.is_holdout)
+    if transform is not None:
+        train, holdout = transform(train), transform(holdout)
     _, _, tuning = tune_pseudo(train)
 
     corpora: dict[str, View] = {"real": train}

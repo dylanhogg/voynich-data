@@ -822,6 +822,207 @@ the intended way to revisit any of them.
 
 ---
 
+## Decision 21: Paragraph Blocks Come from the IVTFF Markers, Not from Heuristics
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: Plan 001 §5.1 listed "no paragraph/block segmentation" as a gap and expected it
+to be closed by deriving blocks from the `position` locator plus layout heuristics.
+
+### Options Considered
+
+1. **Heuristics over `position`** — as planned. The locator values are `@` 249, `+` 3,729,
+   `=` 41, `*` 53, which cannot mark 700-odd paragraphs.
+2. **Read the inline IVTFF markers** — `<%>` (paragraph start, 707 occurrences) and `<$>`
+   (paragraph end, 670). The builders strip them on the way to `text_clean`; the raw `text`
+   field keeps them.
+
+### Decision
+
+Option 2. `vcat/text_processing.py` gains an `inline_tags()` accessor — the tag regex stays
+in the one module allowed to own it — and `translations/paragraphs.py` reads paragraph
+structure off those tags. 717 blocks, 93.4% opened *and* closed by a marker; the rest are
+closed by a page break.
+
+### Rationale
+
+The segmentation is annotated in the source, not inferred. A heuristic would have invented
+uncertainty where the transcribers had already recorded the answer.
+
+### Consequences
+
+- Phase 4 can render paragraphs as units instead of lines.
+- LAAFU effects can be tested at block level, not only per line.
+- Blocks that no marker opens or closes are flagged rather than silently patched.
+
+### Reversibility
+
+Cheap. The segmentation is derived at run time from `output/eva_lines.jsonl`.
+
+---
+
+## Decision 22: Token Alignment Is EVA-Only and the Reliability Weight Is Declared, Not Fitted
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: Phase 1 could only report line-level transcription agreement (29.3% of lines
+identical between ZL and IT), which is too coarse to weight a per-token gloss.
+
+### Decision
+
+`translations/alignment.py` aligns ZL against IT word by word (Needleman–Wunsch, substitution
+cost = glyph edit distance) and emits `output/translation/token_alignment.parquet`: one row
+per ZL token with its counterpart, an agreement score and a reliability weight. CD, FG and GC
+are excluded. The weight multiplies four fixed penalties — no counterpart, line-level
+uncertainty, line-level illegibility, alternatives, hapax status, rare glyph — declared as
+constants in the module.
+
+### Rationale
+
+FG and GC use different alphabets, so a glyph edit distance against them measures the
+alphabet, not the scribes (Decision 13); CD is sparse. And there is no labelled data on which
+a reliability model could be *fitted*, so a fitted-looking weight would be false precision.
+A declared policy can be read, argued with and changed.
+
+### Consequences
+
+- Token-level agreement is 86.2%, far better than the line-level figure suggests: a line
+  mismatch is usually one word, not a different reading of the line.
+- Anything consuming the weight must cite it as a policy, never as an estimate.
+- Cross-alphabet robustness stays untested until the v101 mapping exists.
+
+### Reversibility
+
+The penalties are six constants; changing them changes the `reliable` representation and must
+be recorded here.
+
+---
+
+## Decision 23: A Multi-Part Corpus Entry, and What `herbal_latin` Is Not
+
+**Date**: 2026-08-20  
+**Status**: Active  
+**Context**: The herbal-register Latin that scored best in Phase 2 (`clusius_rariorum`) is
+11,638 words — thin for an order-3 character model, and plan §5.1 listed the scarcity as a gap.
+
+### Decision
+
+`sources.yaml` entries may declare `urls:` (an ordered list) instead of `url:`; the parts are
+concatenated in the listed order joined by a newline, and the SHA256 is over the
+concatenation. `herbal_latin` uses it: Isidore, *Etymologiae* IV and XVII plus Columella,
+*De re rustica*, 15 files at one pinned commit, 128,497 words.
+
+### Rationale
+
+Assembling a register-matched subcorpus needs several texts, and one checksum over the
+concatenation keeps the provenance contract intact — a changed part changes the hash.
+
+### Consequences
+
+- It is **not** a medieval herbal. Isidore (c. 625) is encyclopaedic and Columella (1st c.)
+  is Roman agronomy; both are agricultural/botanical in register, neither is the genre the
+  manuscript's drawings suggest. Any H1/H3/H4 result on this model inherits that mismatch.
+- The Latin Library transcriptions carry editorial furniture and `V`-for-`U` headings;
+  normalisation drops non-letters but not the orthography.
+- Adding a corpus changes the Phase 1 baseline set (9 → 10), so `make analyse1` was re-run.
+
+### Reversibility
+
+Remove the entry and re-run; nothing depends on it structurally.
+
+---
+
+## Decision 24: Three Phase 3 Gaps Stay Open, With Their Pre-Committed Fallbacks
+
+**Date**: 2026-08-20  
+**Status**: Active (negative result)  
+**Context**: Plan §5.1 listed seven gaps and pre-committed a fallback for each. Phase 3 closed
+four and left three.
+
+### Result
+
+| Gap | Status | Why |
+|-----|--------|-----|
+| Token-level alignment | closed | Derived; Decision 22 |
+| Paragraph segmentation | closed | Derived; Decision 21 |
+| Register-matched Latin | closed | `herbal_latin`; Decision 23 |
+| Plant/star lexicons | partial | Star names pinned (`iau_star_names`); no plant lexicon located |
+| Illustration↔label concordance | **open** | No machine-readable concordance exists that could be checksummed |
+| Marginalia | **open** | Readings are disputed and exist only as prose discussion |
+| Currier/v101 alphabet map | **open** | Deferred; would need per-glyph validation against the images |
+
+### Consequences
+
+The two open source gaps are the same problem: the manuscript's best cribs have no
+checksummable transcription. The anchor catalogue in `translations/decipher/anchors.py`
+therefore stays empty, and Phase 4 will render with **no external tie-point at all** — a hard
+limit on how far any gloss can be validated. §5.1's fallback applies: label-level anchor
+seeding is dropped, and page-level `section` / `illustration_type` is used instead.
+
+Hand-transcribing the marginalia was rejected deliberately: the readings are contested, and a
+hand transcription would smuggle one scholar's reading into the dataset as fact.
+
+### Reversibility
+
+Each gap reopens the moment a checksummable source appears; the register in
+`translations/gap_analysis.py` records what each remedy would cost.
+
+---
+
+## Decision 25: Round-2 Re-Scoring Narrows Every Gap and Changes No Verdict
+
+**Date**: 2026-08-20  
+**Status**: Active (negative results)  
+**Context**: Phase 3 re-searched all eight funded hypotheses on two improved
+representations — `merged` (H2's converged 22-merge partition, as `T3-merge`) and
+`reliable` (tokens above the reliability floor) — under Phase 2's rules: training pages
+only, 12 seeded surrogates, held-out pages scored once.
+
+### Result
+
+Every round-2 gain is larger than its Phase 2 counterpart, and the best row, H2 on
+`merged`, reaches −0.105 bits/token with a **positive** held-out gain of +3.05. None of
+that is evidence, for three measured reasons:
+
+1. **The baseline is re-based per representation.** On the merged fixed-width-3 channel
+   the identical search scores **+9.97 to +10.02** bits/token on *shuffled* manuscript
+   text. Shuffled text gives an order-2 Markov model nothing to exploit, so the reference
+   collapses and any substitution code beats it. The channel is being measured, not the
+   text.
+2. **The held-out baseline moved further than the key did.** The order-2 reference costs
+   13.58 bits/token on the 41 held-out pages against 12.55 on the training pages, because
+   its parameter cost is amortised over a fifth as many tokens.
+3. **The variant did not converge** — fixed-width-3 over already-merged units is a
+   codebook of hundreds of symbols against 26 letters, the wide-alphabet corner Phase 2
+   already recorded as inconclusive.
+
+On the training pages no hypothesis on any representation beats a Markov model of its own
+representation, and **none of the eighteen rows beat every surrogate**. The best p is
+0.077 (H1 and H4 on `reliable`), which is the floor the null count allows.
+
+### Decision
+
+Report the narrowing and the artifact together, in the same table's caveat section, and
+never quote a round-2 gain without its representation. The translator configuration
+records `best_scoring` (the unconverged H2 row) separately from `chosen` (H1 on `merged`,
+converged, with a committed key), and Phase 4 runs `chosen`.
+
+### Consequences
+
+- Gains are **not comparable across representations**. A Δ against Phase 2 measures a
+  change of reference, not a better model.
+- Any future re-representation must re-run its own surrogates; carrying nulls across
+  representations would manufacture exactly this illusion.
+- The Phase 2 verdict stands unchanged on a second representation, which is a stronger
+  negative result than Phase 2 alone.
+
+### Reversibility
+
+n/a — recorded as a negative result. `make analyse2` reproduces it; `--reports-only`
+rewrites the write-up from the manifest without re-searching.
+
+---
+
 ## Template for Future Decisions
 
 Copy this template for new decisions:

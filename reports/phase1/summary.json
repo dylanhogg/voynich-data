@@ -3,7 +3,7 @@
   "findings": [
     [
       "h2 far below natural language at matched size",
-      "-0.965 bits vs mean baseline",
+      "-0.976 bits vs mean baseline",
       "[2.242, 2.262]",
       true,
       true,

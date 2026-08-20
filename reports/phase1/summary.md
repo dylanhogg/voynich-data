@@ -6,7 +6,7 @@
 
 | finding | effect size | 95% CI | robust across EVA transcriptions | survives on consensus subset | distinguishes Voynich from pseudo-Voynich |
 | --- | --- | --- | --- | --- | --- |
-| h2 far below natural language at matched size | -0.965 bits vs mean baseline | [2.242, 2.262] | yes | yes | yes |
+| h2 far below natural language at matched size | -0.976 bits vs mean baseline | [2.242, 2.262] | yes | yes | yes |
 | Hapax rate above every natural baseline | 0.700 | — | yes | yes | yes |
 | Adjacent near-repeat rate several times natural language | 0.148 vs 0.038 (Latin) | — | yes | yes | yes |
 | Rigid word-internal ordering (slot structure) | k=1 acceptor accepts 0.926 of held-out types | — | — | — | yes |
@@ -44,4 +44,4 @@ Blank cells are questions this table cannot answer for that finding, not silent 
 
 ## Run
 
-Topics: currier, entropy, landmarks, lexis, morphology, position, robustness, syntax, uncertainty. Bootstrap resamples: 200. Wall clock: 97s (excluded from the manifest, which is byte-stable).
+Topics: currier, entropy, landmarks, lexis, morphology, position, robustness, syntax, uncertainty. Bootstrap resamples: 200. Wall clock: 108s (excluded from the manifest, which is byte-stable).

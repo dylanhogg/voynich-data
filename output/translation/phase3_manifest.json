@@ -1,0 +1,867 @@
+{
+  "alignment": {
+    "aligned": 0.9683645635673624,
+    "exact_token_agreement": 0.8621620018975332,
+    "gap": 0.030953510436432637,
+    "hapax_share": 0.15026091081593929,
+    "mean_agreement_where_aligned": 0.964792754776399,
+    "mean_reliability": 0.9112362106553827,
+    "no_it_line": 0.0006819259962049335,
+    "rare_unit_share": 0.003646821631878558,
+    "tokens": 33728.0,
+    "tokens_below_half": 0.023126185958254268
+  },
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "config_hash": "cb8e95b8fae9082ac4aba810178e88816095ce8165f26ac6dea777f66e058cd8",
+  "gap_counts": {
+    "closed": 3,
+    "open": 3,
+    "partially closed": 1
+  },
+  "git_commit": "6a0e8cf74d414daee4d877d2f89697e8ea8b4c49",
+  "inputs": {
+    "data_sources/sources.yaml": "c517f010e14739d1851b2f91ec82bdbb4e77915f9e818c00cefc82df292b0dc4",
+    "output/eva_lines.jsonl": "53e5db5ab1364eec553de3e20974a16b7af00916906f3758b5f3e2cfd0f4f7c7",
+    "output/metadata/pages.jsonl": "cf4f60f1e2b2ace3789924d04765a83a005850a1dda3d7bfde6312931562ccf3",
+    "output/mismatch_index.jsonl": "72316ceff4d6976744406e649bf7a053dd951a93f58e6e863cf23baa88b18679"
+  },
+  "packages": {
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "pyyaml": "6.0.3",
+    "scipy": "1.18.0",
+    "vcat-data": "0.2.3"
+  },
+  "paragraphs": {
+    "blocks": 717,
+    "closed_by_marker": 670,
+    "fully_marked": 670,
+    "fully_marked_share": 0.9344490934449093,
+    "label_only_blocks": 10,
+    "lines": 4072,
+    "max_lines_per_block": 49,
+    "median_lines_per_block": 4,
+    "opened_by_marker": 707,
+    "single_line_blocks": 5
+  },
+  "phase": 3,
+  "representations": {
+    "merged": {
+      "detail": {
+        "gain_per_token": -6.502882297440821,
+        "merges": [
+          "aiin",
+          "ain",
+          "al",
+          "ar",
+          "che",
+          "chedy",
+          "cheo",
+          "cho",
+          "chol",
+          "daiin",
+          "eey",
+          "ey",
+          "ii",
+          "ke",
+          "ody",
+          "ok",
+          "ol",
+          "or",
+          "ot",
+          "qo",
+          "qot",
+          "she"
+        ],
+        "n_merges": 22,
+        "variant": "clusius_rariorum-o3|searched-merges"
+      },
+      "origin": "Phase 2 H2 converged merge search (clusius_rariorum-o3|searched-merges, 22 merges)",
+      "units": 94894,
+      "words": 33728
+    },
+    "raw": {
+      "detail": {},
+      "origin": "Phase 1 tokenization contract (T1-glyph, CB=break, ZL)",
+      "units": 152601,
+      "words": 33728
+    },
+    "reliable": {
+      "detail": {
+        "threshold": 0.5,
+        "tokens_dropped": 780
+      },
+      "origin": "Phase 3 token reliability model (translations/alignment.py)",
+      "units": 149798,
+      "words": 32948
+    }
+  },
+  "round2": {
+    "budget": {
+      "ceiling_s": 14400.0,
+      "spent": {
+        "merged:H1": 1212.239256749861,
+        "merged:H2": 1138.4672768749297,
+        "merged:H3": 1104.185290124733,
+        "merged:H4": 1098.8952683745883,
+        "merged:H6a": 1.4248106661252677,
+        "merged:H6b": 26.789313833229244,
+        "merged:H7": 1.2368185827508569,
+        "merged:H8": 35.56725795799866,
+        "merged:H9": 0.9769536671228707,
+        "reliable:H1": 518.2292872089893,
+        "reliable:H2": 1314.6793018328026,
+        "reliable:H3": 445.866811666172,
+        "reliable:H4": 458.8874292089604,
+        "reliable:H6a": 1.3105951668694615,
+        "reliable:H6b": 35.81868749996647,
+        "reliable:H7": 0.6053586252965033,
+        "reliable:H8": 43.678976874798536,
+        "reliable:H9": 1.382798499893397
+      }
+    },
+    "candidates": 286,
+    "summaries": {
+      "merged": {
+        "H1": {
+          "baseline_bits_per_token": 12.550865409951221,
+          "bits_per_token": 18.322340491860068,
+          "budget_spent_s": 1211.376039499417,
+          "converged": true,
+          "detail": "lm=clusius_rariorum-o3, units=48, merges=0",
+          "gain_per_token": -5.771475081908847,
+          "holdout_gain_per_token": -4.847645317009583,
+          "key": "{'a': 'n', 'aiin': 'm', 'ain': 't', 'al': 't', 'ar': 't', 'cfh': 'f', 'ch': 'n', 'che': 'e', 'chedy': 'b', 'cheo': 'v', 'cho': 'd', 'chol': 'b', 'ckh': 'o', 'cph': 'o', 'cth': 'o', 'd': 'i', 'daiin': 'a', 'e': 'l', 'eey': 'd', 'ey': 'r', 'f': 'o', 'g': 'y', 'i': 'g', 'ii': 'd', 'k': 'u', 'ke': 'u', 'l': 'a', 'm': 'e', 'n': 'o', 'o': 'r', 'ody': 'o', 'ok': 'a', 'ol': 'm', 'or': 'e', 'ot': 'a', 'p': 'a', 'q': 'f', 'qo': 'c', 'qot': 'a', 'r': 'e', 's': 'a', 'sh': 'e', 'she': 'p', 't': 'a', 'x': 'h', 'y': 's', '?': 'o'}",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r2",
+              -3.592632871722905
+            ],
+            "nulls": {
+              "grille_r0": -15.88629565506513,
+              "grille_r1": -16.043412954036796,
+              "grille_r2": -16.023977797488104,
+              "markov_chars_r0": -6.278766935164845,
+              "markov_chars_r1": -6.326488404849543,
+              "markov_chars_r2": -6.377132878615445,
+              "selfcite_r0": -27.041173926070442,
+              "selfcite_r1": -27.99749315858748,
+              "selfcite_r2": -14.61677907399506,
+              "shuffle_chars_r0": -3.597610322825466,
+              "shuffle_chars_r1": -3.6191959789865185,
+              "shuffle_chars_r2": -3.592632871722905
+            },
+            "p_value": 0.3076923076923077,
+            "real": -5.771475081908847,
+            "z_score": 0.7435343205643954
+          },
+          "q_value": 0.5538461538461539,
+          "truncated": false,
+          "variant": "clusius_rariorum-o3|plain"
+        },
+        "H2": {
+          "baseline_bits_per_token": 12.550865409951221,
+          "bits_per_token": 12.656054955695206,
+          "budget_spent_s": 1138.464521999471,
+          "converged": false,
+          "detail": "lm=austen_pride_prejudice-o3, units=281, merges=0",
+          "gain_per_token": -0.10518954574398559,
+          "holdout_gain_per_token": 3.0502754818468283,
+          "key": "{'aiii': 'a', 'aiin': 'i', 'aiir': 'm', 'ain': 't', 'air': 't', 'al': 't', 'aly': 'a', 'am': 'o', 'ar': 'o', 'chaiin': 'a', 'chal': 'f', 'char': 'a', 'chckhey': 'a', 'chckhy': 'a', 'chcthy': 'a', 'chdal': 'a', 'chdy': 'a', 'cheal': 'a', 'chear': 'a', 'checkhy': 'f', 'checthy': 'a', 'chedaiin': 'v', 'chedal': 'd', 'chedar': 'a', 'chedy': 'i', 'cheed': 'n', 'cheek': 'c', 'cheeo': 'n', 'chees': 'a', 'cheey': 'i', 'cheky': 'f', 'cheo': 'm', 'cheody': 'a', 'cheol': 'a', 'cheor': 'a', 'cheos': 'd', 'ches': 'a', 'chey': 'a', 'chl': 'a', 'cho': 'a', 'chodaiin': 'a', 'chody': 'a', 'choky': 'a', 'chol': 'i', 'chor': 'i', 'chos': 'a', 'choty': 'a', 'chy': 'a', 'ckhey': 'p', 'ckhy': 'a', 'cthey': 'a', 'cthol': 'a', 'cthor': 'n', 'cthy': 'i', 'd': 'o', 'dai': 'u', 'daii': 'c', 'daiin': 'i', 'dain': 'i', 'dal': 'i', 'daly': 'm', 'dam': 'a', 'dar': 'i', 'dchedy': 'a', 'dchy': 'm', 'dee': 'p', 'dol': 'a', 'dor': 'a', 'dshed': 'r', 'dy': 'e', 'edy': 'o', 'eed': 'h', 'eey': 'h', 'es': 'y', 'ey': 'h', 'g': 'y', 'iiin': 'y', 'iin': 'y', 'iir': 'u', 'in': 'h', 'ir': 'o', 'kai': 'p', 'kaiin': 'a', 'kain': 'm', 'kal': 'a', 'kar': 'a', 'kchd': 'r', 'kchedy': 'a', 'kchy': 'm', 'kedy': 'd', 'keed': 'h', 'keeo': 'n', 'keey': 'a', 'kol': 'a', 'kor': 'm', 'ky': 'y', 'l': 't', 'lchd': 'r', 'lchedy': 'a', 'lchey': 'a', 'ldy': 'f', 'lkaiin': 'm', 'lkain': 'a', 'lkar': 'f', 'lked': 'r', 'lkee': 'l', 'lkeey': 'a', 'lol': 'm', 'lor': 'v', 'lshed': 'm', 'm': 'o', 'n': 't', 'o': 'o', 'oaiin': 'm', 'od': 'y', 'odaiin': 'a', 'odar': 'f', 'ody': 'o', 'oee': 'n', 'oiin': 'm', 'okai': 'a', 'okaiin': 'i', 'okain': 'a', 'okal': 'a', 'okam': 'a', 'okar': 'a', 'okchd': 'g', 'okchedy': 'a', 'okchey': 'a', 'oked': 'b', 'okee': 'w', 'okeeey': 'd', 'okeey': 'i', 'okeody': 'a', 'okeol': 'a', 'okey': 'a', 'okol': 'a', 'okor': 'a', 'oky': 'a', 'ol': 'i', 'olaiin': 'a', 'olchedy': 'f', 'olchey': 'p', 'oldy': 'a', 'olkaiin': 'm', 'olked': 'c', 'olkee': 'd', 'olkeey': 'a', 'oly': 'a', 'om': 'm', 'opch': 'c', 'opche': 'g', 'opchedy': 'k', 'or': 'i', 'oraiin': 'j', 'os': 'y', 'otai': 'a', 'otaiin': 'a', 'otain': 'a', 'otal': 'a', 'otam': 'a', 'otar': 'a', 'otchd': 'l', 'otchedy': 'r', 'otchey': 'p', 'otchy': 'a', 'oted': 'h', 'otee': 'w', 'oteey': 'a', 'oteo': 'g', 'oteol': 'a', 'otey': 'a', 'otol': 'a', 'otor': 'm', 'oty': 'a', 'pchd': 'n', 'pchedy': 'k', 'qo': 'f', 'qoaiin': 'd', 'qodaiin': 'a', 'qoee': 'n', 'qoka': 'd', 'qokaiin': 'i', 'qokain': 'i', 'qokal': 'i', 'qokar': 'i', 'qokch': 'h', 'qokche': 'v', 'qokchedy': 'f', 'qokcho': 'r', 'qoked': 'h', 'qokee': 'b', 'qokeeey': 'v', 'qokeey': 'i', 'qokeo': 'n', 'qokeody': 'a', 'qokeol': 'a', 'qokeor': 'a', 'qokey': 'a', 'qoko': 'p', 'qokol': 'a', 'qokor': 'a', 'qokshe': 'k', 'qoky': 'i', 'qol': 'a', 'qopch': 'r', 'qopchedy': 'a', 'qotaiin': 'i', 'qotain': 'a', 'qotal': 'a', 'qotar': 'a', 'qotchd': 'r', 'qotchedy': 'a', 'qotchy': 'i', 'qoted': 'r', 'qotee': 'h', 'qoteey': 'v', 'qotol': 'a', 'qotor': 'm', 'qoty': 'a', 'r': 't', 'raiin': 'a', 'rain': 'a', 'ral': 'p', 'rar': 'y', 'ry': 'y', 's': 'o', 'sai': 'a', 'saiin': 'a', 'sain': 'a', 'sal': 'a', 'sar': 'a', 'shar': 'd', 'shckhy': 'a', 'shcthy': 'j', 'shdy': 'a', 'she': 'm', 'shear': 'r', 'sheckhy': 'a', 'shedy': 'i', 'sheed': 'h', 'sheek': 'n', 'sheey': 'a', 'sheky': 'a', 'sheo': 'a', 'sheody': 'a', 'sheol': 'a', 'sheor': 'a', 'shey': 'i', 'sho': 'a', 'shod': 'r', 'shodaiin': 'v', 'shody': 'a', 'shol': 'a', 'shor': 'a', 'shy': 'a', 'soii': 'p', 'sol': 'a', 'sor': 'a', 'sy': 'm', 'taiin': 'a', 'tar': 'a', 'tchedy': 'a', 'tchor': 'f', 'tchy': 'a', 'ted': 'l', 'tee': 'd', 'tol': 'a', 'ty': 'a', 'y': 'e', 'ychee': 'n', 'ykaiin': 'a', 'ykar': 'r', 'ykch': 'c', 'ykee': 'n', 'ykeey': 'a', 'ytaiin': 'a', 'ytch': 'c', 'yte': 'g', '?': 's'}",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r2",
+              10.023566566178031
+            ],
+            "nulls": {
+              "grille_r0": -3.979335150148808,
+              "grille_r1": -3.8786770210268284,
+              "grille_r2": -3.9152240333728594,
+              "markov_chars_r0": -0.8782475803537266,
+              "markov_chars_r1": -0.8209071782057337,
+              "markov_chars_r2": -0.8726090838620743,
+              "selfcite_r0": -11.183022530661171,
+              "selfcite_r1": -10.942940978183541,
+              "selfcite_r2": -7.748942059064432,
+              "shuffle_chars_r0": 9.98262851949505,
+              "shuffle_chars_r1": 9.968668634374675,
+              "shuffle_chars_r2": 10.023566566178031
+            },
+            "p_value": 0.3076923076923077,
+            "real": -0.10518954574398559,
+            "z_score": 0.14229915496822954
+          },
+          "q_value": 0.5538461538461539,
+          "truncated": false,
+          "variant": "austen_pride_prejudice-o3|fixed-width-3"
+        },
+        "H3": {
+          "baseline_bits_per_token": 12.550865409951221,
+          "bits_per_token": 16.22794765989787,
+          "budget_spent_s": 1103.4130593771115,
+          "converged": false,
+          "detail": "lm=vulgate_clementine-abjad-o3, units=48, merges=0",
+          "gain_per_token": -3.6770822499466496,
+          "holdout_gain_per_token": -2.5288652497886,
+          "key": "{'a': 'c', 'aiin': 'm', 'ain': 'm', 'al': 's', 'ar': 's', 'cfh': 'z', 'ch': 'b', 'che': 'c', 'chedy': 'm', 'cheo': 'q', 'cho': 'g', 'chol': 'q', 'ckh': 'l', 'cph': 'h', 'cth': 'd', 'd': 'n', 'daiin': 'd', 'e': 'r', 'eey': 'x', 'ey': 'm', 'f': 'l', 'g': 'h', 'i': 'l', 'ii': 'l', 'k': 'r', 'ke': 'r', 'l': 's', 'm': 'l', 'n': 'l', 'o': 'm', 'ody': 'm', 'ok': 'v', 'ol': 's', 'or': 'm', 'ot': 'd', 'p': 'l', 'q': 'j', 'qo': 'p', 'qot': 'f', 'r': 's', 's': 's', 'sh': 'd', 'she': 'c', 't': 'r', 'x': 'h', 'y': 't', '?': 'h'}",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r0",
+              1.8434350218154048
+            ],
+            "nulls": {
+              "grille_r0": -11.471146010527201,
+              "grille_r1": -11.617979714980134,
+              "grille_r2": -11.521308148042754,
+              "markov_chars_r0": -4.114576393325638,
+              "markov_chars_r1": -4.0816257044015725,
+              "markov_chars_r2": -4.197010136259305,
+              "selfcite_r0": -26.635701000151343,
+              "selfcite_r1": -28.42522464987064,
+              "selfcite_r2": -13.175950468857605,
+              "shuffle_chars_r0": 1.8434350218154048,
+              "shuffle_chars_r1": 1.8004279546627333,
+              "shuffle_chars_r2": 1.7864567398615074
+            },
+            "p_value": 0.3076923076923077,
+            "real": -3.6770822499466496,
+            "z_score": 0.5361513862336905
+          },
+          "q_value": 0.5538461538461539,
+          "truncated": false,
+          "variant": "vulgate_clementine-abjad-o3|plain"
+        },
+        "H4": {
+          "baseline_bits_per_token": 12.550865409951221,
+          "bits_per_token": 18.226397878639013,
+          "budget_spent_s": 1097.9893156262115,
+          "converged": false,
+          "detail": "lm=clusius_rariorum-abbrev-o3, units=48, merges=0",
+          "gain_per_token": -5.675532468687792,
+          "holdout_gain_per_token": -4.630072307394887,
+          "key": "{'a': 'n', 'aiin': 'v', 'ain': 'n', 'al': 's', 'ar': 'd', 'cfh': 'y', 'ch': 's', 'che': 'u', 'chedy': 'e', 'cheo': 'b', 'cho': 'm', 'chol': 'b', 'ckh': 'e', 'cph': 'e', 'cth': 'e', 'd': 'i', 'daiin': 'a', 'e': 'l', 'eey': 'q', 'ey': 'r', 'f': 'e', 'g': 'j', 'i': 'e', 'ii': 'e', 'k': 'o', 'ke': 'u', 'l': 'r', 'm': 'e', 'n': 'x', 'o': 'l', 'ody': 'e', 'ok': 'a', 'ol': 's', 'or': 'e', 'ot': 'a', 'p': 'a', 'q': 'f', 'qo': 'c', 'qot': 'a', 'r': 'a', 's': 'a', 'sh': 'p', 'she': 'p', 't': 'a', 'x': 'h', 'y': 't', '?': 'g'}",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r0",
+              -2.852341146835952
+            ],
+            "nulls": {
+              "grille_r0": -14.976238479942234,
+              "grille_r1": -15.272258656313921,
+              "grille_r2": -15.22194766607153,
+              "markov_chars_r0": -6.22767421384151,
+              "markov_chars_r1": -6.3306293697127805,
+              "markov_chars_r2": -6.3016863131109355,
+              "selfcite_r0": -26.50903788215753,
+              "selfcite_r1": -28.363175565860402,
+              "selfcite_r2": -14.439720236258399,
+              "shuffle_chars_r0": -2.852341146835952,
+              "shuffle_chars_r1": -2.932597496637601,
+              "shuffle_chars_r2": -2.9177086842928794
+            },
+            "p_value": 0.3076923076923077,
+            "real": -5.675532468687792,
+            "z_score": 0.6995707752246572
+          },
+          "q_value": 0.5538461538461539,
+          "truncated": false,
+          "variant": "clusius_rariorum-abbrev-o3|plain"
+        },
+        "H6a": {
+          "baseline_bits_per_token": 12.550865409951221,
+          "bits_per_token": 26.33078246112416,
+          "budget_spent_s": 1.42451495770365,
+          "converged": true,
+          "detail": "table=24, grilles=4, generated types=24",
+          "gain_per_token": -13.779917051172939,
+          "holdout_gain_per_token": -10.427724786963745,
+          "key": "",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r0",
+              -5.2452082346590085
+            ],
+            "nulls": {
+              "grille_r0": -17.640463217688616,
+              "grille_r1": -17.847381760223673,
+              "grille_r2": -17.645614237223544,
+              "markov_chars_r0": -13.004898808422078,
+              "markov_chars_r1": -13.889014927472443,
+              "markov_chars_r2": -13.541029785528831,
+              "selfcite_r0": -37.10114950046206,
+              "selfcite_r1": -42.42404471955272,
+              "selfcite_r2": -23.205003087022202,
+              "shuffle_chars_r0": -5.2452082346590085,
+              "shuffle_chars_r1": -5.317859487764624,
+              "shuffle_chars_r2": -5.292731036806653
+            },
+            "p_value": 0.46153846153846156,
+            "real": -13.779917051172939,
+            "z_score": 0.3301941484371567
+          },
+          "q_value": 0.6923076923076923,
+          "truncated": false,
+          "variant": "grille"
+        },
+        "H6b": {
+          "baseline_bits_per_token": 12.550865409951221,
+          "bits_per_token": 21.687104390248003,
+          "budget_spent_s": 26.789185377769172,
+          "converged": true,
+          "detail": "window=20, tokens coded as copies=14656",
+          "gain_per_token": -9.136238980296781,
+          "holdout_gain_per_token": -6.6428206523067574,
+          "key": "",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "selfcite_r1",
+              -0.09987344703838337
+            ],
+            "nulls": {
+              "grille_r0": -16.14864935823893,
+              "grille_r1": -16.11704331254687,
+              "grille_r2": -16.148541221874673,
+              "markov_chars_r0": -10.324020670106954,
+              "markov_chars_r1": -10.933218088695481,
+              "markov_chars_r2": -10.720207267219429,
+              "selfcite_r0": -1.0001665821145975,
+              "selfcite_r1": -0.09987344703838337,
+              "selfcite_r2": -2.042178950929152,
+              "shuffle_chars_r0": -4.23081306359958,
+              "shuffle_chars_r1": -4.307017477888918,
+              "shuffle_chars_r2": -4.294603117073118
+            },
+            "p_value": 0.5384615384615384,
+            "real": -9.136238980296781,
+            "z_score": -0.1814306754021255
+          },
+          "q_value": 0.6923076923076923,
+          "truncated": false,
+          "variant": "selfcite"
+        },
+        "H7": {
+          "baseline_bits_per_token": 12.550865409951221,
+          "bits_per_token": 20.2812890066167,
+          "budget_spent_s": 0.44659937312826514,
+          "converged": true,
+          "detail": "lm=austen_pride_prejudice-o1, units=48, merges=0",
+          "gain_per_token": -7.73042359666548,
+          "holdout_gain_per_token": -6.5421301605308875,
+          "key": "{'a': '#', 'aiin': '#', 'ain': 'i', 'al': '#', 'ar': '#', 'cfh': 'j', 'ch': '#', 'che': '#', 'chedy': 's', 'cheo': 'd', 'cho': 'a', 'chol': 'y', 'ckh': 'm', 'cph': 'v', 'cth': 'c', 'd': '#', 'daiin': 'n', 'e': '#', 'eey': 'f', 'ey': 'o', 'f': 'p', 'g': 'z', 'i': 'u', 'ii': 'g', 'k': '#', 'ke': '#', 'l': '#', 'm': 'l', 'n': 'b', 'o': '#', 'ody': 'w', 'ok': '#', 'ol': '#', 'or': 'e', 'ot': '#', 'p': 'h', 'q': 'k', 'qo': '#', 'qot': 'r', 'r': '#', 's': '#', 'sh': 't', 'she': '#', 't': '#', 'x': 'q', 'y': '#', '?': 'x'}",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r0",
+              0.7937265799456379
+            ],
+            "nulls": {
+              "grille_r0": -17.66245877092369,
+              "grille_r1": -17.721303529569767,
+              "grille_r2": -17.758140249223544,
+              "markov_chars_r0": -8.266196471014599,
+              "markov_chars_r1": -8.172556906092117,
+              "markov_chars_r2": -8.537001994705074,
+              "selfcite_r0": -41.91743795143015,
+              "selfcite_r1": -49.37216294042188,
+              "selfcite_r2": -24.00095337863609,
+              "shuffle_chars_r0": 0.7937265799456379,
+              "shuffle_chars_r1": 0.7298574398805907,
+              "shuffle_chars_r2": 0.7433023725300529
+            },
+            "p_value": 0.3076923076923077,
+            "real": -7.73042359666548,
+            "z_score": 0.506896017537159
+          },
+          "q_value": 0.5538461538461539,
+          "truncated": false,
+          "variant": "austen_pride_prejudice-o1|plain"
+        },
+        "H8": {
+          "baseline_bits_per_token": 12.550865409951221,
+          "bits_per_token": 15.510682341391727,
+          "budget_spent_s": 35.56712820753455,
+          "converged": true,
+          "detail": "7 prefixes, 3 suffixes, 26545 bits saved vs no affixes",
+          "gain_per_token": -2.959816931440506,
+          "holdout_gain_per_token": -2.9077911080077468,
+          "key": "",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "grille_r0",
+              6.399448170753314
+            ],
+            "nulls": {
+              "grille_r0": 6.399448170753314,
+              "grille_r1": 6.377483198420757,
+              "grille_r2": 6.320532209958817,
+              "markov_chars_r0": -3.2555792174999625,
+              "markov_chars_r1": -3.3273979972893852,
+              "markov_chars_r2": -3.3645087406549146,
+              "selfcite_r0": -3.0443378614111496,
+              "selfcite_r1": -2.070953362713976,
+              "selfcite_r2": -2.885622283420918,
+              "shuffle_chars_r0": -1.9703771149661182,
+              "shuffle_chars_r1": -1.936968682298161,
+              "shuffle_chars_r2": -1.9455022948408647
+            },
+            "p_value": 0.6923076923076923,
+            "real": -2.959816931440506,
+            "z_score": -0.6244235631648387
+          },
+          "q_value": 0.6923076923076923,
+          "truncated": false,
+          "variant": "morphology"
+        },
+        "H9": {
+          "baseline_bits_per_token": 12.550865409951221,
+          "bits_per_token": 23.46515117715494,
+          "budget_spent_s": 0.9768397910520434,
+          "converged": true,
+          "detail": "k=2, 1109 states, 100.0% of tokens accepted",
+          "gain_per_token": -10.914285767203719,
+          "holdout_gain_per_token": -10.516172550369852,
+          "key": "",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r2",
+              -9.82355060892573
+            ],
+            "nulls": {
+              "grille_r0": -11.848062993746478,
+              "grille_r1": -10.896810230968248,
+              "grille_r2": -11.224814008945783,
+              "markov_chars_r0": -10.280168018279097,
+              "markov_chars_r1": -10.552687973367616,
+              "markov_chars_r2": -10.553767451162852,
+              "selfcite_r0": -33.1243235867833,
+              "selfcite_r1": -38.98501796983914,
+              "selfcite_r2": -17.890283177801123,
+              "shuffle_chars_r0": -9.832696887784897,
+              "shuffle_chars_r1": -9.896385989388705,
+              "shuffle_chars_r2": -9.82355060892573
+            },
+            "p_value": 0.6153846153846154,
+            "real": -10.914285767203719,
+            "z_score": 0.45101451209891763
+          },
+          "q_value": 0.6923076923076923,
+          "truncated": false,
+          "variant": "slot_grammar"
+        }
+      },
+      "reliable": {
+        "H1": {
+          "baseline_bits_per_token": 11.759721391936715,
+          "bits_per_token": 22.102535480274256,
+          "budget_spent_s": 518.2262794980779,
+          "converged": true,
+          "detail": "lm=clusius_rariorum-o3, units=26, merges=0",
+          "gain_per_token": -10.34281408833754,
+          "holdout_gain_per_token": -9.160381272447259,
+          "key": "{'a': 'u', 'cfh': 'w', 'ch': 'c', 'ckh': 'h', 'cph': 'f', 'cth': 'g', 'd': 't', 'e': 'i', 'f': 'j', 'g': 'y', 'i': 'l', 'k': 'n', 'l': 's', 'm': 'b', 'n': 'o', 'o': 'e', 'p': 'x', 'q': 'v', 'r': 'm', 's': 'd', 'sh': 'p', 't': 'r', 'x': 'q', 'y': 'a', '?': 'k'}",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "markov_chars_r1",
+              -10.459407888519797
+            ],
+            "nulls": {
+              "grille_r0": -14.342326565115586,
+              "grille_r1": -14.43167906268004,
+              "grille_r2": -14.36571952830632,
+              "markov_chars_r0": -10.565640967088223,
+              "markov_chars_r1": -10.459407888519797,
+              "markov_chars_r2": -10.495296217454685,
+              "selfcite_r0": -15.522453426161919,
+              "selfcite_r1": -40.53854499314314,
+              "selfcite_r2": -22.495322408936605,
+              "shuffle_chars_r0": -11.472418518391834,
+              "shuffle_chars_r1": -11.47037952164522,
+              "shuffle_chars_r2": -11.450341462854249
+            },
+            "p_value": 0.07692307692307693,
+            "real": -10.34281408833754,
+            "z_score": 0.6192715071236673
+          },
+          "q_value": 0.34615384615384615,
+          "truncated": false,
+          "variant": "clusius_rariorum-o3|plain"
+        },
+        "H2": {
+          "baseline_bits_per_token": 11.759721391936715,
+          "bits_per_token": 16.138238020563932,
+          "budget_spent_s": 1314.6776424166746,
+          "converged": false,
+          "detail": "lm=clusius_rariorum-o3, units=256, merges=0",
+          "gain_per_token": -4.378516628627219,
+          "holdout_gain_per_token": -1.9638763819888376,
+          "key": "{'aii': 'u', 'ain': 'a', 'air': 'i', 'al': 'a', 'ala': 'd', 'alch': 't', 'ald': 't', 'alk': 'd', 'alo': 'h', 'aly': 'i', 'am': 'i', 'ar': 'a', 'ara': 'm', 'aro': 'd', 'ary': 'd', 'chai': 'd', 'chal': 'b', 'char': 'b', 'chckhe': 'd', 'chckhy': 'b', 'chcthy': 'b', 'chda': 't', 'chdy': 'a', 'chea': 'v', 'checkh': 'd', 'checth': 'm', 'ched': 'c', 'chee': 'c', 'chek': 'v', 'cheo': 'c', 'chep': 'b', 'ches': 'b', 'chet': 'm', 'chey': 'a', 'chka': 'm', 'chke': 'h', 'chl': 'g', 'cho': 't', 'chockh': 't', 'chocth': 'p', 'chod': 'n', 'chok': 'n', 'chol': 'a', 'chor': 'a', 'chos': 'm', 'chot': 'r', 'chy': 'a', 'ckhey': 't', 'ckhol': 'b', 'ckhy': 'i', 'ctheo': 'd', 'cthey': 'g', 'cthod': 'm', 'cthol': 'm', 'cthor': 'b', 'cthy': 'b', 'd': 'i', 'dai': 'l', 'dal': 'r', 'dam': 'b', 'dar': 'a', 'dche': 'f', 'dcho': 'v', 'dchy': 'b', 'dee': 'd', 'dol': 'b', 'dor': 'b', 'dshe': 't', 'dsho': 'd', 'dy': 'o', 'ear': 't', 'echy': 'y', 'ed': 'i', 'eda': 'i', 'edy': 'a', 'eed': 'u', 'eee': 'h', 'eeo': 'i', 'ees': 'i', 'eey': 'i', 'eo': 'i', 'eod': 't', 'eol': 'i', 'eor': 'i', 'eos': 'i', 'es': 'i', 'ey': 'o', 'fche': 'd', 'g': 'i', 'iii': 'y', 'iin': 'a', 'iir': 'i', 'in': 'o', 'ir': 'i', 'kai': 'r', 'kal': 'i', 'kar': 'm', 'kchd': 'm', 'kche': 'd', 'kcho': 'm', 'kchy': 'm', 'ked': 'r', 'kee': 'r', 'keo': 'r', 'key': 'y', 'kol': 'b', 'kor': 'm', 'kshe': 'm', 'ky': 'i', 'l': 'a', 'lai': 't', 'lchd': 't', 'lche': 'n', 'lcho': 't', 'lda': 't', 'ldy': 'i', 'lka': 'r', 'lkch': 't', 'lke': 'n', 'lky': 'w', 'lol': 'b', 'lor': 'i', 'ls': 'i', 'lshe': 'm', 'ly': 'i', 'm': 'i', 'n': 's', 'o': 'a', 'oai': 'd', 'oche': 'f', 'od': 'i', 'oda': 'r', 'ody': 'a', 'oee': 'v', 'ofch': 't', 'oii': 'i', 'oka': 'l', 'okch': 'n', 'oke': 'l', 'oko': 'f', 'oksh': 'm', 'oky': 'b', 'ol': 'a', 'ola': 't', 'olch': 'v', 'old': 't', 'olk': 'c', 'olo': 't', 'ols': 'd', 'olsh': 'm', 'olt': 't', 'oly': 'i', 'om': 'i', 'opa': 'd', 'opch': 'n', 'or': 'a', 'ora': 't', 'oro': 't', 'ory': 't', 'os': 'i', 'ota': 'l', 'otch': 'n', 'ote': 'c', 'oto': 'm', 'otsh': 'm', 'oty': 'b', 'oy': 'x', 'pchd': 'd', 'pche': 'p', 'pcho': 'g', 'pol': 'r', 'por': 'm', 'pshe': 'p', 'qo': 'b', 'qoa': 't', 'qoch': 'm', 'qockh': 'v', 'qod': 'n', 'qoe': 'p', 'qof': 'h', 'qok': 's', 'qol': 'b', 'qoo': 'g', 'qop': 'r', 'qor': 'b', 'qot': 's', 'r': 'o', 'rai': 'r', 'ral': 't', 'ram': 'm', 'rar': 'm', 'rche': 't', 'rod': 't', 'rol': 'm', 'ror': 'g', 'ry': 'x', 's': 'a', 'sai': 'n', 'sal': 'b', 'sar': 'b', 'sche': 'p', 'shai': 'w', 'shar': 'k', 'shckhy': 'b', 'shcthy': 'j', 'shdy': 't', 'she': 'z', 'shea': 'm', 'sheckh': 'd', 'shed': 'c', 'shee': 'n', 'shek': 'v', 'sheo': 'c', 'shey': 'a', 'sho': 'b', 'shod': 'm', 'shok': 't', 'shol': 'b', 'shor': 'b', 'shot': 'm', 'shy': 'i', 'soi': 'd', 'sol': 'b', 'sor': 'b', 'sy': 'm', 'tai': 'p', 'tal': 'm', 'tar': 'm', 'tche': 'f', 'tcho': 'f', 'tchy': 'm', 'ted': 'h', 'tee': 'p', 'teo': 'm', 'tod': 'v', 'tol': 'm', 'tor': 'x', 'tshe': 'p', 'tsho': 'f', 'ty': 'i', 'y': 'o', 'yche': 'f', 'ycho': 'm', 'yda': 'd', 'yka': 'v', 'ykch': 't', 'yke': 'n', 'yko': 'm', 'ypch': 'm', 'yshe': 'h', 'yta': 't', 'ytch': 'm', 'yte': 'n', 'yto': 'f', '?': 'e'}",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r0",
+              5.189469233053844
+            ],
+            "nulls": {
+              "grille_r0": -2.925087227868048,
+              "grille_r1": -3.5010451681279853,
+              "grille_r2": -3.4705862312827604,
+              "markov_chars_r0": -4.911962900400138,
+              "markov_chars_r1": -4.604737017215184,
+              "markov_chars_r2": -4.852810651292132,
+              "selfcite_r0": -5.3653255190023526,
+              "selfcite_r1": -13.312947538027977,
+              "selfcite_r2": -7.885314368853438,
+              "shuffle_chars_r0": 5.189469233053844,
+              "shuffle_chars_r1": 5.120976535161206,
+              "shuffle_chars_r2": 4.9149684272060945
+            },
+            "p_value": 0.5384615384615384,
+            "real": -4.378516628627219,
+            "z_score": -0.2532829975689936
+          },
+          "q_value": 0.6923076923076923,
+          "truncated": false,
+          "variant": "clusius_rariorum-o3|fixed-width-3"
+        },
+        "H3": {
+          "baseline_bits_per_token": 11.759721391936715,
+          "bits_per_token": 22.814300472200852,
+          "budget_spent_s": 445.8647688771598,
+          "converged": true,
+          "detail": "lm=vulgate_clementine-abjad-o3, units=26, merges=0",
+          "gain_per_token": -11.054579080264139,
+          "holdout_gain_per_token": -10.119642562904895,
+          "key": "{'a': 'n', 'cfh': 'u', 'ch': 'p', 'ckh': 'y', 'cph': 'w', 'cth': 'f', 'd': 'b', 'e': 'l', 'f': 'k', 'g': 'o', 'i': 'd', 'k': 'c', 'l': 'm', 'm': 'z', 'n': 'x', 'o': 'r', 'p': 'h', 'q': 'j', 'r': 't', 's': 'q', 'sh': 'g', 't': 'v', 'x': 'e', 'y': 's', '?': 'a'}",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r1",
+              -7.612875879523714
+            ],
+            "nulls": {
+              "grille_r0": -11.179345039236997,
+              "grille_r1": -12.005499011448075,
+              "grille_r2": -11.890090090790835,
+              "markov_chars_r0": -11.190541278398728,
+              "markov_chars_r1": -11.260352413782824,
+              "markov_chars_r2": -11.199567399993349,
+              "selfcite_r0": -13.112277394852883,
+              "selfcite_r1": -43.097317946707726,
+              "selfcite_r2": -23.40357207402738,
+              "shuffle_chars_r0": -7.632811504614629,
+              "shuffle_chars_r1": -7.612875879523714,
+              "shuffle_chars_r2": -7.675474578316775
+            },
+            "p_value": 0.3076923076923077,
+            "real": -11.054579080264139,
+            "z_score": 0.32230082008410554
+          },
+          "q_value": 0.5538461538461539,
+          "truncated": false,
+          "variant": "vulgate_clementine-abjad-o3|plain"
+        },
+        "H4": {
+          "baseline_bits_per_token": 11.759721391936715,
+          "bits_per_token": 22.217165936045397,
+          "budget_spent_s": 458.8850888358429,
+          "converged": false,
+          "detail": "lm=clusius_rariorum-abbrev-o3, units=26, merges=0",
+          "gain_per_token": -10.457444544108682,
+          "holdout_gain_per_token": -9.445337930670052,
+          "key": "{'a': 'u', 'cfh': 'w', 'ch': 'e', 'ckh': 'g', 'cph': 'j', 'cth': 'f', 'd': 't', 'e': 'r', 'f': 'v', 'g': 'x', 'i': 'l', 'k': 'c', 'l': 's', 'm': 'q', 'n': 'o', 'o': 'a', 'p': 'n', 'q': 'h', 'r': 'd', 's': 'm', 'sh': 'p', 't': 'b', 'x': 'k', 'y': 'i', '?': 'y'}",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r0",
+              -10.540839355605044
+            ],
+            "nulls": {
+              "grille_r0": -13.946531230154935,
+              "grille_r1": -14.046203307022637,
+              "grille_r2": -14.32103872923254,
+              "markov_chars_r0": -10.633647102087302,
+              "markov_chars_r1": -10.599377463377122,
+              "markov_chars_r2": -10.568971514020758,
+              "selfcite_r0": -15.59894904655302,
+              "selfcite_r1": -43.21302337118174,
+              "selfcite_r2": -22.42249305602794,
+              "shuffle_chars_r0": -10.540839355605044,
+              "shuffle_chars_r1": -10.597621645477824,
+              "shuffle_chars_r2": -10.602186484636372
+            },
+            "p_value": 0.07692307692307693,
+            "real": -10.457444544108682,
+            "z_score": 0.5476852419108496
+          },
+          "q_value": 0.34615384615384615,
+          "truncated": false,
+          "variant": "clusius_rariorum-abbrev-o3|plain"
+        },
+        "H6a": {
+          "baseline_bits_per_token": 11.759721391936715,
+          "bits_per_token": 32.02027331381025,
+          "budget_spent_s": 1.3104517478495836,
+          "converged": true,
+          "detail": "table=48, grilles=4, generated types=84",
+          "gain_per_token": -20.260551921873535,
+          "holdout_gain_per_token": -17.249027887910902,
+          "key": "",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r0",
+              -9.35772861408195
+            ],
+            "nulls": {
+              "grille_r0": -18.317798910267243,
+              "grille_r1": -18.76400720947809,
+              "grille_r2": -18.711956670881634,
+              "markov_chars_r0": -19.67173030277623,
+              "markov_chars_r1": -19.124325560753288,
+              "markov_chars_r2": -18.777451998880778,
+              "selfcite_r0": -23.63028523142152,
+              "selfcite_r1": -59.84462687471852,
+              "selfcite_r2": -33.44119327046432,
+              "shuffle_chars_r0": -9.35772861408195,
+              "shuffle_chars_r1": -9.36289798807922,
+              "shuffle_chars_r2": -9.375734295093705
+            },
+            "p_value": 0.7692307692307693,
+            "real": -20.260551921873535,
+            "z_score": 0.09197404819283168
+          },
+          "q_value": 0.7692307692307693,
+          "truncated": false,
+          "variant": "grille"
+        },
+        "H6b": {
+          "baseline_bits_per_token": 11.759721391936715,
+          "bits_per_token": 23.201801193339524,
+          "budget_spent_s": 35.818549915682524,
+          "converged": true,
+          "detail": "window=20, tokens coded as copies=20783",
+          "gain_per_token": -11.44207980140281,
+          "holdout_gain_per_token": -9.877359820756007,
+          "key": "",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "selfcite_r1",
+              3.4315267935434277
+            ],
+            "nulls": {
+              "grille_r0": -11.02473812697854,
+              "grille_r1": -12.119162481325107,
+              "grille_r2": -11.72187913526019,
+              "markov_chars_r0": -13.809824616740677,
+              "markov_chars_r1": -13.501896926929566,
+              "markov_chars_r2": -13.34730874674247,
+              "selfcite_r0": -1.027445654437717,
+              "selfcite_r1": 3.4315267935434277,
+              "selfcite_r2": -0.6766093883749397,
+              "shuffle_chars_r0": -8.795281565145755,
+              "shuffle_chars_r1": -8.811123862361384,
+              "shuffle_chars_r2": -8.799981274044471
+            },
+            "p_value": 0.6153846153846154,
+            "real": -11.44207980140281,
+            "z_score": -0.5360169229495371
+          },
+          "q_value": 0.6923076923076923,
+          "truncated": false,
+          "variant": "selfcite"
+        },
+        "H7": {
+          "baseline_bits_per_token": 11.759721391936715,
+          "bits_per_token": 21.563038143863825,
+          "budget_spent_s": 0.6045135813765228,
+          "converged": true,
+          "detail": "lm=vulgate_clementine-o1, units=26, merges=0",
+          "gain_per_token": -9.80331675192711,
+          "holdout_gain_per_token": -8.907049439507338,
+          "key": "{'a': 'a', 'cfh': 'y', 'ch': 'n', 'ckh': 'g', 'cph': 'j', 'cth': 'f', 'd': 'u', 'e': 'i', 'f': 'h', 'g': 'x', 'i': 's', 'k': 'm', 'l': 'r', 'm': 'v', 'n': 'c', 'o': 'e', 'p': 'q', 'q': 'd', 'r': 'o', 's': 'b', 'sh': 'p', 't': 'l', 'x': 'k', 'y': 't', '?': 'z'}",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "shuffle_chars_r0",
+              1.1566397306561627
+            ],
+            "nulls": {
+              "grille_r0": -14.817364538493747,
+              "grille_r1": -15.321979147672009,
+              "grille_r2": -15.202084733231718,
+              "markov_chars_r0": -10.019384604978162,
+              "markov_chars_r1": -9.949356237749537,
+              "markov_chars_r2": -9.951320073476124,
+              "selfcite_r0": -25.337199252711233,
+              "selfcite_r1": -71.95240248455674,
+              "selfcite_r2": -37.53700793690029,
+              "shuffle_chars_r0": 1.1566397306561627,
+              "shuffle_chars_r1": 1.1534217695019036,
+              "shuffle_chars_r2": 1.1405843503476605
+            },
+            "p_value": 0.3076923076923077,
+            "real": -9.80331675192711,
+            "z_score": 0.3604194804110996
+          },
+          "q_value": 0.5538461538461539,
+          "truncated": false,
+          "variant": "vulgate_clementine-o1|plain"
+        },
+        "H8": {
+          "baseline_bits_per_token": 11.759721391936715,
+          "bits_per_token": 16.515104366205847,
+          "budget_spent_s": 43.67886229045689,
+          "converged": true,
+          "detail": "6 prefixes, 1 suffixes, 27968 bits saved vs no affixes",
+          "gain_per_token": -4.755382974269134,
+          "holdout_gain_per_token": -5.206053196904573,
+          "key": "",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "grille_r0",
+              3.781508504376397
+            ],
+            "nulls": {
+              "grille_r0": 3.781508504376397,
+              "grille_r1": 3.280535166420364,
+              "grille_r2": 3.3238914091042826,
+              "markov_chars_r0": -5.724283620838755,
+              "markov_chars_r1": -5.688215630873591,
+              "markov_chars_r2": -5.461563888754969,
+              "selfcite_r0": -0.040567028169289386,
+              "selfcite_r1": 3.139401124681074,
+              "selfcite_r2": 0.04502533795852116,
+              "shuffle_chars_r0": -9.674426931215264,
+              "shuffle_chars_r1": -9.694751798843248,
+              "shuffle_chars_r2": -9.670065369017117
+            },
+            "p_value": 0.5384615384615384,
+            "real": -4.755382974269134,
+            "z_score": -0.3729075838043167
+          },
+          "q_value": 0.6923076923076923,
+          "truncated": false,
+          "variant": "morphology"
+        },
+        "H9": {
+          "baseline_bits_per_token": 11.759721391936715,
+          "bits_per_token": 25.933248886743936,
+          "budget_spent_s": 1.3826808743178844,
+          "converged": true,
+          "detail": "k=2, 802 states, 100.0% of tokens accepted",
+          "gain_per_token": -14.173527494807221,
+          "holdout_gain_per_token": -13.465282563229794,
+          "key": "",
+          "merges": "[]",
+          "null": {
+            "best_null": [
+              "markov_chars_r2",
+              -13.856250623574194
+            ],
+            "nulls": {
+              "grille_r0": -14.462990126670647,
+              "grille_r1": -14.871999231529376,
+              "grille_r2": -13.953183889533575,
+              "markov_chars_r0": -14.259139459354428,
+              "markov_chars_r1": -13.932226390760635,
+              "markov_chars_r2": -13.856250623574194,
+              "selfcite_r0": -17.944806851313857,
+              "selfcite_r1": -59.70022770011246,
+              "selfcite_r2": -30.36484070003163,
+              "shuffle_chars_r0": -15.25190440488981,
+              "shuffle_chars_r1": -15.400487908538098,
+              "shuffle_chars_r2": -15.157924918960704
+            },
+            "p_value": 0.3076923076923077,
+            "real": -14.173527494807221,
+            "z_score": 0.43167364263978103
+          },
+          "q_value": 0.5538461538461539,
+          "truncated": false,
+          "variant": "slot_grammar"
+        }
+      }
+    }
+  },
+  "seed": 20260819,
+  "translator_config": {
+    "anchors": [],
+    "best_scoring": {
+      "beat_every_null": false,
+      "converged": false,
+      "gain_per_token": -0.10518954574398559,
+      "holdout_gain_per_token": 3.0502754818468283,
+      "hypothesis": "H2",
+      "p_value": 0.3076923076923077,
+      "q_value": 0.5538461538461539,
+      "representation": "merged",
+      "variant": "austen_pride_prejudice-o3|fixed-width-3"
+    },
+    "chosen": {
+      "gain_per_token": -5.771475081908847,
+      "hypothesis": "H1",
+      "key": "{'a': 'n', 'aiin': 'm', 'ain': 't', 'al': 't', 'ar': 't', 'cfh': 'f', 'ch': 'n', 'che': 'e', 'chedy': 'b', 'cheo': 'v', 'cho': 'd', 'chol': 'b', 'ckh': 'o', 'cph': 'o', 'cth': 'o', 'd': 'i', 'daiin': 'a', 'e': 'l', 'eey': 'd', 'ey': 'r', 'f': 'o', 'g': 'y', 'i': 'g', 'ii': 'd', 'k': 'u', 'ke': 'u', 'l': 'a', 'm': 'e', 'n': 'o', 'o': 'r', 'ody': 'o', 'ok': 'a', 'ol': 'm', 'or': 'e', 'ot': 'a', 'p': 'a', 'q': 'f', 'qo': 'c', 'qot': 'a', 'r': 'e', 's': 'a', 'sh': 'e', 'she': 'p', 't': 'a', 'x': 'h', 'y': 's', '?': 'o'}",
+      "merges": "[]",
+      "representation": "merged",
+      "variant": "clusius_rariorum-o3|plain"
+    },
+    "paragraphs": {
+      "blocks": 717,
+      "source": "IVTFF <%> / <$> markers"
+    },
+    "reliability": {
+      "floor": 0.5,
+      "path": "output/translation/token_alignment.parquet",
+      "policy": "render every token, hedge by weight; never silently drop"
+    },
+    "representations": {
+      "merged": {
+        "gain_per_token": -6.502882297440821,
+        "merges": [
+          "aiin",
+          "ain",
+          "al",
+          "ar",
+          "che",
+          "chedy",
+          "cheo",
+          "cho",
+          "chol",
+          "daiin",
+          "eey",
+          "ey",
+          "ii",
+          "ke",
+          "ody",
+          "ok",
+          "ol",
+          "or",
+          "ot",
+          "qo",
+          "qot",
+          "she"
+        ],
+        "n_merges": 22,
+        "variant": "clusius_rariorum-o3|searched-merges"
+      },
+      "raw": {},
+      "reliable": {
+        "threshold": 0.5,
+        "tokens_dropped": 780
+      }
+    },
+    "selection_rule": "highest gain among converged candidates that committed to a key; the top of the ranked table is unconverged and is recorded as best_scoring only",
+    "warning": "Every hypothesis in this configuration lost to a Markov model of the manuscript's own statistics, and none beat its surrogates. Phase 4 renders under a losing model and must say so on every artifact."
+  }
+}

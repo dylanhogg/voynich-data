@@ -1,0 +1,1550 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "function_word_candidates": {
+    "austen_pride_prejudice": [
+      {
+        "context_entropy": 7.176833724897795,
+        "count": 1230.0,
+        "dispersion": 0.985396066707639,
+        "form": "to",
+        "left_entropy": 7.953366497911229,
+        "length": 2.0,
+        "right_entropy": 6.400300951884362,
+        "share": 0.03646821631878558
+      },
+      {
+        "context_entropy": 6.937848095679682,
+        "count": 1021.0,
+        "dispersion": 0.9722816699883806,
+        "form": "the",
+        "left_entropy": 6.235080301645563,
+        "length": 3.0,
+        "right_entropy": 7.6406158897138,
+        "share": 0.030271584440227706
+      },
+      {
+        "context_entropy": 7.647378201927795,
+        "count": 892.0,
+        "dispersion": 0.9770896679876055,
+        "form": "and",
+        "left_entropy": 8.119067304259445,
+        "length": 3.0,
+        "right_entropy": 7.175689099596144,
+        "share": 0.02644686907020873
+      },
+      {
+        "context_entropy": 6.979869746575446,
+        "count": 860.0,
+        "dispersion": 0.9755129182080071,
+        "form": "of",
+        "left_entropy": 7.865666299622541,
+        "length": 2.0,
+        "right_entropy": 6.094073193528351,
+        "share": 0.02549810246679317
+      },
+      {
+        "context_entropy": 6.2248480738437415,
+        "count": 699.0,
+        "dispersion": 0.9175518808003117,
+        "form": "i",
+        "left_entropy": 6.971488037094622,
+        "length": 1.0,
+        "right_entropy": 5.47820811059286,
+        "share": 0.020724620493358634
+      },
+      {
+        "context_entropy": 6.401622262260487,
+        "count": 574.0,
+        "dispersion": 0.9145100544367688,
+        "form": "her",
+        "left_entropy": 5.971789476371471,
+        "length": 3.0,
+        "right_entropy": 6.831455048149501,
+        "share": 0.017018500948766602
+      },
+      {
+        "context_entropy": 6.016466328707528,
+        "count": 519.0,
+        "dispersion": 0.9282574780941036,
+        "form": "was",
+        "left_entropy": 5.258945651231547,
+        "length": 3.0,
+        "right_entropy": 6.77398700618351,
+        "share": 0.01538780834914611
+      },
+      {
+        "context_entropy": 6.459102177686949,
+        "count": 500.0,
+        "dispersion": 0.8725642746446162,
+        "form": "you",
+        "left_entropy": 6.681199653658161,
+        "length": 3.0,
+        "right_entropy": 6.237004701715739,
+        "share": 0.014824478178368121
+      },
+      {
+        "context_entropy": 6.515973823812525,
+        "count": 477.0,
+        "dispersion": 0.9612531962884592,
+        "form": "in",
+        "left_entropy": 7.378067054606983,
+        "length": 2.0,
+        "right_entropy": 5.653880593018067,
+        "share": 0.014142552182163188
+      },
+      {
+        "context_entropy": 6.116642506004343,
+        "count": 473.0,
+        "dispersion": 0.9381455509293173,
+        "form": "it",
+        "left_entropy": 6.710991363320104,
+        "length": 2.0,
+        "right_entropy": 5.522293648688583,
+        "share": 0.014023956356736244
+      },
+      {
+        "context_entropy": 6.3994342312746095,
+        "count": 459.0,
+        "dispersion": 0.9528126924703894,
+        "form": "that",
+        "left_entropy": 7.177416294466411,
+        "length": 4.0,
+        "right_entropy": 5.621452168082808,
+        "share": 0.013608870967741936
+      },
+      {
+        "context_entropy": 6.371699901453285,
+        "count": 455.0,
+        "dispersion": 0.9528528070787589,
+        "form": "a",
+        "left_entropy": 5.815576874613127,
+        "length": 1.0,
+        "right_entropy": 6.927822928293443,
+        "share": 0.013490275142314991
+      },
+      {
+        "context_entropy": 5.927659801096871,
+        "count": 454.0,
+        "dispersion": 0.9061468078281597,
+        "form": "she",
+        "left_entropy": 6.322614864419524,
+        "length": 3.0,
+        "right_entropy": 5.532704737774218,
+        "share": 0.013460626185958254
+      },
+      {
+        "context_entropy": 5.431202946327705,
+        "count": 421.0,
+        "dispersion": 0.9452959275559908,
+        "form": "be",
+        "left_entropy": 3.753791598484008,
+        "length": 2.0,
+        "right_entropy": 7.108614294171403,
+        "share": 0.012482210626185958
+      },
+      {
+        "context_entropy": 5.864650099676331,
+        "count": 404.0,
+        "dispersion": 0.892145782294653,
+        "form": "he",
+        "left_entropy": 6.125384624872437,
+        "length": 2.0,
+        "right_entropy": 5.603915574480226,
+        "share": 0.011978178368121442
+      },
+      {
+        "context_entropy": 5.626382609140094,
+        "count": 384.0,
+        "dispersion": 0.9394614674740377,
+        "form": "not",
+        "left_entropy": 4.87545046231739,
+        "length": 3.0,
+        "right_entropy": 6.377314755962799,
+        "share": 0.011385199240986717
+      },
+      {
+        "context_entropy": 6.067414932954533,
+        "count": 360.0,
+        "dispersion": 0.9179455584082976,
+        "form": "as",
+        "left_entropy": 6.710266021982511,
+        "length": 2.0,
+        "right_entropy": 5.424563843926555,
+        "share": 0.010673624288425047
+      },
+      {
+        "context_entropy": 5.445759625893541,
+        "count": 342.0,
+        "dispersion": 0.900249981461146,
+        "form": "had",
+        "left_entropy": 5.170954345305019,
+        "length": 3.0,
+        "right_entropy": 5.720564906482063,
+        "share": 0.010139943074003795
+      },
+      {
+        "context_entropy": 5.97478659294505,
+        "count": 330.0,
+        "dispersion": 0.8789976449055281,
+        "form": "his",
+        "left_entropy": 5.230565534238964,
+        "length": 3.0,
+        "right_entropy": 6.719007651651137,
+        "share": 0.00978415559772296
+      },
+      {
+        "context_entropy": 6.375236255755621,
+        "count": 313.0,
+        "dispersion": 0.9253181169539741,
+        "form": "for",
+        "left_entropy": 7.214162818454457,
+        "length": 3.0,
+        "right_entropy": 5.536309693056785,
+        "share": 0.009280123339658443
+      }
+    ],
+    "grille": [
+      {
+        "context_entropy": 6.170123097806018,
+        "count": 400.0,
+        "dispersion": 0.9303673106247954,
+        "form": "skae",
+        "left_entropy": 6.223800983363063,
+        "length": 4.0,
+        "right_entropy": 6.116445212248974,
+        "share": 0.011859582542694497
+      },
+      {
+        "context_entropy": 6.120568478171942,
+        "count": 400.0,
+        "dispersion": 0.9408743340223568,
+        "form": "fen",
+        "left_entropy": 6.121518827195278,
+        "length": 3.0,
+        "right_entropy": 6.119618129148605,
+        "share": 0.011859582542694497
+      },
+      {
+        "context_entropy": 6.167206315788357,
+        "count": 398.0,
+        "dispersion": 0.9346335220569602,
+        "form": "@135;eeu",
+        "left_entropy": 6.1730369269803225,
+        "length": 4.0,
+        "right_entropy": 6.161375704596392,
+        "share": 0.011800284629981025
+      },
+      {
+        "context_entropy": 6.197762134208043,
+        "count": 393.0,
+        "dispersion": 0.9315750249694368,
+        "form": "@152;eedx",
+        "left_entropy": 6.298771908853879,
+        "length": 5.0,
+        "right_entropy": 6.096752359562208,
+        "share": 0.011652039848197343
+      },
+      {
+        "context_entropy": 6.174092138677118,
+        "count": 390.0,
+        "dispersion": 0.9392640747678799,
+        "form": "tkaiig",
+        "left_entropy": 6.20986074073006,
+        "length": 6.0,
+        "right_entropy": 6.138323536624176,
+        "share": 0.011563092979127134
+      },
+      {
+        "context_entropy": 6.115261233116868,
+        "count": 387.0,
+        "dispersion": 0.9395319022550439,
+        "form": "iedo",
+        "left_entropy": 6.134554595930995,
+        "length": 4.0,
+        "right_entropy": 6.095967870302742,
+        "share": 0.011474146110056926
+      },
+      {
+        "context_entropy": 6.206539960241008,
+        "count": 385.0,
+        "dispersion": 0.9343288577960573,
+        "form": "raio",
+        "left_entropy": 6.2476282442972675,
+        "length": 4.0,
+        "right_entropy": 6.165451676184749,
+        "share": 0.011414848197343454
+      },
+      {
+        "context_entropy": 6.110419966785715,
+        "count": 379.0,
+        "dispersion": 0.9366087931235066,
+        "form": "iokedi",
+        "left_entropy": 6.126213532007855,
+        "length": 6.0,
+        "right_entropy": 6.094626401563576,
+        "share": 0.011236954459203035
+      },
+      {
+        "context_entropy": 6.057943626407193,
+        "count": 376.0,
+        "dispersion": 0.9339465967205989,
+        "form": "riid",
+        "left_entropy": 6.1152093433863,
+        "length": 4.0,
+        "right_entropy": 6.000677909428086,
+        "share": 0.011148007590132828
+      },
+      {
+        "context_entropy": 6.0987537237664124,
+        "count": 375.0,
+        "dispersion": 0.9394704369413934,
+        "form": "cfhokaip",
+        "left_entropy": 6.041878543777759,
+        "length": 6.0,
+        "right_entropy": 6.1556289037550656,
+        "share": 0.01111835863377609
+      },
+      {
+        "context_entropy": 6.109631294489356,
+        "count": 375.0,
+        "dispersion": 0.9310660334176544,
+        "form": "aokedn",
+        "left_entropy": 6.17579777290644,
+        "length": 6.0,
+        "right_entropy": 6.04346481607227,
+        "share": 0.01111835863377609
+      },
+      {
+        "context_entropy": 6.113013908140032,
+        "count": 372.0,
+        "dispersion": 0.9332699180293308,
+        "form": "chokaiir",
+        "left_entropy": 6.11162598339777,
+        "length": 7.0,
+        "right_entropy": 6.114401832882294,
+        "share": 0.011029411764705883
+      },
+      {
+        "context_entropy": 6.120380462017777,
+        "count": 372.0,
+        "dispersion": 0.9348600375841956,
+        "form": "yedt",
+        "left_entropy": 6.03488426233651,
+        "length": 4.0,
+        "right_entropy": 6.205876661699044,
+        "share": 0.011029411764705883
+      },
+      {
+        "context_entropy": 6.1369016583350575,
+        "count": 369.0,
+        "dispersion": 0.9227992952830063,
+        "form": "@206;okaiim",
+        "left_entropy": 6.0252107744422565,
+        "length": 7.0,
+        "right_entropy": 6.248592542227859,
+        "share": 0.010940464895635674
+      },
+      {
+        "context_entropy": 6.136184507951829,
+        "count": 369.0,
+        "dispersion": 0.9317515592787428,
+        "form": "saiip",
+        "left_entropy": 6.215528741655576,
+        "length": 5.0,
+        "right_entropy": 6.056840274248082,
+        "share": 0.010940464895635674
+      },
+      {
+        "context_entropy": 5.981157667953875,
+        "count": 369.0,
+        "dispersion": 0.9370658360475254,
+        "form": "keep",
+        "left_entropy": 5.930768381539483,
+        "length": 4.0,
+        "right_entropy": 6.031546954368266,
+        "share": 0.010940464895635674
+      },
+      {
+        "context_entropy": 6.04692793579067,
+        "count": 369.0,
+        "dispersion": 0.9399349969628735,
+        "form": "fchedx",
+        "left_entropy": 6.043439893389305,
+        "length": 5.0,
+        "right_entropy": 6.050415978192036,
+        "share": 0.010940464895635674
+      },
+      {
+        "context_entropy": 6.122346030296361,
+        "count": 368.0,
+        "dispersion": 0.9336437929512915,
+        "form": "xesh",
+        "left_entropy": 6.127163853459793,
+        "length": 3.0,
+        "right_entropy": 6.117528207132929,
+        "share": 0.010910815939278937
+      },
+      {
+        "context_entropy": 6.071781041711458,
+        "count": 368.0,
+        "dispersion": 0.9345062521302828,
+        "form": "ckhai",
+        "left_entropy": 6.061027119389755,
+        "length": 3.0,
+        "right_entropy": 6.082534964033161,
+        "share": 0.010910815939278937
+      },
+      {
+        "context_entropy": 6.049332995482704,
+        "count": 366.0,
+        "dispersion": 0.9443322541810325,
+        "form": "cphaij",
+        "left_entropy": 6.1075152434350235,
+        "length": 4.0,
+        "right_entropy": 5.991150747530384,
+        "share": 0.010851518026565464
+      }
+    ],
+    "merged": [
+      {
+        "context_entropy": 7.264348922168715,
+        "count": 755.0,
+        "dispersion": 0.9371200775274586,
+        "form": "daiin",
+        "left_entropy": 7.085579260884197,
+        "length": 1.0,
+        "right_entropy": 7.443118583453233,
+        "share": 0.022384962049335863
+      },
+      {
+        "context_entropy": 7.3009728731724675,
+        "count": 515.0,
+        "dispersion": 0.8142766216976547,
+        "form": "ol",
+        "left_entropy": 7.527106736619874,
+        "length": 1.0,
+        "right_entropy": 7.0748390097250615,
+        "share": 0.015269212523719164
+      },
+      {
+        "context_entropy": 7.211285525584052,
+        "count": 480.0,
+        "dispersion": 0.7613256956928691,
+        "form": "chedy",
+        "left_entropy": 7.24210876844388,
+        "length": 1.0,
+        "right_entropy": 7.180462282724224,
+        "share": 0.014231499051233396
+      },
+      {
+        "context_entropy": 6.873495234362878,
+        "count": 436.0,
+        "dispersion": 0.8168368640202894,
+        "form": "aiin",
+        "left_entropy": 6.338690751669137,
+        "length": 1.0,
+        "right_entropy": 7.408299717056618,
+        "share": 0.012926944971537001
+      },
+      {
+        "context_entropy": 7.0437285517418475,
+        "count": 414.0,
+        "dispersion": 0.7153761393119314,
+        "form": "shedy",
+        "left_entropy": 7.090897638197856,
+        "length": 3.0,
+        "right_entropy": 6.996559465285839,
+        "share": 0.012274667931688804
+      },
+      {
+        "context_entropy": 7.197547055900786,
+        "count": 360.0,
+        "dispersion": 0.8821337013817198,
+        "form": "chol",
+        "left_entropy": 7.315885657320736,
+        "length": 1.0,
+        "right_entropy": 7.0792084544808365,
+        "share": 0.010673624288425047
+      },
+      {
+        "context_entropy": 6.829213382795446,
+        "count": 341.0,
+        "dispersion": 0.8493087118565343,
+        "form": "or",
+        "left_entropy": 7.2283100036554995,
+        "length": 1.0,
+        "right_entropy": 6.430116761935394,
+        "share": 0.01011029411764706
+      },
+      {
+        "context_entropy": 7.2174701581314675,
+        "count": 332.0,
+        "dispersion": 0.817855933345824,
+        "form": "chey",
+        "left_entropy": 7.177879423839456,
+        "length": 2.0,
+        "right_entropy": 7.257060892423479,
+        "share": 0.009843453510436433
+      },
+      {
+        "context_entropy": 6.971624437938158,
+        "count": 314.0,
+        "dispersion": 0.7804901547201948,
+        "form": "ar",
+        "left_entropy": 7.1289026781515235,
+        "length": 1.0,
+        "right_entropy": 6.8143461977247926,
+        "share": 0.00930977229601518
+      },
+      {
+        "context_entropy": 6.794158341624786,
+        "count": 301.0,
+        "dispersion": 0.7168175395453057,
+        "form": "qokeey",
+        "left_entropy": 6.511710608513405,
+        "length": 3.0,
+        "right_entropy": 7.0766060747361665,
+        "share": 0.00892433586337761
+      },
+      {
+        "context_entropy": 6.598058707426587,
+        "count": 299.0,
+        "dispersion": 0.6701906444079037,
+        "form": "qokeedy",
+        "left_entropy": 6.232284366815819,
+        "length": 5.0,
+        "right_entropy": 6.963833048037353,
+        "share": 0.008865037950664137
+      },
+      {
+        "context_entropy": 6.175965803419836,
+        "count": 280.0,
+        "dispersion": 0.8921118371966513,
+        "form": "s",
+        "left_entropy": 7.061705991401991,
+        "length": 1.0,
+        "right_entropy": 5.290225615437682,
+        "share": 0.008301707779886147
+      },
+      {
+        "context_entropy": 6.287806782754965,
+        "count": 278.0,
+        "dispersion": 0.8672110224619681,
+        "form": "y",
+        "left_entropy": 6.024118460269338,
+        "length": 1.0,
+        "right_entropy": 6.5514951052405905,
+        "share": 0.008242409867172675
+      },
+      {
+        "context_entropy": 6.550088393961113,
+        "count": 277.0,
+        "dispersion": 0.6344519030793839,
+        "form": "qokain",
+        "left_entropy": 6.426424952763754,
+        "length": 3.0,
+        "right_entropy": 6.673751835158473,
+        "share": 0.00821276091081594
+      },
+      {
+        "context_entropy": 6.50675749149557,
+        "count": 265.0,
+        "dispersion": 0.6936480041943288,
+        "form": "qokedy",
+        "left_entropy": 6.379126530553867,
+        "length": 4.0,
+        "right_entropy": 6.634388452437273,
+        "share": 0.007856973434535104
+      },
+      {
+        "context_entropy": 7.083381614481964,
+        "count": 263.0,
+        "dispersion": 0.7671811672159771,
+        "form": "shey",
+        "left_entropy": 7.178963679836918,
+        "length": 2.0,
+        "right_entropy": 6.98779954912701,
+        "share": 0.0077976755218216315
+      },
+      {
+        "context_entropy": 6.782535163628257,
+        "count": 262.0,
+        "dispersion": 0.7320070573437972,
+        "form": "qokaiin",
+        "left_entropy": 6.6584623324726,
+        "length": 3.0,
+        "right_entropy": 6.906607994783913,
+        "share": 0.007768026565464895
+      },
+      {
+        "context_entropy": 6.622044741577388,
+        "count": 260.0,
+        "dispersion": 0.8554054732861444,
+        "form": "dar",
+        "left_entropy": 6.759309232156307,
+        "length": 2.0,
+        "right_entropy": 6.484780250998469,
+        "share": 0.007708728652751423
+      },
+      {
+        "context_entropy": 6.593777938622077,
+        "count": 213.0,
+        "dispersion": 0.7236387261217045,
+        "form": "al",
+        "left_entropy": 6.591911015309119,
+        "length": 1.0,
+        "right_entropy": 6.5956448619350345,
+        "share": 0.00631522770398482
+      },
+      {
+        "context_entropy": 6.678349934308022,
+        "count": 201.0,
+        "dispersion": 0.7794527228884915,
+        "form": "okaiin",
+        "left_entropy": 6.628677502503761,
+        "length": 2.0,
+        "right_entropy": 6.728022366112282,
+        "share": 0.005959440227703985
+      }
+    ],
+    "raw": [
+      {
+        "context_entropy": 7.264348922168715,
+        "count": 755.0,
+        "dispersion": 0.9371200775274586,
+        "form": "daiin",
+        "left_entropy": 7.085579260884197,
+        "length": 5.0,
+        "right_entropy": 7.443118583453233,
+        "share": 0.022384962049335863
+      },
+      {
+        "context_entropy": 7.3009728731724675,
+        "count": 515.0,
+        "dispersion": 0.8142766216976547,
+        "form": "ol",
+        "left_entropy": 7.527106736619874,
+        "length": 2.0,
+        "right_entropy": 7.0748390097250615,
+        "share": 0.015269212523719164
+      },
+      {
+        "context_entropy": 7.211285525584052,
+        "count": 480.0,
+        "dispersion": 0.7613256956928691,
+        "form": "chedy",
+        "left_entropy": 7.24210876844388,
+        "length": 4.0,
+        "right_entropy": 7.180462282724224,
+        "share": 0.014231499051233396
+      },
+      {
+        "context_entropy": 6.873495234362878,
+        "count": 436.0,
+        "dispersion": 0.8168368640202894,
+        "form": "aiin",
+        "left_entropy": 6.338690751669137,
+        "length": 4.0,
+        "right_entropy": 7.408299717056618,
+        "share": 0.012926944971537001
+      },
+      {
+        "context_entropy": 7.0437285517418475,
+        "count": 414.0,
+        "dispersion": 0.7153761393119314,
+        "form": "shedy",
+        "left_entropy": 7.090897638197856,
+        "length": 4.0,
+        "right_entropy": 6.996559465285839,
+        "share": 0.012274667931688804
+      },
+      {
+        "context_entropy": 7.197547055900786,
+        "count": 360.0,
+        "dispersion": 0.8821337013817198,
+        "form": "chol",
+        "left_entropy": 7.315885657320736,
+        "length": 3.0,
+        "right_entropy": 7.0792084544808365,
+        "share": 0.010673624288425047
+      },
+      {
+        "context_entropy": 6.829213382795446,
+        "count": 341.0,
+        "dispersion": 0.8493087118565343,
+        "form": "or",
+        "left_entropy": 7.2283100036554995,
+        "length": 2.0,
+        "right_entropy": 6.430116761935394,
+        "share": 0.01011029411764706
+      },
+      {
+        "context_entropy": 7.2174701581314675,
+        "count": 332.0,
+        "dispersion": 0.817855933345824,
+        "form": "chey",
+        "left_entropy": 7.177879423839456,
+        "length": 3.0,
+        "right_entropy": 7.257060892423479,
+        "share": 0.009843453510436433
+      },
+      {
+        "context_entropy": 6.971624437938158,
+        "count": 314.0,
+        "dispersion": 0.7804901547201948,
+        "form": "ar",
+        "left_entropy": 7.1289026781515235,
+        "length": 2.0,
+        "right_entropy": 6.8143461977247926,
+        "share": 0.00930977229601518
+      },
+      {
+        "context_entropy": 6.794158341624786,
+        "count": 301.0,
+        "dispersion": 0.7168175395453057,
+        "form": "qokeey",
+        "left_entropy": 6.511710608513405,
+        "length": 6.0,
+        "right_entropy": 7.0766060747361665,
+        "share": 0.00892433586337761
+      },
+      {
+        "context_entropy": 6.598058707426587,
+        "count": 299.0,
+        "dispersion": 0.6701906444079037,
+        "form": "qokeedy",
+        "left_entropy": 6.232284366815819,
+        "length": 7.0,
+        "right_entropy": 6.963833048037353,
+        "share": 0.008865037950664137
+      },
+      {
+        "context_entropy": 6.175965803419836,
+        "count": 280.0,
+        "dispersion": 0.8921118371966513,
+        "form": "s",
+        "left_entropy": 7.061705991401991,
+        "length": 1.0,
+        "right_entropy": 5.290225615437682,
+        "share": 0.008301707779886147
+      },
+      {
+        "context_entropy": 6.287806782754965,
+        "count": 278.0,
+        "dispersion": 0.8672110224619681,
+        "form": "y",
+        "left_entropy": 6.024118460269338,
+        "length": 1.0,
+        "right_entropy": 6.5514951052405905,
+        "share": 0.008242409867172675
+      },
+      {
+        "context_entropy": 6.550088393961113,
+        "count": 277.0,
+        "dispersion": 0.6344519030793839,
+        "form": "qokain",
+        "left_entropy": 6.426424952763754,
+        "length": 6.0,
+        "right_entropy": 6.673751835158473,
+        "share": 0.00821276091081594
+      },
+      {
+        "context_entropy": 6.50675749149557,
+        "count": 265.0,
+        "dispersion": 0.6936480041943288,
+        "form": "qokedy",
+        "left_entropy": 6.379126530553867,
+        "length": 6.0,
+        "right_entropy": 6.634388452437273,
+        "share": 0.007856973434535104
+      },
+      {
+        "context_entropy": 7.083381614481964,
+        "count": 263.0,
+        "dispersion": 0.7671811672159771,
+        "form": "shey",
+        "left_entropy": 7.178963679836918,
+        "length": 3.0,
+        "right_entropy": 6.98779954912701,
+        "share": 0.0077976755218216315
+      },
+      {
+        "context_entropy": 6.782535163628257,
+        "count": 262.0,
+        "dispersion": 0.7320070573437972,
+        "form": "qokaiin",
+        "left_entropy": 6.6584623324726,
+        "length": 7.0,
+        "right_entropy": 6.906607994783913,
+        "share": 0.007768026565464895
+      },
+      {
+        "context_entropy": 6.622044741577388,
+        "count": 260.0,
+        "dispersion": 0.8554054732861444,
+        "form": "dar",
+        "left_entropy": 6.759309232156307,
+        "length": 3.0,
+        "right_entropy": 6.484780250998469,
+        "share": 0.007708728652751423
+      },
+      {
+        "context_entropy": 6.593777938622077,
+        "count": 213.0,
+        "dispersion": 0.7236387261217045,
+        "form": "al",
+        "left_entropy": 6.591911015309119,
+        "length": 2.0,
+        "right_entropy": 6.5956448619350345,
+        "share": 0.00631522770398482
+      },
+      {
+        "context_entropy": 6.678349934308022,
+        "count": 201.0,
+        "dispersion": 0.7794527228884915,
+        "form": "okaiin",
+        "left_entropy": 6.628677502503761,
+        "length": 6.0,
+        "right_entropy": 6.728022366112282,
+        "share": 0.005959440227703985
+      }
+    ],
+    "reliable": [
+      {
+        "context_entropy": 7.220695218043864,
+        "count": 754.0,
+        "dispersion": 0.9372440595047856,
+        "form": "daiin",
+        "left_entropy": 7.056486219990528,
+        "length": 5.0,
+        "right_entropy": 7.3849042160972,
+        "share": 0.022884545344178706
+      },
+      {
+        "context_entropy": 7.245475029841099,
+        "count": 502.0,
+        "dispersion": 0.8118695480154378,
+        "form": "ol",
+        "left_entropy": 7.461576836391007,
+        "length": 2.0,
+        "right_entropy": 7.0293732232911905,
+        "share": 0.01523612965885638
+      },
+      {
+        "context_entropy": 7.205976678738601,
+        "count": 480.0,
+        "dispersion": 0.7613256956928691,
+        "form": "chedy",
+        "left_entropy": 7.2475102827288325,
+        "length": 4.0,
+        "right_entropy": 7.16444307474837,
+        "share": 0.014568410829185382
+      },
+      {
+        "context_entropy": 6.9309940525058025,
+        "count": 431.0,
+        "dispersion": 0.8167913730581066,
+        "form": "aiin",
+        "left_entropy": 6.468115436524537,
+        "length": 4.0,
+        "right_entropy": 7.393872668487068,
+        "share": 0.013081218890372708
+      },
+      {
+        "context_entropy": 7.021761707322815,
+        "count": 414.0,
+        "dispersion": 0.7153761393119314,
+        "form": "shedy",
+        "left_entropy": 7.053461427465812,
+        "length": 4.0,
+        "right_entropy": 6.990061987179818,
+        "share": 0.012565254340172393
+      },
+      {
+        "context_entropy": 7.157535941062193,
+        "count": 358.0,
+        "dispersion": 0.8824323805590013,
+        "form": "chol",
+        "left_entropy": 7.255477843864986,
+        "length": 3.0,
+        "right_entropy": 7.0595940382594,
+        "share": 0.010865606410100764
+      },
+      {
+        "context_entropy": 6.7869827196477015,
+        "count": 330.0,
+        "dispersion": 0.8463671423994629,
+        "form": "or",
+        "left_entropy": 7.1572487028268945,
+        "length": 2.0,
+        "right_entropy": 6.416716736468508,
+        "share": 0.010015782445064951
+      },
+      {
+        "context_entropy": 7.1724340523545225,
+        "count": 328.0,
+        "dispersion": 0.814322863324007,
+        "form": "chey",
+        "left_entropy": 7.157361764174408,
+        "length": 3.0,
+        "right_entropy": 7.187506340534637,
+        "share": 0.009955080733276679
+      },
+      {
+        "context_entropy": 6.792255937924243,
+        "count": 301.0,
+        "dispersion": 0.7168175395453057,
+        "form": "qokeey",
+        "left_entropy": 6.511710608513405,
+        "length": 6.0,
+        "right_entropy": 7.072801267335081,
+        "share": 0.009135607624135001
+      },
+      {
+        "context_entropy": 6.560868177483263,
+        "count": 298.0,
+        "dispersion": 0.6705309619777726,
+        "form": "qokeedy",
+        "left_entropy": 6.198044453383453,
+        "length": 7.0,
+        "right_entropy": 6.923691901583074,
+        "share": 0.009044555056452592
+      },
+      {
+        "context_entropy": 6.908667544146477,
+        "count": 294.0,
+        "dispersion": 0.7747970598814702,
+        "form": "ar",
+        "left_entropy": 7.055598141565254,
+        "length": 2.0,
+        "right_entropy": 6.761736946727699,
+        "share": 0.008923151632876047
+      },
+      {
+        "context_entropy": 6.515493185150367,
+        "count": 277.0,
+        "dispersion": 0.6344519030793839,
+        "form": "qokain",
+        "left_entropy": 6.426424952763754,
+        "length": 6.0,
+        "right_entropy": 6.604561417536981,
+        "share": 0.00840718708267573
+      },
+      {
+        "context_entropy": 6.520343386882761,
+        "count": 265.0,
+        "dispersion": 0.6936480041943288,
+        "form": "qokedy",
+        "left_entropy": 6.371579360742547,
+        "length": 6.0,
+        "right_entropy": 6.669107413022976,
+        "share": 0.008042976811946097
+      },
+      {
+        "context_entropy": 6.757426510201682,
+        "count": 262.0,
+        "dispersion": 0.7320070573437972,
+        "form": "qokaiin",
+        "left_entropy": 6.626145620794614,
+        "length": 7.0,
+        "right_entropy": 6.88870739960875,
+        "share": 0.007951924244263688
+      },
+      {
+        "context_entropy": 7.063821683928874,
+        "count": 261.0,
+        "dispersion": 0.7679257782511514,
+        "form": "shey",
+        "left_entropy": 7.19146938416819,
+        "length": 3.0,
+        "right_entropy": 6.936173983689558,
+        "share": 0.007921573388369551
+      },
+      {
+        "context_entropy": 6.59556168789306,
+        "count": 257.0,
+        "dispersion": 0.8526486677516122,
+        "form": "dar",
+        "left_entropy": 6.706861697152355,
+        "length": 3.0,
+        "right_entropy": 6.484261678633764,
+        "share": 0.007800169964793007
+      },
+      {
+        "context_entropy": 6.096614618233225,
+        "count": 251.0,
+        "dispersion": 0.8847291409341466,
+        "form": "s",
+        "left_entropy": 6.97448445246072,
+        "length": 1.0,
+        "right_entropy": 5.218744784005731,
+        "share": 0.00761806482942819
+      },
+      {
+        "context_entropy": 6.023453873063568,
+        "count": 230.0,
+        "dispersion": 0.8380866788337542,
+        "form": "y",
+        "left_entropy": 5.728219341490449,
+        "length": 1.0,
+        "right_entropy": 6.318688404636686,
+        "share": 0.006980696855651329
+      },
+      {
+        "context_entropy": 6.5625025202296765,
+        "count": 208.0,
+        "dispersion": 0.7198775876776877,
+        "form": "al",
+        "left_entropy": 6.539305255076808,
+        "length": 2.0,
+        "right_entropy": 6.585699785382546,
+        "share": 0.006312978025980333
+      },
+      {
+        "context_entropy": 6.6672992749279,
+        "count": 201.0,
+        "dispersion": 0.7794527228884915,
+        "form": "okaiin",
+        "left_entropy": 6.632433161718504,
+        "length": 6.0,
+        "right_entropy": 6.702165388137296,
+        "share": 0.006100522034721379
+      }
+    ],
+    "selfcite": [
+      {
+        "context_entropy": 3.71977099976422,
+        "count": 1048.0,
+        "dispersion": 0.46675361949679045,
+        "form": "@199;@137;v@197;@187;",
+        "left_entropy": 3.6831260660812157,
+        "length": 5.0,
+        "right_entropy": 3.756415933447224,
+        "share": 0.03107210626185958
+      },
+      {
+        "context_entropy": 2.410454272662398,
+        "count": 992.0,
+        "dispersion": 0.45964055725629926,
+        "form": "ckhqr",
+        "left_entropy": 2.420085404772744,
+        "length": 3.0,
+        "right_entropy": 2.4008231405520517,
+        "share": 0.029411764705882353
+      },
+      {
+        "context_entropy": 3.113071781082466,
+        "count": 906.0,
+        "dispersion": 0.43374929127341655,
+        "form": "@166;v",
+        "left_entropy": 3.0985772279527213,
+        "length": 2.0,
+        "right_entropy": 3.127566334212211,
+        "share": 0.026861954459203037
+      },
+      {
+        "context_entropy": 3.5047885311271862,
+        "count": 712.0,
+        "dispersion": 0.40477757907212897,
+        "form": "@137;nv@197;@147;",
+        "left_entropy": 3.494267944369266,
+        "length": 5.0,
+        "right_entropy": 3.515309117885106,
+        "share": 0.021110056925996205
+      },
+      {
+        "context_entropy": 3.501649730896074,
+        "count": 705.0,
+        "dispersion": 0.4621219742014315,
+        "form": "ocfh",
+        "left_entropy": 3.4232048188194555,
+        "length": 2.0,
+        "right_entropy": 3.5800946429726928,
+        "share": 0.02090251423149905
+      },
+      {
+        "context_entropy": 3.751444819045264,
+        "count": 632.0,
+        "dispersion": 0.3912782354605343,
+        "form": "@194;",
+        "left_entropy": 3.770207936391338,
+        "length": 1.0,
+        "right_entropy": 3.7326817016991893,
+        "share": 0.018738140417457305
+      },
+      {
+        "context_entropy": 3.0048346949511378,
+        "count": 620.0,
+        "dispersion": 0.36510051607920363,
+        "form": "@199;@149;v@197;@169;@187;",
+        "left_entropy": 3.061649996377342,
+        "length": 6.0,
+        "right_entropy": 2.9480193935249335,
+        "share": 0.01838235294117647
+      },
+      {
+        "context_entropy": 3.5509916280218574,
+        "count": 568.0,
+        "dispersion": 0.3769730701757594,
+        "form": "i@172;cfh",
+        "left_entropy": 3.6071371665237937,
+        "length": 3.0,
+        "right_entropy": 3.4948460895199207,
+        "share": 0.016840607210626187
+      },
+      {
+        "context_entropy": 3.0223833017851955,
+        "count": 519.0,
+        "dispersion": 0.3484930172356058,
+        "form": "@156;jv",
+        "left_entropy": 3.029559095562418,
+        "length": 3.0,
+        "right_entropy": 3.015207508007973,
+        "share": 0.01538780834914611
+      },
+      {
+        "context_entropy": 2.541699236376579,
+        "count": 507.0,
+        "dispersion": 0.3327943647685566,
+        "form": "jv",
+        "left_entropy": 2.616513538416986,
+        "length": 2.0,
+        "right_entropy": 2.4668849343361723,
+        "share": 0.015032020872865275
+      },
+      {
+        "context_entropy": 3.224726325459433,
+        "count": 481.0,
+        "dispersion": 0.30600038522595246,
+        "form": "@169;@199;@197;@147;",
+        "left_entropy": 3.2244954494712386,
+        "length": 4.0,
+        "right_entropy": 3.2249572014476278,
+        "share": 0.014261148007590133
+      },
+      {
+        "context_entropy": 3.1318106236528775,
+        "count": 478.0,
+        "dispersion": 0.3239224812676068,
+        "form": "i@197;@244;@190;",
+        "left_entropy": 3.1158153329844795,
+        "length": 4.0,
+        "right_entropy": 3.147805914321275,
+        "share": 0.014172201138519924
+      },
+      {
+        "context_entropy": 2.6123800922957967,
+        "count": 439.0,
+        "dispersion": 0.2597115246224172,
+        "form": "@176;@137;v@197;@187;",
+        "left_entropy": 2.6275432334770032,
+        "length": 5.0,
+        "right_entropy": 2.5972169511145906,
+        "share": 0.01301589184060721
+      },
+      {
+        "context_entropy": 2.788096492097515,
+        "count": 410.0,
+        "dispersion": 0.35365208832105016,
+        "form": "ckh@152;cqr",
+        "left_entropy": 2.8096228499071363,
+        "length": 5.0,
+        "right_entropy": 2.7665701342878943,
+        "share": 0.012156072106261859
+      },
+      {
+        "context_entropy": 3.7348839479107836,
+        "count": 407.0,
+        "dispersion": 0.4099557880191898,
+        "form": "ckhlcqj",
+        "left_entropy": 3.664779780483555,
+        "length": 5.0,
+        "right_entropy": 3.8049881153380123,
+        "share": 0.012067125237191651
+      },
+      {
+        "context_entropy": 2.7053075196292893,
+        "count": 383.0,
+        "dispersion": 0.324832114682023,
+        "form": "@149;ckh@184;@187;",
+        "left_entropy": 2.6593290063290587,
+        "length": 4.0,
+        "right_entropy": 2.7512860329295203,
+        "share": 0.011355550284629982
+      },
+      {
+        "context_entropy": 3.8263183968773395,
+        "count": 340.0,
+        "dispersion": 0.4010431859702877,
+        "form": "@197;",
+        "left_entropy": 3.9231619934775677,
+        "length": 1.0,
+        "right_entropy": 3.7294748002771114,
+        "share": 0.010080645161290322
+      },
+      {
+        "context_entropy": 2.244047470392407,
+        "count": 329.0,
+        "dispersion": 0.21283431299972508,
+        "form": "@137;nv@197;@187;",
+        "left_entropy": 2.206558613333519,
+        "length": 5.0,
+        "right_entropy": 2.281536327451295,
+        "share": 0.009754506641366224
+      },
+      {
+        "context_entropy": 2.769289278163776,
+        "count": 322.0,
+        "dispersion": 0.3201819515660959,
+        "form": "o@130;",
+        "left_entropy": 2.7715555671286656,
+        "length": 2.0,
+        "right_entropy": 2.767022989198887,
+        "share": 0.00954696394686907
+      },
+      {
+        "context_entropy": 3.567656251241014,
+        "count": 316.0,
+        "dispersion": 0.38089634805863926,
+        "form": "lc@187;",
+        "left_entropy": 3.612010224913392,
+        "length": 3.0,
+        "right_entropy": 3.523302277568636,
+        "share": 0.009369070208728653
+      }
+    ],
+    "vulgate_clementine": [
+      {
+        "context_entropy": 8.731280850641882,
+        "count": 2674.0,
+        "dispersion": 0.9918135559221725,
+        "form": "et",
+        "left_entropy": 8.671448581604475,
+        "length": 2.0,
+        "right_entropy": 8.79111311967929,
+        "share": 0.07928130929791272
+      },
+      {
+        "context_entropy": 7.436857187795453,
+        "count": 1140.0,
+        "dispersion": 0.9775266899609468,
+        "form": "in",
+        "left_entropy": 7.631989190809999,
+        "length": 2.0,
+        "right_entropy": 7.241725184780907,
+        "share": 0.033799810246679315
+      },
+      {
+        "context_entropy": 6.441620246277114,
+        "count": 535.0,
+        "dispersion": 0.9368199867079712,
+        "form": "ad",
+        "left_entropy": 6.809085172842334,
+        "length": 2.0,
+        "right_entropy": 6.074155319711894,
+        "share": 0.01586219165085389
+      },
+      {
+        "context_entropy": 6.247422747246899,
+        "count": 493.0,
+        "dispersion": 0.9501991704656882,
+        "form": "est",
+        "left_entropy": 6.113603631706027,
+        "length": 3.0,
+        "right_entropy": 6.381241862787771,
+        "share": 0.014616935483870967
+      },
+      {
+        "context_entropy": 5.629900525653522,
+        "count": 350.0,
+        "dispersion": 0.867043117165758,
+        "form": "israel",
+        "left_entropy": 5.486155008986702,
+        "length": 6.0,
+        "right_entropy": 5.773646042320342,
+        "share": 0.010377134724857686
+      },
+      {
+        "context_entropy": 6.596619364236252,
+        "count": 337.0,
+        "dispersion": 0.9481648720530302,
+        "form": "autem",
+        "left_entropy": 6.278245898561416,
+        "length": 5.0,
+        "right_entropy": 6.91499282991109,
+        "share": 0.009991698292220115
+      },
+      {
+        "context_entropy": 6.566413078122945,
+        "count": 327.0,
+        "dispersion": 0.9193885397882906,
+        "form": "qui",
+        "left_entropy": 6.830316224872046,
+        "length": 3.0,
+        "right_entropy": 6.302509931373844,
+        "share": 0.009695208728652751
+      },
+      {
+        "context_entropy": 6.7668128063340065,
+        "count": 296.0,
+        "dispersion": 0.8788533837953483,
+        "form": "de",
+        "left_entropy": 7.077803029808521,
+        "length": 2.0,
+        "right_entropy": 6.455822582859492,
+        "share": 0.008776091081593928
+      },
+      {
+        "context_entropy": 6.158800144200797,
+        "count": 293.0,
+        "dispersion": 0.910604180304094,
+        "form": "non",
+        "left_entropy": 5.6369386559187795,
+        "length": 3.0,
+        "right_entropy": 6.680661632482815,
+        "share": 0.00868714421252372
+      },
+      {
+        "context_entropy": 5.633589646677456,
+        "count": 277.0,
+        "dispersion": 0.8402666615576171,
+        "form": "rex",
+        "left_entropy": 5.785145314150206,
+        "length": 3.0,
+        "right_entropy": 5.482033979204706,
+        "share": 0.00821276091081594
+      },
+      {
+        "context_entropy": 5.948318737143165,
+        "count": 268.0,
+        "dispersion": 0.8744359142445773,
+        "form": "eum",
+        "left_entropy": 5.949088437726719,
+        "length": 3.0,
+        "right_entropy": 5.947549036559611,
+        "share": 0.007945920303605313
+      },
+      {
+        "context_entropy": 6.830955473377775,
+        "count": 266.0,
+        "dispersion": 0.8929172973630508,
+        "form": "ut",
+        "left_entropy": 6.695835970589628,
+        "length": 2.0,
+        "right_entropy": 6.966074976165921,
+        "share": 0.00788662239089184
+      },
+      {
+        "context_entropy": 5.642244699099718,
+        "count": 248.0,
+        "dispersion": 0.8788224451597502,
+        "form": "cum",
+        "left_entropy": 5.752099172698429,
+        "length": 3.0,
+        "right_entropy": 5.532390225501007,
+        "share": 0.007352941176470588
+      },
+      {
+        "context_entropy": 5.793877222807897,
+        "count": 245.0,
+        "dispersion": 0.8636039214527411,
+        "form": "ejus",
+        "left_entropy": 6.280595049647039,
+        "length": 4.0,
+        "right_entropy": 5.307159395968754,
+        "share": 0.00726399430740038
+      },
+      {
+        "context_entropy": 5.967138723265947,
+        "count": 229.0,
+        "dispersion": 0.8801779491343732,
+        "form": "super",
+        "left_entropy": 6.480015359658077,
+        "length": 5.0,
+        "right_entropy": 5.4542620868738165,
+        "share": 0.006789611005692599
+      },
+      {
+        "context_entropy": 4.52979480783502,
+        "count": 216.0,
+        "dispersion": 0.8447657588431048,
+        "form": "ait",
+        "left_entropy": 3.1151424154991245,
+        "length": 3.0,
+        "right_entropy": 5.944447200170916,
+        "share": 0.006404174573055028
+      },
+      {
+        "context_entropy": 5.337369288092148,
+        "count": 199.0,
+        "dispersion": 0.8426406179047815,
+        "form": "dominus",
+        "left_entropy": 5.178174756277943,
+        "length": 7.0,
+        "right_entropy": 5.496563819906354,
+        "share": 0.0059001423149905126
+      },
+      {
+        "context_entropy": 5.037004066165503,
+        "count": 194.0,
+        "dispersion": 0.8479943628472453,
+        "form": "domini",
+        "left_entropy": 5.135046379617045,
+        "length": 6.0,
+        "right_entropy": 4.9389617527139595,
+        "share": 0.005751897533206831
+      },
+      {
+        "context_entropy": 5.783750523931532,
+        "count": 166.0,
+        "dispersion": 0.7826169058837353,
+        "form": "david",
+        "left_entropy": 5.959881456571008,
+        "length": 5.0,
+        "right_entropy": 5.607619591292057,
+        "share": 0.0049217267552182165
+      },
+      {
+        "context_entropy": 5.851741037955613,
+        "count": 156.0,
+        "dispersion": 0.8660407243726939,
+        "form": "quod",
+        "left_entropy": 6.061602281256631,
+        "length": 4.0,
+        "right_entropy": 5.641879794654596,
+        "share": 0.004625237191650854
+      }
+    ]
+  },
+  "function_word_summaries": {
+    "austen_pride_prejudice": {
+      "all_mean_context_entropy": 4.502295901044488,
+      "all_mean_length": 4.295,
+      "top20_mean_context_entropy": 6.298040596895697,
+      "top20_mean_dispersion": 0.9326894772258072,
+      "top20_mean_length": 2.5,
+      "top20_token_share": 0.33108989563567365
+    },
+    "grille": {
+      "all_mean_context_entropy": 6.1046400291001754,
+      "all_mean_length": 4.583333333333333,
+      "top20_mean_context_entropy": 6.11531640885689,
+      "top20_mean_dispersion": 0.9351915414571982,
+      "top20_mean_length": 4.7,
+      "top20_token_share": 0.22473908918406071
+    },
+    "merged": {
+      "all_mean_context_entropy": 5.322095132729807,
+      "all_mean_length": 2.47,
+      "top20_mean_context_entropy": 6.829130552754819,
+      "top20_mean_dispersion": 0.7853419998648066,
+      "top20_mean_length": 1.95,
+      "top20_token_share": 0.20297675521821631
+    },
+    "raw": {
+      "all_mean_context_entropy": 5.322095132729807,
+      "all_mean_length": 4.185,
+      "top20_mean_context_entropy": 6.829130552754819,
+      "top20_mean_dispersion": 0.7853419998648066,
+      "top20_mean_length": 3.85,
+      "top20_token_share": 0.20297675521821631
+    },
+    "reliable": {
+      "all_mean_context_entropy": 5.300548499420038,
+      "all_mean_length": 4.185,
+      "top20_mean_context_entropy": 6.7903081899790845,
+      "top20_mean_dispersion": 0.7825351152112252,
+      "top20_mean_length": 3.85,
+      "top20_token_share": 0.2034114362025009
+    },
+    "selfcite": {
+      "all_mean_context_entropy": 2.9605376808212,
+      "all_mean_length": 3.33,
+      "top20_mean_context_entropy": 3.1362802696716305,
+      "top20_mean_dispersion": 0.3667356202876357,
+      "top20_mean_length": 3.5,
+      "top20_token_share": 0.3295185009487666
+    },
+    "vulgate_clementine": {
+      "all_mean_context_entropy": 4.391680250079023,
+      "all_mean_length": 4.665,
+      "top20_mean_context_entropy": 6.146575558843033,
+      "top20_mean_dispersion": 0.8897348027463485,
+      "top20_mean_length": 3.65,
+      "top20_token_share": 0.2641425521821632
+    }
+  },
+  "section_specificity": {
+    "null_max_divergence": 0.19929629669116802,
+    "null_mean_divergence": 0.16522033183044615,
+    "observed_mean_divergence": 0.46054641527245144,
+    "p_value": 0.004975124378109453,
+    "permutations": 200,
+    "top_by_section": {
+      "astronomical": [],
+      "biological": [
+        "olkain",
+        "qol",
+        "sol",
+        "sheckhy",
+        "olchedy",
+        "qokedy",
+        "qokain",
+        "qokal",
+        "qoteedy",
+        "tedy"
+      ],
+      "cosmological": [],
+      "herbal": [
+        "kchy",
+        "cthor",
+        "dchy",
+        "dchor",
+        "tchy",
+        "cthy",
+        "cthol",
+        "kchol",
+        "otchol",
+        "ckhy"
+      ],
+      "pharmaceutical": [
+        "okeol",
+        "qokeol",
+        "cheor",
+        "qokol",
+        "cheol",
+        "okeey",
+        "s",
+        "daiin",
+        "dal",
+        "chor"
+      ],
+      "stars": [
+        "lkeey",
+        "lkain",
+        "lkaiin",
+        "lkeedy",
+        "chedar",
+        "qokchedy",
+        "lkar",
+        "al",
+        "qopchedy",
+        "oteedy"
+      ],
+      "text_only": [
+        "qokar",
+        "or",
+        "dar",
+        "ar",
+        "shedy",
+        "dal",
+        "shey",
+        "aiin",
+        "y",
+        "ol"
+      ]
+    },
+    "types_tested": 257
+  },
+  "topic": "distribution"
+}

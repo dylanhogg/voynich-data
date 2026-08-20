@@ -1,8 +1,8 @@
 {
   "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
   "bootstrap_resamples": 200,
-  "config_hash": "29a95daaeaab0f78913a2bf9a51a3f2a534170e6ed37ae8770f332760ca71ebb",
-  "git_commit": "0edefa361607ad0aef161518861e77a9c3b9e80a",
+  "config_hash": "cb8e95b8fae9082ac4aba810178e88816095ce8165f26ac6dea777f66e058cd8",
+  "git_commit": "6a0e8cf74d414daee4d877d2f89697e8ea8b4c49",
   "headline": {
     "h2": {
       "ci_high": 2.2618043668356167,
@@ -14,7 +14,7 @@
     "near_repeat_within_2": 0.14759688083731135
   },
   "inputs": {
-    "data_sources/sources.yaml": "2a99d1418a58db875f2a798c238a40678cd9b154ecbbabc96a236f0ab7e59bae",
+    "data_sources/sources.yaml": "c517f010e14739d1851b2f91ec82bdbb4e77915f9e818c00cefc82df292b0dc4",
     "output/eva_lines.jsonl": "53e5db5ab1364eec553de3e20974a16b7af00916906f3758b5f3e2cfd0f4f7c7",
     "output/metadata/pages.jsonl": "cf4f60f1e2b2ace3789924d04765a83a005850a1dda3d7bfde6312931562ccf3",
     "output/mismatch_index.jsonl": "72316ceff4d6976744406e649bf7a053dd951a93f58e6e863cf23baa88b18679"
@@ -141,6 +141,7 @@
       "douay_rheims",
       "finnish_bible",
       "german_bible_elberfelder",
+      "herbal_latin",
       "vulgate_clementine"
     ],
     "nulls": [

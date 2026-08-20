@@ -163,6 +163,9 @@ verification_protocol:
 #   plain     -> use as-is
 # `kind: lexicon` entries are fetched and verified but have no text loader yet
 # (they are consumed in Phase 4).
+# An entry may declare `urls:` (a list) instead of `url:` when the corpus is
+# assembled from several files; they are concatenated in the listed order,
+# joined by a newline, and the checksum is over the concatenation.
 
 reference_corpora:
   vulgate_clementine:
@@ -272,6 +275,60 @@ reference_corpora:
     sha256: "74f2665d6e6925fc2c17dec644bec9e87df478a0f1836822125e8acbb3777806"
     licence: "Public domain (Project Gutenberg, US)"
     retrieved: "2026-08-19"
+
+  herbal_latin:
+    name: "Herbal and agronomic Latin subcorpus (Isidore, Etymologiae IV + XVII; Columella, De re rustica)"
+    group: latin
+    language: la
+    role: "Register-matched plant/medicine Latin; the Phase 3 remedy for the thin herbal LM (plan 5.1)"
+    urls:
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/isidore/17.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/isidore/4.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.arbor.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr1.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr2.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr3.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr4.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr5.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr6.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr7.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr8.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr9.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr10.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr11.txt"
+      - "https://raw.githubusercontent.com/cltk/latin_text_latin_library/76229acaf02efd1964ac32009408a90b6f279758/columella/columella.rr12.txt"
+    filename: "herbal_latin.txt"
+    format: plain
+    sha256: "44689d074a2f2ee869a00cfc61f533f586c34ecd7510ee577eba5161b1946e81"
+    licence: "Public domain texts; The Latin Library transcriptions via cltk/latin_text_latin_library (MIT)"
+    retrieved: "2026-08-20"
+    notes: |
+      Parts are concatenated in the listed order, joined by a single newline;
+      the checksum is over that concatenation. Nothing here is a *medieval
+      herbal*: Isidore XVII (c. 625) is an encyclopaedic treatment of crops,
+      trees and herbs and Columella (1st c.) is Roman agronomy. They are the
+      closest register match retrievable as checksummable plain text. The
+      Latin Library transcriptions carry editorial furniture (Greek in
+      transliteration, verse citations); normalisation drops non-letters, so
+      this survives as noise in the word stream.
+
+  iau_star_names:
+    name: "IAU Catalog of Star Names (IAU-CSN)"
+    group: lexicon
+    kind: lexicon
+    language: mul
+    role: "Star-name lexicon for astronomical-label anchor scoring (plan 5.1)"
+    url: "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt"
+    filename: "iau_star_names.txt"
+    format: plain
+    sha256: "84fac0c90f1b19abc491c2793469e0caa7b003ad1bc93a790ca41147010d0eb0"
+    licence: "Creative Commons Attribution (IAU)"
+    retrieved: "2026-08-20"
+    notes: |
+      451 modern IAU-approved proper names, most Arabic- or Latin-derived and
+      current in medieval star lists. It is a modern standardisation, not a
+      medieval catalogue: spellings are normalised and names the 15th century
+      used but the IAU did not approve are absent.
 
   whitakers_words:
     name: "Whitaker's Words Latin dictionary (DICTLINE.GEN)"

@@ -1,0 +1,108 @@
+{
+  "banner": "SPECULATIVE OUTPUT \u2014 no verified decipherment of the Voynich Manuscript exists. This is model output under a stated hypothesis, not a reading of the manuscript.",
+  "by_currier": {
+    "A": {
+      "dropped_at_floor": 0.031186188973454612,
+      "exact_agreement": 0.8339521069240765,
+      "mean_reliability": 0.8924299770117138,
+      "tokens": 10774.0
+    },
+    "B": {
+      "dropped_at_floor": 0.019093290706451757,
+      "exact_agreement": 0.8765152524310643,
+      "mean_reliability": 0.920654816244153,
+      "tokens": 22521.0
+    },
+    "None": {
+      "dropped_at_floor": 0.03233256351039261,
+      "exact_agreement": 0.8175519630484989,
+      "mean_reliability": 0.8893007483278846,
+      "tokens": 433.0
+    }
+  },
+  "by_line_status": {
+    "in consensus": {
+      "exact_agreement": 0.8913219789132197,
+      "mean_reliability": 0.9269265829389055,
+      "reliable_tokens": 0.9868472089989069,
+      "tokens": 28359.0
+    },
+    "not in consensus": {
+      "exact_agreement": 0.7081393183088098,
+      "mean_reliability": 0.8283598337530879,
+      "reliable_tokens": 0.9241944496181784,
+      "tokens": 5369.0
+    }
+  },
+  "by_line_type": {
+    "label": {
+      "dropped_at_floor": 0.12096774193548387,
+      "exact_agreement": 0.7661290322580645,
+      "mean_reliability": 0.8602990591397849,
+      "tokens": 124.0
+    },
+    "paragraph": {
+      "dropped_at_floor": 0.022765147006308772,
+      "exact_agreement": 0.8625163670991549,
+      "mean_reliability": 0.9114241706240749,
+      "tokens": 33604.0
+    }
+  },
+  "by_section": {
+    "astronomical": {
+      "dropped_at_floor": 0.050505050505050504,
+      "exact_agreement": 0.8434343434343434,
+      "mean_reliability": 0.8872959355459354,
+      "tokens": 198.0
+    },
+    "biological": {
+      "dropped_at_floor": 0.012050154697931933,
+      "exact_agreement": 0.8972480052108777,
+      "mean_reliability": 0.9412631987768559,
+      "tokens": 6141.0
+    },
+    "cosmological": {
+      "dropped_at_floor": 0.02702702702702703,
+      "exact_agreement": 0.7972972972972973,
+      "mean_reliability": 0.8991771564584065,
+      "tokens": 296.0
+    },
+    "herbal": {
+      "dropped_at_floor": 0.028321033210332105,
+      "exact_agreement": 0.8501845018450185,
+      "mean_reliability": 0.8982771144423773,
+      "tokens": 10840.0
+    },
+    "pharmaceutical": {
+      "dropped_at_floor": 0.05078125,
+      "exact_agreement": 0.7838541666666666,
+      "mean_reliability": 0.8689062520625834,
+      "tokens": 2304.0
+    },
+    "stars": {
+      "dropped_at_floor": 0.018676306050434632,
+      "exact_agreement": 0.8716757035889491,
+      "mean_reliability": 0.9153717057588585,
+      "tokens": 11619.0
+    },
+    "text_only": {
+      "dropped_at_floor": 0.02017167381974249,
+      "exact_agreement": 0.8652360515021459,
+      "mean_reliability": 0.9171883267066744,
+      "tokens": 2330.0
+    }
+  },
+  "summary": {
+    "aligned": 0.9683645635673624,
+    "exact_token_agreement": 0.8621620018975332,
+    "gap": 0.030953510436432637,
+    "hapax_share": 0.15026091081593929,
+    "mean_agreement_where_aligned": 0.964792754776399,
+    "mean_reliability": 0.9112362106553827,
+    "no_it_line": 0.0006819259962049335,
+    "rare_unit_share": 0.003646821631878558,
+    "tokens": 33728.0,
+    "tokens_below_half": 0.023126185958254268
+  },
+  "topic": "reliability"
+}

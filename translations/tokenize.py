@@ -18,8 +18,9 @@ Variants
     passed in — the induction lives in ``translations.analysis.segmentation``,
     so the tokenizer stays free of any model of its own.
 ``T3-merge``
-    Depends on the Phase 2 glyph-merge search and raises
-    :class:`NotImplementedError` until that lands.
+    ``T1`` with the glyph groups found by the Phase 2 merge search treated as
+    single units. Like ``T2`` the induction is passed in, never assumed: the
+    merge partition comes from ``translations.decipher``.
 
 The comma policy decides whether ``,`` — the *uncertain* word separator — is a
 word break or word-internal.
@@ -71,18 +72,42 @@ def glyphs(word: str) -> list[str]:
 
 
 Segmenter = Callable[[list[str]], list[list[str]]]
+Merges = tuple[tuple[str, ...], ...]
+
+
+def apply_merges(units: list[str], merges: Merges) -> list[str]:
+    """Re-segment glyph units, longest match first, joining each merge into one.
+
+    Merges are sequences of *units*, so a compound glyph like ``ch`` is never
+    split apart by one.
+    """
+    ordered = sorted(set(merges), key=len, reverse=True)
+    pieces: list[str] = []
+    cursor = 0
+    while cursor < len(units):
+        for merge in ordered:
+            if merge and tuple(units[cursor : cursor + len(merge)]) == merge:
+                pieces.append("".join(merge))
+                cursor += len(merge)
+                break
+        else:
+            pieces.append(units[cursor])
+            cursor += 1
+    return pieces
 
 
 def tokenize_word(
     word: str,
     variant: Tokenizer = Tokenizer.T1_GLYPH,
     segmenter: Segmenter | None = None,
+    merges: Merges = (),
 ) -> list[str]:
     """Split one word into units of the requested variant.
 
-    ``T2-slot`` needs a ``segmenter`` mapping glyph units to morphs; without one
-    it raises, because a slot tokenization with no induced model behind it would
-    be a silent lie about what produced the units.
+    ``T2-slot`` needs a ``segmenter`` mapping glyph units to morphs and
+    ``T3-merge`` needs a ``merges`` partition; without one they raise, because a
+    tokenization with no induced model behind it would be a silent lie about
+    what produced the units.
     """
     if variant is Tokenizer.T0_CHAR:
         return list(word)
@@ -92,7 +117,9 @@ def tokenize_word(
         if segmenter is None:
             raise ValueError("T2-slot requires an induced segmenter")
         return ["".join(morph) for morph in segmenter(glyphs(word))]
-    raise NotImplementedError(f"{variant} requires an induction from a later phase")
+    if not merges:
+        raise ValueError("T3-merge requires a merge partition")
+    return apply_merges(glyphs(word), merges)
 
 
 def tokenize_line(
@@ -100,9 +127,10 @@ def tokenize_line(
     variant: Tokenizer = Tokenizer.T1_GLYPH,
     comma: CommaPolicy = CommaPolicy.BREAK,
     segmenter: Segmenter | None = None,
+    merges: Merges = (),
 ) -> list[list[str]]:
     """Split a line into words, each a list of units."""
-    return [tokenize_word(word, variant, segmenter) for word in split_words(text, comma)]
+    return [tokenize_word(word, variant, segmenter, merges) for word in split_words(text, comma)]
 
 
 def unit_stream(
@@ -110,6 +138,9 @@ def unit_stream(
     variant: Tokenizer = Tokenizer.T1_GLYPH,
     comma: CommaPolicy = CommaPolicy.BREAK,
     segmenter: Segmenter | None = None,
+    merges: Merges = (),
 ) -> list[str]:
     """Flatten a line to a single stream of units, word boundaries dropped."""
-    return [unit for word in tokenize_line(text, variant, comma, segmenter) for unit in word]
+    return [
+        unit for word in tokenize_line(text, variant, comma, segmenter, merges) for unit in word
+    ]

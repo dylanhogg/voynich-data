@@ -267,10 +267,21 @@ warning — upstream drift must be noticed, then re-pinned deliberately.
 | `douay_rheims` | Douay-Rheims Bible | en | english | English rendering of the Vulgate, verse-parallel |
 | `austen_pride_prejudice` | Austen, *Pride and Prejudice* | en | english | Modern English prose |
 | `whitakers_words` | Whitaker's Words `DICTLINE.GEN` | la | lexicon | Latin→English gloss inventory (Phase 4) |
+| `herbal_latin` | Isidore, *Etymologiae* IV + XVII; Columella, *De re rustica* | la | latin | Register-matched plant/medicine Latin (Phase 3) |
+| `iau_star_names` | IAU Catalog of Star Names | mul | lexicon | Star-name lexicon for astronomical labels (Phase 4) |
 
 Four of these (Vulgate, Douay-Rheims, Elberfelder, Finnish) are the same text
 in four languages, which holds genre constant when comparing distributions
 across languages.
+
+`herbal_latin` is the only multi-part entry: it declares `urls:` rather than
+`url:`, and the 15 files are concatenated in the listed order, joined by a
+newline, with the checksum taken over the concatenation. It exists because the
+herbal-register corpus Phase 2 leaned on (`clusius_rariorum`) is 11,638 words —
+too thin for an order-3 character model. It is 128,497 words, and it is *not* a
+medieval herbal: Isidore (c. 625) is encyclopaedic and Columella (1st c.) is
+Roman agronomy. Both were retrievable as checksummable plain text; the medieval
+herbals were not.
 
 Corpora are read through `translations/corpora/`, which strips the delivery
 format (Project Gutenberg header/footer, `[chapter:verse]` references) and then
@@ -283,6 +294,13 @@ No checksummed public-domain source was found for Old Occitan, Middle High
 German, a medieval Latin herbal proper (*Circa Instans*, *Herbarium Apuleii*),
 or Semitic text in Latin transliteration. Those hypotheses are therefore tested
 against the nearest available proxy, and the gap is stated wherever it matters.
+
+Phase 3 searched for three more and found none that could be pinned: a
+machine-readable illustration↔label (plant-ID) concordance, a marginalia
+transcription with dispute flags, and a plant-name lexicon. The candidates are
+narrative HTML pages or application databases covering a handful of folios.
+See `reports/phase3/gap_analysis.md` for what each gap costs and the fallback
+each one triggers.
 
 ---
 

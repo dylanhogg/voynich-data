@@ -98,6 +98,12 @@ class Config:
     # below 1 / (nulls + 1), so this sets the resolution of every significance
     # claim in Phase 2: 3 replicates x 4 families floors p at 0.077.
     null_replicates: int = 3
+    # Phase 3 round-2 ceiling: re-characterisation plus re-scoring the funded
+    # hypotheses on each improved representation.
+    round2_budget_seconds: float = 14400.0
+    # A token whose reliability weight falls below this is dropped from the
+    # "reliable" representation (plan §5.2.6).
+    reliability_floor: float = 0.5
     # Gallows glyphs, and the compounds built on them (plan §3.4).
     gallows: tuple[str, ...] = ("k", "t", "p", "f", "cth", "ckh", "cph", "cfh")
 

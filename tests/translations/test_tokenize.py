@@ -76,9 +76,19 @@ def test_glyph_variant_is_never_longer_than_char_variant() -> None:
         assert len(units) < len(chars)
 
 
-def test_t3_is_not_implemented_yet() -> None:
-    with pytest.raises(NotImplementedError):
+def test_t3_requires_a_merge_partition() -> None:
+    # Phase 3 implements T3-merge; like T2 it refuses to run without its induction.
+    with pytest.raises(ValueError, match="T3-merge"):
         tokenize_word("fachys", Tokenizer.T3_MERGE)
+
+
+def test_t3_applies_the_merge_partition() -> None:
+    assert tokenize_word("fachys", Tokenizer.T3_MERGE, merges=(("ch", "y"),)) == [
+        "f",
+        "a",
+        "chy",
+        "s",
+    ]
 
 
 def test_t2_requires_an_induced_segmenter() -> None:

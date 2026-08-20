@@ -1,0 +1,69 @@
+{
+  "anchors": [],
+  "best_scoring": {
+    "beat_every_null": false,
+    "converged": false,
+    "gain_per_token": -0.10518954574398559,
+    "holdout_gain_per_token": 3.0502754818468283,
+    "hypothesis": "H2",
+    "p_value": 0.3076923076923077,
+    "q_value": 0.5538461538461539,
+    "representation": "merged",
+    "variant": "austen_pride_prejudice-o3|fixed-width-3"
+  },
+  "chosen": {
+    "gain_per_token": -5.771475081908847,
+    "hypothesis": "H1",
+    "key": "{'a': 'n', 'aiin': 'm', 'ain': 't', 'al': 't', 'ar': 't', 'cfh': 'f', 'ch': 'n', 'che': 'e', 'chedy': 'b', 'cheo': 'v', 'cho': 'd', 'chol': 'b', 'ckh': 'o', 'cph': 'o', 'cth': 'o', 'd': 'i', 'daiin': 'a', 'e': 'l', 'eey': 'd', 'ey': 'r', 'f': 'o', 'g': 'y', 'i': 'g', 'ii': 'd', 'k': 'u', 'ke': 'u', 'l': 'a', 'm': 'e', 'n': 'o', 'o': 'r', 'ody': 'o', 'ok': 'a', 'ol': 'm', 'or': 'e', 'ot': 'a', 'p': 'a', 'q': 'f', 'qo': 'c', 'qot': 'a', 'r': 'e', 's': 'a', 'sh': 'e', 'she': 'p', 't': 'a', 'x': 'h', 'y': 's', '?': 'o'}",
+    "merges": "[]",
+    "representation": "merged",
+    "variant": "clusius_rariorum-o3|plain"
+  },
+  "paragraphs": {
+    "blocks": 717,
+    "source": "IVTFF <%> / <$> markers"
+  },
+  "reliability": {
+    "floor": 0.5,
+    "path": "output/translation/token_alignment.parquet",
+    "policy": "render every token, hedge by weight; never silently drop"
+  },
+  "representations": {
+    "merged": {
+      "gain_per_token": -6.502882297440821,
+      "merges": [
+        "aiin",
+        "ain",
+        "al",
+        "ar",
+        "che",
+        "chedy",
+        "cheo",
+        "cho",
+        "chol",
+        "daiin",
+        "eey",
+        "ey",
+        "ii",
+        "ke",
+        "ody",
+        "ok",
+        "ol",
+        "or",
+        "ot",
+        "qo",
+        "qot",
+        "she"
+      ],
+      "n_merges": 22,
+      "variant": "clusius_rariorum-o3|searched-merges"
+    },
+    "raw": {},
+    "reliable": {
+      "threshold": 0.5,
+      "tokens_dropped": 780
+    }
+  },
+  "selection_rule": "highest gain among converged candidates that committed to a key; the top of the ranked table is unconverged and is recorded as best_scoring only",
+  "warning": "Every hypothesis in this configuration lost to a Markov model of the manuscript's own statistics, and none beat its surrogates. Phase 4 renders under a losing model and must say so on every artifact."
+}

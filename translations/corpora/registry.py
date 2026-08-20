@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import yaml
 
@@ -20,13 +21,18 @@ class CorpusSpec:
     group: str
     language: str
     role: str
-    url: str
+    urls: tuple[str, ...]
     filename: str
     format: str
     sha256: str
     licence: str
     retrieved: str
     kind: str
+
+    @property
+    def url(self) -> str:
+        """First declared URL — the whole source for single-file corpora."""
+        return self.urls[0]
 
     @property
     def path(self) -> Path:
@@ -37,6 +43,15 @@ class CorpusSpec:
     def is_text(self) -> bool:
         """Whether a text loader exists for this entry."""
         return self.kind == "text"
+
+
+def _urls(corpus_id: str, entry: dict[str, Any]) -> tuple[str, ...]:
+    """A spec declares either one ``url`` or an ordered list of ``urls``."""
+    if "urls" in entry:
+        return tuple(str(url) for url in entry["urls"])
+    if "url" in entry:
+        return (str(entry["url"]),)
+    raise ConfigurationError("Corpus declares no url", {"corpus_id": corpus_id})
 
 
 def load_specs(sources_yaml: Path | None = None) -> list[CorpusSpec]:
@@ -53,7 +68,7 @@ def load_specs(sources_yaml: Path | None = None) -> list[CorpusSpec]:
             group=entry["group"],
             language=entry["language"],
             role=entry["role"],
-            url=entry["url"],
+            urls=_urls(corpus_id, entry),
             filename=entry["filename"],
             format=entry["format"],
             sha256=entry["sha256"],

@@ -1,9 +1,9 @@
 # Plan 001 — Initial Automated English Translation
 
-**Status**: Phases 0–2 complete (landmark gate green; no hypothesis beat its null);
-Phases 3–5 not started
+**Status**: Phases 0–3 complete (landmark gate green; no hypothesis beat its null on
+any representation); Phases 4–5 not started
 **Author**: VCAT / agent-assisted
-**Date**: 2026-08-19 (Phases 0–1 implemented 2026-08-19, Phase 2 on 2026-08-20)
+**Date**: 2026-08-19 (Phases 0–1 implemented 2026-08-19, Phases 2–3 on 2026-08-20)
 **Scope**: Extend voynich-data (VCAT) from dataset building into analysis, code
 breaking, and a best-efforts automated English translation.
 
@@ -16,7 +16,7 @@ breaking, and a best-efforts automated English translation.
 | 0 — Foundations | **Complete** | `translations/` package (config, determinism, io, tokenize, strata, corpora, nulls, phase0), 10 checksum-pinned reference corpora, 48 new tests (391 passed / 7 skipped total), `output/translation/phase0_manifest.json` byte-identical across runs |
 | 1 — Analysis round 1 | **Complete** | `translations/analysis/` (12 modules), `reports/phase1/` (9 topic reports + `summary.md`), landmark gate **GREEN** (6/6), 64 new tests (455 passed / 7 skipped total), `make analyse1` ≈100 s and byte-stable across runs |
 | 2 — Hypothesis space + search | **Complete** | 10 pre-registered records in `translations/hypotheses/`, `translations/decipher/` (11 modules), `reports/phase2/` (scores, approach, synthetic validation), 143 candidates in `output/decipher/candidates.parquet`, engine validated at ~100% key recovery on self-built ciphers, all 8 funded hypotheses falsified by their own criteria (Decision 20), 47 new tests (504 passed / 7 skipped) |
-| 3 — Analysis round 2 | Not started | — |
+| 3 — Analysis round 2 | **Complete** | `reports/phase3/` (gap register, `round2_findings.md`, `rescoring.md` + 5 topic reports), 3 of 7 gaps closed and 1 partially, `output/translation/token_alignment.parquet` (33,728 tokens, 86.2% ZL/IT exact agreement), 717 paragraph blocks, 2 new checksummed corpora, `T3-merge` implemented, 286 round-2 candidates in `output/decipher/round2_candidates.parquet`, 48 new tests (552 passed / 7 skipped), `make analyse2` ≈2 h 6 min |
 | 4 — Translation pipeline | Not started | — |
 | 5 — Audit + honesty gate | Not started | — |
 
@@ -27,12 +27,15 @@ make corpora   # fetch + SHA256-verify reference corpora into data_sources/cache
 make phase0    # verify inputs, summarise strata, write output/translation/phase0_manifest.json
 make analyse1  # Phase 1 suite -> reports/phase1/ (~100 s; non-zero exit if the gate is red)
 make decipher  # Phase 2 hypothesis search -> reports/phase2/ (budgeted; ~50 min at current grids)
-make test      # 504 passed, 7 skipped
+make analyse2  # Phase 3 remediation + round 2 + re-scoring -> reports/phase3/ (~2 h; --analysis-only skips the search)
+make test      # 552 passed, 7 skipped
 ```
 
 Start reading at `reports/phase1/summary.md` (findings table, landmark gate, and
-the "what we still cannot tell" list) and then `reports/phase2/hypothesis_scores.md`
-(ranked hypotheses, null-relative significance, held-out scores).
+the "what we still cannot tell" list), then `reports/phase2/hypothesis_scores.md`
+(ranked hypotheses, null-relative significance, held-out scores), then
+`reports/phase3/round2_findings.md` (what remediation changed) with
+`reports/phase3/gap_analysis.md` for what could not be sourced.
 
 ### Phase 0 as built (deltas from the plan below)
 
@@ -246,6 +249,96 @@ Phase 4.*
 
 ---
 
+### Phase 3 as built (deltas from the plan below)
+
+*Numbers from the run of 2026-08-20. The clarifying answers for this session set the
+round-2 ceiling at ~4 h (7,440 s were spent), told Phase 3 to attempt the new sources
+and fall back to an open gap where none exists, dropped §5.2 item 7 (numerals), and
+scoped the token alignment to the EVA pair.*
+
+1. **Paragraph segmentation needed no heuristics** (Decision 21). §5.1 expected it to be
+   derived from the `position` locator; the locator cannot carry it (`+` alone covers 3,729
+   of 4,072 lines). IVTFF already marks paragraph starts (`<%>`, 707) and ends (`<$>`, 670)
+   inline, and the builders strip them on the way to `text_clean`. `vcat/text_processing.py`
+   gained an `inline_tags()` accessor — the tag regex stays in the one module allowed to own
+   it — and the result is 717 blocks, 93.4% opened *and* closed by a marker.
+2. **Line-level transcription noise was overstated.** Phase 1 could only say 29.3% of lines
+   are identical between ZL and IT. At token level **86.2%** of ZL tokens are read
+   identically and mean agreement where a counterpart exists is 0.965. A line-level mismatch
+   is usually one word, not a different reading of the line — which changes how much of
+   Phase 1's "transcription-limited" hedging was warranted.
+3. **The reliability weight is a declared policy, not a fitted model** (Decision 22). There
+   is no labelled data to fit it on, so the six penalties are constants in
+   `translations/alignment.py`. Only **2.3%** of tokens (780) fall below the 0.5 floor, so
+   the `reliable` representation is close to the raw one and its analyses move very little.
+   A stricter floor is a different experiment, not a tuning knob to reach for.
+4. **`T3-merge` is implemented.** §2.3 deferred it to "the Phase 2 glyph-merge search"; that
+   search has now produced a partition, so `tokenize.apply_merges` exists and
+   `decipher/channel.merge_units` delegates to it rather than keeping a second copy of the
+   longest-match loop.
+5. **Three gaps stay open, and they are the ones that matter most** (Decision 24). No
+   checksummable illustration↔label concordance and no marginalia transcription could be
+   found — the candidates are narrative HTML pages and one application database covering
+   three folios. §5.1's pre-committed fallback therefore fires: label-level anchor seeding is
+   dropped and the anchor catalogue stays empty, so **Phase 4 will render with no external
+   tie-point at all**. The v101 mapping was deliberately deferred.
+6. **Two new checksummed corpora** (Decision 23). `herbal_latin` (Isidore, *Etymologiae* IV
+   and XVII; Columella, *De re rustica*) is 128,497 words against Clusius's 11,638 — 11× the
+   herbal-register Latin Phase 2 leaned on. It is *not* a medieval herbal, and the report
+   says so. `iau_star_names` pins 451 star names for Phase 4. The registry gained multi-part
+   entries (`urls:`, checksum over the concatenation). Adding a corpus changed the Phase 1
+   baseline set from 9 to 10, so `make analyse1` was re-run: the h2 gap moves from −0.965 to
+   −0.976 bits and the landmark gate stays **GREEN**.
+7. **Merging trades entropy for word length and repetition.** This is §5.2.1's make-or-break
+   diagnostic and the answer is a qualified no. H2's converged merge does pull h2 (2.253 →
+   3.111), h3 and word-length CV *inside* the natural-language range — 4 of 11 metrics
+   against 3 for raw — but it drives mean word length to 2.81 units, below every baseline
+   (min 3.97), and doubles the adjacent near-repeat rate (0.148 → 0.331). Entropy bought,
+   paid for elsewhere: the signature of a compression, not of a plaintext.
+8. **Reliability filtering does not move the landmarks**, which is the useful negative: they
+   are properties of the text, not artifacts of the tokens the two transcribers disagree
+   about.
+9. **The paradigm probe weakens the morphology reading** (§5.2.2). Voynich roots take 3.76
+   distinct suffixes each against 1.90 in Latin and 1.63 in Finnish, only 9% of roots are
+   single-suffix against ~50% in both languages, and root↔suffix NMI is 0.35 against 0.51.
+   Suffix choice is *freer* than inflection allows and is barely conditioned by the previous
+   word (1.7% of suffix entropy). The plan named Turkish as the agglutinative comparator;
+   Finnish is what `sources.yaml` pins, and it fills the same role at matched genre.
+   The comparison also needed a **frequency inventory** (12 commonest word-final sequences
+   per view) rather than the MDL induction, because at matched sample size Latin induces
+   exactly **one** affix that pays for itself — the Phase 1 asymmetry, restated so starkly it
+   makes a cross-language table impossible.
+10. **Section-specific vocabulary is real** (§5.2.4): mean section divergence 0.461 bits
+    against a page-permutation null whose *maximum* over 200 permutations is 0.199, p = 0.005.
+    The null reassigns whole pages, so page-level repetitiveness is preserved and only the
+    section↔vocabulary link is destroyed. This is the strongest positive result in the
+    programme so far and it is what makes herbal-only and pharma-only subsets the most
+    translatable parts of the manuscript, if any part is.
+11. **Labels behave like a nomenclature** (§5.2.5): 124 tokens over 115 lines, mean 2.37 units
+    against 4.92 in a size-matched prose sample, suffix rate 0.24 against 0.90, and a page's
+    labels are tighter to each other than the label vocabulary at large. Half of label types
+    also occur in running text. What they name is still unknown — that needs the concordance
+    gap 2 leaves open.
+12. **Round-2 re-scoring narrows every gap and changes no verdict** (§5.2.8, Decision 25).
+    All eight funded hypotheses were re-searched on `merged` and `reliable`; 286 candidates,
+    18 summary rows. Best is H2 on merged at −0.105 bits/token — within a tenth of a bit of
+    parity, with a *positive* held-out gain of +3.05 — and it is not evidence. On the same
+    channel the shuffled-text surrogate gains **+9.97 to +10.02**, the held-out Markov
+    baseline costs 13.58 bits/token against 12.55 on training (fewer tokens, same parameter
+    cost), and the variant did not converge. `raw` was not re-searched: Phase 2 ran it with
+    this code and these seeds, and its numbers are carried from the Phase 2 manifest.
+13. **The translator configuration separates "best" from "usable".**
+    `output/translation/phase3_translator_config.json` records `best_scoring` (the
+    unconverged H2 row, so the number is not hidden) and `chosen` — the best *converged*
+    candidate that committed to a key, which is H1 on the merged representation at −5.771.
+    Phase 4 runs `chosen`, and still renders under a losing model.
+14. **`--analysis-only` and `--reports-only`.** The searches are ~2 h of the ~2 h 6 min run;
+    the write-up must be fixable without spending them again. Both flags exist on
+    `translations.phase3` and the reports regenerate from
+    `output/translation/phase3_manifest.json`.
+
+---
+
 ## 0. Framing, constraints and honesty policy
 
 ### 0.1 What this plan is
@@ -438,8 +531,11 @@ In `T1-glyph` a high-ASCII token `@NNN;` is one opaque unit and the ligature
 connector `'` is dropped (Decision 8). `T2-slot` was implemented in Phase 1.4:
 `tokenize_word(word, T2_SLOT, segmenter)` takes an induced segmenter (the MDL
 inventory in `output/translation/phase1_slot_model.json`) and raises without one,
-so a slot tokenization always names the model behind it. `T3-merge` still raises
-`NotImplementedError` pending the Phase 2 merge search.
+so a slot tokenization always names the model behind it. `T3-merge` was implemented
+in Phase 3 on the same pattern: `tokenize_word(word, T3_MERGE, merges=...)` takes the
+merge partition Phase 2's H2 search committed to (22 merges: `qo`, `ol`, `aiin`, `chedy`,
+…) and raises without one. `decipher/channel.merge_units` delegates to it rather than
+keeping a second copy of the longest-match loop.
 
 Orthogonal binary factor: **comma policy** — `,` (uncertain word break) treated
 as a break (`CB=break`) or as within-word (`CB=join`). Both computed; the
@@ -1053,27 +1149,29 @@ allocation); nothing truncated. Wall clock for `make decipher` ≈ 56 min.
 analysis that directly feeds the translator. Scope here is deliberately
 *derived*, not fixed in advance; the items below are the expected set.
 
-### 5.1 Formal gap analysis (`reports/phase3/gap_analysis.md`)
+### 5.1 Formal gap analysis (`reports/phase3/gap_analysis.md`) — **done 2026-08-20**
 
 Structured as: gap → why it blocks translation → proposed remedy → cost → data
-provenance required. Expected gaps:
+provenance required. Expected gaps (outcome column added after the run;
+`reports/phase3/gap_analysis.md` carries the full register):
 
-| Gap | Blocks | Remedy |
-| --- | --- | --- |
-| No token-level cross-transcription alignment | Per-token confidence weighting | Needleman–Wunsch alignment of ZL/IT/GC per line → new `output/translation/token_alignment.parquet` |
-| No illustration↔label linkage | Anchor-based gloss seeding on labels | Automated only: ingest a published concordance (Voynich Nu / plant-ID lists) as a checksummed source. **No hand annotation** — if no usable source exists, the gap stays open, label-level anchor seeding is dropped, and §7.1.5 falls back to page-level `section` / `illustration_type` |
-| Marginalia not in dataset | Best cribs unavailable | Add a `marginalia.jsonl` source with transcription variants and explicit dispute flags |
-| No paragraph/block segmentation | Line-as-unit vs paragraph-as-unit modelling | Derive from `position` + layout heuristics; validate on a sample |
-| Currier/v101 alphabet not mapped | Robustness checks on GC/FG limited | Build and test an explicit mapping table with lossiness documented |
-| No plant/star reference lexicons | Anchor scoring for herbal/astro labels | Add medieval herbal + star-name lexicons to `sources.yaml` |
-| Register-matched Latin scarce | LM quality for H4 | Assemble a medieval-herbal Latin subcorpus; document its size limits |
+| Gap | Blocks | Remedy | Outcome |
+| --- | --- | --- | --- |
+| No token-level cross-transcription alignment | Per-token confidence weighting | Needleman–Wunsch alignment of ZL/IT/GC per line → new `output/translation/token_alignment.parquet` | **Closed**, ZL/IT only (Decision 22). 33,728 tokens; 86.2% read identically |
+| No illustration↔label linkage | Anchor-based gloss seeding on labels | Automated only: ingest a published concordance (Voynich Nu / plant-ID lists) as a checksummed source. **No hand annotation** — if no usable source exists, the gap stays open, label-level anchor seeding is dropped, and §7.1.5 falls back to page-level `section` / `illustration_type` | **Open**. No checksummable concordance found; the pre-committed fallback applies |
+| Marginalia not in dataset | Best cribs unavailable | Add a `marginalia.jsonl` source with transcription variants and explicit dispute flags | **Open**. Readings are disputed and exist only as prose discussion |
+| No paragraph/block segmentation | Line-as-unit vs paragraph-as-unit modelling | Derive from `position` + layout heuristics; validate on a sample | **Closed** without heuristics: IVTFF marks `<%>`/`<$>` inline (Decision 21). 717 blocks |
+| Currier/v101 alphabet not mapped | Robustness checks on GC/FG limited | Build and test an explicit mapping table with lossiness documented | **Open**, deliberately deferred; nothing in Phase 3 depends on it |
+| No plant/star reference lexicons | Anchor scoring for herbal/astro labels | Add medieval herbal + star-name lexicons to `sources.yaml` | **Partial**: `iau_star_names` pinned; no plant lexicon located |
+| Register-matched Latin scarce | LM quality for H4 | Assemble a medieval-herbal Latin subcorpus; document its size limits | **Closed**: `herbal_latin`, 128,497 words, 11× Clusius (Decision 23) |
 
 Each remedy that touches data gets a `sources.yaml` entry or a decision-log
 entry — no undocumented data appears in the pipeline.
 
-### 5.2 Targeted analysis round 2 (`translations/analysis/` additions)
+### 5.2 Targeted analysis round 2 (`translations/analysis/` additions) — **done 2026-08-20**
 
-Driven by the shortlist from Phase 2. Expected work:
+Driven by the shortlist from Phase 2. Expected work (item 7 was dropped by the
+clarifying answers for this session; everything else was built):
 
 1. **Post-merge re-characterisation** — if H2 (verbose cipher) produces a
    plausible merge, re-run the *entire* Phase 1 battery on the merged
@@ -1097,16 +1195,28 @@ Driven by the shortlist from Phase 2. Expected work:
    per-token reliability weight used by the translator.
 7. **Number/quantity hypothesis** — pharma/recipe pages: search for
    numeral-like paradigms (small closed sets in list-initial position).
+   **Dropped for this session.** Nothing in Phase 1 flagged small closed sets in
+   list-initial position, so the probe would have been a scan without a
+   pre-registered hypothesis — exactly what §4.5 forbids.
 8. **Re-scoring of hypotheses** with the improved representation, anchors, and
-   held-out data.
+   held-out data. Anchors are still unavailable (§5.1), so the re-scoring is on
+   representation and held-out data only.
 
-### 5.3 Phase 3 exit deliverables
+### 5.3 Phase 3 exit deliverables — **met 2026-08-20**
 
-- `reports/phase3/gap_analysis.md`, `reports/phase3/round2_findings.md`.
-- New/updated `sources.yaml` entries with checksums.
-- `output/translation/token_alignment.parquet` and the token reliability model.
-- Final ranked hypothesis list with post-remediation scores → the translator's
-  configuration.
+- ✅ `reports/phase3/gap_analysis.md` (7 gaps: 3 closed, 1 partial, 3 open, each with
+  cost and provenance), `reports/phase3/round2_findings.md` (7 findings), plus
+  `rescoring.md` and the five round-2 topic reports.
+- ✅ New `sources.yaml` entries with checksums: `herbal_latin` (multi-part, 15 pinned
+  files) and `iau_star_names`.
+- ✅ `output/translation/token_alignment.parquet` — 33,728 rows, one per ZL token, with
+  its IT counterpart, agreement and reliability weight.
+- ✅ Final ranked hypothesis list (`rescoring.md`, 18 rows over two representations) and
+  the translator configuration at
+  `output/translation/phase3_translator_config.json`.
+
+**Run cost**: 2 h 6 min wall clock, of which 7,440 s of search against a 14,400 s
+ceiling. 286 candidates in `output/decipher/round2_candidates.parquet`.
 
 ---
 
